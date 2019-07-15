@@ -10,6 +10,8 @@
   z-index: index($z-index, topbar);
   opacity: 0;
 
+  background-color: #fff;
+
   height: rem($topbar-height-compact);
 
   @include mappy-bp($bp-menu-collapse) {
@@ -39,10 +41,6 @@
   opacity: 0;
 }
 
-.c-topbar--not-top.c-topbar--pinned {
-  background-color: #fff;
-}
-
 .c-topbar--compact {
   height: rem($topbar-height-compact);
 }
@@ -60,7 +58,7 @@
 
   @include mappy-bp($bp-menu-collapse) {
     align-self: flex-end;
-    margin-bottom: rem(20px);
+    margin-bottom: rem(69px); // magic, aligns with the logo signet bottom edge
   }
 }
 
@@ -80,14 +78,30 @@ $logo-ratio: 180 / 130;
     width: rem(130px * $logo-ratio);
   }
 
+  &,
+  &:hover,
+  &:focus {
+    color: $color-primary;
+  }
+
   .c-topbar--compact & {
     height: rem(80px);
     width: rem(80px * $logo-ratio);
   }
 
-  img {
+  svg {
     display: block;
     height: 100%;
     width: 100%;
+
+    color: inherit;
+    transition: $transition-time-medium;
+
+    .is-menu-open & {
+      @include mappy-bp(max $bp-menu-collapse) {
+        color: $color-white;
+      }
+    }
   }
+
 }

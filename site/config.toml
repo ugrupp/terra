@@ -9,3 +9,10 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
   [languages.de]
     locale = "de_DE"
     weight = 1
+
+[menu]
+  [[menu.main]]
+    name = "Kontakt"
+    identifier = "contact"
+    weight = 300
+    url = "#kontakt"

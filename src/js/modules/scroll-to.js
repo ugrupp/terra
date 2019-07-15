@@ -10,4 +10,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     speed: 500,
     easing: 'easeOutQuad',
   });
+
+  new SmoothScroll('[data-scroll]', {
+    speed: 500,
+    easing: 'easeOutQuad',
+  });
 });

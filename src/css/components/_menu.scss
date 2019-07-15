@@ -88,22 +88,29 @@
   li {
     display: flex;
     align-items: center;
+    position: relative;
   }
 
   li + li {
-    margin-top: rem(30px);
+    margin-top: rem(20px);
 
     @include mappy-bp($bp-menu-collapse) {
       margin-top: 0;
-      margin-left: rem(40px);
+      margin-left: rem(60px);
+
+      &::before {
+        content: '';
+        background-color: rgba($color-gray-4, .3);
+        position: absolute;
+        left: rem(-30px);
+        top: (100% - 80%) / 2;
+        height: 80%;
+        width: 1px;
+      }
 
       svg {
         display: block;
       }
-    }
-
-    @include mappy-bp(lg) {
-      margin-left: rem(60px);
     }
   }
 
@@ -112,14 +119,23 @@
     align-items: baseline;
 
     @include typi('menu');
+    @include font-ci;
+    text-transform: uppercase;
     @include font-smoothing;
     color: inherit;
-    transition: color $transition-time-default;
+
+    @include mappy-bp($bp-menu-collapse) {
+      transition: color $transition-time-default;
+    }
 
     &:hover,
     &:focus,
     &.active {
-      color: $color-primary;
+      color: inherit;
+
+      @include mappy-bp($bp-menu-collapse) {
+        color: $color-primary;
+      }
     }
 
     svg {

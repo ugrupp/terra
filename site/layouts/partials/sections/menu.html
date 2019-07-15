@@ -13,13 +13,9 @@
       {{ range .Site.Menus.main }}
         <li>
           <a class="{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}"
-              href="{{ .URL }}"{{ if eq .Identifier "catalog" }} target="_blank"{{ end }}>
-            {{ .Title }}
-
-            {{/* External icon */}}
-            {{ if eq .Identifier "catalog" }}
-              {{ partial "components/svg" (dict "svg" "external") }}
-            {{ end }}
+            href="{{ .URL }}"
+            {{ if eq .Identifier "contact" }}data-scroll{{ end }}>
+            {{ .Name }}
           </a>
         </li>
       {{ end }}
