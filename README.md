@@ -1,5 +1,7 @@
 # Terra Bodenbeläge Website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cda8a4b1-1718-4f5a-9330-ab1ec4799382/deploy-status)](https://app.netlify.com/sites/terra-boden/deploys)
+
 This website is based on [Hugo](https://gohugo.io/) as a static site generator and [Gulp](https://gulpjs.com/) + [Webpack](https://webpack.js.org/) as the asset pipeline tools. Originally it's a heavily modified fork of [victor-hugo](https://github.com/netlify/victor-hugo).
 
 ## Usage
