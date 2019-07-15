@@ -14,8 +14,7 @@
 
 @mixin font-ci {
   font-family: $font-family-ci-fallback;
-  font-style: italic;
-  text-transform: uppercase;
+  font-weight: 700;
 
   // fonts-loaded global flag, triggered by JS
   .has-loaded-fonts-ci & {

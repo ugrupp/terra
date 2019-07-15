@@ -2,16 +2,16 @@
 // Typography settings
 // --------------------------------------------------
 
-// Font Weights
-$font-weight-light: 300;
+// Font Weights for body copy text
+$font-weight-light: 200;
 $font-weight-regular: 400;
 $font-weight-bold: 700;
 
 // Font Families
 $font-family-base-fallback: 'Arial', sans-serif;
-$font-family-base: 'HelveticaNeueLTPro-Lt', 'Arial', sans-serif;
-$font-family-ci-fallback: 'Impact', serif;
-$font-family-ci: 'BigNoodleTitling', 'Impact', serif;
+$font-family-base: 'aktiv-grotesk', $font-family-base-fallback;
+$font-family-ci-fallback: 'Arial', sans-serif;
+$font-family-ci: 'Campton-BoldDEMO', $font-family-ci-fallback;
 
 // Tell Typi to use mappy-breakpoints
 $typi-breakpoint: mappy-bp;

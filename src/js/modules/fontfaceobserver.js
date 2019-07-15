@@ -19,7 +19,19 @@ function transformFontData(fontData) {
 }
 
 // CI font
-const fontsCi = transformFontData([]);
+const fontsCi = transformFontData([
+  {
+    name: 'Campton-BoldDEMO',
+    styles: [
+      {
+        weight: 700,
+        styles: [
+          'normal',
+        ],
+      },
+    ],
+  },
+]);
 
 let fontsCiLoadedPromises = fontsCi.map((fontFaceObserverObj) => {
   // timeout: 7s
@@ -33,19 +45,7 @@ Promise.all(fontsCiLoadedPromises).then(() => {
 
 
 // Body font
-const fontsBody = transformFontData([
-  {
-    name: 'HelveticaNeueLTPro-Lt',
-    styles: [
-      {
-        weight: 300,
-        styles: [
-          'normal',
-        ],
-      },
-    ],
-  },
-]);
+const fontsBody = transformFontData([]);
 
 let fontsBodyLoadedPromises = fontsBody.map((fontFaceObserverObj) => {
   // timeout: 5s
