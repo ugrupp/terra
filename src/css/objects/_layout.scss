@@ -2,14 +2,25 @@
 // Layout
 // --------------------------------------------------
 
-// Main (content wrapper)
-.o-main {
-  padding-top: 100vh; // match fixed hero
+.o-pagelayout {
+  background-color: $color-gray-f;
 }
 
-.o-main--half-hero {
-  padding-top: 55vh;
-  margin-bottom: 45vh;
+// Main (content wrapper)
+.o-main {
+  padding-top: calc(100vh - #{rem($hero-overlap-xs)}); // match fixed hero
+
+  @include mappy-bp(md) {
+    padding-top: calc(100vh - #{rem($hero-overlap-md)}); // match fixed hero
+  }
+}
+
+.o-main__topbox {
+  margin-bottom: rem(-$topbox-overlap-xs);
+
+  @include mappy-bp(md) {
+    margin-bottom: rem(-$topbox-overlap-md);
+  }
 }
 
 .o-main__content {
@@ -21,17 +32,13 @@
 .o-main__section {
   position: relative;
   z-index: index($z-index, content-section);
-
-  background-color: $color-white;
   @include section-padding;
 
   > * {
     position: relative;
   }
-}
 
-// light bg color
-.o-main__section--bg-light {
+  // bg
   &::before {
     content: '';
     position: absolute;
@@ -43,10 +50,24 @@
   }
 }
 
+.o-main__section--after-topbox {
+  &::before {
+    top: rem($topbox-overlap-xs);
+
+    @include mappy-bp(md) {
+      top: rem($topbox-overlap-md);
+    }
+  }
+}
+
 // no pad
 .o-main__section--no-pad {
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.o-main__section--no-pad-top {
+  padding-top: 0;
 }
 
 // overlaps

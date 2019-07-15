@@ -1,0 +1,69 @@
+//
+// Topbox
+// --------------------------------------------------
+
+.c-topbox {
+  overflow: hidden;
+  background-color: $color-gray-f;
+  position: relative;
+
+  height: rem(214px);
+  clip-path: polygon(0 0, rem(80px) 0, rem(80px) rem($hero-overlap-xs), 100% rem($hero-overlap-xs), 100% 100%, 0 100%);
+
+  @include mappy-bp(md) {
+    height: rem(489px);
+    clip-path: polygon(0 0, 32% 0, 32% rem($hero-overlap-md), 100% rem($hero-overlap-md), 100% 100%, 0 100%);
+  }
+
+  > .o-container {
+    height: rem($hero-overlap-xs);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include mappy-bp(md) {
+      height: rem($hero-overlap-md);
+    }
+  }
+}
+
+.c-topbox__visual {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: rem(214px * $terra-visual-ratio);
+
+  @include mappy-bp(md) {
+    width: rem(489px * $terra-visual-ratio);
+  }
+
+  svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+// Arrow hint
+.c-topbox__scroll-hint {
+  position: relative;
+  z-index: 10; // > visual
+  display: block;
+  height: rem(24px);
+  width: rem(24px);
+  opacity: .4;
+  color: inherit;
+  transition: opacity $transition-time-default;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+    opacity: 1;
+  }
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+}

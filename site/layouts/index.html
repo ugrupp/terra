@@ -2,6 +2,26 @@
   {{/* Get headless home bundle which holds the content */}}
   {{ with .Site.GetPage "page" "home" }}
     <div class="o-main__content" id="content">
+      {{/* Topbox */}}
+      <div class="o-main__topbox">
+        <div class="c-topbox">
+          <div class="c-topbox__visual">
+            {{ partial "components/svg" (dict "svg" "terra") }}
+          </div>
+
+          <div class="o-container">
+            {{/* Content scroll arrow */}}
+            <a class="c-topbox__scroll-hint" href="#content" data-scroll-content data-scroll-content-hero>
+              {{ partial "components/svg" (dict "svg" "arrow-down") }}
+              <span class="u-invisible">Zum Content</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="o-main__section o-main__section--no-pad-top o-main__section--after-topbox">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae omnis error quasi, ex aliquid at dicta odit vel blanditiis officiis vitae, labore fugiat, voluptate rerum fugit ratione quos repellendus hic.
+      </div>
     </div>
   {{ end }}
 {{ end }}

@@ -32,14 +32,21 @@ $container-width-narrow: 800px;
 $section-padding: 90px;
 $section-padding-md: 180px;
 
-$grid-gutter: 100px;
-$grid-gutter-md: 200px;
+$grid-gutter: 80px;
+$grid-gutter-md: 160px;
 
-$hover-opacity: .75;
+
+$hero-overlap-xs: 60px;
+$hero-overlap-md: 100px;
+
+$topbox-overlap-xs: 40px;
+$topbox-overlap-md: 170px;
 
 $topbar-height-top: 210px;
 $topbar-height-compact: 120px;
 
 $overlap-size: 100px;
+
+$terra-visual-ratio: 395 / 214;
 
 $overlay-bg: rgba($color-primary, .94);
