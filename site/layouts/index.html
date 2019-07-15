@@ -19,9 +19,13 @@
         </div>
       </div>
 
-      <div class="o-main__section o-main__section--no-pad-top o-main__section--after-topbox">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae omnis error quasi, ex aliquid at dicta odit vel blanditiis officiis vitae, labore fugiat, voluptate rerum fugit ratione quos repellendus hic.
-      </div>
+      {{/* Sections */}}
+      {{ $sections := .Resources.Match "section-*.md" }}
+      {{ range (sort $sections "Name") }}
+        <div class="o-main__section {{ .Params.modifiers }}">
+          {{ partial "components/gallery-section.html" (dict "context" . "reverse" .Params.reverse) }}
+        </div>
+      {{ end }}
     </div>
   {{ end }}
 {{ end }}

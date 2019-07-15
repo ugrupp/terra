@@ -29,11 +29,15 @@
   top: 0;
   left: 0;
   bottom: rem($hero-overlap-xs);
-  right: rem(40px);
+  right: rem($container-gutter);
   z-index: 10; // > header 2
 
   @include mappy-bp(md) {
     bottom: rem($hero-overlap-md);
+    right: calc(50% - #{rem($grid-gutter / 2)});
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
     right: calc(50% - #{rem($grid-gutter-md / 2)});
   }
 }

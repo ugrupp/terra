@@ -1,0 +1,28 @@
+<div class="c-gallery-section{{ if .reverse }} c-gallery-section--reverse{{end }}">
+  {{/* Content */}}
+  <div class="c-gallery-section__content">
+    <div class="o-container o-container--narrow">
+      <div class="o-grid">
+        {{ if not .reverse }}
+          <div class="o-grid__col"></div>
+        {{ end }}
+
+        <div class="o-grid__col">
+          <h2 class="c-headline c-headline--padded c-headline--primary c-headline--with-spacing">{{ .context.Title }}</h2>
+          <div class="c-richtext">
+            {{ .context.Content }}
+          </div>
+        </div>
+
+        {{ if .reverse }}
+          <div class="o-grid__col"></div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  {{/* Gallery */}}
+  <div class="c-gallery-section__gallery">
+    Gallery
+  </div>
+</div>

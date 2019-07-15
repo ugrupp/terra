@@ -1,0 +1,42 @@
+//
+// Gallery section
+// --------------------------------------------------
+
+.c-gallery-section {
+  // TOOD
+  @include mappy-bp($bp-grid-collapse) {
+    min-height: rem(250px);
+  }
+
+  .o-grid__col {
+    padding-top: 0;
+  }
+}
+
+.c-gallery-section__gallery {
+  margin-top: rem(80px);
+
+  background-color: $color-primary;
+  width: calc(100% - #{rem($container-gutter)});
+
+  // TOOD
+  min-height: rem(250px);
+
+  @include mappy-bp($bp-grid-collapse) {
+    margin-top: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: calc(50% - #{rem($grid-gutter / 2)});
+
+    .c-gallery-section--reverse & {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    width: calc(50% - #{rem($grid-gutter-md / 2)});
+  }
+}

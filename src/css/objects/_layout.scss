@@ -70,6 +70,13 @@
   padding-top: 0;
 }
 
+// clips
+.o-main__section--clip-1 {
+  &::before {
+    clip-path: polygon(100% 30%, 75% 30%, 75% 100%, 0 100%, 0 0, 100% 0);
+  }
+}
+
 // overlaps
 .o-main__section--overlap-top {
   &::before {
