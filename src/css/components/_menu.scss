@@ -146,3 +146,31 @@
     }
   }
 }
+
+// Social icons
+.c-menu__social {
+  margin-top: rem(60px);
+
+  display: flex;
+  align-items: baseline;
+  list-style: none;
+
+  @include mappy-bp($bp-menu-collapse) {
+    display: none;
+  }
+
+  li + li {
+    margin-left: rem(20px);
+  }
+
+  a {
+    display: block;
+    height: rem(20px);
+    width: rem(20px);
+
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
