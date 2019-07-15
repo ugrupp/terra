@@ -1,0 +1,113 @@
+//
+// Richtext
+// --------------------------------------------------
+
+.c-richtext {
+  @include typi(richtext);
+  color: $color-content;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+
+    &:not(:first-child) {
+      margin-bottom: 4em;
+    }
+
+    &:not(:last-child) {
+      margin-top: 4em;
+    }
+  }
+
+  strong {
+    color: $color-primary;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  p,
+  table,
+  .c-headline {
+    &:not(:last-child) {
+      margin-bottom: rem(30px);
+    }
+
+    &:not(:first-child) {
+      margin-top: rem(30px);
+    }
+  }
+
+  h1 {
+    @extend .c-headline;
+  }
+
+  h2 {
+    @extend .c-headline;
+    @extend .c-headline--primary;
+    @extend .c-headline--text-sizing;
+  }
+
+  h3 {
+    @extend .c-headline;
+    @extend .c-headline--text-sizing;
+
+    + p:not(:first-child) {
+      margin-top: rem(-30px);
+    }
+  }
+
+  a {
+    color: $color-primary;
+    transition: all $transition-time-default;
+
+    &:hover,
+    &:focus {
+      color: inherit;
+    }
+  }
+
+  em {
+    color: $color-primary;
+  }
+
+  ul {
+    list-style: inherit;
+    padding-left: 1em;
+  }
+}
+
+.c-richtext--inverted {
+  &,
+  a {
+    color: $color-white;
+    @include font-smoothing;
+  }
+
+  a:hover,
+  a:focus {
+    color: $color-primary;
+  }
+
+  strong,
+  em {
+    color: $color-primary;
+  }
+}
+
+.c-richtext--plain {
+  a {
+    color: inherit;
+  }
+}
+
+.c-richtext--lg {
+  @include typi(richtext-lg);
+}
+
+
+.c-richtext--sm {
+  @include typi(richtext-sm);
+}

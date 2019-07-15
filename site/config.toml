@@ -1,0 +1,11 @@
+baseurl = "/"
+DefaultContentLanguage = "de"
+title = "Terra Bodenbeläge"
+
+enableRobotsTXT = true
+disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+
+[languages]
+  [languages.de]
+    locale = "de_DE"
+    weight = 1
