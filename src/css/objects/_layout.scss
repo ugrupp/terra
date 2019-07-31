@@ -7,7 +7,15 @@
 }
 
 // Main (content wrapper)
-.o-main {
+.o-main:not(.o-main--hero) {
+  padding-top: rem($topbar-height-compact);
+
+  @include mappy-bp($bp-menu-collapse) {
+    padding-top: rem($topbar-height-top);
+  }
+}
+
+.o-main--hero {
   padding-top: calc(100vh - #{rem($hero-overlap-xs)}); // match fixed hero
 
   @include mappy-bp(md) {
@@ -57,6 +65,15 @@
     @include mappy-bp(md) {
       top: rem($topbox-overlap-md);
     }
+  }
+}
+
+.o-main__section--bg-primary {
+  color: $color-white;
+  @include font-smoothing;
+
+  &::before {
+    background-color: $color-primary;
   }
 }
 

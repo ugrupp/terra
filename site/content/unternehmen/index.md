@@ -1,6 +1,6 @@
 ---
 title: Unternehmen
-layout: plain
+layout: company
 menu:
   main:
     weight: 20

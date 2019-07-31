@@ -40,17 +40,17 @@
     }
   }
 
-  h1 {
+  h1:not([class*="c-headline"]) {
     @extend .c-headline;
   }
 
-  h2 {
+  h2:not([class*="c-headline"]) {
     @extend .c-headline;
     @extend .c-headline--primary;
     @extend .c-headline--text-sizing;
   }
 
-  h3 {
+  h3:not([class*="c-headline"]) {
     @extend .c-headline;
     @extend .c-headline--text-sizing;
 
@@ -79,7 +79,7 @@
   }
 }
 
-.c-richtext--inverted {
+.c-richtext--inverted-on-dark {
   &,
   a {
     color: $color-white;
@@ -94,6 +94,25 @@
   strong,
   em {
     color: $color-primary;
+  }
+}
+
+.c-richtext--inverted {
+  &,
+  a {
+    color: $color-white;
+    @include font-smoothing;
+  }
+
+  a:hover,
+  a:focus {
+    color: $color-white;
+  }
+
+  strong,
+  em {
+    color: $color-white;
+    font-weight: $font-weight-bold;
   }
 }
 

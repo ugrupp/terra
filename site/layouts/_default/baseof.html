@@ -17,10 +17,12 @@
       {{ partial "sections/top.html" . }}
 
       {{/* Hero */}}
-      {{ partial "sections/hero" . }}
+      {{ if .Params.hero }}
+        {{ partial "sections/hero" . }}
+      {{ end }}
 
       {{/* Content */}}
-      <main class="o-main" id="main">
+      <main class="o-main{{ if .Params.hero }} o-main--hero{{ end }}" id="main">
         {{ block "main" . }}{{ end }}
       </main>
 

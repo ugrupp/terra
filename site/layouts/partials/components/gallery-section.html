@@ -8,7 +8,10 @@
         {{ end }}
 
         <div class="o-grid__col">
-          <h2 class="c-headline c-headline--padded c-headline--primary c-headline--with-spacing">{{ .context.Title }}</h2>
+          <div class="c-headline-wrapper c-headline-wrapper--with-spacing">
+            <h2 class="c-headline c-headline--padded c-headline--primary">{{ .context.Title }}</h2>
+          </div>
+
           <div class="c-richtext">
             {{ .context.Content }}
           </div>

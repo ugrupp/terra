@@ -1,0 +1,94 @@
+<div class="c-primary-section">
+  {{/* Alpha section */}}
+  {{ with .Resources.GetMatch "primary-section-alpha*.md" }}
+    <div class="c-primary-section__alpha">
+      {{/* Image 1 */}}
+      <div class="c-primary-section__img1-wrapper">
+        {{ with $.Resources.GetMatch "company1.jpg" }}
+          {{ $imageSmall := .Resize "500x" }}
+          {{ $imageMedium := .Resize "1000x" }}
+          {{ $imageBig := .Resize "2000x" }}
+
+          <img
+            alt="Unternehmen"
+            src="{{ $imageSmall.RelPermalink }}"
+            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w, {{ $imageBig.RelPermalink }} 2000w"
+            data-sizes="auto"
+            class="c-primary-section__img1 lazyload" />
+        {{ end }}
+      </div>
+
+      {{/* Content */}}
+      <div class="o-container c-primary-section__content c-primary-section__content--alpha">
+        <div class="o-grid">
+          <div class="o-grid__col">
+            <div class="c-headline-wrapper c-primary-section__alpha-headline">
+              <h2 class="c-headline c-headline--padded c-headline--primary">{{ .Params.headline | markdownify }}</h2>
+            </div>
+          </div>
+
+          <div class="o-grid__col">
+            <div class="c-richtext c-richtext--inverted c-primary-section__alpha-content">
+              {{ .Content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{ end }}
+
+
+  {{/* Beta section */}}
+  {{ with .Resources.GetMatch "primary-section-beta*.md" }}
+    <div class="c-primary-section__beta">
+
+
+      {{/* Content */}}
+      <div class="o-container c-primary-section__content c-primary-section__content--beta">
+        <div class="o-grid">
+          <div class="o-grid__col">
+            <div class="c-richtext c-richtext--inverted">
+              {{ .Content }}
+
+              {{/* Image 3 */}}
+              <div class="c-primary-section__img3-wrapper">
+                {{ with $.Resources.GetMatch "company3.jpg" }}
+                  {{ $imageSmall := .Resize "500x" }}
+                  {{ $imageMedium := .Resize "1000x" }}
+
+                  <img
+                    alt="Unternehmen"
+                    src="{{ $imageSmall.RelPermalink }}"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w"
+                    data-sizes="auto"
+                    class="c-primary-section__img3 lazyload" />
+                {{ end }}
+              </div>
+            </div>
+          </div>
+
+          <div class="o-grid__col">
+            {{/* Image 2 */}}
+            <div class="c-primary-section__img2-wrapper">
+              {{ with $.Resources.GetMatch "company2.jpg" }}
+                {{ $imageSmall := .Resize "500x" }}
+                {{ $imageMedium := .Resize "1000x" }}
+                {{ $imageBig := .Resize "2000x" }}
+
+                <img
+                  alt="Unternehmen"
+                  src="{{ $imageSmall.RelPermalink }}"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w, {{ $imageBig.RelPermalink }} 2000w"
+                  data-sizes="auto"
+                  class="c-primary-section__img2 lazyload" />
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{ end }}
+</div>

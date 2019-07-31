@@ -32,11 +32,15 @@
 }
 
 .c-headline--text-sizing {
-  @include no-font-smoothing;
   @include typi('richtext');
 }
 
-.c-headline--with-spacing {
+.c-headline--inline {
+  display: inline;
+}
+
+.c-headline--with-spacing,
+.c-headline-wrapper--with-spacing {
   margin-bottom: rem(30px);
 
   @include mappy-bp(md) {
@@ -58,8 +62,13 @@
 }
 
 .c-headline--padded {
-  display: inline-block;
-  padding: .1em .3em;
+  display: inline;
+  padding: .25em .3em .1em;
   box-decoration-break: clone;
   line-height: 1.25;
+}
+
+// headline-wrapper to workaround numerous limitations with `display: inline;` headlines (needed for box-decoration-break)
+.c-headline-wrapper {
+  @include typi('headline--default');
 }
