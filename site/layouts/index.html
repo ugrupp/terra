@@ -20,10 +20,11 @@
       </div>
 
       {{/* Sections */}}
+      {{ $baseContext := . }}
       {{ $sections := .Resources.Match "section-*.md" }}
       {{ range (sort $sections "Name") }}
         <div class="o-main__section {{ .Params.modifiers }}">
-          {{ partial "components/gallery-section.html" (dict "context" . "reverse" .Params.reverse) }}
+          {{ partial "components/gallery-section.html" (dict "context" . "reverse" .Params.reverse "baseContext" $baseContext) }}
         </div>
       {{ end }}
     </div>

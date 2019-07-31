@@ -3,9 +3,11 @@
 // --------------------------------------------------
 
 .c-gallery-section {
-  // TOOD
   @include mappy-bp($bp-grid-collapse) {
-    min-height: rem(250px);
+    min-height: rem($gallery-height-sm);
+  }
+  @include mappy-bp(xl) {
+    min-height: rem($gallery-height-xl);
   }
 
   .o-grid__col {
@@ -18,9 +20,6 @@
 
   background-color: $color-primary;
   width: calc(100% - #{rem($container-gutter)});
-
-  // TOOD
-  min-height: rem(250px);
 
   @include mappy-bp($bp-grid-collapse) {
     margin-top: 0;

@@ -23,6 +23,6 @@
 
   {{/* Gallery */}}
   <div class="c-gallery-section__gallery">
-    Gallery
+    {{ partial "components/gallery.html" (dict "context" .context "baseContext" .baseContext "reverse" .reverse) }}
   </div>
 </div>
