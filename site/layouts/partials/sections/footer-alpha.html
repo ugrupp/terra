@@ -4,7 +4,7 @@
 <div class="c-footer-alpha">
   {{/* BG Image */}}
   <div class="c-footer-alpha__bg-img-wrapper">
-    {{ with $footer.Resources.GetMatch "header.jpg" }}
+    {{ with $footer.Resources.GetMatch (cond (isset .Params "alternative_footer") "footer_alternative.jpg" "footer.jpg") }}
       {{ $imageSmall := .Resize "500x" }}
       {{ $imageMedium := .Resize "1000x" }}
       {{ $imageBig := .Resize "1500x" }}
@@ -26,7 +26,7 @@
         <div class="o-grid">
           <div class="o-grid__col">
             <div class="c-richtext c-richtext--inverted-on-dark">
-              {{ with cond (isset .Params "alternative_footer_headline") $footer.Params.alpha_headline_alternative $footer.Params.alpha_headline }}
+              {{ with cond (isset .Params "alternative_footer") $footer.Params.alpha_headline_alternative $footer.Params.alpha_headline }}
                 <h2 class="c-headline c-headline--text-sizing c-headline--inline">
                   {{ . | markdownify }}
                 </h2>
