@@ -2,5 +2,6 @@
 title: Türen
 modifiers: o-main__section--no-pad-top
 reverse: true
-gallery: images/parkett/*
+gallery: images/tueren/*
 ---
+<span class="c-headline c-headline--text-sizing c-headline--inline">Wir können Boden – und auch Türen.</span> Eine schöne Tür rundet das Raumerleben ab und ist ein wichtiger Partner in der Wirkung eines Bodenbelages. So kann es am Ende ein rundes, ansprechendes Ergebnis werden.
