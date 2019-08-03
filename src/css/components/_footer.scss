@@ -8,44 +8,50 @@ $footer-padding: 100px;
   position: relative;
   z-index: index($z-index, footer);
 
-  background-color: $color-gray-4;
-  color: $color-white;
-  @include font-smoothing;
-  @include typi('richtext-sm');
+  @include mappy-bp(sm) {
+    min-height: rem(400px);
+    display: flex;
 
-  padding-top: rem(60px);
-  padding-bottom: rem(60px);
+    > * {
+      width: 100%;
+    }
+  }
 
   @include mappy-bp(md) {
-    padding-top: rem(120px);
-    padding-bottom: rem(120px);
+    min-height: rem(530px);
   }
 }
 
 .c-footer__content {
-  display: flex;
-  justify-content: space-between;
-}
+  background-color: $color-gray-4;
+  color: $color-white;
+  @include font-smoothing;
 
-// Meta & Credit
-.c-footer__cols {
+  padding-top: rem(60px);
+  padding-bottom: rem(60px);
+
   @include mappy-bp(sm) {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    > * {
+      width: 100%;
+    }
+  }
+
+  @include mappy-bp(md) {
+    padding-top: rem(80px);
+    padding-bottom: rem(80px);
   }
 }
 
-.c-footer__col {
-  & + & {
-    margin-top: rem(40px);
+.c-footer__meta {
+  margin-top: rem(4px);
+  padding-right: rem(30px);
 
-    @include mappy-bp(sm) {
-      margin-top: 0;
-      margin-left: rem(80px);
-    }
-
-    @include mappy-bp(md) {
-      margin-left: rem(100px);
-    }
+  @include mappy-bp(sm) {
+    padding-right: 0;
   }
 }
 
@@ -66,16 +72,26 @@ $footer-padding: 100px;
   }
 }
 
+.c-footer__inner {
+  position: relative;
+}
+
 // Scroll up
 .c-footer__scroll-up {
-  margin-left: rem(30px);
+  position: absolute;
+  right: 0;
+  top: 0;
   display: block;
   transition: color $transition-time-default;
 
-  height: rem(37px);
-  width: rem(23px);
+  height: rem(26px);
+  width: rem(16px);
 
   color: inherit;
+
+  @include mappy-bp($bp-grid-collapse) {
+    display: none;
+  }
 
   &:hover,
   &:focus {
@@ -87,3 +103,24 @@ $footer-padding: 100px;
     width: 100%;
   }
 }
+
+
+// Map
+.c-footer__map {
+  height: rem(260px);
+  background-color: $color-gray-f;
+
+  @include mappy-bp($bp-grid-collapse) {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: auto;
+    width: calc(50% - #{rem($grid-gutter / 2)});
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    width: calc(50% - #{rem($grid-gutter-md / 2)});
+  }
+}
+

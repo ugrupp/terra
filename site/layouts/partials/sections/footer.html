@@ -2,18 +2,26 @@
 {{ $footer := .Site.GetPage "page" "footer" }}
 
 <footer class="c-footer" id="kontakt">
-  <div class="o-container">
-    <div class="c-footer__content">
-      <div class="c-footer__cols">
-        {{/* Address */}}
-        <address class="c-footer__col c-richtext c-richtext--sm c-richtext--inverted-on-dark">
-          {{ with $footer.Resources.GetMatch "col1*.md" }}
-            {{ .Content }}
-          {{end}}
-        </address>
+
+  {{/* Map */}}
+  <div class="c-footer__map">
+    Map
+  </div>
+
+  <div class="c-footer__content">
+    <div class="o-container">
+      <div class="c-footer__inner">
+        <div class="c-richtext c-richtext--inverted-on-dark">
+          {{ with $footer.Params.headline }}
+            {{ . | markdownify }}
+          {{ end }}
+        </div>
 
         {{/* Meta menu */}}
-        <ul class="c-footer__col c-footer__meta">
+        <ul class="c-footer__meta">
+          <li class="c-footer__meta-item">
+            <a class="c-footer__meta-link" href="{{ ref . "agb/index.md" }}">AGB</a>
+          </li>
           <li class="c-footer__meta-item">
             <a class="c-footer__meta-link" href="{{ ref . "impressum/index.md" }}">Impressum</a>
           </li>
@@ -21,13 +29,13 @@
             <a class="c-footer__meta-link" href="{{ ref . "datenschutz/index.md" }}">Datenschutz</a>
           </li>
         </ul>
-      </div>
 
-      {{/* Toplink */}}
-      <a href="#start" class="c-footer__scroll-up" data-scroll-top>
-        {{ partial "components/svg" (dict "svg" "arrow-edge-up") }}
-        <span class="u-invisible">Nach oben</span>
-      </a>
+        {{/* Toplink */}}
+        <a href="#start" class="c-footer__scroll-up" data-scroll-top>
+          {{ partial "components/svg" (dict "svg" "arrow-up") }}
+          <span class="u-invisible">Nach oben</span>
+        </a>
+      </div>
     </div>
   </div>
 </footer>

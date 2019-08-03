@@ -1,0 +1,133 @@
+//
+// Alpha Footer
+// --------------------------------------------------
+
+$footer-padding: 100px;
+
+.c-footer-alpha {
+  position: relative;
+  z-index: index($z-index, footer-alpha);
+  padding-top: rem(260px);
+
+  @include mappy-bp(md) {
+    padding-top: rem(430px);
+  }
+}
+
+// BG Image
+.c-footer-alpha__bg-img-wrapper {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 5; // < content
+  background-color: $color-gray-f;
+}
+
+.c-footer-alpha__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom center; // magic
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
+.c-footer-alpha__content {
+  position: relative;
+  z-index: 10; // > bg image
+
+  background-color: rgba($color-gray-4, .94);
+  color: $color-white;
+  @include font-smoothing;
+
+  padding-top: rem(80px);
+  padding-bottom: rem(30px);
+
+  @include mappy-bp(md) {
+    padding-bottom: rem(80px);
+  }
+}
+
+.c-footer-alpha__top {
+  position: relative;
+}
+
+// Scroll up
+.c-footer-alpha__scroll-up {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: none;
+  transition: color $transition-time-default;
+
+  height: rem(26px);
+  width: rem(16px);
+
+  color: inherit;
+
+  @include mappy-bp($bp-grid-collapse) {
+    display: block;
+  }
+
+  &:hover,
+  &:focus {
+    color: $color-primary;
+  }
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.c-footer-alpha__bottom {
+  .c-footer-alpha__top + & {
+    margin-top: rem($grid-gutter);
+  }
+}
+
+.c-footer-alpha__bottom-inner {
+  position: relative;
+}
+
+// Portrait
+.c-footer-alpha__portrait-img-wrapper {
+  overflow: hidden;
+  max-width: 80%;
+  margin-left: auto;
+  margin-top: rem(30px);
+
+  @include mappy-bp(sm) {
+    max-width: none;
+    margin-left: 0;
+
+    position: absolute;
+    right: 0;
+    left: 20%;
+    top: 100%;
+    z-index: 5; // < content
+  }
+}
+
+.c-footer-alpha__portrait-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: rem(400px);
+  margin-left: auto;
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
