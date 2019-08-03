@@ -122,5 +122,10 @@ $footer-padding: 100px;
   @include mappy-bp($bp-grid-collapse-lg) {
     width: calc(50% - #{rem($grid-gutter-md / 2)});
   }
+
+  #footer-map {
+    height: 100%;
+    width: 100%;
+  }
 }
 

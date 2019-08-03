@@ -26,7 +26,7 @@
         <div class="o-grid">
           <div class="o-grid__col">
             <div class="c-richtext c-richtext--inverted-on-dark">
-              {{ with $footer.Params.alpha_headline }}
+              {{ with cond (isset .Params "alternative_footer_headline") $footer.Params.alpha_headline_alternative $footer.Params.alpha_headline }}
                 <h2 class="c-headline c-headline--text-sizing c-headline--inline">
                   {{ . | markdownify }}
                 </h2>
