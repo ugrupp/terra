@@ -77,6 +77,27 @@
     list-style: inherit;
     padding-left: 1em;
   }
+
+
+  ul.c-list-arrowed {
+    padding-left: 0;
+
+    li {
+      display: flex;
+
+      &::before {
+        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15.756 10.066'%3E%3Cg fill='none' stroke='%23473d38' stroke-miterlimit='10'%3E%3Cpath d='M0 5.033h15.05M10.38.353l4.67 4.68-4.67 4.68'/%3E%3C/g%3E%3C/svg%3E");
+        margin-right: rem(15px);
+        width: rem(15px);
+        height: rem(10px);
+        flex-shrink: 0;
+      }
+    }
+
+    li + li {
+      margin-top: rem(10px);
+    }
+  }
 }
 
 .c-richtext--inverted-on-dark {
