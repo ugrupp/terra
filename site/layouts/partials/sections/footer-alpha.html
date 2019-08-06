@@ -10,7 +10,6 @@
         {{ $imageMedium := .Resize "1000x" }}
         {{ $imageBig := .Resize "1500x" }}
 
-        {{/* Render the actual hero */}}
         <img
           alt=""
           src="{{ $imageBig.RelPermalink }}"
@@ -70,7 +69,6 @@
                   {{ $imageSmall := .Resize "500x" }}
                   {{ $imageMedium := .Resize "800x" }}
 
-                  {{/* Render the actual hero */}}
                   <img
                     alt=""
                     src="{{ $imageMedium.RelPermalink }}"

@@ -1,3 +1,5 @@
+{{ $baseContext := .baseContext }}
+
 <div class="c-gallery-section{{ if .reverse }} c-gallery-section--reverse{{end }}" id ="{{ .context.Params.anchor }}">
   {{/* Content */}}
   <div class="c-gallery-section__content">
@@ -17,7 +19,6 @@
           </div>
 
           {{/* Download */}}
-          {{ $baseContext := .baseContext }}
           {{ with .context.Params.download }}
             {{ with $baseContext.Resources.GetMatch . }}
               <a class="c-gallery-section__download" href="{{ .Permalink }}" target="_blank">
@@ -50,6 +51,26 @@
           </div>
         </div>
       </div>
+    </div>
+  {{ end }}
+
+  {{/* Visual */}}
+  {{ if and ((isset .context.Params "visual") .context.Params.visual) }}
+    {{ $visual_position := .context.Params.visual_position }}
+    {{ $visual_direction := .context.Params.visual_direction }}
+    <div class="c-gallery-section__visual c-gallery-section__visual--{{ $visual_direction }}">
+      {{ with $baseContext.Resources.GetMatch "header.jpg" }}
+        {{ $imageSmall := .Fit "800x800" }}
+
+        <img
+          alt=""
+          src="{{ $imageSmall.RelPermalink }}"
+          srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          data-srcset="{{ $imageSmall.RelPermalink }} 800w"
+          data-sizes="auto"
+          class="c-gallery-section__visual-img lazyload"
+          style="object-position: {{ $visual_position }}; transform-origin: {{ $visual_position }};" />
+      {{ end }}
     </div>
   {{ end }}
 </div>
