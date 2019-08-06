@@ -1,3 +1,7 @@
+---
+---
+{{% figure src="header.jpg" alt="Datenschutz" %}}
+
 <h3 class="c-headline c-headline--no-spacing c-headline--text-sizing c-headline--body-font">4. Kontaktaufnahme</h3>
 
 Bei der Kontaktaufnahme mit dem Anbieter (zum Beispiel per Kontaktformular oder E-Mail) werden die Angaben des Nutzers zwecks Bearbeitung der Anfrage sowie für den Fall, dass Anschlussfragen entstehen, gespeichert.

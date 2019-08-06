@@ -1,3 +1,7 @@
+---
+---
+{{% figure src="header.jpg" alt="Impressum" %}}
+
 <h2 class="c-headline c-headline--primary">Haftungsausschluss</h2>
 
 <h3 class="c-headline c-headline--no-spacing c-headline--text-sizing c-headline--body-font">1. Inhalt des Onlineangebotes</h3>
