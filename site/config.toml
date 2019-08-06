@@ -1,6 +1,6 @@
 baseurl = "/"
 DefaultContentLanguage = "de"
-title = "Terra Bodenbeläge"
+title = "Terra Bodenbeläge | Freiburg-Opfingen"
 
 enableRobotsTXT = true
 disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]

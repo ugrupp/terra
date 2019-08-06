@@ -2,7 +2,8 @@
   <div class="o-main__content" id="content">
     <section class="o-main__section o-main__section--bg-light">
       <div class="o-container">
-        <h1 class="c-headline c-headline--primary c-headline--with-spacing">{{ .Title }}</h1>
+        <h1 class="c-headline c-headline--primary c-headline--with-spacing{{ if .Params.hide_title }} o-main__hidden-headline{{ end }}">{{ .Title }}</h1>
+
         <div class="o-grid">
           {{ with .Resources.GetMatch "col1*.md" }}
             <div class="o-grid__col">

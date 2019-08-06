@@ -5,7 +5,7 @@
 {{ .Hugo.Generator }}
 
 {{/* Title */}}
-{{ define "site_title" }}{{- with .Title }}{{ . }} | {{ end }}{{ .Site.Title -}}{{ end }}
+{{ define "site_title" }}{{ if .Params.meta_title }}{{ .Params.meta_title }}{{ else }}{{- with .Title }}{{ . }} | {{ end }}{{ .Site.Title -}}{{ end }}{{ end }}
 <title>{{ block "site_title" . }}{{ end }}</title>
 <meta itemprop="name" content='{{ block "site_title" . }}{{ end }}' />
 <meta property="og:title" content='{{ block "site_title" . }}{{ end }}' />
@@ -17,13 +17,17 @@
 <meta name="og:description" content="{{ . }}">
 {{ end }}
 
-<meta name="keywords" content="">
+<meta name="author" content="Terra Bodenbeläge">
+<meta name="publisher" content="Terra Bodenbeläge">
+<meta name="language" content="deutsch, de">
+<meta name="distribution" content="global">
+<meta name="page-topic" content="Parkett, Designböden, Laminat, Teppiche, Türen">
 
 {{/* Remaining og tags */}}
 <meta property="og:locale" content="{{ $.Site.Params.locale }}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.terra-boden.de/" />
-<meta property="og:site_name" content="{{ .Site.Title -}}" />
+<meta property="og:site_name" content="Terra Bodenbeläge" />
 <meta property="og:latitude" content="47.996860" />
 <meta property="og:longitude" content="7.719770" />
 <meta property="og:street_address" content="Gewerbestraße 13" />

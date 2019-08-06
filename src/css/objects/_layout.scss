@@ -126,15 +126,6 @@
   }
 }
 
-// overlaps
-.o-main__section--overlap-top {
-  &::before {
-    top: rem(-$overlap-size);
-  }
-}
-
-.o-main__section--overlap-bottom {
-  &::before {
-    bottom: rem(-$overlap-size);
-  }
+.o-main__hidden-headline.c-headline {
+  display: none;
 }
