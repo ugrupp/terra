@@ -1,3 +1,67 @@
+class Submenu {
+  constructor(parent) {
+    this.parent = parent;
+
+    this.el = this.parent.el.querySelector('[data-menu-submenu]');
+    this.BP_COLLAPSE = 1200;
+    this.OPEN_FLAG = 'is-submenu-open';
+    this.initTogglers();
+
+    // close submenues on topbar unpin
+    document.addEventListener('topbar-unpinned', this.closeAll.bind(this));
+  }
+
+  // helper method to determine the current breakpoint
+  _isDesktop() {
+    return window.matchMedia(`(min-width: ${this.BP_COLLAPSE}px)`).matches;
+  }
+
+  // init submenu togglers
+  initTogglers() {
+    this.parent.items.forEach((level1) => {
+      // desktop subnav
+      level1.addEventListener('mouseenter', () => {
+        // mouseenter
+        if (this._isDesktop()) {
+          let submenu = level1.querySelector('[data-menu-submenu]');
+          if (submenu && !this.isOpen(level1)) {
+            this.open(level1);
+          }
+        }
+      });
+
+      level1.addEventListener('mouseleave', () => {
+        // mouseleave
+        if (this._isDesktop()) {
+          let submenu = level1.querySelector('[data-menu-submenu]');
+          if (submenu) {
+            this.close(level1);
+          }
+        }
+      });
+    });
+  }
+
+  open(level1Item) {
+    level1Item.classList.add(this.OPEN_FLAG);
+  }
+
+  close(level1Item) {
+    level1Item.classList.remove(this.OPEN_FLAG);
+  }
+
+  closeAll() {
+    this.parent.items.forEach((item) => {
+      this.close(item);
+    });
+  }
+
+  isOpen(level1Item) {
+    return level1Item.classList.contains(this.OPEN_FLAG);
+  }
+}
+
+
 export default class Menu {
   constructor() {
     this.inited = false;
@@ -10,7 +74,6 @@ export default class Menu {
         this.inited = true;
         this.togglers = [...document.querySelectorAll('[data-menu-toggler]')];
         this.items = [...this.el.querySelectorAll('[data-menu-item]')];
-
       } else {
         console.error('Error: Menu could not be initialized.'); // eslint-disable-line no-console
         return this;
@@ -83,68 +146,5 @@ export default class Menu {
       this.el.classList.remove('is-open');
       document.body.classList.remove('is-menu-open');
     }
-  }
-}
-
-class Submenu {
-  constructor(parent) {
-    this.parent = parent;
-
-    this.el = this.parent.el.querySelector('[data-menu-submenu]');
-    this.BP_COLLAPSE = 1200;
-    this.OPEN_FLAG = 'is-submenu-open';
-    this.initTogglers();
-
-    // close submenues on topbar unpin
-    document.addEventListener('topbar-unpinned', this.closeAll.bind(this));
-  }
-
-  // helper method to determine the current breakpoint
-  _isDesktop() {
-    return window.matchMedia(`(min-width: ${this.BP_COLLAPSE}px)`).matches;
-  }
-
-  // init submenu togglers
-  initTogglers() {
-    this.parent.items.forEach((level1) => {
-      // desktop subnav
-      level1.addEventListener('mouseenter', () => {
-        // mouseenter
-        if (this._isDesktop()) {
-          let submenu = level1.querySelector('[data-menu-submenu]');
-          if (submenu && !this.isOpen(level1)) {
-            this.open(level1);
-          }
-        }
-      });
-
-      level1.addEventListener('mouseleave', () => {
-        // mouseleave
-        if (this._isDesktop()) {
-          let submenu = level1.querySelector('[data-menu-submenu]');
-          if (submenu) {
-            this.close(level1);
-          }
-        }
-      });
-    });
-  }
-
-  open(level1Item) {
-    level1Item.classList.add(this.OPEN_FLAG);
-  }
-
-  close(level1Item) {
-    level1Item.classList.remove(this.OPEN_FLAG);
-  }
-
-  closeAll() {
-    this.parent.items.forEach((item) => {
-      this.close(item);
-    });
-  }
-
-  isOpen(level1Item) {
-    return level1Item.classList.contains(this.OPEN_FLAG);
   }
 }

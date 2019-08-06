@@ -5,3 +5,7 @@
 // init lazysizes
 import 'lazysizes/plugins/object-fit/ls.object-fit.min.js';
 import 'lazysizes';
+
+// scrollreveal html flag
+import scrollReveal from 'scrollreveal';
+window.sr = scrollReveal();

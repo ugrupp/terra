@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
               sliderTitleEl.style.opacity = 0;
             }
           }
-        }
-      }
+        },
+      },
     });
   });
 });

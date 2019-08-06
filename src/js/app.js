@@ -15,6 +15,7 @@ import './modules/object-fit-images';
 import './modules/fontfaceobserver';
 import './modules/scroll-to';
 import './modules/slider';
+import './modules/reveal-animations';
 import './modules/gmap';
 
 import Menu from './modules/menu';
