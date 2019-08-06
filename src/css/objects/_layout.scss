@@ -77,32 +77,6 @@
   }
 }
 
-// Visual
-.o-main__section--visual {
-  .o-main__visual {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: rem(214px * $terra-visual-ratio);
-    max-width: 100%;
-
-    @include mappy-bp(sm) {
-      width: rem(300px * $terra-visual-ratio);
-    }
-
-    @include mappy-bp(md) {
-      width: rem(489px * $terra-visual-ratio);
-    }
-
-    svg {
-      display: block;
-      height: 100%;
-      width: 100%;
-    }
-  }
-}
-
 // no pad
 .o-main__section--no-pad {
   padding-top: 0;
@@ -123,6 +97,30 @@
 .o-main__section--clip-1 {
   &::before {
     clip-path: polygon(100% 30%, 75% 30%, 75% 100%, 0 100%, 0 0, 100% 0);
+  }
+}
+
+// Visual
+.o-main__visual {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: rem(214px * $terra-visual-ratio);
+  max-width: 100%;
+
+  @include mappy-bp(sm) {
+    width: rem(300px * $terra-visual-ratio);
+  }
+
+  @include mappy-bp(md) {
+    width: rem(489px * $terra-visual-ratio);
+  }
+
+  svg {
+    display: block;
+    height: 100%;
+    width: 100%;
   }
 }
 

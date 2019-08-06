@@ -1,6 +1,10 @@
 {{ define "main" }}
   <div class="o-main__content" id="content">
     <section class="o-main__section o-main__section--bg-light">
+      <div class="o-main__visual">
+        {{ partial "components/svg" (dict "svg" "terra-bottom") }}
+      </div>
+
       <div class="o-container">
         <h1 class="c-headline c-headline--primary c-headline--with-spacing{{ if .Params.hide_title }} o-main__hidden-headline{{ end }}">{{ .Title }}</h1>
 
