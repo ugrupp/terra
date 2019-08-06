@@ -39,4 +39,17 @@
   <div class="c-gallery-section__gallery">
     {{ partial "components/gallery.html" (dict "context" .context "baseContext" .baseContext "reverse" .reverse) }}
   </div>
+
+  {{/* Background SVG */}}
+  {{ with .context.Params.background_svg }}
+    <div class="c-gallery-section__svg-bg">
+      <div class="o-container">
+        <div class="c-gallery-section__svg-bg-inner">
+          <div class="c-gallery-section__svg-bg-inner2">
+            {{ partial "components/svg" (dict "svg" .) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{ end }}
 </div>

@@ -2,7 +2,15 @@
 // Gallery section
 // --------------------------------------------------
 
+.c-gallery-section__content,
+.c-gallery-section__gallery {
+  position: relative;
+  z-index: 10; // > svg bg
+}
+
 .c-gallery-section {
+  position: relative;
+
   .o-grid__col {
     padding-top: 0;
 
@@ -73,5 +81,53 @@
   svg {
     width: rem(45px);
     height: rem(45px);
+  }
+}
+
+// SVG BG
+.c-gallery-section__svg-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: rem(90px);
+  z-index: 5; // < all
+
+  @include mappy-bp($bp-grid-collapse) {
+    top: auto;
+    bottom: 0;
+  }
+
+  .o-container {
+    @include mappy-bp(max $bp-grid-collapse) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.c-gallery-section__svg-bg-inner {
+  @include mappy-bp($bp-grid-collapse) {
+    width: calc(50% - #{rem($grid-gutter / 2)});
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    width: calc(50% - #{rem($grid-gutter-md / 2)});
+  }
+}
+
+.c-gallery-section__svg-bg-inner2 {
+  padding-bottom: 359.955 / 614.68 * 100%; // could be changed by inline styles
+  overflow: hidden;
+  height: 0;
+  position: relative;
+
+  svg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
   }
 }
