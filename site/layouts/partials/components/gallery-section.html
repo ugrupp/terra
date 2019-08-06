@@ -12,9 +12,20 @@
             <h2 class="c-headline c-headline--padded c-headline--primary">{{ .context.Title }}</h2>
           </div>
 
-          <div class="c-richtext">
+          <div class="c-richtext c-gallery-section__text">
             {{ .context.Content }}
           </div>
+
+          {{/* Download */}}
+          {{ $baseContext := .baseContext }}
+          {{ with .context.Params.download }}
+            {{ with $baseContext.Resources.GetMatch . }}
+              <a class="c-gallery-section__download" href="{{ .Permalink }}" target="_blank">
+                {{ partial "components/svg" (dict "svg" "download") }}
+                <h3 class="c-headline c-headline--sm c-headline--padded">{{ .Title }}</h3>
+              </a>
+            {{ end }}
+          {{ end }}
         </div>
 
         {{ if .reverse }}

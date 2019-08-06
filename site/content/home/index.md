@@ -1,6 +1,9 @@
 ---
 headless: true
 resources:
+- src: downloads/dummy.pdf
+  title: Broschüre Parkett
+
 - src: images/parkett/parkett-01-A103022.jpg
   params:
     title: A103022

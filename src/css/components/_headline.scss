@@ -35,6 +35,10 @@
   @include typi('richtext');
 }
 
+.c-headline--sm {
+  @include typi('headline-sm');
+}
+
 .c-headline--inline {
   display: inline;
 }
@@ -63,7 +67,7 @@
 
 .c-headline--padded {
   display: inline;
-  padding: .25em .3em .1em;
+  padding: .3em .3em .15em;
   box-decoration-break: clone;
   line-height: 1.25;
 }
@@ -71,4 +75,5 @@
 // headline-wrapper to workaround numerous limitations with `display: inline;` headlines (needed for box-decoration-break)
 .c-headline-wrapper {
   @include typi('headline--default');
+  transform: translateY(.15em);
 }
