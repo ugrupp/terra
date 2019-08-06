@@ -59,6 +59,12 @@
     }
   }
 
+  .c-headline--no-spacing {
+    + p:not(:first-child) {
+      margin-top: rem(-30px);
+    }
+  }
+
   a {
     color: $color-primary;
     transition: all $transition-time-default;

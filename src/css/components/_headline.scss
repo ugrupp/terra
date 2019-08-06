@@ -6,8 +6,6 @@
 .c-headline {
   font-weight: 700;
   text-transform: uppercase;
-  @include font-ci;
-  @include font-smoothing;
   @include typi('headline--default');
   display: block;
 
@@ -28,6 +26,11 @@
   &.c-headline--padded {
     background-color: $color-content;
     color: $color-white;
+  }
+
+  &:not(.c-headline--body-font) {
+    @include font-ci;
+    @include font-smoothing;
   }
 }
 

@@ -47,3 +47,6 @@
   }
 }
 
+.o-grid__col-inner--narrow {
+  max-width: rem($content-narrow-width);
+}

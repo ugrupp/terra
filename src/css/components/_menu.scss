@@ -86,12 +86,10 @@
   }
 
   li {
-    display: flex;
-    align-items: center;
     position: relative;
   }
 
-  li + li {
+  > li + li {
     margin-top: rem(20px);
 
     @include mappy-bp($bp-menu-collapse) {
@@ -143,6 +141,87 @@
       display: block;
       height: rem(12px);
       width: rem(12px);
+    }
+  }
+
+  li.is-submenu-open {
+    > a {
+      @include mappy-bp($bp-menu-collapse) {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+$submenu-desktop-padding: 20px;
+$submenu-indicator-size: 9px;
+
+.c-menu__submenu {
+  margin-top: rem(20px);
+  margin-bottom: rem(60px);
+
+  @include mappy-bp($bp-menu-collapse) {
+    display: none;
+    margin-bottom: 0;
+    position: absolute;
+    top: 100%;
+    left: rem(-$submenu-desktop-padding);
+
+    padding: rem($submenu-desktop-padding);
+    padding-top: rem($submenu-desktop-padding + $submenu-indicator-size);
+    background-color: $color-primary;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-top: 0;
+    border-left: 0;
+
+    .is-submenu-open & {
+      display: block;
+    }
+  }
+
+  &::before {
+    @include mappy-bp($bp-menu-collapse) {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: rem($submenu-desktop-padding);
+      width: 0;
+      height: 0;
+      transform: rotate(360deg);
+      border-style: solid;
+      border-width: rem($submenu-indicator-size) rem($submenu-indicator-size) 0 rem($submenu-indicator-size);
+      border-color: $color_white transparent transparent transparent;
+    }
+  }
+
+  // insivisble layer so menu does not get closed on level1 leave
+  &::after {
+    @include mappy-bp($bp-menu-collapse) {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      height: rem(20px);
+    }
+  }
+
+  > li + li {
+    margin-top: rem(20px);
+
+    @include mappy-bp($bp-menu-collapse) {
+      margin-top: rem(12px);
+    }
+  }
+
+  a {
+    @include typi('menu-sub');
+
+    &,
+    &:hover,
+    &:focus,
+    &.active {
+      color: $color-white;
     }
   }
 }

@@ -1,5 +1,6 @@
 ---
 title: Designboden
+anchor: designboden
 modifiers: o-main__section--no-pad-top
 reverse: true
 gallery: images/designboden/*

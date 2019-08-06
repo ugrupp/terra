@@ -1,5 +1,6 @@
 ---
 title: Parkett
+anchor: parkett
 modifiers: o-main__section--no-pad-top o-main__section--after-topbox
 reverse: false
 gallery: images/parkett/*

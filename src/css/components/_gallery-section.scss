@@ -12,10 +12,10 @@
     @include mappy-bp($bp-grid-collapse) {
       min-height: rem($gallery-height-sm);
     }
+
     @include mappy-bp(xl) {
       min-height: rem($gallery-height-xl);
     }
-
   }
 }
 

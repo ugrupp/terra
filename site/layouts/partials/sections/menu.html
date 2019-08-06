@@ -11,12 +11,24 @@
     <ul class="c-menu__main">
       {{ $currentPage := . }}
       {{ range .Site.Menus.main }}
-        <li>
+        <li data-menu-item>
           <a class="{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}"
             href="{{ .URL }}"
             {{ if eq .Identifier "contact" }}data-scroll{{ end }}>
             {{ .Name }}
           </a>
+
+          {{/* Anchor submenu */}}
+          {{ $baseUrl := .URL }}
+          {{ with .Page }}
+            {{ with .Params.anchors }}
+              <ul class="c-menu__submenu" data-menu-submenu>
+                {{ range . }}
+                  <li><a href="{{ $baseUrl }}{{ .target }}" data-scroll>{{ .title }}</a></li>
+                {{ end }}
+              </ul>
+            {{ end }}
+          {{ end }}
         </li>
       {{ end }}
     </ul>

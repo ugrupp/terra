@@ -1,5 +1,6 @@
 ---
 title: Laminat
+anchor: laminat
 modifiers: o-main__section--no-pad-top
 reverse: false
 gallery: images/laminat/*

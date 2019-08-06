@@ -1,5 +1,6 @@
 ---
 title: Teppiche
+anchor: teppiche
 modifiers: o-main__section--no-pad-top
 reverse: true
 gallery: images/teppiche/*
