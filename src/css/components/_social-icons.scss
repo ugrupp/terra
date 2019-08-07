@@ -1,0 +1,30 @@
+//
+// Social icons
+// --------------------------------------------------
+
+.c-social-icons {
+  display: flex;
+  align-items: baseline;
+  list-style: none;
+
+  li + li {
+    margin-left: rem(20px);
+  }
+
+  a {
+    display: block;
+    height: rem(20px);
+    width: rem(20px);
+    color: inherit;
+
+    &:hover,
+    &:focus {
+      color: inherit;
+    }
+
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

@@ -90,7 +90,7 @@
   }
 
   > li + li {
-    margin-top: rem(20px);
+    margin-top: rem(15px);
 
     @include mappy-bp($bp-menu-collapse) {
       margin-top: 0;
@@ -157,10 +157,11 @@ $submenu-desktop-padding: 20px;
 $submenu-indicator-size: 9px;
 
 .c-menu__submenu {
-  margin-top: rem(20px);
-  margin-bottom: rem(60px);
+  margin-top: rem(15px);
+  margin-bottom: rem(40px);
 
   @include mappy-bp($bp-menu-collapse) {
+    margin-top: rem(20px);
     display: none;
     margin-bottom: 0;
     position: absolute;
@@ -169,10 +170,7 @@ $submenu-indicator-size: 9px;
 
     padding: rem($submenu-desktop-padding);
     padding-top: rem($submenu-desktop-padding + $submenu-indicator-size);
-    background-color: $color-primary;
-    border: 1px solid rgba(0, 0, 0, .2);
-    border-top: 0;
-    border-left: 0;
+    background-color: $color-content;
 
     .is-submenu-open & {
       display: block;
@@ -207,7 +205,7 @@ $submenu-indicator-size: 9px;
   }
 
   > li + li {
-    margin-top: rem(20px);
+    margin-top: rem(15px);
 
     @include mappy-bp($bp-menu-collapse) {
       margin-top: rem(12px);
@@ -216,12 +214,16 @@ $submenu-indicator-size: 9px;
 
   a {
     @include typi('menu-sub');
+    color: $color-white;
 
-    &,
     &:hover,
     &:focus,
     &.active {
       color: $color-white;
+
+      @include mappy-bp($bp-menu-collapse) {
+        color: $color-primary;
+      }
     }
   }
 }
@@ -230,26 +232,7 @@ $submenu-indicator-size: 9px;
 .c-menu__social {
   margin-top: rem(60px);
 
-  display: flex;
-  align-items: baseline;
-  list-style: none;
-
   @include mappy-bp($bp-menu-collapse) {
     display: none;
-  }
-
-  li + li {
-    margin-left: rem(20px);
-  }
-
-  a {
-    display: block;
-    height: rem(20px);
-    width: rem(20px);
-
-    svg {
-      height: 100%;
-      width: 100%;
-    }
   }
 }

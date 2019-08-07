@@ -1,3 +1,5 @@
+<h2 class="c-headline c-headline--primary c-headline--with-spacing">Datenschutzerklärung</h2>
+
 <h3 class="c-headline c-headline--no-spacing c-headline--text-sizing c-headline--body-font">1. Geltungsbereich</h3>
 
 Diese Datenschutzerklärung klärt Nutzer über die Art, den Umfang und Zwecke der Erhebung und Verwendung personenbezogener Daten durch den verantwortlichen Anbieter (Terra Bodenbeläge, Claus Müller, Gewerbestraße 13, cm@terra-boden.de, 07664 9273500) auf dieser Website (im folgenden “Angebot”) auf. Die rechtlichen Grundlagen des Datenschutzes finden sich im Bundesdatenschutzgesetz (BDSG) und dem Telemediengesetz (TMG).

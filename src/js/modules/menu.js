@@ -3,7 +3,7 @@ class Submenu {
     this.parent = parent;
 
     this.el = this.parent.el.querySelector('[data-menu-submenu]');
-    this.BP_COLLAPSE = 1200;
+    this.BP_COLLAPSE = 1025;
     this.OPEN_FLAG = 'is-submenu-open';
     this.initTogglers();
 

@@ -10,19 +10,21 @@
           </div>
 
           {{/* Image */}}
-          <div class="c-secondary-section__img-wrapper">
-            {{ with $.Resources.GetMatch "service.jpg" }}
-              {{ $imageSmall := .Resize "500x" }}
-              {{ $imageMedium := .Resize "800x" }}
+          <div class="c-secondary-section__img-box">
+            <div class="c-secondary-section__img-wrapper">
+              {{ with $.Resources.GetMatch "service.jpg" }}
+                {{ $imageSmall := .Resize "500x" }}
+                {{ $imageMedium := .Resize "800x" }}
 
-              <img
-                alt=""
-                src="{{ $imageMedium.RelPermalink }}"
-                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"
-                data-sizes="auto"
-                class="c-secondary-section__img lazyload" />
-            {{ end }}
+                <img
+                  alt=""
+                  src="{{ $imageMedium.RelPermalink }}"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"
+                  data-sizes="auto"
+                  class="c-secondary-section__img lazyload" />
+              {{ end }}
+            </div>
           </div>
         </div>
 

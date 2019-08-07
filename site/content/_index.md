@@ -1,7 +1,7 @@
 ---
 title: Startseite
 meta_title: Terra Bodenbeläge | Parkett, Designböden, Laminat, Teppiche, Türen | Freiburg-Opfingen
-description: Bei uns erhalten Sie Bodenbeläge - nicht weniger und doch viel mehr. Sie suchen das Besondere, Sie wollen Qualität, einfach den perfekten Bodenbelag? Mit Terra Bodenbeläge hat Ihre Suche ein Ende.
+description: "Bei uns finden Sie die ganze Welt wertiger Bodenbeläge: markanter Parkett, flexibler Vinyl oder lebendiger Laminat? Wir haben den Belag, der Ihren Raum besonders macht."
 heroText: Bei uns finden Sie die ganze Welt **wertiger Bodenbeläge**
 hero: true
 anchors:

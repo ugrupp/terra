@@ -9,7 +9,7 @@ Gewerbestraße 13
 
 **USt-IdNr.:** DE261870431  
 **Geschäftsführer:** Claus Müller
-
+<br /><br />
 <h2 class="c-headline c-headline--primary c-headline--no-spacing c-headline--text-sizing">Gestaltung, Programmierung</h2>
 
 Format → Büro für Gestaltung  

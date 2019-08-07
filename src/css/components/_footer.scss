@@ -9,7 +9,7 @@ $footer-padding: 100px;
   z-index: index($z-index, footer);
 
   @include mappy-bp(sm) {
-    min-height: rem(400px);
+    min-height: rem(500px);
     display: flex;
 
     > * {
@@ -18,7 +18,7 @@ $footer-padding: 100px;
   }
 
   @include mappy-bp(md) {
-    min-height: rem(530px);
+    min-height: rem(630px);
   }
 }
 
@@ -80,12 +80,12 @@ $footer-padding: 100px;
 .c-footer__scroll-up {
   position: absolute;
   right: 0;
-  top: 0;
+  top: rem(5px); // horrible magic number to top-align this with the text
   display: block;
   transition: color $transition-time-default;
 
-  height: rem(32px);
-  width: rem(20px);
+  height: rem(24px);
+  width: rem(15px);
 
   color: inherit;
 
@@ -129,3 +129,8 @@ $footer-padding: 100px;
   }
 }
 
+
+// Social icons
+.c-footer__social {
+  margin-top: rem(40px);
+}

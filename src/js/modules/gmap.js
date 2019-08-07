@@ -169,7 +169,7 @@ function initMap() {
     };
 
     let map = new window.google.maps.Map(document.getElementById('footer-map'), {
-      zoom: 15,
+      zoom: 14,
       styles: mapStyles,
       center: location,
       zoomControl: true,
@@ -189,6 +189,7 @@ function initMap() {
         fillOpacity: 1,
         strokeColor: '',
         strokeWeight: 0,
+        scale: .8,
       },
     });
   }

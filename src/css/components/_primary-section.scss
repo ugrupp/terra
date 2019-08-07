@@ -28,10 +28,6 @@
   position: relative;
   z-index: 10; // > bg image
 
-  .c-richtext .c-headline:not(:first-child) {
-    margin-top: rem($section-padding / 2);
-  }
-
   .o-grid__col {
     max-width: rem($content-narrow-width);
 
@@ -52,6 +48,12 @@
     @include mappy-bp($bp-grid-collapse-lg) {
       max-width: rem($content-narrow-width + $grid-gutter-md / 2);
     }
+  }
+}
+
+.c-primary-section__content-section {
+  & + & {
+    margin-top: rem($section-padding / 2);
   }
 }
 
