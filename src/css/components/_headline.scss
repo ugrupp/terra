@@ -34,6 +34,10 @@
   }
 }
 
+.c-headline--body-font {
+  text-transform: none;
+}
+
 .c-headline--text-sizing {
   @include typi('richtext');
 }
