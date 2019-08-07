@@ -70,6 +70,7 @@
 }
 
 .c-gallery__controls {
+  flex-shrink: 0;
   position: relative;
   display: flex;
   margin-left: 1.25em;

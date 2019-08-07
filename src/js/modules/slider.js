@@ -1,4 +1,5 @@
 import Swiper from 'swiper';
+import objectFitImages from 'object-fit-images';
 
 document.addEventListener('DOMContentLoaded', (event) => {
   let sliders = [...document.querySelectorAll('[data-slider]')];
@@ -39,6 +40,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
               sliderTitleEl.style.opacity = 0;
             }
           }
+        },
+
+        lazyImageReady(slideEl, imageEl) {
+          objectFitImages(imageEl);
         },
       },
     });

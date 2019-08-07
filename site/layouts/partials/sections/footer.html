@@ -2,43 +2,45 @@
 {{ $footer := .Site.GetPage "page" "footer" }}
 
 <footer class="c-footer">
-  {{/* Map */}}
-  <div class="c-footer__map">
-    <div id="footer-map"></div>
-  </div>
+  <div class="c-footer__flexbug-wrapper">
+    {{/* Map */}}
+    <div class="c-footer__map">
+      <div id="footer-map"></div>
+    </div>
 
-  <div class="c-footer__content">
-    <div class="o-container">
-      <div class="c-footer__inner">
-        <div class="c-richtext c-richtext--inverted-on-dark">
-          {{ with $footer.Params.headline }}
-            {{ . | markdownify }}
-          {{ end }}
+    <div class="c-footer__content">
+      <div class="o-container">
+        <div class="c-footer__inner">
+          <div class="c-richtext c-richtext--inverted-on-dark">
+            {{ with $footer.Params.headline }}
+              {{ . | markdownify }}
+            {{ end }}
+          </div>
+
+          {{/* Meta menu */}}
+          <ul class="c-footer__meta">
+            <li class="c-footer__meta-item">
+              <a class="c-footer__meta-link" href="{{ ref . "agb/index.md" }}">AGB</a>
+            </li>
+            <li class="c-footer__meta-item">
+              <a class="c-footer__meta-link" href="{{ ref . "impressum/index.md" }}">Impressum</a>
+            </li>
+            <li class="c-footer__meta-item">
+              <a class="c-footer__meta-link" href="{{ ref . "datenschutz/index.md" }}">Datenschutz</a>
+            </li>
+          </ul>
+
+
+          <div class="c-footer__social">
+            {{ partial "components/social-icons" }}
+          </div>
+
+          {{/* Toplink */}}
+          <a href="#start" class="c-footer__scroll-up" data-scroll-top>
+            {{ partial "components/svg" (dict "svg" "arrow-up") }}
+            <span class="u-invisible">Nach oben</span>
+          </a>
         </div>
-
-        {{/* Meta menu */}}
-        <ul class="c-footer__meta">
-          <li class="c-footer__meta-item">
-            <a class="c-footer__meta-link" href="{{ ref . "agb/index.md" }}">AGB</a>
-          </li>
-          <li class="c-footer__meta-item">
-            <a class="c-footer__meta-link" href="{{ ref . "impressum/index.md" }}">Impressum</a>
-          </li>
-          <li class="c-footer__meta-item">
-            <a class="c-footer__meta-link" href="{{ ref . "datenschutz/index.md" }}">Datenschutz</a>
-          </li>
-        </ul>
-
-
-        <div class="c-footer__social">
-          {{ partial "components/social-icons" }}
-        </div>
-
-        {{/* Toplink */}}
-        <a href="#start" class="c-footer__scroll-up" data-scroll-top>
-          {{ partial "components/svg" (dict "svg" "arrow-up") }}
-          <span class="u-invisible">Nach oben</span>
-        </a>
       </div>
     </div>
   </div>

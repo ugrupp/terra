@@ -9,6 +9,18 @@ $footer-padding: 100px;
   z-index: index($z-index, footer);
 
   @include mappy-bp(sm) {
+    // Workaround for flexbug #3
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      width: 100%;
+    }
+  }
+}
+
+.c-footer__flexbug-wrapper {
+  @include mappy-bp(sm) {
     min-height: rem(500px);
     display: flex;
 

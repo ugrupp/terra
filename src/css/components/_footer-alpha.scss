@@ -28,9 +28,16 @@ $footer-padding: 100px;
   top: 0;
   z-index: 5; // < content
   background-color: $color-gray-f;
+
+  picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .c-footer-alpha__bg-img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
