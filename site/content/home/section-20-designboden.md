@@ -1,5 +1,5 @@
 ---
-title: Designboden
+title: Designböden
 anchor: designboden
 modifiers: o-main__section--no-pad-top
 reverse: true
