@@ -67,6 +67,13 @@
   display: inline-block;
   position: relative;
   width: rem(45px); // should wrap words at every space
+  color: $color-white;
+  transition: all $transition-time-default;
+
+  &:hover,
+  &:focus {
+    color: $color-primary;
+  }
 
   &::before {
     content: '';
@@ -76,6 +83,10 @@
     height: rem(1px);
     width: rem(45px);
     background-color: rgba($color-content, .3);
+  }
+
+  .c-headline {
+    color: inherit;
   }
 
   svg {
