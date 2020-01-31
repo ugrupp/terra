@@ -1,0 +1,1 @@
+site/static/broschuere-parkett/** filter=lfs diff=lfs merge=lfs -text
