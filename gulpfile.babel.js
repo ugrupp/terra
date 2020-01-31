@@ -69,6 +69,7 @@ config.destFonts = config.dest + 'fonts';
 
 // Hugo arguments
 config.hugoArgsDefault = ["-d", "../dist", "-s", "site", "-v", "--cleanDestinationDir"];
+config.hugoArgsProd = ["-d", "../dist", "-s", "site", "-v"];
 config.hugoArgsPreview = ["--buildDrafts", "--buildFuture"];
 
 
@@ -281,7 +282,8 @@ gulp.task("hugo-preview", (cb) => buildSite(cb, config.hugoArgsPreview));
 
 // buildSite async helper
 function buildSite(cb, options) {
-  const args = options ? config.hugoArgsDefault.concat(options) : config.hugoArgsDefault;
+  let hugoArgs = process.env.NODE_ENV === 'production' ? config.hugoArgsProd : config.hugoArgsDefault;
+  const args = options ? hugoArgs.concat(options) : hugoArgs;
 
   return spawn(hugoBin, args, {stdio: "inherit"}).on("close", (code) => {
     if (code === 0) {
