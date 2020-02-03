@@ -32,8 +32,10 @@ resources:
   title: Zwei-Schicht-Parkett, Landhausdiele Coco
 - src: images/parkett/parkett-09.jpg
   title: Parkett, Giga XXL Nussbaum
-- src: images/parkett/parkett-10.jpg
+- src: images/parkett/parkett-10-A103006.jpg
   title: Parkett, Landhausdiele Eiche Mount Cook
+  params:
+    title: A103006
 - src: images/parkett/parkett-11-A102101.jpg
   title: Parkett, Landhausdiele Eiche Honey
   params:
