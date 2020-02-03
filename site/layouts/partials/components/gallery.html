@@ -10,7 +10,7 @@
             {{ $imageBig := .Resize "2000x" }}
 
             <img
-              alt="{{ .Params.title }}"
+              alt="{{ .Title }}"
               src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
               data-src="{{ $imageSmall.RelPermalink }}"
               data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w, {{ $imageBig.RelPermalink }} 2000w"
