@@ -1,4 +1,3 @@
 # Redirect default Netlify subdomain to primary domain
 http://terra-boden.netlify.com/* https://www.terra-boden.de/:splat 301!
 https://terra-boden.netlify.com/* https://www.terra-boden.de/:splat 301!
-https://www.terra-boden.de/* http://www.terra-boden.de/:splat 301!
