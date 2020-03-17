@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <div class="o-main__content" id="content">
+    <section class="o-main__section o-main__section--no-pad">
+      {{ partial "sections/header.html" . }}
+    </section>
+
+    <section class="o-main__section o-main__section--no-pad-bottom-md">
+      <div class="o-main__visual">
+        {{ partial "components/svg" (dict "svg" "terra") }}
+      </div>
+
+      {{ partial "sections/secondary-section.html" . }}
+    </section>
+  </div>
+{{ end }}
+
+
+
