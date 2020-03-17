@@ -1,0 +1,44 @@
+//
+// Tertiary section
+// --------------------------------------------------
+
+.c-tertiary-section__content {
+  .o-grid__col {
+    .c-tertiary-section__col-inner .c-richtext {
+      max-width: rem($content-narrow-width);
+    }
+  }
+}
+
+.c-tertiary-section__galleries--1,
+.c-tertiary-section__gallery + .c-tertiary-section__gallery {
+  margin-top: rem(64px);
+
+  @include mappy-bp($bp-grid-collapse) {
+    margin-top: rem(80px);
+  }
+
+  @include mappy-bp(lg) {
+    margin-top: rem(100px);
+  }
+}
+
+.c-tertiary-section__gallery-info.c-richtext {
+  margin-top: rem(32px);
+
+  strong {
+    color: inherit;
+  }
+
+  p,
+  table,
+  .c-headline {
+    &:not(:last-child) {
+      margin-bottom: rem(15px);
+    }
+
+    &:not(:first-child) {
+      margin-top: rem(15px);
+    }
+  }
+}

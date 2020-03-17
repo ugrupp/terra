@@ -15,6 +15,16 @@
   }
 }
 
+.c-gallery--height-sm {
+  @include mappy-bp($bp-grid-collapse) {
+    height: rem($gallery-height-xs);
+  }
+
+  @include mappy-bp(xl) {
+    height: rem($gallery-height-sm);
+  }
+}
+
 .c-gallery__img-wrapper {
   height: 100%;
   width: 100%;

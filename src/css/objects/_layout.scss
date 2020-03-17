@@ -77,6 +77,12 @@
   }
 }
 
+.o-main__section--bg-white {
+  &::before {
+    background-color: #fff;
+  }
+}
+
 // no pad
 .o-main__section--no-pad {
   padding-top: 0;

@@ -1,0 +1,56 @@
+{{ $baseContext := . }}
+
+<div class="c-tertiary-section">
+  {{ with .Resources.GetMatch "tertiary-section*.md" }}
+    <div class="o-container c-tertiary-section__content">
+      <div class="o-grid">
+        <div class="o-grid__col">
+          <div class="c-tertiary-section__col-inner" data-reveal>
+            <div class="c-richtext">
+              {{ .Params.content_col1 | markdownify }}
+            </div>
+
+            {{/* Galleries 1 */}}
+            <ul class="c-tertiary-section__galleries c-tertiary-section__galleries--1">
+              {{ range .Params.galleries1 }}
+                <li class="c-tertiary-section__gallery">
+                  {{/* Gallery */}}
+                  {{ partial "components/gallery.html" (dict "context" $baseContext "gallery" .gallery "height" "sm") }}
+
+                  {{/* Info text */}}
+                  {{ with .text }}
+                    <div class="c-tertiary-section__gallery-info c-richtext">
+                      {{ . | markdownify }}
+                    </div>
+                  {{ end }}
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+
+        <div class="o-grid__col">
+          {{/* Galleries 2 */}}
+          <div class="c-tertiary-section__col-inner" data-reveal>
+            <ul class="c-tertiary-section__galleries c-tertiary-section__galleries--2">
+              {{ range .Params.galleries2 }}
+                <li class="c-tertiary-section__gallery">
+                  {{/* Gallery */}}
+                  {{ partial "components/gallery.html" (dict "context" $baseContext "gallery" .gallery "height" "sm") }}
+
+                  {{/* Text */}}
+                  {{ with .text }}
+                    <div class="c-richtext">
+                      {{ . | markdownify }}
+                    </div>
+                  {{ end }}
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{ end }}
+
+</div>

@@ -1,8 +1,9 @@
-<div class="c-gallery swiper-container{{ if .reverse }} c-gallery--reverse{{end }}" data-slider>
+<div class="c-gallery swiper-container{{ if .reverse }} c-gallery--reverse{{end }}{{ with .height }} c-gallery--height-{{ . }}{{end }}" data-slider>
   <div class="swiper-wrapper">
-    {{ $context := . }}
-    {{ with .context.Params.gallery }}
-      {{ range $context.baseContext.Resources.Match . }}
+    {{ $context := .context }}
+
+    {{ with .gallery }}
+      {{ range $context.Resources.Match . }}
         <div class="swiper-slide" data-title="{{ .Params.title }}">
           <div class="c-gallery__img-wrapper">
             {{ $imageSmall := .Resize "500x" }}
