@@ -21,4 +21,8 @@ resources:
   title: Galerie 5 alt text (TODO)
 - src: galerie-6/*
   title: Galerie 6 alt text (TODO)
+- src: foto-1.jpg
+  title: Ihre Bodenleger mit handwerklicher Passion in der Region Freiburg
+- src: foto-2.jpg
+  title: Ihre Bodenleger mit handwerklicher Passion in der Region Freiburg
 ---
