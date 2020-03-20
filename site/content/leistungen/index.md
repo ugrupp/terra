@@ -10,17 +10,17 @@ menu:
 
 resources:
 - src: galerie-1/*
-  title: Galerie 1 alt text (TODO)
+  title: Landhausdiele Smoky Mountains (A103002), extra rustikal, gealtert, geräuchert, natur geölt
 - src: galerie-2/*
-  title: Galerie 2 alt text (TODO)
+  title: Shrunk Landhausdiele
 - src: galerie-3/*
-  title: Galerie 3 alt text (TODO)
+  title: Landhausdiele handgehobelt
 - src: galerie-4/*
-  title: Galerie 4 alt text (TODO)
+  title: Fischgrät Eiche, geölt
 - src: galerie-5/*
-  title: Galerie 5 alt text (TODO)
+  title: Industrieparkett in Rohholzoptik
 - src: galerie-6/*
-  title: Galerie 6 alt text (TODO)
+  title: Landhausdiele Smoky Mountains (A103002), extra rustikal, gealtert, geräuchert, natur geölt
 - src: foto-1.jpg
   title: Ihre Bodenleger mit handwerklicher Passion in der Region Freiburg
 - src: foto-2.jpg
