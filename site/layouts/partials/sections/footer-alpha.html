@@ -1,12 +1,13 @@
 {{/* Set headless footer bundle which holds the footer content */}}
 {{ $footer := .Site.GetPage "page" "footer" }}
+{{ $params := .Params }}
 
 <div class='c-footer-alpha{{ if eq .Params.layout "plain" }} c-footer-alpha--plain{{ end }}'>
   {{/* BG Image */}}
   {{ if ne .Params.layout "plain" }}
     <div class="c-footer-alpha__bg-img-wrapper">
       <picture>
-        {{ with $footer.Resources.GetMatch (cond (isset .Params "alternative_footer") "footer_alternative.jpg" "footer.jpg") }}
+        {{ with $footer.Resources.GetMatch (cond (isset .Params "footer_image") .Params.footer_image "footer.jpg") }}
           {{ $imageMedium := .Resize "1000x" }}
           {{ $imageBig := .Resize "1500x" }}
           {{ $imageTall := .Fill "767x1300 Smart" }}
@@ -26,11 +27,11 @@
             media="(min-width: 500px)" />
           <source
               data-srcset="{{ $imageBig.RelPermalink }}" />
-
           <img
               src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
               data-src="{{ $imageBig.RelPermalink }}"
               class="c-footer-alpha__bg-img lazyload"
+              {{ if (isset $params "footer_image_position") }}style="object-position: {{ $params.footer_image_position }}"{{ end }}
               alt="" />
         {{ end }}
       </picture>
