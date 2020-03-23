@@ -21,7 +21,7 @@
   }
 
   @include mappy-bp(xl) {
-    height: rem($gallery-height-sm);
+    height: rem($gallery-height-sm + 50px);
   }
 }
 
