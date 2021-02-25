@@ -64,16 +64,7 @@
 .c-gallery-section__download {
   margin-top: rem(30px);
   padding-top: rem(20px);
-  display: inline-block;
   position: relative;
-  width: rem(45px); // should wrap words at every space
-  color: $color-white;
-  transition: all $transition-time-default;
-
-  &:hover,
-  &:focus {
-    color: $color-primary;
-  }
 
   &::before {
     content: '';
@@ -83,15 +74,6 @@
     height: rem(1px);
     width: rem(45px);
     background-color: rgba($color-content, .3);
-  }
-
-  .c-headline {
-    color: inherit;
-  }
-
-  svg {
-    width: rem(45px);
-    height: rem(45px);
   }
 }
 

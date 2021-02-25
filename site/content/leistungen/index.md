@@ -26,4 +26,10 @@ resources:
   title: Ihre Bodenleger mit handwerklicher Passion in der Region Freiburg
 - src: foto-2.jpg
   title: Ihre Bodenleger mit handwerklicher Passion in der Region Freiburg
+- src: estrichfraese-1.jpg
+  title: Fussbodenheizung fräsen
+- src: estrichfraese-2.jpg
+  title: Estrichfräse
+- src: estrichfraese-3.jpg
+  title: Fußbodenheizung nachträglich einbauen
 ---
