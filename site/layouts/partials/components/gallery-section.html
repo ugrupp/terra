@@ -21,9 +21,9 @@
           {{/* Download */}}
           {{ with .context.Params.download }}
             <div class="c-gallery-section__download">
-              <a class="c-download" href="{{ . }}" target="_blank">
+              <a class="c-download" href="{{ .href }}" target="_blank">
                 {{ partial "components/svg" (dict "svg" "download") }}
-                <h3 class="c-headline c-headline--sm c-headline--padded">Broschüre</h3>
+                <h3 class="c-headline c-headline--sm c-headline--padded">{{ .title }}</h3>
               </a>
             </div>
           {{ end }}

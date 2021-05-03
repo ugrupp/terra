@@ -118,4 +118,6 @@ resources:
   title: Teppiche
 - src: images/tueren/tueren*
   title: Türen
+- src: images/ceratouch/*
+  title: Fliese Ceratouch
 ---

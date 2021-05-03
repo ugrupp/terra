@@ -4,7 +4,9 @@ anchor: parkett
 modifiers: o-main__section--no-pad-top o-main__section--after-topbox
 reverse: false
 gallery: images/parkett/*
-download: https://broschuere-parkett.terra-boden.de/
+download:
+  href: https://broschuere-parkett.terra-boden.de/
+  title: Broschüre
 visual: true
 visual_direction: vertical
 visual_position: 30% bottom

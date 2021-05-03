@@ -2,7 +2,7 @@
 title: Teppiche
 anchor: teppiche
 modifiers: o-main__section--no-pad-top
-reverse: true
+reverse: false
 gallery: images/teppiche/*
 visual: true
 visual_direction: vertical

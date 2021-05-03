@@ -2,7 +2,7 @@
 title: Designböden
 anchor: designboden
 modifiers: o-main__section--no-pad-top
-reverse: true
+reverse: false
 gallery: images/designboden/*
 visual: true
 visual_direction: horizontal

@@ -7,6 +7,8 @@ hero: true
 anchors:
 - title: Parkett
   target: '#parkett'
+- title: Fliese Ceratouch
+  target: '#ceratouch'
 - title: Designböden
   target: '#designboden'
 - title: Laminat

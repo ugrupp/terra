@@ -2,7 +2,7 @@
 title: Laminat
 anchor: laminat
 modifiers: o-main__section--no-pad-top
-reverse: false
+reverse: true
 gallery: images/laminat/*
 visual: true
 visual_direction: horizontal
