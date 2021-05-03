@@ -1,14 +1,18 @@
-<ul class="c-social-icons">
+<ul class='c-social-icons {{ if (isset . "on-primary") }}c-social-icons--on-primary{{ end }}'>
   <li>
     <a href="https://www.facebook.com/terrabodenbelaege/" title="Facebook" target="_blank">
-      {{ partial "components/svg" (dict "svg" "facebook") }}
-      <span class="u-invisible">Facebook</span>
+      <span class="c-social-icons__svg">
+        {{ partial "components/svg" (dict "svg" "facebook") }}
+      </span>
+      <span class="c-headline c-headline--padded c-headline--white c-headline--sm">Facebook</span>
     </a>
   </li>
   <li>
     <a href="https://www.instagram.com/terraboden/" title="Instagram" target="_blank">
-      {{ partial "components/svg" (dict "svg" "instagram") }}
-      <span class="u-invisible">Instagram</span>
+      <span class="c-social-icons__svg">
+        {{ partial "components/svg" (dict "svg" "instagram") }}
+      </span>
+      <span class="c-headline c-headline--padded c-headline--white c-headline--sm">Instagram</span>
     </a>
   </li>
 </ul>

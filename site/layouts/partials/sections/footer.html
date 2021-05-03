@@ -11,6 +11,14 @@
     <div class="c-footer__content">
       <div class="o-container">
         <div class="c-footer__inner">
+          <div class="c-footer__social">
+            {{ partial "components/social-icons" }}
+          </div>
+        </div>
+      </div>
+
+      <div class="o-container">
+        <div class="c-footer__inner">
           <div class="c-richtext c-richtext--inverted-on-dark">
             {{ with $footer.Params.headline }}
               {{ . | markdownify }}
@@ -29,11 +37,6 @@
               <a class="c-footer__meta-link" href="{{ ref . "datenschutz/index.md" }}">Datenschutz</a>
             </li>
           </ul>
-
-
-          <div class="c-footer__social">
-            {{ partial "components/social-icons" }}
-          </div>
 
           {{/* Toplink */}}
           <a href="#start" class="c-footer__scroll-up" data-scroll-top>

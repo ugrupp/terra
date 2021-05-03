@@ -21,7 +21,7 @@ $footer-padding: 100px;
 
 .c-footer__flexbug-wrapper {
   @include mappy-bp(sm) {
-    min-height: rem(500px);
+    min-height: rem(700px);
     display: flex;
 
     > * {
@@ -30,7 +30,7 @@ $footer-padding: 100px;
   }
 
   @include mappy-bp(md) {
-    min-height: rem(630px);
+    min-height: rem(748px);
   }
 }
 
@@ -144,5 +144,5 @@ $footer-padding: 100px;
 
 // Social icons
 .c-footer__social {
-  margin-top: rem(40px);
+  margin-bottom: rem(72px);
 }

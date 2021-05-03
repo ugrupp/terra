@@ -72,6 +72,19 @@
   }
 }
 
+.c-headline--white {
+  color: $color-white;
+
+  strong {
+    color: $color-primary; // not used yet
+  }
+
+  &.c-headline--padded {
+    background-color: $color-white;
+    color: $color-content;
+  }
+}
+
 .c-headline--padded {
   display: inline;
   padding: .3em .3em .15em;

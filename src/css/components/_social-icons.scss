@@ -3,28 +3,43 @@
 // --------------------------------------------------
 
 .c-social-icons {
-  display: flex;
-  align-items: baseline;
   list-style: none;
 
   li + li {
-    margin-left: rem(20px);
+    margin-top: rem(40px);
   }
 
   a {
-    display: block;
-    height: rem(20px);
-    width: rem(20px);
+    display: inline-block;
     color: inherit;
 
     &:hover,
     &:focus {
       color: inherit;
     }
+  }
+}
 
-    svg {
-      height: 100%;
-      width: 100%;
-    }
+.c-social-icons__svg {
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+  height: rem(40px);
+  width: rem(40px);
+  background-color: $color-content-ci;
+
+  @include mappy-bp(md) {
+    height: rem(45px);
+    width: rem(45px);
+  }
+
+  .c-social-icons--on-primary & {
+    background-color: $color-content;
+    color: $color-white;
+  }
+
+  svg {
+    height: 50%;
+    width: 50%;
   }
 }
