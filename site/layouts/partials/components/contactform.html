@@ -5,15 +5,15 @@
     </div>
   </div>
 
-  <form class="c-contactform__form">
+  <form class="c-contactform__form" action="https://submit-form.com/cmkSlPVh" method="post">
     <div class="o-container o-container--narrower">
       <div class="c-contactform__fields">
         <fieldset>
           <div class="c-contactform__field">
-            {{ partial "components/input" (dict "type" "text" "name" "_fname" "placeholder" "Vorname" "required" true) }}
+            {{ partial "components/input" (dict "type" "text" "name" "firstname" "placeholder" "Vorname" "required" true) }}
           </div>
           <div class="c-contactform__field">
-            {{ partial "components/input" (dict "type" "text" "name" "_lname" "placeholder" "Nachname" "required" true) }}
+            {{ partial "components/input" (dict "type" "text" "name" "lastname" "placeholder" "Nachname" "required" true) }}
           </div>
           <div class="c-contactform__field">
             {{ partial "components/input" (dict "type" "email" "name" "email" "placeholder" "E-Mail" "required" true) }}
@@ -26,10 +26,10 @@
         <fieldset class="c-contactform__auto-col">
           <legend class="c-headline c-headline--text-sizing c-headline--primary">Projektart</legend>
           <div class="c-contactform__field">
-            {{ partial "components/checkbox" (dict "group" "project" "name" "projektart" "value" "Neubau" "id" "project-option-neubau" "label" "Neubau") }}
+            {{ partial "components/checkbox" (dict "group" "project" "name" "projektart[]" "value" "Neubau" "id" "project-option-neubau" "label" "Neubau") }}
           </div>
           <div class="c-contactform__field">
-            {{ partial "components/checkbox" (dict "group" "project" "name" "projektart" "value" "Altbau" "id" "project-option-altbau" "label" "Altbau") }}
+            {{ partial "components/checkbox" (dict "group" "project" "name" "projektart[]" "value" "Altbau" "id" "project-option-altbau" "label" "Altbau") }}
           </div>
           <div class="c-contactform__field">
             {{ partial "components/input" (dict "type" "text" "name" "area" "placeholder" "Ihre Fläche in Quadratmeter" "required" false) }}
@@ -39,35 +39,35 @@
         <fieldset class="c-contactform__auto-col">
           <legend class="c-headline c-headline--text-sizing c-headline--primary">Produktwunsch</legend>
           <div class="c-contactform__field">
-            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch" "value" "Parkett" "id" "product-option-parkett" "label" "Parkett") }}
+            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch[]" "value" "Parkett" "id" "product-option-parkett" "label" "Parkett") }}
           </div>
           <div class="c-contactform__field">
-            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch" "value" "Fliese Ceratouch" "id" "product-option-ceratouch" "label" "Fliese Ceratouch") }}
+            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch[]" "value" "Fliese Ceratouch" "id" "product-option-ceratouch" "label" "Fliese Ceratouch") }}
           </div>
           <div class="c-contactform__field">
-            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch" "value" "Designboden" "id" "product-option-designboden" "label" "Designboden") }}
+            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch[]" "value" "Designboden" "id" "product-option-designboden" "label" "Designboden") }}
           </div>
           <div class="c-contactform__field">
-            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch" "value" "Laminat" "id" "product-option-laminat" "label" "Laminat") }}
+            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch[]" "value" "Laminat" "id" "product-option-laminat" "label" "Laminat") }}
           </div>
           <div class="c-contactform__field">
-            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch" "value" "Teppich" "id" "product-option-teppich" "label" "Teppich") }}
+            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch[]" "value" "Teppich" "id" "product-option-teppich" "label" "Teppich") }}
           </div>
           <div class="c-contactform__field">
-            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch" "value" "Türen" "id" "product-option-tueren" "label" "Türen") }}
+            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch[]" "value" "Türen" "id" "product-option-tueren" "label" "Türen") }}
           </div>
         </fieldset>
 
-        {{ partial "components/textarea" (dict "name" "_message" "placeholder" "Erzählen Sie uns von Ihrem Projekt" "required" false) }}
+        {{ partial "components/textarea" (dict "name" "message" "placeholder" "Erzählen Sie uns von Ihrem Projekt" "required" false) }}
 
         {{/* Subject */}}
-        <input type="hidden" name="_subject" value="Neue Nachricht vom terra-boden.de Kontaktformular" />
+        <input type="hidden" name="_email.subject" value="Neue Nachricht vom terra-boden.de Kontaktformular" />
 
         {{/* Honeypot */}}
         <input type="text" name="_gotcha" class="u-invisible" />
 
         {{/* Language */}}
-        <input type="hidden" name="_language" value="de" />
+        <input type="hidden" name="_feedback.language" value="de" />
       </div>
 
       <p class="c-contactform__privacy">
