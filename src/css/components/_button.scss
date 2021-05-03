@@ -6,18 +6,53 @@
   @include button-reset;
 
   @include typi('button');
-  background-color: $color-content-ci;
+  @include font-ci;
+  @include font-smoothing;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  background-color: $color-content;
   color: $color-white;
-  padding: rem(24px);
+  padding: .8em 1.3em;
   transition: background-color $transition-time-default;
 
   display: inline-flex;
   align-items: center;
 
+  &:hover,
+  &:focus {
+    background-color: $color-content-ci;
+
+    .c-button__icon svg {
+      transform: translateX(.2em);
+    }
+  }
+}
+
+.c-button__text {
+  @include font-ci-offset;
+}
+
+.c-button__icon {
+  display: block;
+  position: relative;
+  flex-shrink: 0;
+  margin-left: rem(20px);
+  padding-left: rem(20px);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10%;
+    bottom: 10%;
+    background-color: rgba(255, 255, 255, .3);
+    width: 1px;
+  }
+
   svg {
-    flex-shrink: 0;
-    margin-left: rem(24px);
-    width: rem(32px);
-    height: rem(8px);
+    transition: transform $transition-time-default;
+    width: rem(16px);
+    height: rem(16px);
   }
 }

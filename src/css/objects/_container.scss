@@ -13,3 +13,8 @@
 .o-container--narrow {
   max-width: rem($container-width-narrow + 2 * $container-gutter);
 }
+
+
+.o-container--narrower {
+  max-width: rem($container-width-narrower + 2 * $container-gutter);
+}

@@ -1,0 +1,154 @@
+//
+// Form elements
+// --------------------------------------------------
+
+.c-input__field {
+  @include input-reset;
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  border-bottom: 1px solid rgba($color-content, .3);
+  color: $color-content;
+  @include font-ci;
+  @include typi('form');
+  @include font-smoothing;
+  text-transform: uppercase;
+  padding-bottom: .75em;
+  transition: border $transition-time-default;
+
+  &::placeholder {
+    color: rgba($color-content, .3);
+  }
+
+  &:hover {
+    border-color: rgba($color-content, .5);
+  }
+
+  &:focus {
+    border-color: rgba($color-content, .75);
+  }
+}
+
+$textarea-line-height: 4;
+$textarea-line-offset: 7px;
+
+.c-textarea__field {
+  @include input-reset;
+  resize: none;
+  display: block;
+  width: 100%;
+
+  color: $color-content;
+  @include font-ci;
+  @include typi('form');
+  @include font-smoothing;
+  text-transform: uppercase;
+  transition: border $transition-time-default;
+  background-color: transparent;
+
+  min-height: $textarea-line-height * 3em;
+  // border-bottom: 1px solid rgba($color-content, .3);
+  background-image: linear-gradient(to bottom, transparent, transparent calc(#{$textarea-line-height * 1em} - 1px - #{$textarea-line-offset}), rgba($color-content, .3), transparent calc(#{$textarea-line-height * 1em} - #{$textarea-line-offset}) 0);
+  background-size: 100% $textarea-line-height * 1em;
+  line-height: $textarea-line-height;
+
+
+  &::placeholder {
+    color: rgba($color-content, .3);
+  }
+}
+
+// Controls
+$control-size: 42px;
+
+.c-control {
+  position: relative;
+}
+
+// original checkbox
+.c-control__control {
+  height: rem($control-size);
+  width: rem($control-size);
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+}
+
+.c-control__label {
+  min-height: rem($control-size);
+  display: flex;
+  align-items: flex-end;
+
+  padding-left: rem($control-size + 20px);
+  color: rgba($color-content, .3);
+  @include font-ci;
+  @include typi('form');
+  @include font-smoothing;
+  text-transform: uppercase;
+  transition: all $transition-time-default;
+  cursor: pointer;
+
+  span {
+    flex-grow: 1;
+    padding-bottom: .75em;
+    border-bottom: 1px solid rgba($color-content, .3);
+    transition: border $transition-time-default;
+  }
+
+  // fancy checkbox
+  .c-control__control + &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: rem($control-size);
+    width: rem($control-size);
+    border: 1px solid rgba($color-content, .3);
+    transition: all $transition-time-default;
+  }
+
+  .c-control:hover &::before,
+  .c-control:hover & span {
+    border-color: rgba($color-content, .5);
+  }
+
+  .c-control__control:focus + &::before,
+  .c-control__control:focus + & span {
+    border-color: rgba($color-content, .75);
+  }
+
+  // fancy indicator
+  .c-control__control + &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: rem($control-size);
+    width: rem($control-size);
+    opacity: 0;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 14 11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.413 5.059L.051 6.524l4.606 4.282 8.803-9.328L12.005.105 4.565 7.99z' fill='#{url-friendly-color($color-content-ci)}' fill-rule='nonzero'/%3E%3C/svg%3E%0A");
+    background-position: center center;
+    background-size: rem(16px);
+    background-repeat: no-repeat;
+    transition: all $transition-time-short;
+  }
+
+  .c-control__control:checked + &::after {
+    opacity: 1;
+  }
+
+  .c-control__control:active + &::before,
+  .c-control__control:active + &::after {
+    transform: scale(.92);
+  }
+
+  .c-control__control:checked + & {
+    color: $color-content;
+  }
+}

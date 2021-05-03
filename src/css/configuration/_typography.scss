@@ -64,7 +64,12 @@ $typi: (
   ),
 
   button: (
-    null: (18px, 1.2),
+    null: (13px, 1.2),
+    md: (16px),
+  ),
+
+  form: (
+    null: (14px, 1),
   ),
 );
 /* stylelint-enable */

@@ -22,6 +22,10 @@
   }
 }
 
+@mixin font-ci-offset {
+  transform: translateY(.1em);
+}
+
 // Reset all default button styles
 @mixin button-reset {
   background: none;
@@ -36,6 +40,23 @@
 
   &:focus {
     outline: none;
+  }
+}
+
+@mixin input-reset {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  background: none;
+  line-height: 1;
+  appearance: none;
+  border-radius: 0;
+
+  &:focus {
+    outline: 0;
   }
 }
 

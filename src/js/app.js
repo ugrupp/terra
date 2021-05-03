@@ -20,7 +20,9 @@ import './modules/gmap';
 
 import Menu from './modules/menu';
 import Topbar from './modules/topbar';
+import Inputs from './modules/inputs';
 
 // init modules
 let menu = new Menu();
 new Topbar(menu);
+new Inputs();
