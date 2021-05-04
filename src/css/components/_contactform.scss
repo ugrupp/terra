@@ -44,6 +44,8 @@
   @include typi('richtext-sm');
 
   a {
+    @include font-ci;
+    @include font-smoothing;
     color: inherit;
     font-weight: $font-weight-bold;
     text-transform: uppercase;
