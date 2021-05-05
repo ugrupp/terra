@@ -12,6 +12,11 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
 
 [menu]
   [[menu.main]]
+    name = "Anfrage"
+    identifier = "anfrage"
+    weight = 290
+    url = "/#anfrage"
+  [[menu.main]]
     name = "Kontakt"
     identifier = "contact"
     weight = 300

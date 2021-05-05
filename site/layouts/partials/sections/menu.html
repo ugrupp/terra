@@ -14,7 +14,7 @@
         <li data-menu-item>
           <a class="{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}"
             href="{{ .URL }}"
-            {{ if eq .Identifier "contact" }}data-scroll{{ end }}>
+            {{ if or (eq .Identifier "contact") (eq .Identifier "anfrage") }}data-scroll{{ end }}>
             {{ .Name }}
           </a>
 

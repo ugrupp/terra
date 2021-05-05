@@ -8,6 +8,12 @@
 html {
   box-sizing: border-box;
   text-size-adjust: 100%;
+
+  scroll-padding-top: rem($topbar-height-compact);
+
+  @include mappy-bp($bp-menu-collapse) {
+    scroll-padding-top: rem($topbar-height-top);
+  }
 }
 
 *,

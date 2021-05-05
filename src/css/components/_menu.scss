@@ -94,13 +94,13 @@
 
     @include mappy-bp($bp-menu-collapse) {
       margin-top: 0;
-      margin-left: rem(60px);
+      margin-left: rem(40px);
 
       &::before {
         content: '';
         background-color: rgba($color-gray-4, .3);
         position: absolute;
-        left: rem(-30px);
+        left: rem(-20px);
         top: (100% - 80%) / 2;
         height: 80%;
         width: 1px;
@@ -108,6 +108,14 @@
 
       svg {
         display: block;
+      }
+    }
+
+    @include mappy-bp(lg) {
+      margin-left: rem(60px);
+
+      &::before {
+        left: rem(-30px);
       }
     }
   }
