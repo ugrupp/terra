@@ -148,6 +148,11 @@
 // Image 2
 .c-primary-section__img2-wrapper {
   background-color: $color-gray-4;
+
+  iframe {
+    width: 100%;
+    display: block;
+  }
 }
 
 .c-primary-section__img2 {
