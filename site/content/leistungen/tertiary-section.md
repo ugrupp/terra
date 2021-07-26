@@ -27,11 +27,11 @@ galleries1:
 
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Verlegt von:</strong> Terra Bodenbeläge
 galleries2:
-- gallery: galerie-1/*
+- gallery: galerie-7/*
   text: |
-    <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt:</strong> Wohnung in Oberrotweil
+    <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt:</strong> Wohnaus in Wasenweiler
 
-    <strong class="c-headline c-headline--inline c-headline--text-sizing">Boden:</strong> Fischgrät Eiche, geölt
+    <strong class="c-headline c-headline--inline c-headline--text-sizing">Boden:</strong> Wildwood 3D Hirschsprung (A115011), natur geölt, Zweischichtparkett Multiplex Träger
 
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Verlegt von:</strong> Terra Bodenbeläge
 - gallery: galerie-3/*

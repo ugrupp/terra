@@ -22,6 +22,8 @@ resources:
   title: Industrieparkett in Rohholzoptik
 - src: galerie-6/*
   title: Landhausdiele Smoky Mountains (A103002), extra rustikal, gealtert, geräuchert, natur geölt
+- src: galerie-7/*
+  title: Wildwood 3D Hirschsprung (A115011), natur geölt, Zweischichtparkett Multiplex Träger
 - src: foto-1.jpg
   title: Ihre Bodenleger mit handwerklicher Passion in der Region Freiburg
 - src: foto-2.jpg
