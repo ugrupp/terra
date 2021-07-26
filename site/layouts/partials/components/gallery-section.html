@@ -19,12 +19,14 @@
           </div>
 
           {{/* Download */}}
-          {{ with .context.Params.download }}
+          {{ with .context.Params.downloads }}
             <div class="c-gallery-section__download">
-              <a class="c-download" href="{{ .href }}" target="_blank">
-                {{ partial "components/svg" (dict "svg" "download") }}
-                <h3 class="c-headline c-headline--sm c-headline--padded">{{ .title }}</h3>
-              </a>
+              {{ range . }}
+                <a class="c-download" href="{{ .href }}" target="_blank">
+                  {{ partial "components/svg" (dict "svg" "download") }}
+                  <h3 class="c-headline c-headline--sm c-headline--padded">{{ .title | safeHTML }}</h3>
+                </a>
+              {{ end }}
             </div>
           {{ end }}
         </div>

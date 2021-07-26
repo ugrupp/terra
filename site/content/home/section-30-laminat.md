@@ -4,6 +4,9 @@ anchor: laminat
 modifiers: o-main__section--no-pad-top
 reverse: true
 gallery: images/laminat/*
+downloads:
+  - href: pdf/kaindl-broschuere-laminat.pdf
+    title: Broschüre Laminat
 visual: true
 visual_direction: horizontal
 visual_position: right top

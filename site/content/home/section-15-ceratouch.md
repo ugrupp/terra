@@ -4,9 +4,9 @@ anchor: ceratouch
 modifiers: o-main__section--no-pad-top
 reverse: true
 gallery: images/ceratouch/*
-download:
-  href: pdf/coretec-broschuere-ceratouch.pdf
-  title: Broschüre Ceratouch
+downloads:
+  - href: pdf/coretec-broschuere-ceratouch.pdf
+    title: Broschüre Ceratouch
 visual: true
 visual_direction: vertical
 visual_position: right 50%

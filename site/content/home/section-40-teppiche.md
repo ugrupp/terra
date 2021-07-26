@@ -4,6 +4,11 @@ anchor: teppiche
 modifiers: o-main__section--no-pad-top
 reverse: false
 gallery: images/teppiche/*
+downloads:
+  - href: pdf/lano-broschuere-teppiche-smartstrand.pdf
+    title: Broschüre Lano
+  - href: pdf/tretford-broschuere-teppiche-interart.pdf
+    title: Broschüre Tretford
 visual: true
 visual_direction: vertical
 visual_position: 50% 75%
