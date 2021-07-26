@@ -5,6 +5,11 @@ description: "Als Handwerker mit dem Blick für das Schöne verlegen wir Ihren n
 layout: services
 footer_image: footer_3.jpg
 footer_image_position: "bottom center"
+anchors:
+- title: Estrichfräse
+  target: '#estrichfraese'
+- title: Referenzen
+  target: '#referenzen'
 menu:
   main:
     weight: 15
