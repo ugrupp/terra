@@ -98,11 +98,24 @@
             </div>
           </div>
           <div class="o-grid__col">
-            <div class="c-footer-alpha__bottom-inner">
-              <div class="c-richtext c-richtext--inverted-on-dark">
-                {{ with $footer.Resources.GetMatch "alpha-col2*.md" }}
-                  {{ .Content }}
-                {{end}}
+            <div class="c-footer-alpha__grid-inner">
+              <div class="c-footer-alpha__grid-inner-col">
+                <div class="c-footer-alpha__bottom-inner">
+                  <div class="c-richtext c-richtext--inverted-on-dark">
+                    {{ with $footer.Resources.GetMatch "alpha-col2*.md" }}
+                      {{ .Content }}
+                    {{end}}
+                  </div>
+                </div>
+              </div>
+              <div class="c-footer-alpha__grid-inner-col">
+                <div class="c-footer-alpha__bottom-inner">
+                  <div class="c-richtext c-richtext--inverted-on-dark">
+                    {{ with $footer.Resources.GetMatch "alpha-col3*.md" }}
+                      {{ .Content }}
+                    {{end}}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
