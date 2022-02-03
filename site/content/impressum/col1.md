@@ -1,4 +1,4 @@
-## TERRA BODENBELÄGE
+## Terra Bodenbeläge GmbH
 
 Gewerbestraße 13  
 79112 Freiburg
