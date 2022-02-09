@@ -18,6 +18,8 @@
 
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 
   &:hover,
   &:focus {
@@ -27,6 +29,21 @@
       transform: translateX(.2em);
     }
   }
+}
+
+.c-button--white {
+  background-color: $color-white;
+  color: $color-content-ci;
+
+  &:hover,
+  &:focus {
+    background-color: rgba(255, 255, 255, .8);
+  }
+}
+
+.c-button--block {
+  display: flex;
+  width: 100%;
 }
 
 .c-button__text {

@@ -1,0 +1,27 @@
+//
+// Cookie Consent
+// --------------------------------------------------
+
+@import 'cookieconsent/build/cookieconsent.min.css';
+
+.cc-window {
+  font-family: inherit;
+  @include typi('richtext');
+  @include font-smoothing;
+}
+
+.cc-link {
+  display: block;
+  margin-top: .5em;
+  padding-left: 0;
+  padding-right: 0;
+  text-decoration: none;
+}
+
+.cc-window .cc-btn {
+  border-width: 0;
+
+  @extend .c-button;
+  @extend .c-button--block;
+  @extend .c-button--white;
+}
