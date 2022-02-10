@@ -9,25 +9,25 @@
         <h1 class="c-headline c-headline--primary c-headline--with-spacing{{ if .Params.hide_title }} o-main__hidden-headline{{ end }}">{{ .Title }}</h1>
 
         <div class="o-grid">
-          {{ with .Resources.GetMatch "col1*.md" }}
-            <div class="o-grid__col">
-              <div class="o-grid__col-inner o-grid__col-inner--narrow">
-                <div class="c-richtext c-richtext--plain c-richtext--primary">
+          <div class="o-grid__col">
+            <div class="o-grid__col-inner o-grid__col-inner--narrow">
+              <div class="c-richtext c-richtext--primary{{ if .Params.no_link_style }} c-richtext--no-link-style{{ end }}">
+                {{ with .Resources.GetMatch "col1*.md" }}
                   {{ .Content }}
-                </div>
+                {{end}}
               </div>
             </div>
-          {{end}}
+          </div>
 
-          {{ with .Resources.GetMatch "col2*.md" }}
-            <div class="o-grid__col">
-              <div class="o-grid__col-inner o-grid__col-inner--narrow">
-                <div class="c-richtext c-richtext--plain c-richtext--primary">
+          <div class="o-grid__col">
+            <div class="o-grid__col-inner o-grid__col-inner--narrow">
+              <div class="c-richtext c-richtext--primary{{ if .Params.no_link_style }} c-richtext--no-link-style{{ end }}">
+                {{ with .Resources.GetMatch "col2*.md" }}
                   {{ .Content }}
-                </div>
+                {{end}}
               </div>
             </div>
-          {{end}}
+          </div>
         </div>
       </div>
     </section>
