@@ -20,6 +20,15 @@
   }
 }
 
+.c-social-icons--horizontal {
+  display: flex;
+
+  li + li {
+    margin-top: 0;
+    margin-left: rem(40px);
+  }
+}
+
 .c-social-icons__svg {
   display: flex;
   justify-content: center;

@@ -1,5 +1,5 @@
 <h3 class="c-headline c-headline--text-sizing c-headline--inline">
-  <strong>Ihr Ansprechpartner: </strong><br />Claus Müller
+  <strong>Ihr Ansprechpartner für Freiburg: </strong><br />Claus Müller
 </h3>
 
 **t** 07664 9273500  

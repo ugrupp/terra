@@ -119,23 +119,23 @@ $footer-padding: 100px;
   position: relative;
 }
 
+.c-footer-alpha__contact-offbox {
+  margin-top: rem(30px);
+
+  @include mappy-bp(sm) {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 100%;
+    z-index: 5; // < content
+  }
+}
+
 // Portrait
 .c-footer-alpha__portrait-img-wrapper {
   overflow: hidden;
   max-width: 80%;
   margin-left: auto;
-  margin-top: rem(30px);
-
-  @include mappy-bp(sm) {
-    max-width: none;
-    margin-left: 0;
-
-    position: absolute;
-    right: 0;
-    left: 20%;
-    top: 100%;
-    z-index: 5; // < content
-  }
 }
 
 .c-footer-alpha__portrait-img {
@@ -151,6 +151,10 @@ $footer-padding: 100px;
     opacity: 0;
     transform: scale(1.05);
   }
+}
+
+.c-footer-alpha__contact-bottom {
+  margin-top: rem(60px);
 }
 
 // Inner grid

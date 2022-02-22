@@ -21,7 +21,7 @@ $footer-padding: 100px;
 
 .c-footer__flexbug-wrapper {
   @include mappy-bp(sm) {
-    min-height: rem(700px);
+    min-height: rem(800px);
     display: flex;
 
     > * {
@@ -30,7 +30,11 @@ $footer-padding: 100px;
   }
 
   @include mappy-bp(md) {
-    min-height: rem(748px);
+    min-height: rem(820px);
+  }
+
+  @include mappy-bp(lg) {
+    min-height: rem(840px);
   }
 }
 
