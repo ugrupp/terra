@@ -139,10 +139,12 @@
   left: 0;
   bottom: 0;
   right: 0;
+  /* stylelint-disable-next-line length-zero-no-unit */
   padding-top: calc(#{rem($topbar-height-compact)} + 8vh + var(--banner-height, 0px));
   z-index: 10; // > images
 
   @include mappy-bp(md) {
+    /* stylelint-disable-next-line length-zero-no-unit */
     padding-top: calc(#{rem($topbar-height-top)} + 10vh + var(--banner-height, 0px));
   }
 }
