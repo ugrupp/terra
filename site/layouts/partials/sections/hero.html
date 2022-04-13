@@ -3,7 +3,7 @@
   {{ $.Scratch.Set "imageContext2" (.Resources.GetMatch "header2.jpg") }}
 {{ end }}
 
-<header class='c-hero' data-hero>
+<header class='c-hero{{ if .Params.heroBanner }} c-hero--with-banner{{ end }}' data-hero>
   {{/* Images */}}
   <div class="c-hero__images">
     <div class="c-hero__img-wrapper c-hero__img-wrapper--image-1">
@@ -42,6 +42,26 @@
       {{ end }}
     </div>
   </div>
+
+  {{/* Banner */}}
+  {{ with .Params.heroBanner }}
+    <div class="c-hero__banner">
+      <div class="c-hero__banner-animation">
+        {{$heroBanner := .}}
+        {{ range seq 4}}
+          <div class="c-hero__banner-inner">
+            {{/* Headline */}}
+            <p class="c-headline c-headline--text-sizing-lg c-headline--padded">{{ $heroBanner.headline | markdownify }}</p>
+
+            {{/* Text */}}
+            <div class="c-richtext c-richtext--inverted c-richtext--lg">
+              <p>{{ $heroBanner.text | markdownify }}</p>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
 
   {{/* Content */}}
   {{ if .Params.heroText }}

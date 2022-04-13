@@ -42,6 +42,10 @@
   @include typi('richtext');
 }
 
+.c-headline--text-sizing-lg {
+  @include typi('richtext-lg');
+}
+
 .c-headline--sm {
   @include typi('headline-sm');
 }

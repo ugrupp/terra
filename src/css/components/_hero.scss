@@ -12,6 +12,14 @@
   z-index: index($z-index, hero);
 }
 
+.c-hero--with-banner {
+  --banner-height: rem($hero-banner-height);
+
+  @include mappy-bp(md) {
+    --banner-height: rem($hero-banner-height-md);
+  }
+}
+
 // Images
 .c-hero__images {
   height: 100%;
@@ -69,17 +77,73 @@
   }
 }
 
+.c-hero__banner {
+  position: absolute;
+  top: calc(#{rem($topbar-height-compact)});
+  left: 0;
+  right: 0;
+  z-index: 12; // > content
+  overflow: hidden;
+  white-space: nowrap;
+  height: rem($hero-banner-height);
+
+  background-color: $color-content-ci;
+  color: $color-white;
+  @include font-smoothing;
+
+  @include mappy-bp(md) {
+    height: rem($hero-banner-height-md);
+    top: calc(#{rem($topbar-height-top)});
+  }
+
+  strong {
+    @include font-ci;
+    @include font-smoothing;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+  }
+}
+
+.c-hero__banner-animation {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  animation: marquee 10s linear infinite;
+
+  display: flex;
+  align-items: center;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-25%); }
+}
+
+.c-hero__banner-inner {
+  display: flex;
+  align-items: baseline;
+  gap: .5em;
+  padding-right: rem(40px);
+
+  @include mappy-bp(md) {
+    padding-right: rem(80px);
+  }
+}
+
 .c-hero__content {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  padding-top: calc(#{rem($topbar-height-compact)} + 8vh);
+  padding-top: calc(#{rem($topbar-height-compact)} + 8vh + var(--banner-height, 0px));
   z-index: 10; // > images
 
   @include mappy-bp(md) {
-    padding-top: calc(#{rem($topbar-height-top)} + 10vh);
+    padding-top: calc(#{rem($topbar-height-top)} + 10vh + var(--banner-height, 0px));
   }
 }
 
