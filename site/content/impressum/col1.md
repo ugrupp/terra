@@ -1,6 +1,6 @@
 ## Terra Bodenbeläge GmbH
 
-Gewerbestraße 13  
+Gewerbestraße 9a  
 79112 Freiburg
 
 **t** +49 7664 9273500  
