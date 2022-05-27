@@ -56,6 +56,9 @@
           <div class="c-contactform__field">
             {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch[]" "value" "Türen" "id" "product-option-tueren" "label" "Türen") }}
           </div>
+          <div class="c-contactform__field">
+            {{ partial "components/checkbox" (dict "group" "product" "name" "produktwunsch[]" "value" "Heizung einfräsen" "id" "product-option-heizung-fraesen" "label" "Heizung einfräsen") }}
+          </div>
         </fieldset>
 
         {{ partial "components/textarea" (dict "name" "message" "placeholder" "Erzählen Sie uns von Ihrem Projekt" "required" false) }}
