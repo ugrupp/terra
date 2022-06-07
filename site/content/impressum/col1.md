@@ -7,7 +7,7 @@ Gewerbestraße 9a
 [info@terra-boden.de](mailto:info@terra-boden.de)  
 [www.terra-boden.de](http://www.terra-boden.de)
 
-**USt-IdNr.:** DE261870431  
+**USt-IdNr.:** DE348946247  
 **Geschäftsführer:** Claus Müller
 <br /><br />
 <h2 class="c-headline c-headline--primary c-headline--no-spacing c-headline--text-sizing">Gestaltung, Programmierung</h2>
