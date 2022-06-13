@@ -58,6 +58,15 @@
   }
 }
 
+.c-contactform__recaptcha {
+  display: flex;
+
+  .g-recaptcha {
+    margin-left: auto;
+    margin-bottom: rem(30px);
+  }
+}
+
 .c-contactform__submit {
   margin-top: rem(80px);
   text-align: right;

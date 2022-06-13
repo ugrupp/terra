@@ -80,6 +80,10 @@
 
     <div class="c-contactform__submit">
       <div class="o-container">
+        <div class="c-contactform__recaptcha">
+          <div class="g-recaptcha" data-sitekey='{{ getenv "GOOGLE_RECAPTCHA_SITE_KEY" }}'></div>
+        </div>
+
         {{ partial "components/button" (dict "text" "Anfrage senden") }}
       </div>
     </div>
