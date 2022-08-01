@@ -5,6 +5,8 @@ modifiers: o-main__section--no-pad-top o-main__section--after-topbox
 reverse: false
 gallery: images/parkett/*
 downloads:
+  - href: pdf/terra-bodenbelaege-broschuere-wildwood-3d.pdf
+    title: Broschüre Wildwood 3D
   - href: https://broschuere-parkett.terra-boden.de/
     title: Broschüre Parkett
 visual: true
