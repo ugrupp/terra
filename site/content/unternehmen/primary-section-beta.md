@@ -1,3 +1,5 @@
+---
+---
 <div class="c-primary-section__content-section" data-reveal>
   <h3 class="c-headline">Wir leben Bodenkultur.</h3>
   

@@ -57,7 +57,7 @@
   {{ end }}
 
   {{/* Visual */}}
-  {{ if and ((isset .context.Params "visual") .context.Params.visual) }}
+  {{ if and (isset .context.Params "visual") .context.Params.visual }}
     {{ $visual_position := .context.Params.visual_position }}
     {{ $visual_direction := .context.Params.visual_direction }}
     <div class="c-gallery-section__visual c-gallery-section__visual--{{ $visual_direction }}">

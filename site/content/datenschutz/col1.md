@@ -1,3 +1,5 @@
+---
+---
 <h2 class="c-headline c-headline--primary c-headline--with-spacing">Datenschutzerklärung</h2>
 
 <h3 class="c-headline c-headline--no-spacing c-headline--text-sizing c-headline--body-font">1. Geltungsbereich</h3>

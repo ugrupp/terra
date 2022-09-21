@@ -1,0 +1,189 @@
+//
+// Primary section
+// --------------------------------------------------
+
+@use "sass:math";
+
+.c-primary-section__alpha {
+  position: relative;
+
+  @include mappy-bp($bp-grid-collapse) {
+    min-height: rem(500px);
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    min-height: rem(770px);
+  }
+}
+
+.c-primary-section__beta {
+  .c-primary-section__alpha + & {
+    margin-top: rem($section-padding);
+
+    @include mappy-bp(md) {
+      margin-top: rem($section-padding-md);
+    }
+  }
+}
+
+.c-primary-section__content {
+  position: relative;
+  z-index: 10; // > bg image
+
+  .o-grid__col {
+    max-width: rem($content-narrow-width);
+
+    @include mappy-bp(max $bp-grid-collapse) {
+      &:not(:first-of-type) {
+        padding-top: rem($section-padding);
+      }
+    }
+
+    @include mappy-bp($bp-grid-collapse) {
+      max-width: rem($content-narrow-width + math.div($grid-gutter, 2));
+
+      &:nth-child(2n + 2) {
+        margin-left: auto;
+      }
+    }
+
+    @include mappy-bp($bp-grid-collapse-lg) {
+      max-width: rem($content-narrow-width + math.div($grid-gutter-md, 2));
+    }
+  }
+}
+
+.c-primary-section__content-section {
+  & + & {
+    margin-top: rem(math.div($section-padding, 2));
+  }
+}
+
+.c-primary-section__content--alpha {
+  .o-grid__col {
+    @include mappy-bp(max $bp-grid-collapse) {
+      &:nth-child(2n + 1) {
+        height: calc(100vh - #{rem($topbar-height-compact)});
+      }
+    }
+  }
+}
+
+.c-primary-section__content--beta {
+  @include mappy-bp(max $bp-grid-collapse) {
+    .o-grid {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    .o-grid__col {
+      width: 100%;
+
+      &:first-of-type {
+        padding-top: rem($section-padding);
+      }
+
+      &:not(:first-of-type) {
+        padding-top: 0;
+      }
+    }
+  }
+}
+
+
+.c-primary-section__alpha-headline {
+  padding-top: rem(40px);
+
+  @include mappy-bp($bp-grid-collapse) {
+    padding-top: rem(80px);
+  }
+}
+
+.c-primary-section__alpha-content {
+  @include mappy-bp($bp-grid-collapse) {
+    margin-top: rem($section-padding-md);
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    margin-top: rem(300px);
+  }
+}
+
+// Image 1
+.c-primary-section__img1-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  width: calc(100% - #{rem($container-gutter)});
+
+  background-color: $color-gray-4;
+  height: calc(100vh - #{rem($topbar-height-compact)});
+
+  @include mappy-bp($bp-menu-collapse) {
+    height: calc(100vh - #{rem($topbar-height-top)});
+  }
+
+  @include mappy-bp($bp-grid-collapse) {
+    width: 50%;
+    height: rem(500px);
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    height: rem(770px);
+  }
+}
+
+.c-primary-section__img1 {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+  }
+}
+
+// Image 2
+.c-primary-section__img2-wrapper {
+  background-color: $color-gray-4;
+
+  iframe {
+    width: 100%;
+    display: block;
+  }
+}
+
+.c-primary-section__img2 {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+  }
+}
+
+// Image 3
+.c-primary-section__img3-wrapper {
+  margin-top: rem($section-padding);
+  background-color: $color-gray-4;
+  width: 80%;
+}
+
+.c-primary-section__img3 {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+  }
+}

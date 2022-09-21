@@ -1,3 +1,5 @@
+---
+---
 <h3 class="c-headline c-headline--text-sizing c-headline--inline">
   <strong>Ihr Ansprechpartner für Freiburg: </strong><br />Claus Müller
 </h3>

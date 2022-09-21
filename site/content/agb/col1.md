@@ -1,3 +1,5 @@
+---
+---
 gültig ab 01.03.2016
 
 <h3 class="c-headline c-headline--no-spacing c-headline--text-sizing c-headline--body-font">§ 1. Geltung</h3>

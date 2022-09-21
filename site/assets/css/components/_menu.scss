@@ -1,0 +1,248 @@
+//
+// Menu
+// --------------------------------------------------
+
+@use "sass:math";
+
+.c-menu__toggler {
+  display: block;
+  position: relative;
+  width: rem(22px);
+  height: rem(22px);
+
+  @include mappy-bp($bp-menu-collapse) {
+    display: none;
+  }
+
+  svg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+
+    transition: all $transition-time-default;
+    transform: translate3d(0, 0, 0);
+
+    // burger
+    &:first-of-type {
+      .is-open & {
+        transform: scale(.75);
+        opacity: 0;
+      }
+    }
+
+    // close
+    &:last-of-type {
+      transform: scale(.75);
+      opacity: 0;
+
+      .is-open & {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.c-menu__inner {
+  position: absolute;
+  z-index: index($z-index, menu);
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: calc(100vh - 100%); // viewport height - topbar height
+  background-color: $overlay-bg;
+
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-top: rem(50px);
+  padding-bottom: rem(50px);
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity, visibility;
+  transition-duration: $transition-time-medium;
+
+  .is-open & {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @include mappy-bp($bp-menu-collapse) {
+    opacity: 1;
+    visibility: visible;
+    position: static;
+    background-color: transparent;
+    height: auto;
+    overflow: visible;
+    padding: 0;
+  }
+}
+
+.c-menu__main {
+  @include mappy-bp($bp-menu-collapse) {
+    display: flex;
+  }
+
+  li {
+    position: relative;
+  }
+
+  > li + li {
+    margin-top: rem(15px);
+
+    @include mappy-bp($bp-menu-collapse) {
+      margin-top: 0;
+      margin-left: rem(40px);
+
+      &::before {
+        content: '';
+        background-color: rgba($color-gray-4, .3);
+        position: absolute;
+        left: rem(-20px);
+        top: math.div(100% - 80%, 2);
+        height: 80%;
+        width: 1px;
+      }
+
+      svg {
+        display: block;
+      }
+    }
+
+    @include mappy-bp(lg) {
+      margin-left: rem(60px);
+
+      &::before {
+        left: rem(-30px);
+      }
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: baseline;
+
+    @include typi('menu');
+    @include font-ci;
+    text-transform: uppercase;
+    @include font-smoothing;
+    color: inherit;
+
+    @include mappy-bp($bp-menu-collapse) {
+      transition: color $transition-time-default;
+    }
+
+    &:hover,
+    &:focus,
+    &.active {
+      color: inherit;
+
+      @include mappy-bp($bp-menu-collapse) {
+        color: $color-primary;
+      }
+    }
+
+    svg {
+      margin-left: rem(10px);
+      display: block;
+      height: rem(12px);
+      width: rem(12px);
+    }
+  }
+
+  li.is-submenu-open {
+    > a {
+      @include mappy-bp($bp-menu-collapse) {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+$submenu-desktop-padding: 20px;
+$submenu-indicator-size: 9px;
+
+.c-menu__submenu {
+  margin-top: rem(15px);
+  margin-bottom: rem(40px);
+
+  @include mappy-bp($bp-menu-collapse) {
+    margin-top: rem(20px);
+    display: none;
+    margin-bottom: 0;
+    position: absolute;
+    top: 100%;
+    left: rem(-$submenu-desktop-padding);
+
+    padding: rem($submenu-desktop-padding);
+    padding-top: rem($submenu-desktop-padding + $submenu-indicator-size);
+    background-color: $color-content;
+
+    .is-submenu-open & {
+      display: block;
+    }
+  }
+
+  &::before {
+    @include mappy-bp($bp-menu-collapse) {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: rem($submenu-desktop-padding);
+      width: 0;
+      height: 0;
+      transform: rotate(360deg);
+      border-style: solid;
+      border-width: rem($submenu-indicator-size) rem($submenu-indicator-size) 0 rem($submenu-indicator-size);
+      border-color: $color_white transparent transparent transparent;
+    }
+  }
+
+  // insivisble layer so menu does not get closed on level1 leave
+  &::after {
+    @include mappy-bp($bp-menu-collapse) {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      height: rem(20px);
+    }
+  }
+
+  > li + li {
+    margin-top: rem(15px);
+
+    @include mappy-bp($bp-menu-collapse) {
+      margin-top: rem(12px);
+    }
+  }
+
+  a {
+    @include typi('menu-sub');
+    color: $color-white;
+
+    &:hover,
+    &:focus,
+    &.active {
+      color: $color-white;
+
+      @include mappy-bp($bp-menu-collapse) {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+// Social icons
+.c-menu__social {
+  margin-top: rem(60px);
+
+  @include mappy-bp($bp-menu-collapse) {
+    display: none;
+  }
+}

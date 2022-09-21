@@ -1,0 +1,64 @@
+//
+// General settings
+// --------------------------------------------------
+
+@use "sass:math";
+
+// Breakpoints
+$breakpoints: (
+  'xs': 480px,
+  'sm': 768px,
+  'md': 1025px,
+  'lg': 1200px,
+  'xl': 1400px
+);
+
+$bp-menu-collapse: md;
+
+$bp-grid-collapse: sm;
+$bp-grid-collapse-lg: lg;
+
+// Transition timing
+$transition-time-short: .1s;
+$transition-time-default: .2s;
+$transition-time-medium: .4s;
+$transition-time-long: .8s;
+
+// z-index indexes
+$z-index: hero, footer, footer-alpha, content, content-section, topbar, menu, overlay;
+
+// Sizes & other variables
+$container-gutter: 40px;
+$container-width-default: 1400px;
+$container-width-narrow: 960px;
+$container-width-narrower: 620px;
+
+$section-padding: 120px;
+$section-padding-md: 160px;
+
+$grid-gutter: 80px;
+$grid-gutter-md: 160px;
+
+
+$hero-overlap-xs: 60px;
+$hero-overlap-md: 100px;
+$hero-banner-height: 64px;
+$hero-banner-height-md: 76px;
+
+$topbox-overlap-xs: 40px;
+$topbox-overlap-md: 170px;
+
+$topbar-height-top: 210px;
+$topbar-height-compact: 120px;
+
+$overlap-size: 100px;
+
+$terra-visual-ratio: math.div(395, 214);
+
+$overlay-bg: rgba($color-primary, .94);
+
+$gallery-height-xs: 300px;
+$gallery-height-sm: 400px;
+$gallery-height-xl: 615px;
+
+$content-narrow-width: 500px;

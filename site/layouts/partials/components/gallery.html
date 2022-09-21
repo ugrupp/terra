@@ -4,21 +4,23 @@
 
     {{ with .gallery }}
       {{ range $context.Resources.Match . }}
-        <div class="swiper-slide" data-title="{{ .Params.title }}">
-          <div class="c-gallery__img-wrapper">
-            {{ $imageSmall := .Resize "500x" }}
-            {{ $imageMedium := .Resize "1000x" }}
-            {{ $imageBig := .Resize "2000x" }}
+        {{ if eq .ResourceType "image" }}
+          <div class="swiper-slide" data-title="{{ .Params.title }}">
+            <div class="c-gallery__img-wrapper">
+              {{ $imageSmall := .Resize "500x" }}
+              {{ $imageMedium := .Resize "1000x" }}
+              {{ $imageBig := .Resize "2000x" }}
 
-            <img
-              alt="{{ .Title }}"
-              src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-              data-src="{{ $imageSmall.RelPermalink }}"
-              data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w, {{ $imageBig.RelPermalink }} 2000w"
-              class="c-gallery__img swiper-lazy" />
-              <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-            </div>
-        </div>
+              <img
+                alt="{{ .Title }}"
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-src="{{ $imageSmall.RelPermalink }}"
+                data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w, {{ $imageBig.RelPermalink }} 2000w"
+                class="c-gallery__img swiper-lazy" />
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+              </div>
+          </div>
+        {{ end }}
       {{ end }}
     {{ end }}
   </div>
