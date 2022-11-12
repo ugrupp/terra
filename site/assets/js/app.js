@@ -9,7 +9,6 @@ svgs;
 // module imports
 import './modules/fontfaceobserver';
 import './modules/scroll-to';
-import './modules/cookieconsent';
 import './modules/slider';
 import './modules/reveal-animations';
 import './modules/gmap';

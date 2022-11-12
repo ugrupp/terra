@@ -147,6 +147,25 @@ $footer-padding: 100px;
   }
 }
 
+.footer__map-placeholder {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  a {
+    color: $color-gray-4;
+    transition: color $transition-time-default;
+
+    &:hover,
+    &:focus {
+      color: $color-content-ci;
+    }
+  }
+}
+
 
 // Social icons
 .c-footer__social {

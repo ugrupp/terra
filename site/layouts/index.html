@@ -29,7 +29,14 @@
       {{ end }}
 
       {{/* Contact form */}}
-      <section class="o-main__section o-main__section--bg-white" id="anfrage">
+      <section class="o-main__section o-main__section--bg-white hidden" id="anfrage">
+        {{/* Show form on cookie consent */}}
+        <script type="text/plain" data-cookieconsent="marketing">
+          const formSection = document.querySelector("#anfrage");
+          if (formSection) {
+            formSection.classList.remove("hidden");
+          }
+        </script>
         {{ partial "components/contactform.html" . }}
       </section>
     </div>
