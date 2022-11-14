@@ -15,10 +15,10 @@
 }
 
 .c-hero--with-banner {
-  --banner-height: rem($hero-banner-height);
+  --banner-height: #{rem($hero-banner-height)};
 
   @include mappy-bp(md) {
-    --banner-height: rem($hero-banner-height-md);
+    --banner-height: #{rem($hero-banner-height-md)};
   }
 }
 
