@@ -100,10 +100,6 @@ $logo-ratio: math.div(180, 130);
 
     color: inherit;
 
-    .c-topbar--headroom-initialized & {
-      transition: color $transition-time-medium;
-    }
-
     .is-menu-open & {
       @include mappy-bp(max $bp-menu-collapse) {
         color: $color-white;
