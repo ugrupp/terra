@@ -26,6 +26,7 @@ export default defineConfig({
     hugoPlugin({
       appDir: resolve(__dirname, "site"),
       hugoOutDir: resolve(__dirname, "dist"),
+      ignoreHTMLFiles: [resolve(__dirname, "dist/weihnachtsgruss/index.html",)]
     }),
   ],
 });
