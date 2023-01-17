@@ -51,7 +51,9 @@
         {{ range seq 4}}
           <div class="c-hero__banner-inner">
             {{/* Headline */}}
-            <p class="c-headline c-headline--text-sizing-lg c-headline--padded">{{ $heroBanner.headline | markdownify }}</p>
+            {{ if $heroBanner.headline }}
+              <p class="c-headline c-headline--text-sizing-lg c-headline--padded">{{ $heroBanner.headline | markdownify }}</p>
+            {{ end }}
 
             {{/* Text */}}
             <div class="c-richtext c-richtext--inverted c-richtext--lg">
