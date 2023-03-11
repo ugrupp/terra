@@ -35,19 +35,7 @@ export default class Topbar {
         });
 
         headroom.init();
-
-        // update topbar mode (normal/compact)
-        // window.addEventListener('scroll', this.updateTopbarMode.bind(this), false);
-        // this.updateTopbarMode();
       }
     });
-  }
-
-  updateTopbarMode() {
-    if (window.pageYOffset >= 100) {
-      this.topbar.classList.add('c-topbar--compact');
-    } else {
-      this.topbar.classList.remove('c-topbar--compact');
-    }
   }
 }

@@ -1,70 +1,9 @@
-class Submenu {
-  constructor(parent) {
-    this.parent = parent;
-
-    this.el = this.parent.el.querySelector('[data-menu-submenu]');
-    this.BP_COLLAPSE = 1025;
-    this.OPEN_FLAG = 'is-submenu-open';
-    this.initTogglers();
-
-    // close submenues on topbar unpin
-    document.addEventListener('topbar-unpinned', this.closeAll.bind(this));
-  }
-
-  // helper method to determine the current breakpoint
-  _isDesktop() {
-    return window.matchMedia(`(min-width: ${this.BP_COLLAPSE}px)`).matches;
-  }
-
-  // init submenu togglers
-  initTogglers() {
-    this.parent.items.forEach((level1) => {
-      // desktop subnav
-      level1.addEventListener('mouseenter', () => {
-        // mouseenter
-        if (this._isDesktop()) {
-          let submenu = level1.querySelector('[data-menu-submenu]');
-          if (submenu && !this.isOpen(level1)) {
-            this.open(level1);
-          }
-        }
-      });
-
-      level1.addEventListener('mouseleave', () => {
-        // mouseleave
-        if (this._isDesktop()) {
-          let submenu = level1.querySelector('[data-menu-submenu]');
-          if (submenu) {
-            this.close(level1);
-          }
-        }
-      });
-    });
-  }
-
-  open(level1Item) {
-    level1Item.classList.add(this.OPEN_FLAG);
-  }
-
-  close(level1Item) {
-    level1Item.classList.remove(this.OPEN_FLAG);
-  }
-
-  closeAll() {
-    this.parent.items.forEach((item) => {
-      this.close(item);
-    });
-  }
-
-  isOpen(level1Item) {
-    return level1Item.classList.contains(this.OPEN_FLAG);
-  }
-}
-
+import throttle from 'lodash.throttle';
 
 export default class Menu {
   constructor() {
     this.inited = false;
+    this.BP_COLLAPSE = 1025;
 
     document.addEventListener('DOMContentLoaded', () => {
       this.el = document.querySelector('[data-menu]');
@@ -79,7 +18,8 @@ export default class Menu {
         return this;
       }
 
-      this.initSubmenu();
+      this.initSubmenuToggler();
+      this.initMenuItemWidths();
       this.initTogglers();
       this.initOutsideClick();
     });
@@ -96,6 +36,7 @@ export default class Menu {
     return true;
   }
 
+  // OVERLAY (mobile)
   initTogglers() {
     // openers
     this.togglers.forEach((toggler) => {
@@ -110,19 +51,13 @@ export default class Menu {
     });
   }
 
-  // close overlay on click "anywhere"
+  // Close overlay on click "anywhere"
   initOutsideClick() {
     document.addEventListener('click', (e) => {
       if (this.el !== e.target && !this.el.contains(e.target)) {
         this.close();
       }
     });
-  }
-
-  initSubmenu() {
-    if (this.isInited()) {
-      new Submenu(this);
-    }
   }
 
   // Toggles overlay
@@ -146,5 +81,67 @@ export default class Menu {
       this.el.classList.remove('is-open');
       document.body.classList.remove('is-menu-open');
     }
+  }
+
+  // SUBMENU (desktop)
+  // Helper method to determine the current breakpoint
+  _isDesktop() {
+    return window.matchMedia(`(min-width: ${this.BP_COLLAPSE}px)`).matches;
+  }
+
+  // Opens submenu on menu hover
+  initSubmenuToggler() {
+    this.el.addEventListener('mouseenter', () => {
+      // mouseenter
+      if (this._isDesktop()) {
+        this.openSubmenu();
+      }
+    });
+
+    this.el.addEventListener('mouseleave', () => {
+      // mouseleave
+      if (this._isDesktop()) {
+        this.closeSubmenu();
+      }
+    });
+  }
+
+  // Opens submenu
+  openSubmenu() {
+    if (this.isInited()) {
+      this.el.classList.add('is-submenu-open');
+      document.body.classList.add('is-submenu-open');
+    }
+  }
+
+  // Closes submenu
+  closeSubmenu() {
+    if (this.isInited()) {
+      this.el.classList.remove('is-submenu-open');
+      document.body.classList.remove('is-submenu-open');
+    }
+  }
+
+  // Measure widths of main menu items to transfer to submenu
+  initMenuItemWidths() {
+    if (this.isInited()) {
+
+      this.measureItems();
+      window.addEventListener('resize', throttle(this.measureItems.bind(this)));
+      document.addEventListener('has-loaded-fonts-ci', this.measureItems.bind(this));
+    }
+  }
+
+  measureItems() {
+    if (this._isDesktop()) {
+      this.items.forEach(item => {
+        this.measureItemWidth(item);
+      })
+    }
+  }
+
+  // Measure width of a single menu item and save it in a CSS variable
+  measureItemWidth(item) {
+    item.style.setProperty('--item-width', item.offsetWidth);
   }
 }

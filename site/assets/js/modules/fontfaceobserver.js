@@ -41,6 +41,8 @@ let fontsCiLoadedPromises = fontsCi.map((fontFaceObserverObj) => {
 // As soon as the fonts are loaded, set a global flag
 Promise.all(fontsCiLoadedPromises).then(() => {
   document.documentElement.classList.add('has-loaded-fonts-ci');
+  const event = new Event("has-loaded-fonts-ci");
+  document.dispatchEvent(event);
 });
 
 
@@ -55,4 +57,6 @@ let fontsBodyLoadedPromises = fontsBody.map((fontFaceObserverObj) => {
 // As soon as the fonts are loaded, set a global flag
 Promise.all(fontsBodyLoadedPromises).then(() => {
   document.documentElement.classList.add('has-loaded-fonts-body');
+  const event = new Event("has-loaded-fonts-body");
+  document.dispatchEvent(event);
 });

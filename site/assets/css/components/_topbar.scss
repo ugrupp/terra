@@ -12,12 +12,13 @@
   z-index: index($z-index, topbar);
   opacity: 0;
 
-  background-color: #fff;
+  background-color: $color-white;
 
   height: rem($topbar-height-compact);
 
   @include mappy-bp($bp-menu-collapse) {
-    height: rem($topbar-height-top);
+    min-height: rem($topbar-height-top);
+    height: auto;
   }
 
   .is-menu-open & {
@@ -28,6 +29,12 @@
 
   > .o-container {
     height: 100%;
+
+    @include mappy-bp($bp-menu-collapse) {
+      height: auto;
+      position: relative;
+      z-index: 10;
+    }
   }
 }
 
@@ -43,15 +50,15 @@
   opacity: 0;
 }
 
-.c-topbar--compact {
-  height: rem($topbar-height-compact);
-}
-
 
 .c-topbar__inner {
   height: 100%;
   display: flex;
   align-items: center;
+
+  @include mappy-bp($bp-menu-collapse) {
+    align-items: flex-start;
+  }
 }
 
 // Menu wrapper
@@ -61,7 +68,9 @@
   margin-bottom: rem(39px); // magic, aligns with the logo signet bottom edge
 
   @include mappy-bp($bp-menu-collapse) {
-    margin-bottom: rem(69px); // magic, aligns with the logo signet bottom edge
+    align-self: flex-start;
+    margin-bottom: 0;
+    margin-top: rem(123px); // magic, aligns with the logo signet bottom edge
   }
 }
 
@@ -80,17 +89,13 @@ $logo-ratio: math.div(180, 130);
   @include mappy-bp($bp-menu-collapse) {
     height: rem(130px);
     width: rem(130px * $logo-ratio);
+    margin-top: rem(($topbar-height-top - 130px) * 0.5);
   }
 
   &,
   &:hover,
   &:focus {
     color: $color-primary;
-  }
-
-  .c-topbar--compact & {
-    height: rem(80px);
-    width: rem(80px * $logo-ratio);
   }
 
   svg {
