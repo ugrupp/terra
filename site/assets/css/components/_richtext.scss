@@ -113,7 +113,24 @@
     }
 
     li + li {
+      margin-top: rem(10px);
+    }
+  }
+
+  ul.c-list-arrowed--loose {
+    padding-left: 0;
+
+    li + li {
       margin-top: rem(20px);
+    }
+  }
+
+  ul.c-list-blank {
+    padding-left: 0;
+    list-style: none;
+
+    li + li {
+      margin-top: rem(10px);
     }
   }
 }

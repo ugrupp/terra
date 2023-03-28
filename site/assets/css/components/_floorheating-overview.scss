@@ -23,6 +23,7 @@
   .c-richtext {
     ul {
       @extend .c-list-arrowed;
+      @extend .c-list-arrowed--loose;
     }
 
     strong {
@@ -80,7 +81,11 @@
 
 .c-floorheating-overview__col-content-3 {
   .c-headline-secondary {
-    margin-bottom: rem(30px);
+    margin-bottom: rem(20px);
+
+    @include mappy-bp(md) {
+      margin-bottom: rem(30px);
+    }
   }
 }
 
