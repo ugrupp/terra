@@ -75,5 +75,15 @@ $typi: (
   form: (
     null: (14px, 1),
   ),
+
+  footer-text: (
+    null: (11px, 1.8),
+    md: (17px),
+  ),
+
+  footer-text-large: (
+    null: (15px, 1.5),
+    md: (23px),
+  ),
 );
 /* stylelint-enable */

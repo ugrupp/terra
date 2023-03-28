@@ -25,7 +25,11 @@
 
   li + li {
     margin-top: 0;
-    margin-left: rem(40px);
+    margin-left: rem(24px);
+
+    @include mappy-bp(md) {
+      margin-left: rem(40px);
+    }
   }
 }
 

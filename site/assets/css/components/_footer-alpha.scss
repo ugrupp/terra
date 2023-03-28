@@ -2,10 +2,6 @@
 // Alpha Footer
 // --------------------------------------------------
 
-@use "sass:math";
-
-$footer-padding: 100px;
-
 .c-footer-alpha {
   position: relative;
   z-index: index($z-index, footer-alpha);
@@ -66,129 +62,17 @@ $footer-padding: 100px;
   @include font-smoothing;
 
   padding-top: rem(80px);
-  padding-bottom: rem(30px);
-
-  @include mappy-bp(md) {
-    padding-bottom: rem(80px);
-  }
+  padding-bottom: rem(80px);
 
   .c-footer-alpha--plain & {
     background-color: $color-gray-4;
   }
 }
 
-.c-footer-alpha__top,
-.c-footer-alpha__bottom {
-  position: relative;
-}
+.c-footer-alpha__content-inner {
+  max-width: rem(500px);
 
-// Scroll up
-.c-footer-alpha__scroll-up {
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 15; // > content
-  display: none;
-  transition: color $transition-time-default;
-
-  height: rem(24px);
-  width: rem(15px);
-
-  color: inherit;
-
-  @include mappy-bp($bp-grid-collapse) {
-    display: block;
-  }
-
-  &:hover,
-  &:focus {
+  .c-headline-secondary {
     color: $color-primary;
-  }
-
-  svg {
-    height: 100%;
-    width: 100%;
-  }
-}
-
-.c-footer-alpha__bottom {
-  .c-footer-alpha__top + & {
-    margin-top: rem($grid-gutter);
-  }
-}
-
-.c-footer-alpha__bottom-inner {
-  position: relative;
-}
-
-.c-footer-alpha__contact-offbox {
-  margin-top: rem(30px);
-
-  @include mappy-bp(sm) {
-    position: absolute;
-    right: 0;
-    left: 0;
-    top: 100%;
-    z-index: 5; // < content
-  }
-}
-
-// Portrait
-.c-footer-alpha__portrait-img-wrapper {
-  overflow: hidden;
-  max-width: 80%;
-  margin-left: auto;
-}
-
-.c-footer-alpha__portrait-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: rem(400px);
-  margin-left: auto;
-  transition: all $transition-time-long;
-
-  &.lazyload,
-  &.lazyloading {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-}
-
-.c-footer-alpha__contact-bottom {
-  margin-top: rem(60px);
-}
-
-// Inner grid
-.c-footer-alpha__grid-inner {
-  @include mappy-bp(xs) {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .c-footer-alpha__grid-inner-col {
-    @include mappy-bp(max xs) {
-      &:not(:first-of-type) {
-        padding-top: rem($grid-gutter);
-      }
-    }
-
-    @include mappy-bp(xs) {
-      width: 50%;
-      padding-top: rem($grid-gutter);
-
-      &:nth-child(1),
-      &:nth-child(2) {
-        padding-top: 0;
-      }
-
-      &:nth-child(2n + 1) {
-        padding-right: rem(math.div($grid-gutter, 4));
-      }
-
-      &:nth-child(2n + 2) {
-        padding-left: rem(math.div($grid-gutter, 4));
-      }
-    }
   }
 }
