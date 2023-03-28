@@ -5,6 +5,8 @@ description: "Als Handwerker mit dem Blick für das Schöne verlegen wir Ihren n
 layout: floorheating
 footer_image: footer_3.jpg
 footer_image_position: "bottom center"
+heroSecondary: true
+heroText: Fußbodenheizung für Ihr Zuhause
 
 menu:
   main:

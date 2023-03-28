@@ -1,0 +1,66 @@
+{{ with .Site.GetPage "page" "fussbodenheizung" }}
+  {{ $.Scratch.Set "imageContext1" (.Resources.GetMatch "header.jpg") }}
+  {{ $.Scratch.Set "imageContext2" (.Resources.GetMatch "header2.jpg") }}
+{{ end }}
+
+<header class='c-hero-secondary' data-hero>
+  {{/* Images */}}
+  <div class="c-hero-secondary__images">
+    <div class="c-hero-secondary__img-wrapper c-hero-secondary__img-wrapper--image-1">
+      {{ with ($.Scratch.Get "imageContext1") }}
+        {{ $imageSmall := .Fill "500x700 Smart" }}
+        {{ $imageMedium := .Fill "1200x1000 Smart" }}
+        {{ $imageBig := .Resize "1500x" }}
+
+        {{/* Render the actual hero */}}
+        <img
+          alt="Terra Header"
+          src="{{ $imageBig.RelPermalink }}"
+          srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1200w, {{ $imageBig.RelPermalink }} 1500w"
+          data-sizes="auto"
+          class="c-hero-secondary__img lazyload"
+          style="object-position: center center" />
+      {{ end }}
+    </div>
+
+    <div class="c-hero-secondary__img-wrapper c-hero-secondary__img-wrapper--image-2">
+      {{ with ($.Scratch.Get "imageContext2") }}
+        {{ $imageSmall := .Resize "500x" }}
+        {{ $imageMedium := .Resize "1000x" }}
+        {{ $imageBig := .Resize "1500x" }}
+
+        {{/* Render the actual hero */}}
+        <img
+          alt="Terra Header"
+          src="{{ $imageBig.RelPermalink }}"
+          srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w, {{ $imageBig.RelPermalink }} 1500w"
+          data-sizes="auto"
+          class="c-hero-secondary__img lazyload"
+          style="object-position: center center" />
+      {{ end }}
+    </div>
+  </div>
+
+  {{/* Content */}}
+  {{ if .Params.heroText }}
+    <div class="c-hero-secondary__content">
+      <div class="o-container">
+        <div class="c-hero-secondary__content-inner">
+          <p class="c-headline c-headline--padded c-headline--primary c-headline--lg">{{ .Params.heroText | markdownify }}</p>
+        </div>
+      </div>
+    </div>
+  {{ end }}
+
+  {{/* Content scroll arrow */}}
+  <div class="c-hero-secondary__scroll-hint">
+    <div class="o-container">
+      <a href="#content">
+        {{ partial "components/svg" (dict "svg" "arrow-down-white") }}
+        <span class="u-invisible">Zum Content</span>
+      </a>
+    </div>
+  </div>
+</header>

@@ -19,10 +19,12 @@
       {{/* Hero */}}
       {{ if .Params.hero }}
         {{ partial "sections/hero" . }}
+      {{ else if .Params.heroSecondary }}
+        {{ partial "sections/hero-secondary" . }}
       {{ end }}
 
       {{/* Content */}}
-      <main class="o-main{{ if .Params.hero }} o-main--hero{{ end }}" id="main">
+      <main class="o-main{{ if or .Params.hero .Params.heroSecondary }} o-main--hero{{ end }}" id="main">
         {{ block "main" . }}{{ end }}
       </main>
 

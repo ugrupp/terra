@@ -50,6 +50,10 @@
   @include typi('headline-sm');
 }
 
+.c-headline--lg {
+  @include typi('headline-lg');
+}
+
 .c-headline--inline {
   display: inline;
 }
