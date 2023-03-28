@@ -5,5 +5,6 @@ layout: company
 footer_image: footer_alternative.jpg
 menu:
   main:
+    identifier: unternehmen
     weight: 20
 ---

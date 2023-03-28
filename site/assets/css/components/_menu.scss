@@ -108,11 +108,15 @@
   }
 
   > li:not(:last-child) {
-    margin-bottom: rem(15px);
+    margin-bottom: rem(50px);
 
     @include mappy-bp($bp-menu-collapse) {
       margin-bottom: 0;
+    }
+  }
 
+  > li {
+    @include mappy-bp($bp-menu-collapse) {
       &::after {
         content: '';
         background-color: $color-gray-d;
@@ -191,7 +195,6 @@ $submenu-desktop-padding: 12px;
 
 .c-menu__submenu {
   margin-top: rem(15px);
-  margin-bottom: rem(40px);
 
   @include mappy-bp($bp-menu-collapse) {
     display: none;
@@ -226,20 +229,14 @@ $submenu-desktop-padding: 12px;
   }
 
   > li + li {
-    margin-top: rem(15px);
-
-    @include mappy-bp($bp-menu-collapse) {
-      margin-top: rem(10px);
-    }
+    margin-top: rem(10px);
   }
 
   a {
     @include typi('menu-sub');
 
     @include mappy-bp(max $bp-menu-collapse) {
-      @include font-ci;
-      text-transform: uppercase;
-      @include font-smoothing;
+      font-weight: 400;
       color: $color-white;
     }
 

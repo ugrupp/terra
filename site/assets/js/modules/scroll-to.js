@@ -10,9 +10,4 @@ document.addEventListener('DOMContentLoaded', () => {
     speed: 300,
     header: '[data-topbar]',
   });
-
-  new SmoothScroll('[data-scroll]', {
-    speed: 300,
-    header: '[data-topbar]',
-  });
 });

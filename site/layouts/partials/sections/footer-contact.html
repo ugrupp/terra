@@ -4,7 +4,7 @@
 <section class="c-footer-contact">
   <div class="c-footer-contact__locations">
     {{ range $index, $locations := $footer.Params.locations }}
-      <div class="c-footer-contact__location{{ if not (modBool $index 2) }} c-footer-contact__location--reverse{{end}}">
+      <div class="c-footer-contact__location{{ if not (modBool $index 2) }} c-footer-contact__location--reverse{{end}}" id="{{ .id }}">
         {{/* Content */}}
         <div class="c-footer-contact__content">
           {{/* Portrait */}}

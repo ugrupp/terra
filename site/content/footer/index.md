@@ -2,7 +2,8 @@
 headless: true
 headline: "**STARTKLAR?** Gerne klären wir Ihre Detailfragen persönlich. Sprechen Sie uns unverbindlich an."
 locations:
-  - contact:
+  - id: kontakt-freiburg
+    contact:
       headline: "Ihr Ansprechpartner für Freiburg:"
       name: Claus Müller
       address: |
@@ -20,7 +21,8 @@ locations:
       lng: "7.719300"
       zoom: "14"
       address: "Gewerbestraße 9a, Freiburg"
-  - contact:
+  - id: kontakt-kehl
+    contact:
       headline: "Ihr Ansprechpartner für Kehl:"
       name: Axel Müller
       address: |

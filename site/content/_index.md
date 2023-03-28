@@ -7,22 +7,10 @@ heroBanner:
   headline: "Aktion im März:"
   text: "**Landhausdiele Eiche astig**, gebürstet, wohnfertig geölt / 50€/m² inkl. MwSt./ **Format**: 1860 x 189 x 15 mm / **Nutzschicht**: 4 mm / **Aufbau**: 3-Schicht, massive Holzmittellage / **Sofort abholbereit** / gültig bis 14.04.2023"
 hero: true
-anchors:
-- title: Parkett
-  target: '#parkett'
-- title: Fliese Ceratouch
-  target: '#ceratouch'
-- title: Designböden
-  target: '#designboden'
-- title: Laminat
-  target: '#laminat'
-- title: Teppiche
-  target: '#teppiche'
-- title: Türen
-  target: '#tueren'
 
 menu:
   main:
     name: Produkte
+    identifier: products
     weight: 10
 ---
