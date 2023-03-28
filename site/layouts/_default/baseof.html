@@ -24,7 +24,7 @@
       {{ end }}
 
       {{/* Content */}}
-      <main class="o-main{{ if or .Params.hero .Params.heroSecondary }} o-main--hero{{ end }}" id="main">
+      <main class="o-main{{ if or .Params.hero }} o-main--hero{{ end }}{{ if .Params.heroSecondary }} o-main--hero-secondary{{ end }}" id="main">
         {{ block "main" . }}{{ end }}
       </main>
 

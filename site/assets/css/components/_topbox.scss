@@ -67,3 +67,12 @@
     width: 100%;
   }
 }
+
+// Topbox for secondary hero
+.c-topbox-secondary {
+  height: rem($hero-secondary-overlap-xs);
+
+  @include mappy-bp(md) {
+    height: rem($hero-secondary-overlap-md);
+  }
+}
