@@ -1,15 +1,17 @@
 {{ define "main" }}
-  <div class="c-topbox-secondary"></div>
-  <section class="o-main__section o-main__section--no-pad-bottom-md" id="estrichfraese">
-    {{ partial "sections/floorheating-overview.html" . }}
+  <div class="o-main__content" id="content">
+    <div class="c-topbox-secondary"></div>
+    <section class="o-main__section o-main__section--no-pad-bottom-md" id="estrichfraese">
+      {{ partial "sections/floorheating-overview.html" . }}
 
-    <div class="o-main__visual o-main__visual--right-bottom">
-      {{ partial "components/svg" (dict "svg" "terra-bottom-white") }}
-    </div>
-  </section>
+      <div class="o-main__visual o-main__visual--right-bottom">
+        {{ partial "components/svg" (dict "svg" "terra-bottom-white") }}
+      </div>
+    </section>
 
-  <section class="o-main__section o-main__section--bg-white" id="einbausysteme">
-    {{ partial "sections/floorheating-info.html" . }}
-  </section>
+    <section class="o-main__section o-main__section--bg-white" id="einbausysteme">
+      {{ partial "sections/floorheating-info.html" . }}
+    </section>
+  </div>
 {{ end }}
 

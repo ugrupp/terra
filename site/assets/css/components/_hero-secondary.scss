@@ -119,14 +119,13 @@
     position: relative;
     z-index: 10; // > visual
     display: block;
-    height: rem(24px);
-    width: rem(24px);
-    color: inherit;
-    transition: opacity $transition-time-default;
+    height: rem(72px);
+    width: rem(16px);
+    color: white;
 
     &:hover,
     &:focus {
-      color: inherit;
+      color: white;
     }
 
     svg {

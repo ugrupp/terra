@@ -97,8 +97,8 @@
   display: block;
   transition: color $transition-time-default;
 
-  height: rem(24px);
-  width: rem(15px);
+  height: rem(72px);
+  width: rem(16px);
 
   color: inherit;
 
@@ -110,6 +110,7 @@
   svg {
     height: 100%;
     width: 100%;
+    transform: rotate(180deg);
   }
 
   @include mappy-bp(sm) {
