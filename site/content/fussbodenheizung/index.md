@@ -5,6 +5,7 @@ description: "Als Handwerker mit dem Blick für das Schöne verlegen wir Ihren n
 layout: floorheating
 heroSecondary: true
 heroText: Fußbodenheizung für Ihr Zuhause
+footer_headline: "**STARTKLAR?** Gerne klären wir Ihre Detailfragen persönlich. Sprechen Sie uns unverbindlich an."
 
 menu:
   main:

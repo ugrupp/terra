@@ -41,7 +41,7 @@
   <div class="c-footer-alpha__content" id="kontakt">
     <div class="o-container">
       <div class="c-footer-alpha__content-inner">
-        <h2 class="c-headline-secondary">{{ $footer.Params.headline | markdownify }}</h2>
+        <h2 class="c-headline-secondary">{{ (cond (isset .Params "footer_headline") .Params.footer_headline $footer.Params.headline) | markdownify }}</h2>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 ---
 headless: true
-headline: "**STARTKLAR?** Gerne klären wir Ihre Detailfragen persönlich. Sprechen Sie uns unverbindlich an."
+headline: "Wir bringen **Klarheit** in das Bodenlose Angebot an Bodenbelägen. Sprechen Sie uns an für einen persönlichen Beratungstermin."
 locations:
   - id: kontakt-freiburg
     contact:
