@@ -163,68 +163,40 @@ let mapStyles = [
 
 function initMap() {
   if (typeof window.google !== 'undefined') {
-    let locationOpfingen = {
-      lat: 47.996860,
-      lng: 7.719770,
-    };
+    const maps = [...document.querySelectorAll("[data-map]")];
+    maps.forEach(mapEl => {
+      const position = {
+        lat: +mapEl.dataset.lat,
+        lng: +mapEl.dataset.lng,
+      }
 
-    let locationKehl = {
-      lat: 48.601630,
-      lng: 7.870380,
-    };
+      let map = new window.google.maps.Map(mapEl, {
+        zoom: +mapEl.dataset.zoom,
+        center: position,
+        styles: mapStyles,
+        zoomControl: true,
+        mapTypeControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false,
+      });
 
-    let map = new window.google.maps.Map(document.getElementById('footer-map'), {
-      zoom: 14,
-      styles: mapStyles,
-      zoomControl: true,
-      mapTypeControl: false,
-      streetViewControl: false,
-      rotateControl: false,
-      fullscreenControl: false,
-    });
+      const markers = [];
 
-    const markers = [];
-
-    markers.push(new window.google.maps.Marker({
-      position: locationOpfingen,
-      title: 'Gewerbestraße 9a, Opfingen',
-      map: map,
-      icon: {
-        path: 'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z',
-        fillColor: '#00a65c',
-        fillOpacity: 1,
-        strokeColor: '',
-        strokeWeight: 0,
-        scale: .8,
-      },
-    }));
-
-    markers.push(new window.google.maps.Marker({
-      position: locationKehl,
-      title: 'Leutesheimerstraße 21, Kehl',
-      map: map,
-      icon: {
-        path: 'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z',
-        fillColor: '#00a65c',
-        fillOpacity: 1,
-        strokeColor: '',
-        strokeWeight: 0,
-        scale: .8,
-      },
-    }));
-
-    // Center map on markers
-    const padding = 50;
-    const bounds = new window.google.maps.LatLngBounds();
-    markers.forEach((marker) => {
-      bounds.extend(marker.position);
-    });
-    map.fitBounds(bounds, padding);
-
-    // Also center on resize
-    window.google.maps.event.addDomListener(window, 'resize', function() {
-      map.fitBounds(bounds, padding);
-    });
+      markers.push(new window.google.maps.Marker({
+        position,
+        title: mapEl.dataset.address,
+        map: map,
+        icon: {
+          path: 'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z',
+          fillColor: '#00a65c',
+          fillOpacity: 1,
+          strokeColor: '',
+          strokeWeight: 0,
+          scale: .8,
+        },
+      }));
+    })
   }
 }
 

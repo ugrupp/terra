@@ -4,6 +4,22 @@
 
 @use "sass:math";
 
+// Hover padding around menu
+@include mappy-bp($bp-menu-collapse) {
+  .c-menu {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: rem(-30px);
+      right: rem(-30px);
+      top: rem(-30px);
+      bottom: 0;
+    }
+  }
+}
+
 .c-menu__toggler {
   display: block;
   position: relative;
@@ -23,8 +39,11 @@
     height: 100%;
     width: 100%;
 
-    transition: all $transition-time-default;
     transform: translate3d(0, 0, 0);
+
+    .c-topbar--headroom-initialized & {
+      transition: all $transition-time-default;
+    }
 
     // burger
     &:first-of-type {
@@ -91,38 +110,57 @@
     position: relative;
   }
 
-  > li + li {
-    margin-top: rem(15px);
+  > li:not(:last-child) {
+    margin-bottom: rem(50px);
 
     @include mappy-bp($bp-menu-collapse) {
-      margin-top: 0;
-      margin-left: rem(40px);
+      margin-bottom: 0;
+    }
+  }
 
-      &::before {
+  > li {
+    @include mappy-bp($bp-menu-collapse) {
+      &::after {
         content: '';
-        background-color: rgba($color-gray-4, .3);
+        background-color: $color-gray-d;
         position: absolute;
-        left: rem(-20px);
-        top: math.div(100% - 80%, 2);
-        height: 80%;
+        right: rem(20px);
+        top: 0;
+        height: 1em;
         width: 1px;
       }
 
       svg {
         display: block;
       }
+
+      > a {
+        padding-right: rem(40px);
+      }
     }
 
     @include mappy-bp(lg) {
-      margin-left: rem(60px);
+      &::after {
+        right: rem(30px);
+      }
 
-      &::before {
-        left: rem(-30px);
+      > a {
+        padding-right: rem(60px);
+      }
+    }
+
+    @include mappy-bp(xl) {
+      &::after {
+        right: rem(40px);
+      }
+
+      > a {
+        padding-right: rem(80px);
       }
     }
   }
 
-  a {
+  > li > a {
     display: flex;
     align-items: baseline;
 
@@ -133,7 +171,9 @@
     color: inherit;
 
     @include mappy-bp($bp-menu-collapse) {
-      transition: color $transition-time-default;
+      .c-topbar--headroom-initialized & {
+        transition: color $transition-time-default;
+      }
     }
 
     &:hover,
@@ -153,78 +193,62 @@
       width: rem(12px);
     }
   }
-
-  li.is-submenu-open {
-    > a {
-      @include mappy-bp($bp-menu-collapse) {
-        color: $color-primary;
-      }
-    }
-  }
 }
 
-$submenu-desktop-padding: 20px;
-$submenu-indicator-size: 9px;
+$submenu-desktop-top-space: 28px;
+$submenu-desktop-padding: 12px;
 
 .c-menu__submenu {
   margin-top: rem(15px);
-  margin-bottom: rem(40px);
 
   @include mappy-bp($bp-menu-collapse) {
-    margin-top: rem(20px);
     display: none;
-    margin-bottom: 0;
-    position: absolute;
-    top: 100%;
-    left: rem(-$submenu-desktop-padding);
+    margin-top: 0;
+    margin-bottom: rem(80px);
+    padding-top: rem($submenu-desktop-top-space);
+    padding-right: rem($submenu-desktop-padding);
+    position: relative;
+    width: calc(var(--item-width) * 1px - 20px);
 
-    padding: rem($submenu-desktop-padding);
-    padding-top: rem($submenu-desktop-padding + $submenu-indicator-size);
-    background-color: $color-content;
+    @include mappy-bp(lg) {
+      width: calc(var(--item-width) * 1px - 30px);
+    }
+
+    @include mappy-bp(xl) {
+      width: calc(var(--item-width) * 1px - 40px);
+    }
 
     .is-submenu-open & {
       display: block;
     }
-  }
 
-  &::before {
-    @include mappy-bp($bp-menu-collapse) {
+    &::after {
       content: '';
+      background-color: $color-gray-d;
       position: absolute;
-      top: 0;
-      left: rem($submenu-desktop-padding);
-      width: 0;
-      height: 0;
-      transform: rotate(360deg);
-      border-style: solid;
-      border-width: rem($submenu-indicator-size) rem($submenu-indicator-size) 0 rem($submenu-indicator-size);
-      border-color: $color_white transparent transparent transparent;
-    }
-  }
-
-  // insivisble layer so menu does not get closed on level1 leave
-  &::after {
-    @include mappy-bp($bp-menu-collapse) {
-      content: '';
-      position: absolute;
-      bottom: 100%;
-      left: 0;
       right: 0;
-      height: rem(20px);
+      top: rem($submenu-desktop-top-space);
+      bottom: 0;
+      width: 1px;
     }
   }
 
   > li + li {
-    margin-top: rem(15px);
-
-    @include mappy-bp($bp-menu-collapse) {
-      margin-top: rem(12px);
-    }
+    margin-top: rem(10px);
   }
 
   a {
     @include typi('menu-sub');
-    color: $color-white;
+
+    @include mappy-bp(max $bp-menu-collapse) {
+      font-weight: 400;
+      color: $color-white;
+    }
+
+    @include mappy-bp($bp-menu-collapse) {
+      color: inherit;
+      transition: color $transition-time-default;
+    }
 
     &:hover,
     &:focus,

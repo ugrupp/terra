@@ -47,14 +47,22 @@ $typi: (
     md: (18px),
   ),
 
+  headline-lg: (
+    null: (21px, 1.2),
+    md: (31px),
+  ),
+
+  headline--secondary: (
+    null: (23px, 1.35),
+    md: (28px)
+  ),
+
   menu: (
-    null: (21px, 1),
-    md: (18px, 1),
+    null: (18px, 1),
   ),
 
   menu-sub: (
-    null: (21px, 1),
-    md: (16px, 1),
+    md: (17px, 1),
   ),
 
   gallery-meta: (
@@ -69,6 +77,16 @@ $typi: (
 
   form: (
     null: (14px, 1),
+  ),
+
+  footer-text: (
+    null: (11px, 1.8),
+    md: (17px),
+  ),
+
+  footer-text-large: (
+    null: (15px, 1.5),
+    md: (23px),
   ),
 );
 /* stylelint-enable */

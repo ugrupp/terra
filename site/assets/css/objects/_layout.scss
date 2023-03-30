@@ -7,7 +7,7 @@
 }
 
 // Main (content wrapper)
-.o-main:not(.o-main--hero) {
+.o-main:not(.o-main--hero):not(.o-main--hero-secondary) {
   padding-top: rem($topbar-height-compact);
 
   @include mappy-bp($bp-menu-collapse) {
@@ -20,6 +20,14 @@
 
   @include mappy-bp(md) {
     padding-top: calc(100vh - #{rem($hero-overlap-md)}); // match fixed hero
+  }
+}
+
+.o-main--hero-secondary {
+  padding-top: calc(100vh - #{rem($hero-secondary-overlap-xs)}); // match fixed hero
+
+  @include mappy-bp(md) {
+    padding-top: calc(100vh - #{rem($hero-secondary-overlap-md)}); // match fixed hero
   }
 }
 
@@ -108,6 +116,7 @@
 
 // Visual
 .o-main__visual {
+  pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -128,6 +137,11 @@
     height: 100%;
     width: 100%;
   }
+}
+
+.o-main__visual--right-bottom {
+  left: auto;
+  right: 0;
 }
 
 .o-main__hidden-headline.c-headline {

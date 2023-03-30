@@ -25,7 +25,7 @@ $transition-time-medium: .4s;
 $transition-time-long: .8s;
 
 // z-index indexes
-$z-index: hero, footer, footer-alpha, content, content-section, topbar, menu, overlay;
+$z-index: hero, footer, footer-contact, footer-alpha, content, content-section, topbar, menu, overlay;
 
 // Sizes & other variables
 $container-gutter: 40px;
@@ -42,6 +42,8 @@ $grid-gutter-md: 160px;
 
 $hero-overlap-xs: 60px;
 $hero-overlap-md: 100px;
+$hero-secondary-overlap-xs: 60px;
+$hero-secondary-overlap-md: 160px;
 $hero-banner-height: 64px;
 $hero-banner-height-md: 76px;
 
@@ -55,7 +57,7 @@ $overlap-size: 100px;
 
 $terra-visual-ratio: math.div(395, 214);
 
-$overlay-bg: rgba($color-primary, .94);
+$overlay-bg: rgba($color-primary, .95);
 
 $gallery-height-xs: 300px;
 $gallery-height-sm: 400px;

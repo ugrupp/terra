@@ -1,0 +1,140 @@
+//
+// Floorheating overview
+// --------------------------------------------------
+
+@use "sass:math";
+
+.c-floorheating-overview {
+  padding-bottom: rem(60px);
+
+  @include mappy-bp($bp-grid-collapse) {
+    padding-bottom: 0;
+  }
+}
+
+.c-floorheating-overview__content {
+  position: relative;
+  z-index: 10; // > bg image
+
+  .o-grid {
+    align-items: flex-end;
+  }
+
+  .c-richtext {
+    ul {
+      @extend .c-list-arrowed;
+      @extend .c-list-arrowed--loose;
+    }
+
+    strong {
+      color: inherit;
+    }
+  }
+
+  .c-headline-secondary {
+    color: $color-primary;
+  }
+}
+
+.c-floorheating-overview__col-narrow {
+  .c-floorheating-overview__col-inner {
+    max-width: rem($content-narrow-width);
+  }
+
+  @include mappy-bp($bp-grid-collapse) {
+    &:nth-child(2n + 1) {
+      .c-floorheating-overview__col-inner {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.c-floorheating-overview__col-inner {
+  position: relative;
+}
+
+// Special columns
+.c-floorheating-overview__col-headline-1 {
+  @include mappy-bp($bp-grid-collapse) {
+    padding-bottom: rem(150px);
+  }
+}
+
+.c-floorheating-overview__col-content-1 {
+  @include mappy-bp($bp-grid-collapse-lg) {
+    margin-bottom: rem(math.div($grid-gutter-md, -2));
+  }
+}
+
+.c-floorheating-overview__col-content-2 {
+  align-self: flex-start;
+
+  .c-headline-secondary {
+    margin-bottom: rem($grid-gutter);
+
+    @include mappy-bp($bp-grid-collapse-lg) {
+      margin-bottom: rem(math.div($grid-gutter-md, 2));
+    }
+  }
+}
+
+.c-floorheating-overview__col-content-3 {
+  .c-headline-secondary {
+    margin-bottom: rem(20px);
+
+    @include mappy-bp(md) {
+      margin-bottom: rem(30px);
+    }
+  }
+}
+
+// Images
+.c-floorheating-overview__img-wrapper {
+  background-color: $color-primary;
+}
+
+.c-floorheating-overview__img-box--row-1 {
+  margin-left: rem(-$container-gutter);
+  margin-right: rem(-$container-gutter);
+
+  @include mappy-bp($bp-grid-collapse) {
+    margin-right: 0;
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    margin-left: 0;
+  }
+}
+
+.c-floorheating-overview__img-box--row-2 {
+  margin-right: rem(-$container-gutter);
+  max-width: rem(400px);
+  margin-left: auto;
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    max-width: rem($content-narrow-width);
+    margin-right: 0;
+  }
+}
+
+.c-floorheating-overview__img-box--row-3 {
+  margin-left: rem(-$container-gutter);
+  max-width: rem(400px);
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    margin-left: auto;
+  }
+}
+
+.c-floorheating-overview__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+  }
+}

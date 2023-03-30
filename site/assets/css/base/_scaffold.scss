@@ -9,6 +9,7 @@ html {
   box-sizing: border-box;
   text-size-adjust: 100%;
 
+  scroll-behavior: smooth;
   scroll-padding-top: rem($topbar-height-compact);
 
   @include mappy-bp($bp-menu-collapse) {

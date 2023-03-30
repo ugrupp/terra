@@ -1,0 +1,105 @@
+<div class="c-floorheating-overview">
+  {{ with .Resources.GetMatch "overview*.md" }}
+    <div class="o-container c-floorheating-overview__content">
+      <div class="o-grid">
+        <div class="o-grid__col c-floorheating-overview__col-narrow c-floorheating-overview__col-headline-1">
+          <div class="c-floorheating-overview__col-inner" data-reveal>
+            <h2 class="c-headline-secondary">{{ .Params.headline1 | markdownify }}</h2>
+          </div>
+        </div>
+
+        <div class="o-grid__col c-floorheating-overview__col-narrow c-floorheating-overview__col-content-1">
+          <div class="c-floorheating-overview__col-inner" data-reveal>
+            <div class="c-richtext">
+              {{ .Params.content1 | markdownify }}
+            </div>
+          </div>
+        </div>
+
+        <div class="o-grid__col">
+          <div class="c-floorheating-overview__col-inner" data-reveal>
+            {{/* Image 1 */}}
+            <div class="c-floorheating-overview__img-box c-floorheating-overview__img-box--row-1">
+              <div class="c-floorheating-overview__img-wrapper">
+                {{ with $.Resources.GetMatch .Params.image1 }}
+                  {{ $imageSmall := .Resize "500x" }}
+                  {{ $imageMedium := .Resize "800x" }}
+
+                  <img
+                    alt="{{ .Title }}"
+                    src="{{ $imageMedium.RelPermalink }}"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"
+                    data-sizes="auto"
+                    class="c-floorheating-overview__img lazyload" />
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="o-grid__col c-floorheating-overview__col-narrow c-floorheating-overview__col-content-2">
+          <div class="c-floorheating-overview__col-inner" data-reveal>
+            <h2 class="c-headline-secondary">{{ .Params.headline2 | markdownify }}</h2>
+            <div class="c-richtext">
+              {{ .Params.content2 | markdownify }}
+            </div>
+          </div>
+        </div>
+
+        <div class="o-grid__col c-floorheating-overview__col-narrow c-floorheating-overview__col-content-3">
+          <div class="c-floorheating-overview__col-inner" data-reveal>
+            <h2 class="c-headline-secondary">{{ .Params.headline3 | markdownify }}</h2>
+            <div class="c-richtext">
+              {{ .Params.content3 | markdownify }}
+            </div>
+          </div>
+        </div>
+
+        <div class="o-grid__col">
+          <div class="c-floorheating-overview__col-inner" data-reveal>
+            {{/* Image 2 */}}
+            <div class="c-floorheating-overview__img-box c-floorheating-overview__img-box--row-2">
+              <div class="c-floorheating-overview__img-wrapper">
+                {{ with $.Resources.GetMatch .Params.image2 }}
+                  {{ $imageSmall := .Resize "500x" }}
+                  {{ $imageMedium := .Resize "800x" }}
+
+                  <img
+                    alt="{{ .Title }}"
+                    src="{{ $imageMedium.RelPermalink }}"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"
+                    data-sizes="auto"
+                    class="c-floorheating-overview__img lazyload" />
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="o-grid__col">
+          <div class="c-floorheating-overview__col-inner" data-reveal>
+            {{/* Image 3 */}}
+            <div class="c-floorheating-overview__img-box c-floorheating-overview__img-box--row-3">
+              <div class="c-floorheating-overview__img-wrapper">
+                {{ with $.Resources.GetMatch .Params.image3 }}
+                  {{ $imageSmall := .Resize "500x" }}
+                  {{ $imageMedium := .Resize "800x" }}
+
+                  <img
+                    alt="{{ .Title }}"
+                    src="{{ $imageMedium.RelPermalink }}"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"
+                    data-sizes="auto"
+                    class="c-floorheating-overview__img lazyload" />
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{ end }}
+</div>

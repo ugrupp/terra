@@ -50,6 +50,10 @@
   @include typi('headline-sm');
 }
 
+.c-headline--lg {
+  @include typi('headline-lg');
+}
+
 .c-headline--inline {
   display: inline;
 }
@@ -100,4 +104,49 @@
 .c-headline-wrapper {
   @include typi('headline--default');
   transform: translateY(.15em);
+}
+
+// Secondary headline
+.c-headline-secondary {
+  font-weight: 400;
+  @include typi('headline--secondary');
+  display: block;
+
+  span.br {
+    display: block;
+  }
+
+  span.br-md {
+    @include mappy-bp(md) {
+      display: block;
+    }
+  }
+
+  strong {
+    @include font-ci;
+    @include font-smoothing;
+    display: inline-block;
+    font-size: 0.7em;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    text-decoration-thickness: 2px;
+    vertical-align: baseline;
+    transform: translateY(calc(-0.25em - 2px));
+  }
+}
+
+.c-headline-secondary-inline {
+  @include font-ci;
+  @include font-smoothing;
+  display: inline-block;
+  font-size: 0.78em;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  vertical-align: baseline;
+  transform: translateY(calc(-0.2em - 1px));
 }

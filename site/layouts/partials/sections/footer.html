@@ -2,53 +2,36 @@
 {{ $footer := .Site.GetPage "page" "footer" }}
 
 <footer class="c-footer">
-  <div class="c-footer__flexbug-wrapper">
-    {{/* Map */}}
-    <div class="c-footer__map">
-      <div id="footer-map">
-        <div class="footer__map-placeholder">
-          <a href="https://g.page/terrabodenbelaege" target="_blank">Auf Google Maps ansehen</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="c-footer__content">
-      <div class="o-container">
-        <div class="c-footer__inner">
-          <div class="c-footer__social">
-            {{ partial "components/social-icons" (dict "horizontal" "1") }}
-          </div>
-        </div>
+  <div class="o-container">
+    <div class="c-footer__inner">
+      {{/* Socials */}}
+      <div class="c-footer__social">
+        {{ partial "components/social-icons" (dict "horizontal" "1") }}
       </div>
 
-      <div class="o-container">
-        <div class="c-footer__inner">
-          <div class="c-richtext c-richtext--inverted-on-dark">
-            {{ with $footer.Params.headline }}
-              {{ . | markdownify }}
-            {{ end }}
-          </div>
+      {{/* Meta menu */}}
+      <ul class="c-footer__meta">
+        <li class="c-footer__meta-item">
+          <a class="c-footer__meta-link" href="{{ ref . "agb/index.md" }}">AGB</a>
+        </li>
+        <li class="c-footer__meta-item">
+          <a class="c-footer__meta-link" href="{{ ref . "impressum/index.md" }}">Impressum</a>
+        </li>
+        <li class="c-footer__meta-item">
+          <a class="c-footer__meta-link" href="{{ ref . "datenschutz/index.md" }}">Datenschutz</a>
+        </li>
+      </ul>
 
-          {{/* Meta menu */}}
-          <ul class="c-footer__meta">
-            <li class="c-footer__meta-item">
-              <a class="c-footer__meta-link" href="{{ ref . "agb/index.md" }}">AGB</a>
-            </li>
-            <li class="c-footer__meta-item">
-              <a class="c-footer__meta-link" href="{{ ref . "impressum/index.md" }}">Impressum</a>
-            </li>
-            <li class="c-footer__meta-item">
-              <a class="c-footer__meta-link" href="{{ ref . "datenschutz/index.md" }}">Datenschutz</a>
-            </li>
-          </ul>
-
-          {{/* Toplink */}}
-          <a href="#start" class="c-footer__scroll-up" data-scroll-top>
-            {{ partial "components/svg" (dict "svg" "arrow-up") }}
-            <span class="u-invisible">Nach oben</span>
-          </a>
-        </div>
+      {{/* Credit */}}
+      <div class="c-footer__text c-footer__credit">
+        <p>Eine Website von <br /><a href="https://www.formatformat.de" target="_blank">formatformat.de</a></p>
       </div>
+
+      {{/* Toplink */}}
+      <a href="#start" class="c-footer__scroll-up">
+        {{ partial "components/svg" (dict "svg" "arrow-long") }}
+        <span class="u-invisible">Nach oben</span>
+      </a>
     </div>
   </div>
 </footer>

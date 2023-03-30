@@ -1,0 +1,230 @@
+//
+// Footer contact
+// --------------------------------------------------
+
+.c-footer-contact {
+  position: relative;
+  z-index: index($z-index, footer-contact);
+
+  background-color: $color-gray-4;
+  color: $color-white;
+  @include font-smoothing;
+}
+
+.c-footer-contact__location {
+  position: relative;
+
+  & + & {
+    margin-top: rem(40px);
+
+    @include mappy-bp(md) {
+      margin-top: rem(160px);
+    }
+  }
+}
+
+.c-footer-contact__content {
+  padding-top: rem(80px);
+  padding-bottom: rem(80px);
+
+  @include mappy-bp(md) {
+    padding-top: rem(150px);
+    padding-bottom: rem(150px);
+  }
+}
+
+.c-footer-contact__inner {
+  position: relative;
+  z-index: 20;
+
+  @include mappy-bp(md) {
+    min-height: rem(400px);
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .c-footer-contact__location--reverse & {
+      margin-left: auto;
+    }
+  }
+}
+
+.c-footer-contact__text-wrapper {
+  position: relative;
+}
+
+.c-footer-contact__text-wrapper2 {
+  position: relative;
+  padding-right: rem(40px);
+
+  @include mappy-bp(md) {
+    display: flex;
+    flex-direction: column;
+    padding-right: 0;
+
+    .c-footer-contact__location--reverse & {
+      align-items: flex-end;
+    }
+  }
+}
+
+.c-footer-contact__text {
+  max-width: rem(300px);
+  @include typi("footer-text-large");
+
+  h3 {
+    margin-bottom: rem(20px);
+
+    @include mappy-bp(md) {
+      margin-bottom: rem(30px);
+    }
+  }
+
+  h3:not(:first-child) {
+    margin-top: rem(80px);
+
+    @include mappy-bp(md) {
+      margin-top: rem(150px);
+    }
+  }
+
+  .c-headline {
+    @include typi("footer-text-large");
+  }
+
+  strong {
+    font-weight: 700;
+    color: $color-primary;
+  }
+
+  a {
+    color: white;
+    transition: color $transition-time-default;
+
+    &:hover,
+    &:focus,
+    &.active {
+      color: $color-primary;
+    }
+  }
+}
+
+// Portrait
+.c-footer-contact__portrait-img-wrapper {
+  overflow: hidden;
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  top: 0;
+
+  @include mappy-bp(md) {
+    right: calc(50% - rem(40px));
+
+    .c-footer-contact__location--reverse & {
+      right: auto;
+      left: calc(50% - rem(40px));
+    }
+  }
+}
+
+.c-footer-contact__portrait-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  width: rem(157px);
+  margin-left: auto;
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+
+  @include mappy-bp(md) {
+    width: rem(280px);
+  }
+}
+
+// Appointment hint
+.c-footer-contact__appointments {
+  white-space: nowrap;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+
+  @include typi("footer-text");
+  line-height: 1.5;
+
+  strong {
+    font-weight: 700;
+  }
+
+  @include mappy-bp(md) {
+    right: rem(40px);
+
+    .c-footer-contact__location--reverse & {
+      left: rem(40px);
+      right: auto;
+    }
+  }
+
+  @include mappy-bp(lg) {
+    right: rem(75px);
+
+    .c-footer-contact__location--reverse & {
+      left: rem(75px);
+      right: auto;
+    }
+  }
+}
+
+// Map
+.c-footer-contact__map {
+  background-color: $color-gray-f;
+  height: rem(320px);
+
+  @include mappy-bp(md) {
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+
+    .c-footer-contact__location--reverse & {
+      left: 0;
+      right: auto;
+    }
+  }
+}
+
+.c-footer-contact__map-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.c-footer-contact__map-placeholder {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  a {
+    color: $color-gray-4;
+    transition: color $transition-time-default;
+
+    &:hover,
+    &:focus {
+      color: $color-content-ci;
+    }
+  }
+}
+

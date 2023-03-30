@@ -2,85 +2,73 @@
 // Footer
 // --------------------------------------------------
 
-@use "sass:math";
-
-$footer-padding: 100px;
-
 .c-footer {
   position: relative;
   z-index: index($z-index, footer);
 
-  @include mappy-bp(sm) {
-    // Workaround for flexbug #3
-    display: flex;
-    flex-direction: column;
-
-    > * {
-      width: 100%;
-    }
-  }
-}
-
-.c-footer__flexbug-wrapper {
-  @include mappy-bp(sm) {
-    min-height: rem(800px);
-    display: flex;
-
-    > * {
-      width: 100%;
-    }
-  }
-
-  @include mappy-bp(md) {
-    min-height: rem(820px);
-  }
-
-  @include mappy-bp(lg) {
-    min-height: rem(840px);
-  }
-}
-
-.c-footer__content {
   background-color: $color-gray-4;
   color: $color-white;
   @include font-smoothing;
 
   padding-top: rem(60px);
-  padding-bottom: rem(60px);
+  padding-bottom: rem(80px);
+
+  @include mappy-bp(md) {
+    padding-top: rem(160px);
+  }
+}
+
+// General small footer text
+.c-footer__text {
+  @include typi("footer-text");
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.c-footer__inner {
+  position: relative;
+  display: grid;
+  align-items: end;
+  grid-template-columns: 106px 1fr;
+  column-gap: rem(24px);
+  row-gap: rem(56px);
 
   @include mappy-bp(sm) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    grid-template-columns: auto auto auto;
+    grid-auto-flow: row dense;
+  }
+}
 
-    > * {
-      width: 100%;
-    }
+// Social icons
+.c-footer__social {
+  grid-column: span 2;
+
+  @include mappy-bp(sm) {
+    grid-column: 2;
+  }
+}
+
+// Meta nav
+.c-footer__meta {
+  @include typi("footer-text");
+
+  @include mappy-bp(sm) {
+    grid-column: 1;
+    margin-bottom: rem(-6px);
   }
 
   @include mappy-bp(md) {
-    padding-top: rem(80px);
-    padding-bottom: rem(80px);
+    margin-bottom: rem(-10px);
   }
 }
 
-.c-footer__meta {
-  margin-top: rem(4px);
-  padding-right: rem(30px);
-
-  @include mappy-bp(sm) {
-    padding-right: 0;
-  }
-}
-
-.c-footer__meta-item {
-  & + & {
-    margin-top: rem(4px);
-  }
-}
-
-.c-footer__meta-link {
-  color: rgba(255, 255, 255, .3);
+.c-footer__meta-link,
+.c-footer__text a {
+  @include typi("footer-text");
+  display: inline-block;
+  color: white;
   transition: color $transition-time-default;
 
   &:hover,
@@ -90,26 +78,29 @@ $footer-padding: 100px;
   }
 }
 
-.c-footer__inner {
-  position: relative;
+// Credit
+.c-footer__credit {
+  @include mappy-bp(sm) {
+    margin-bottom: rem(-6px);
+  }
+
+  @include mappy-bp(md) {
+    margin-bottom: rem(-10px);
+  }
 }
 
 // Scroll up
 .c-footer__scroll-up {
   position: absolute;
   right: 0;
-  top: rem(5px); // horrible magic number to top-align this with the text
+  bottom: rem(6px); // horrible magic number to top-align this with the text
   display: block;
   transition: color $transition-time-default;
 
-  height: rem(24px);
-  width: rem(15px);
+  height: rem(72px);
+  width: rem(16px);
 
   color: inherit;
-
-  @include mappy-bp($bp-grid-collapse) {
-    display: none;
-  }
 
   &:hover,
   &:focus {
@@ -119,55 +110,10 @@ $footer-padding: 100px;
   svg {
     height: 100%;
     width: 100%;
+    transform: rotate(180deg);
   }
-}
 
-
-// Map
-.c-footer__map {
-  height: rem(260px);
-  background-color: $color-gray-f;
-
-  @include mappy-bp($bp-grid-collapse) {
-    position: absolute;
-    right: 0;
-    top: 0;
+  @include mappy-bp(sm) {
     bottom: 0;
-    height: auto;
-    width: calc(50% - #{rem(math.div($grid-gutter, 2))});
   }
-
-  @include mappy-bp($bp-grid-collapse-lg) {
-    width: calc(50% - #{rem(math.div($grid-gutter-md, 2))});
-  }
-
-  #footer-map {
-    height: 100%;
-    width: 100%;
-  }
-}
-
-.footer__map-placeholder {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  a {
-    color: $color-gray-4;
-    transition: color $transition-time-default;
-
-    &:hover,
-    &:focus {
-      color: $color-content-ci;
-    }
-  }
-}
-
-
-// Social icons
-.c-footer__social {
-  margin-bottom: rem(72px);
 }

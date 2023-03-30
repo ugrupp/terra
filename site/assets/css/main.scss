@@ -35,6 +35,7 @@
 @import 'components/richtext';
 @import 'components/button';
 @import 'components/hero';
+@import 'components/hero-secondary';
 @import 'components/topbox';
 @import 'components/header';
 @import 'components/gallery-section';
@@ -42,7 +43,8 @@
 @import 'components/primary-section';
 @import 'components/secondary-section';
 @import 'components/tertiary-section';
-@import 'components/quaternary-section';
+@import 'components/floorheating-overview';
+@import 'components/floorheating-info';
 @import 'components/social-icons';
 @import 'components/download';
 @import 'components/contactform';
@@ -51,5 +53,6 @@
 // Components (static)
 @import 'components/topbar';
 @import 'components/menu';
-@import 'components/footer';
 @import 'components/footer-alpha';
+@import 'components/footer-contact';
+@import 'components/footer';

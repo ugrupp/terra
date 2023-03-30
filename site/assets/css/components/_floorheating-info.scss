@@ -1,0 +1,130 @@
+//
+// Floorheating info
+// --------------------------------------------------
+
+@use "sass:math";
+
+.c-floorheating-info__content {
+  position: relative;
+  z-index: 10; // > bg image
+
+  // switched image column on xs
+  .o-grid {
+    display: flex;
+    flex-direction: column;
+
+    @include mappy-bp($bp-grid-collapse) {
+      flex-direction: row;
+    }
+  }
+
+  .c-headline-secondary {
+    color: $color-primary;
+    margin-bottom: rem(20px);
+
+    @include mappy-bp(md) {
+      margin-bottom: rem(25px);
+    }
+  }
+}
+
+.c-floorheating-info__col-narrow {
+  .c-floorheating-info__col-inner {
+    max-width: rem($content-narrow-width);
+  }
+
+  @include mappy-bp($bp-grid-collapse) {
+    &:nth-child(2n + 1) {
+      .c-floorheating-info__col-inner {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.c-floorheating-info__col-inner {
+  position: relative;
+}
+
+// Special columns
+.c-floorheating-info__col-applications {
+  .c-richtext {
+    ul {
+      @extend .c-list-arrowed;
+    }
+  }
+}
+
+.c-floorheating-info__col-tech {
+  .c-richtext {
+    ul {
+      @extend .c-list-blank;
+    }
+  }
+
+  .c-floorheating-info__col-inner {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem($grid-gutter);
+
+    @include mappy-bp($bp-grid-collapse-lg) {
+      flex-direction: row;
+      column-gap: rem(100px);
+    }
+  }
+}
+
+// Images
+.c-floorheating-info__img-wrapper {
+  background-color: $color-primary;
+}
+
+.c-floorheating-info__img-box--row-1 {
+  margin-right: rem(-$container-gutter);
+  max-width: rem(400px);
+  margin-left: auto;
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    max-width: rem($content-narrow-width);
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+.c-floorheating-info__img-box--row-2 {
+  margin-left: rem(-$container-gutter);
+  max-width: rem(400px);
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    max-width: rem($content-narrow-width);
+    margin-left: auto;
+  }
+}
+
+// switched image column on xs
+.c-secondary-section__img-col--row2 {
+  @include mappy-bp(max $bp-grid-collapse) {
+    order: 9999;
+  }
+}
+
+.c-floorheating-info__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+  }
+}
+
+// Second row (applications, tech info etc)
+.c-floorheating-info__row-2 {
+  margin-top: rem($grid-gutter);
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    margin-top: rem($grid-gutter-md);
+  }
+}

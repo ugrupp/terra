@@ -1,0 +1,64 @@
+{{ $footer := .Site.GetPage "page" "footer" }}
+{{ $params := .Params }}
+
+<section class="c-footer-contact">
+  <div class="c-footer-contact__locations">
+    {{ range $index, $locations := $footer.Params.locations }}
+      <div class="c-footer-contact__location{{ if not (modBool $index 2) }} c-footer-contact__location--reverse{{end}}" id="{{ .id }}">
+        {{/* Content */}}
+        <div class="c-footer-contact__content">
+          {{/* Portrait */}}
+          <div class="c-footer-contact__portrait-img-wrapper">
+            {{ with $footer.Resources.GetMatch .contact.image }}
+              {{ $imageSmall := .Resize "400x" }}
+              {{ $imageMedium := .Resize "800x" }}
+
+              <img
+                alt=""
+                src="{{ $imageMedium.RelPermalink }}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="{{ $imageSmall.RelPermalink }} 400w, {{ $imageMedium.RelPermalink }} 800w"
+                data-sizes="auto"
+                class="c-footer-contact__portrait-img lazyload" />
+            {{ end }}
+          </div>
+
+          <div class="o-container">
+            <div class="c-footer-contact__inner">
+              <div class="c-footer-contact__text-wrapper">
+                <div class="c-footer-contact__text-wrapper2">
+                  <div class="c-footer-contact__text">
+                    <h3 class="c-headline c-headline--primary">{{ .contact.headline }}</h3>
+                    <p>
+                      <span class="c-headline">{{ .contact.name }}</span>
+                        {{ .contact.address | markdownify }}
+                    </p>
+
+                    <h3 class="c-headline c-headline--primary">{{ .exhibition.headline }}</h3>
+                    <p>
+                        {{ .exhibition.address | markdownify }}
+                    </p>
+                  </div>
+                </div>
+
+                {{/* Appointments hint */}}
+                <div class="c-footer-contact__appointments">
+                  <p><strong>Termine</strong> nach <br />Vereinbarung.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {{/* Map */}}
+        <div class="c-footer-contact__map">
+          <div class="c-footer-contact__map-wrapper" data-map id="{{ .map.id }}" data-lat="{{ .map.lat }}" data-lng="{{ .map.lng }}" data-address="{{ .map.address }}" data-zoom="{{ .map.zoom }}">
+            <div class="c-footer-contact__map-placeholder">
+              <a href="https://g.page/terrabodenbelaege" target="_blank">Auf Google Maps ansehen</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</section>

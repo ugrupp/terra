@@ -17,12 +17,76 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
 
 [menu]
   [[menu.main]]
+    name = "Parkett"
+    parent = "products"
+    url = "/#parkett"
+    weight = 10
+  [[menu.main]]
+    name = "Fliese Ceratouch"
+    parent = "products"
+    url = "/#ceratouch"
+    weight = 20
+  [[menu.main]]
+    name = "Designböden"
+    parent = "products"
+    url = "/#designboden"
+    weight = 30
+  [[menu.main]]
+    name = "Laminat"
+    parent = "products"
+    url = "/#laminat"
+    weight = 40
+  [[menu.main]]
+    name = "Teppiche"
+    parent = "products"
+    url = "/#teppiche"
+    weight = 50
+  [[menu.main]]
+    name = "Türen"
+    parent = "products"
+    url = "/#tueren"
+    weight = 60
+
+  [[menu.main]]
+    name = "Übersicht Estrich fräsen"
+    parent = "floorheating"
+    url = "/fussbodenheizung/#estrichfraese"
+    weight = 10
+  [[menu.main]]
+    name = "Einbausysteme"
+    parent = "floorheating"
+    url = "/fussbodenheizung/#einbausysteme"
+    weight = 20
+
+  [[menu.main]]
+    name = "Leistungen"
+    parent = "unternehmen"
+    url = "/leistungen/"
+    weight = 10
+  [[menu.main]]
+    name = "Referenzen"
+    parent = "unternehmen"
+    url = "/leistungen/#referenzen"
+    weight = 20
+
+  [[menu.main]]
     name = "Anfrage"
     identifier = "anfrage"
-    weight = 290
+    weight = 17
     url = "/#anfrage"
+
   [[menu.main]]
     name = "Kontakt"
     identifier = "contact"
     weight = 300
-    url = "#kontakt"
+    url = "/#kontakt"
+  [[menu.main]]
+    name = "Standort Freiburg"
+    parent = "contact"
+    weight = 10
+    url = "/#kontakt-freiburg"
+  [[menu.main]]
+    name = "Standort Kehl"
+    parent = "contact"
+    weight = 20
+    url = "/#kontakt-kehl"
