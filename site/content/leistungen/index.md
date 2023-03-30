@@ -1,6 +1,6 @@
 ---
 title: Leistungen
-meta_title: Terra Bodenbeläge | Ihre Bodenleger mit handwerklicher Passion in der Region Freiburg
+meta_title: Ihre Bodenleger mit handwerklicher Passion in der Region Freiburg | Terra Bodenbeläge
 description: "Als Handwerker mit dem Blick für das Schöne verlegen wir Ihren neuen Bodenbelag - egal ob Parkett, Vinyl, Laminat oder Teppich."
 layout: services
 footer_image: footer_3.jpg
