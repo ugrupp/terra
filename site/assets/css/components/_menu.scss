@@ -39,8 +39,11 @@
     height: 100%;
     width: 100%;
 
-    transition: all $transition-time-default;
     transform: translate3d(0, 0, 0);
+
+    .c-topbar--headroom-initialized & {
+      transition: all $transition-time-default;
+    }
 
     // burger
     &:first-of-type {
@@ -168,7 +171,9 @@
     color: inherit;
 
     @include mappy-bp($bp-menu-collapse) {
-      transition: color $transition-time-default;
+      .c-topbar--headroom-initialized & {
+        transition: color $transition-time-default;
+      }
     }
 
     &:hover,
