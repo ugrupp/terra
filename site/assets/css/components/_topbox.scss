@@ -57,14 +57,11 @@
 
   @include mappy-bp(md) {
     transform: scale(1);
-    opacity: .4;
-    transition: opacity $transition-time-default;
   }
 
   &:hover,
   &:focus {
     color: inherit;
-    opacity: 1;
   }
 
   svg {
