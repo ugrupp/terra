@@ -125,28 +125,26 @@
   strong {
     @include font-ci;
     @include font-smoothing;
-    display: inline-block;
+    display: inline;
     font-size: 0.7em;
     font-weight: 700;
     text-transform: uppercase;
     text-decoration: underline;
     text-underline-offset: 0.25em;
     text-decoration-thickness: 2px;
-    vertical-align: baseline;
-    transform: translateY(calc(-0.25em - 2px));
+    vertical-align: calc(0.25em + 2px);
   }
 }
 
 .c-headline-secondary-inline {
   @include font-ci;
   @include font-smoothing;
-  display: inline-block;
+  display: inline;
   font-size: 0.78em;
   font-weight: 700;
   text-transform: uppercase;
   text-decoration: underline;
   text-underline-offset: 0.2em;
   text-decoration-thickness: 1px;
-  vertical-align: baseline;
-  transform: translateY(calc(-0.2em - 1px));
+  vertical-align: calc(0.2em + 1px);
 }
