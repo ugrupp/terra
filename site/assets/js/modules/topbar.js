@@ -2,7 +2,7 @@ import Headroom from 'headroom.js';
 
 export default class Topbar {
   constructor(menu) {
-    document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('load', () => {
       this.menu = menu;
       this.topbar = document.querySelector('[data-topbar]');
 
