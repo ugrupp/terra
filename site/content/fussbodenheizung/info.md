@@ -30,7 +30,7 @@ technicalDetails: |
 
 downloadHeadline: "**Download**"
 download:
-  file: terra-bodenbelaege-faltblatt-estrichfraese.pdf
+  file: terra-bodenbelaege-faltblatt-fussbodenheizung.pdf
   title: Infoblatt
 ---
 
