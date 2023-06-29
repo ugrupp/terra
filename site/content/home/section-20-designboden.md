@@ -11,6 +11,8 @@ downloads:
     title: Broschüre Tarkett
   - href: pdf/ter-huerne-broschuere-designboeden.pdf
     title: Broschüre ter&nbsp;Hürne
+  - href: pdf/thede-witte-broschuere-designboeden.pdf
+    title: Broschüre Thede&nbsp;&amp;&nbsp;Witte
 visual: true
 visual_direction: horizontal
 visual_position: 80% bottom
