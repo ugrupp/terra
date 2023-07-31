@@ -1,0 +1,14 @@
+<div class="c-ssb-overview">
+  {{ with .Resources.GetMatch "overview*.md" }}
+    <div class="o-container c-ssb-overview__content">
+      <div class="c-ssb-overview__col-headline" data-reveal>
+        <h2 class="c-headline-secondary">{{ .Params.headline1 | markdownify }}</h2>
+      </div>
+      <div class="c-ssb-overview__col-content" data-reveal>
+        <div class="c-richtext c-richtext--lg">
+          {{ .Params.content1 | markdownify }}
+        </div>
+      </div>
+    </div>
+  {{ end }}
+</div>

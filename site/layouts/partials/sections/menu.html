@@ -22,7 +22,7 @@
           {{ if .HasChildren }}
             <ul class="c-menu__submenu" data-menu-submenu>
               {{ range .Children }}
-                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                <li><a href="{{ .URL }}">{{ .Name | safeHTML }}</a></li>
               {{ end }}
             </ul>
           {{ end }}
