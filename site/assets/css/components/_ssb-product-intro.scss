@@ -2,6 +2,13 @@
 @use "sass:math";
 
 .c-ssb-product-intro {
+  // Sticky header compensation
+  @include mappy-bp(1700px) {
+    @supports(writing-mode: vertical-rl) {
+      margin-top: rem(-$product-sticky-header-height)
+    }
+  }
+
   .c-richtext {
     ul {
       @extend .c-list-arrowed;
@@ -167,4 +174,40 @@
     margin-left: auto;
     align-self: flex-end;
   }
+}
+
+// Sticky header (for lack of a better place)
+.c-ssb-sticky-header {
+  height: rem($product-sticky-header-height);
+  position: sticky;
+  top: rem($topbar-height-top);
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: none;
+
+  @include mappy-bp(1700px) {
+    @supports(writing-mode: vertical-rl) {
+      display: block;
+    }
+  }
+
+  .o-container {
+    height: 100%;
+  }
+}
+
+.c-ssb-sticky-header__content {
+  height: 100%;
+  writing-mode: vertical-rl;
+  text-align: end;
+  transform: translateX(-100%) rotate(180deg);
+  margin-left: rem(-70px);
+  font-weight: 700;
+  @include font-ci;
+  @include font-smoothing;
+  font-size: rem(20px);
+  text-transform: uppercase;
+  color: $color-primary;
 }

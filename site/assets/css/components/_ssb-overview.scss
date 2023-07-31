@@ -1,7 +1,3 @@
-//
-// Floorheating overview
-// --------------------------------------------------
-
 @use "sass:math";
 
 .c-ssb-overview__content {
@@ -51,3 +47,4 @@
     margin-left: calc(50% + #{rem(math.div($grid-gutter-md, 2))});
   }
 }
+
