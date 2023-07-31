@@ -1,4 +1,5 @@
 ---
+id: microcement
 title: Microcement
 anchor: microcement
 content1: |
@@ -24,4 +25,33 @@ content4: |
   - Büroräume
   - Gastronomie
 image2: header2.jpg
+colors:
+  headline: "**Farbübersicht**"
+  content: |
+    Arturo Microcement ist in <strong class="c-headline-secondary-inline">12 Farben</strong> lieferbar. Arturo Microcement hat eine robuste und moderne Ausstrahlung und eignet sich für Böden, Wände und Möbel. Je nach Farbauswahl verleiht es den ausgewählten Flächen ein warmes oder industrielles Aussehen.
+  colors:
+    - image: header.jpg
+      title: Snow
+    - image: header2.jpg
+      title: Ice
+    - image: header.jpg
+      title: Beach
+    - image: header.jpg
+      title: Desert
+    - image: header.jpg
+      title: Tuscan
+    - image: header.jpg
+      title: Beton
+    - image: header.jpg
+      title: Dust
+    - image: header.jpg
+      title: Bark
+    - image: header.jpg
+      title: Ash
+    - image: header.jpg
+      title: Cliff
+    - image: header.jpg
+      title: Lake
+    - image: header.jpg
+      title: Vulcan
 ---

@@ -1,4 +1,5 @@
 ---
+id: mistral
 title: Mistral
 anchor: mistral
 content1: |
@@ -27,4 +28,39 @@ content4: |
   - Gesundheitszentren
   - Gastronomie
 image2: header2.jpg
+colors:
+  headline: "**Farbübersicht**"
+  content: |
+    Arturo Mistral ist in <strong class="c-headline-secondary-inline">12 Farben</strong> lieferbar. Bei der Applikation werden zwei Farben miteinander gemischt, wodurch der Betonlook von Arturo Mistral entsteht. Im Zusammenspiel mit einem recycelten, nachwachsenden Zusatzstoff, entstehen einzigartige Farbschattierungen und das natürliche Aussehen von Arturo Mistral.
+  colors:
+    - image: header.jpg
+      title: Morning Flow
+    - image: header2.jpg
+      title: Calm Breeze
+    - image: header.jpg
+      title: Cosmic Fusion
+    - image: header.jpg
+      title: Basic Wash
+    - image: header.jpg
+      title: Foggy Sky
+    - image: header.jpg
+      title: Harsh Gravel
+    - image: header.jpg
+      title: Soft Stone
+    - image: header.jpg
+      title: Mixed Clay
+    - image: header.jpg
+      title: Frozen Cosmos
+    - image: header.jpg
+      title: Worked Metal
+    - image: header.jpg
+      title: Mild Shades
+    - image: header.jpg
+      title: Ice Cave
+  download:
+    content: |
+      <strong class="c-headline-secondary-inline">Nicht die richtige Farbe dabei?</strong> Hier finden Sie die gesamte Farbauswahl:
+    download:
+      file: todo.pdf
+      title: Broschüre Color&nbsp;Collection
 ---

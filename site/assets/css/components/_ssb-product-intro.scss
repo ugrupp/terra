@@ -90,6 +90,11 @@
     grid-column-start: 1;
     grid-column-end: 4;
   }
+
+  @include mappy-bp(md) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
 }
 
 .c-ssb-product-intro__col--image1 {
@@ -120,9 +125,14 @@
     grid-column-end: 5;
   }
 
+  @include mappy-bp(md) {
+    grid-row-start: 3;
+  }
+
   @include mappy-bp($bp-grid-collapse-lg) {
     margin-top: rem(80px);
     grid-column-start: 4;
+    grid-row-start: auto
   }
 
   .c-headline-secondary {
@@ -142,7 +152,12 @@
     grid-column-end: 5;
   }
 
+  @include mappy-bp(md) {
+    grid-row-start: 4;
+  }
+
   @include mappy-bp($bp-grid-collapse-lg) {
+    grid-row-start: auto;
     grid-column-start: 4;
   }
 
@@ -180,10 +195,11 @@
 .c-ssb-sticky-header {
   height: rem($product-sticky-header-height);
   position: sticky;
-  top: rem($topbar-height-top);
+  top: rem($topbar-height-top + 20px);
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 2;
 
   display: none;
 

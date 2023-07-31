@@ -1,7 +1,7 @@
 {{ define "main" }}
   <div class="o-main__content" id="content">
     <div class="c-topbox-secondary"></div>
-    <section class="o-main__section" id="estrichfraese">
+    <section class="o-main__section">
       {{ partial "sections/sichtspachtelboden-overview.html" . }}
     </section>
 
@@ -9,13 +9,14 @@
     {{ $baseContext := . }}
     {{ $sections := .Resources.Match "product-*.md" }}
     {{ range (sort $sections "Name") }}
-      <section class="o-main__section o-main__section--bg-white o-main__section--no-pad-bottom {{ .Params.modifiers }}">
+      <section class="o-main__section o-main__section--bg-white o-main__section--no-pad-bottom {{ .Params.modifiers }}" id="{{ .Params.anchor }}">
         <div class="c-ssb-sticky-header">
           <div class="o-container">
             <div class="c-ssb-sticky-header__content">{{ .Title }}</div>
           </div>
         </div>
         {{ partial "components/ssb-product-intro.html" (dict "context" . "baseContext" $baseContext) }}
+        {{ partial "components/ssb-product-colors.html" (dict "context" . "baseContext" $baseContext) }}
       </section>
     {{ end }}
   </div>
