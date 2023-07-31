@@ -4,6 +4,15 @@
     <section class="o-main__section" id="estrichfraese">
       {{ partial "sections/sichtspachtelboden-overview.html" . }}
     </section>
+
+    {{/* Products */}}
+    {{ $baseContext := . }}
+    {{ $sections := .Resources.Match "product-*.md" }}
+    {{ range (sort $sections "Name") }}
+      <section class="o-main__section o-main__section--bg-white o-main__section--no-pad-bottom {{ .Params.modifiers }}">
+        {{ partial "components/ssb-product-intro.html" (dict "context" . "baseContext" $baseContext) }}
+      </section>
+    {{ end }}
   </div>
 {{ end }}
 

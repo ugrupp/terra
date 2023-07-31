@@ -101,6 +101,10 @@
   padding-top: 0;
 }
 
+.o-main__section--no-pad-bottom {
+  padding-bottom: 0;
+}
+
 .o-main__section--no-pad-bottom-md {
   @include mappy-bp($bp-grid-collapse) {
     padding-bottom: 0;

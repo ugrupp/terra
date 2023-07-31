@@ -136,6 +136,18 @@
   }
 }
 
+.c-headline-tertiary {
+  font-weight: 700;
+  @include typi('headline--tertiary');
+  display: block;
+  @include font-ci;
+  @include font-smoothing;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 2px;
+}
+
 .c-headline-secondary-inline {
   @include font-ci;
   @include font-smoothing;

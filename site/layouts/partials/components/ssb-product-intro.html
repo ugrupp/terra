@@ -1,0 +1,78 @@
+{{ $baseContext := .baseContext }}
+
+<div class="c-ssb-product-intro" id ="{{ .context.Params.anchor }}">
+  <div class="o-container">
+    <div class="c-ssb-product-intro__grid">
+      {{/* Content 1 */}}
+      <div class="c-ssb-product-intro__col c-ssb-product-intro__col--content1" data-reveal>
+        <h2 class="c-headline-tertiary">{{ .context.Title | markdownify }}</h2>
+        <div class="c-richtext">
+          {{ .context.Params.content1 | markdownify }}
+        </div>
+      </div>
+
+      {{/* Content 2 */}}
+      <div class="c-ssb-product-intro__col c-ssb-product-intro__col--content2" data-reveal>
+        <div class="c-richtext">
+          {{ .context.Params.content2 | markdownify }}
+        </div>
+      </div>
+
+      {{/* Image 1 */}}
+      <div class="c-ssb-product-intro__col c-ssb-product-intro__col--image1" data-reveal>
+        <div class="c-ssb-product-intro__img-box">
+          <div class="c-ssb-product-intro__img-wrapper">
+            {{ with $baseContext.Resources.GetMatch .context.Params.image1 }}
+              {{ $imageSmall := .Resize "500x" }}
+              {{ $imageMedium := .Resize "800x" }}
+
+              <img
+                alt="{{ .Title }}"
+                src="{{ $imageMedium.RelPermalink }}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"
+                data-sizes="auto"
+                class="c-ssb-product-intro__img lazyload" />
+            {{ end }}
+          </div>
+        </div>
+      </div>
+
+      {{/* Content 3 */}}
+      <div class="c-ssb-product-intro__col c-ssb-product-intro__col--content3" data-reveal>
+        <h3 class="c-headline-secondary">{{ .context.Params.headline3 | markdownify }}</h3>
+        <div class="c-richtext">
+          {{ .context.Params.content3 | markdownify }}
+        </div>
+      </div>
+
+      {{/* Content 4 */}}
+      <div class="c-ssb-product-intro__col c-ssb-product-intro__col--content4" data-reveal>
+        <h3 class="c-headline-secondary">{{ .context.Params.headline4 | markdownify }}</h3>
+        <div class="c-richtext">
+          {{ .context.Params.content4 | markdownify }}
+        </div>
+      </div>
+
+      {{/* Image 2 */}}
+      <div class="c-ssb-product-intro__col c-ssb-product-intro__col--image2" data-reveal>
+        <div class="c-ssb-product-intro__img-box">
+          <div class="c-ssb-product-intro__img-wrapper">
+            {{ with $baseContext.Resources.GetMatch .context.Params.image2 }}
+              {{ $imageSmall := .Resize "500x" }}
+              {{ $imageMedium := .Resize "800x" }}
+
+              <img
+                alt="{{ .Title }}"
+                src="{{ $imageMedium.RelPermalink }}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"
+                data-sizes="auto"
+                class="c-ssb-product-intro__img lazyload" />
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
