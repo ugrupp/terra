@@ -193,6 +193,7 @@
 
 // Sticky header (for lack of a better place)
 .c-ssb-sticky-header {
+  pointer-events: none;
   height: rem($product-sticky-header-height);
   position: sticky;
   top: rem($topbar-height-top + 20px);

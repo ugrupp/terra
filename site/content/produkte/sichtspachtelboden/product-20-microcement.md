@@ -54,4 +54,5 @@ colors:
       title: Lake
     - image: header.jpg
       title: Vulcan
+gallery: gallery/microcement/*
 ---

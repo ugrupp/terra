@@ -1,0 +1,42 @@
+<div class="c-slider-beta" data-slider-beta>
+  <div class="o-container">
+    <div class="c-slider-beta__container-inner">
+      <div class="c-slider-beta__container-sentinel relative" data-slider-beta-container-sentinel></div>
+
+      <a href="javascript:void(0);" class="c-slider-beta__control-prev" data-slider-beta-prev>
+        {{ partial "components/svg" (dict "svg" "arrow-long-left") }}
+      </a>
+      <a href="javascript:void(0);" class="c-slider-beta__control-next" data-slider-beta-next>
+        {{ partial "components/svg" (dict "svg" "arrow-long-right") }}
+      </a>
+    </div>
+  </div>
+
+  <div class="swiper-container c-slider-beta__slider">
+    <div class="swiper-wrapper">
+      {{ $context := .context }}
+
+      {{ with .gallery }}
+        {{ range $context.Resources.Match . }}
+          {{ if eq .ResourceType "image" }}
+            <div class="swiper-slide">
+              <div class="c-slider-beta__img-wrapper">
+                {{ $imageSmall := .Resize "500x" }}
+                {{ $imageMedium := .Resize "1000x" }}
+                {{ $imageBig := .Resize "2000x" }}
+
+                <img
+                  alt="{{ .Title }}"
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="{{ $imageSmall.RelPermalink }}"
+                  data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w, {{ $imageBig.RelPermalink }} 2000w"
+                  class="c-slider-beta__img swiper-lazy" />
+                  <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                </div>
+            </div>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</div>

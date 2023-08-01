@@ -17,6 +17,9 @@
         </div>
         {{ partial "components/ssb-product-intro.html" (dict "context" . "baseContext" $baseContext) }}
         {{ partial "components/ssb-product-colors.html" (dict "context" . "baseContext" $baseContext) }}
+        {{ if .Params.gallery }}
+          {{ partial "components/ssb-product-slider.html" (dict "context" . "baseContext" $baseContext) }}
+        {{ end }}
       </section>
     {{ end }}
   </div>

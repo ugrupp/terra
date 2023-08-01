@@ -9,6 +9,7 @@ svgs;
 // module imports
 import './modules/fontfaceobserver';
 import './modules/slider';
+import './modules/slider-beta';
 import './modules/reveal-animations';
 import './modules/gmap';
 

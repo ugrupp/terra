@@ -1,0 +1,5 @@
+{{ $baseContext := .baseContext }}
+
+<div class="c-ssb-product-gallery" data-reveal>
+  {{ partial "components/slider-beta.html" (dict "context" .baseContext "gallery" .context.Params.gallery) }}
+</div>

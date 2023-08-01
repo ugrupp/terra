@@ -63,4 +63,5 @@ colors:
     download:
       file: todo.pdf
       title: Broschüre Color&nbsp;Collection
+gallery: gallery/mistral/*
 ---
