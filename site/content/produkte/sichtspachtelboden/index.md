@@ -1,7 +1,7 @@
 ---
 title: Sichtspachtelboden
-meta_title: ""
-description: ""
+meta_title: "Guss- und Sichtspachtelböden: ein robuster, widerstandsfähiger Blickfang | Terra Bodenbeläge aus Freiburg-Opfingen"
+description: "Sie lieben es minimalistisch. Sie schätzen klare Formen und ein ruhiges Raumbild. Sichtspachtel- und Gussböden sind ein optischer Hingucker."
 layout: sichtspachtelboden
 heroSecondary: true
 heroText: "Guss- und Sichtspachtelboden: Ein Boden als Blickfang"
