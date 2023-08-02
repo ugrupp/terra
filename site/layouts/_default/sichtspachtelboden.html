@@ -20,6 +20,7 @@
         {{ if .Params.gallery }}
           {{ partial "components/ssb-product-slider.html" (dict "context" . "baseContext" $baseContext) }}
         {{ end }}
+        {{ partial "components/ssb-product-system.html" (dict "context" . "baseContext" $baseContext) }}
       </section>
     {{ end }}
 

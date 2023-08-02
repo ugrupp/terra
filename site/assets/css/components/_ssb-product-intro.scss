@@ -12,7 +12,6 @@
   .c-richtext {
     ul {
       @extend .c-list-arrowed;
-      @extend .c-list-arrowed--loose;
     }
 
     strong {

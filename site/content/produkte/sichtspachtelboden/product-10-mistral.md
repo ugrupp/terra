@@ -64,4 +64,35 @@ colors:
       file: todo.pdf
       title: Broschüre Color&nbsp;Collection
 gallery: gallery/mistral/*
+system:
+  floor:
+    headline: Systemaufbau
+    steps:
+      - headline: Arturo Versiegelung
+        content: PU7310 (2-K, PU, matt)
+      - headline: Arturo Verlaufbeschichtung
+        content: Arturo Mistral (2-K, PU)
+      - headline: Arturo Kratzspachtelung / Membran
+        content: Arturo PU6000 (2-K, PU)
+      - headline: Arturo Grundierung
+        content: Arturo EP6600 (2-K, EP)
+      - headline: Untergrund
+    image: systemaufbau-microcement-boden.png
+  details:
+    headline: Technische Details
+    content: |
+      Verbrauch: ca. 1,52 kg/m²/mm
+
+      Schichtdicke Schichtdicke: ca. 2 mm
+      
+      Shore-D: ca. 50
+      
+      Streckgrenze: ca. 85%
+      
+      Zugfestigkeit: ca. 6 N/mm²
+      
+      E-Modul: ca. 10 N/mm²
+  download:
+    file: arturo-broschuere-mistral.pdf
+    title: Broschüre
 ---

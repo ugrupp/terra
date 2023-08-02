@@ -55,4 +55,51 @@ colors:
     - image: header.jpg
       title: Vulcan
 gallery: gallery/microcement/*
+system:
+  floor:
+    headline: Systemaufbau Boden
+    steps:
+      - headline: Arturo Versiegelung
+        content: PU7310 (2-K, PU, matt)
+      - headline: Arturo Imprägnierung
+        content: AC6100 (1-K, AC)
+      - headline: Arturo Microcement 2. Schicht
+        content: Microcement (2-K, mineralisch)
+      - headline: Arturo Microcement 1. Schicht
+        content: Microcement (2-K, mineralisch)
+      - headline: Uzin Spachtelmasse
+        content: NC 112 Turbo Gips-Schnellspachtelmasse in Kombination mit einer für den Untergrund geeigneten Grundierung
+      - headline: Untergrund
+    image: systemaufbau-microcement-boden.png
+  wall:
+    headline: Systemaufbau Wand
+    steps:
+      - headline: Arturo Imprägnierung
+        content: AC6100 (1-K, AC) optional mit Mattierungsmittel
+      - headline: Arturo Microcement 2. Schicht
+        content: Microcement (2-K, mineralisch)
+      - headline: Arturo Microcement 1. Schicht
+        content: Microcement (2-K, mineralisch)
+      - headline: Untergrund
+    image: systemaufbau-microcement-wand.png
+  details:
+    headline: Technische Details
+    content: |
+      1\. Schicht: ca. 400 - 600 g/m²
+      
+      2\. Schicht: ca. 200 g/m²
+      
+      Farben: 12 Farben
+      
+      Schichtdicke: ca. 1 mm
+      
+      Verpackung: 5 und 20 kg
+      
+      Druckstärke: 45 N/mm²
+      
+      Biegezugfestigkeit: 10 N/mm²
+  download:
+    file: arturo-broschuere-microcement.pdf
+    title: Broschüre
 ---
+
