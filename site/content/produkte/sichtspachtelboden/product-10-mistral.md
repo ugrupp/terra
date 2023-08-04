@@ -77,7 +77,7 @@ system:
       - headline: Arturo Grundierung
         content: Arturo EP6600 (2-K, EP)
       - headline: Untergrund
-    image: systemaufbau-microcement-boden.png
+    image: systemaufbau-microcement-boden.svg
   details:
     headline: Technische Details
     content: |

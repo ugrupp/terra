@@ -151,11 +151,19 @@
   }
 
   .c-ssb-product-system__setup--floor & {
-    max-width: rem(500px);
+    max-width: rem(320px);
+
+    @include mappy-bp(sm) {
+      max-width: rem(500px);
+    }
   }
 
   .c-ssb-product-system__setup--wall & {
-    max-width: rem(250px);
+    max-width: rem(200px);
+
+    @include mappy-bp(sm) {
+      max-width: rem(250px);
+    }
   }
 }
 

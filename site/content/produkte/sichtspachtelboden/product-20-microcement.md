@@ -70,7 +70,7 @@ system:
       - headline: Uzin Spachtelmasse
         content: NC 112 Turbo Gips-Schnellspachtelmasse in Kombination mit einer für den Untergrund geeigneten Grundierung
       - headline: Untergrund
-    image: systemaufbau-microcement-boden.png
+    image: systemaufbau-microcement-boden.svg
   wall:
     headline: Systemaufbau Wand
     steps:
@@ -81,7 +81,7 @@ system:
       - headline: Arturo Microcement 1. Schicht
         content: Microcement (2-K, mineralisch)
       - headline: Untergrund
-    image: systemaufbau-microcement-wand.png
+    image: systemaufbau-microcement-wand.svg
   details:
     headline: Technische Details
     content: |
