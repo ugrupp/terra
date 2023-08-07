@@ -1,0 +1,95 @@
+{{ $baseContext := .baseContext }}
+
+<div class="c-ssb-product-system">
+  <div class="o-container">
+    <div class="c-ssb-product-system__grid">
+      <div class="c-ssb-product-system__col c-ssb-product-system__col--col1" data-reveal>
+        {{/* Setup floor */}}
+        {{ with .context.Params.system.floor }}
+          <div class="c-ssb-product-system__setup c-ssb-product-system__setup--floor">
+            <h2 class="c-headline-secondary"><strong>{{ .headline }}</strong></h2>
+            <ol>
+              {{ range .steps }}
+                <li>
+                  <span>
+                    <strong>{{ .headline }}</strong>
+                    {{ with .content }}
+                      <br>
+                      {{ . }}
+                    {{ end }}
+                  </span>
+                </li>
+              {{ end }}
+            </ol>
+
+            {{/* Image (svg) */}}
+            <div class="c-ssb-product-system__img-wrapper">
+              {{ with $baseContext.Resources.GetMatch .image }}
+                <img
+                  alt="{{ .Title }}"
+                  src="{{ .RelPermalink }}"
+                  class="c-ssb-product-system__img lazyload" />
+              {{ end }}
+            </div>
+          </div>
+        {{ end }}
+      </div>
+
+      <div class="c-ssb-product-system__col c-ssb-product-system__col--col2" data-reveal>
+        {{/* Setup wall */}}
+        {{ with .context.Params.system.wall }}
+          <div class="c-ssb-product-system__setup c-ssb-product-system__setup--wall">
+            <h2 class="c-headline-secondary"><strong>{{ .headline }}</strong></h2>
+            <ol>
+              {{ range .steps }}
+                <li>
+                  <span>
+                    <strong>{{ .headline }}</strong>
+                    {{ with .content }}
+                      <br>
+                      {{ . }}
+                    {{ end }}
+                  </span>
+                </li>
+              {{ end }}
+            </ol>
+
+            {{/* Image (svg) */}}
+            <div class="c-ssb-product-system__img-wrapper">
+              {{ with $baseContext.Resources.GetMatch .image }}
+                <img
+                  alt="{{ .Title }}"
+                  src="{{ .RelPermalink }}"
+                  class="c-ssb-product-system__img lazyload" />
+              {{ end }}
+            </div>
+          </div>
+        {{ end }}
+
+        {{/* Technical details */}}
+        {{ with .context.Params.system.details }}
+          <div class="c-ssb-product-system__details">
+            <h2 class="c-headline-secondary"><strong>{{ .headline }}</strong></h2>
+            <div class="c-richtext">
+              {{ .content | markdownify }}
+            </div>
+          </div>
+        {{ end }}
+
+        {{/* Download */}}
+        {{ if .context.Params.system.download }}
+          <div class="c-ssb-product-system__download">
+            <h2 class="c-headline-secondary"><strong>Download</strong></h2>
+
+            {{ with .context.Params.system.download }}
+              <a class="c-download" href="{{ .file }}" target="_blank">
+                {{ partial "components/svg" (dict "svg" "download") }}
+                <strong class="c-headline c-headline--sm c-headline--padded">{{ .title | safeHTML }}</strong>
+              </a>
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</div>

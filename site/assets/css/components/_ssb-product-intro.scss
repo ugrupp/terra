@@ -1,0 +1,229 @@
+
+@use "sass:math";
+
+.c-ssb-product-intro {
+  // Sticky header compensation
+  @include mappy-bp(1700px) {
+    @supports(writing-mode: vertical-rl) {
+      margin-top: rem(-$product-sticky-header-height)
+    }
+  }
+
+  .c-richtext {
+    ul {
+      @extend .c-list-arrowed;
+    }
+
+    strong {
+      color: inherit;
+    }
+  }
+
+  .c-headline-secondary,
+  .c-headline-tertiary {
+    color: $color-primary;
+  }
+}
+
+.c-ssb-product-intro__img-wrapper {
+  background-color: $color-primary;
+}
+
+.c-ssb-product-intro__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+  }
+}
+
+.c-ssb-product-intro__grid {
+  @include mappy-bp(sm) {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, #{rem(math.div($grid-gutter, 2))}) 1fr;
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    grid-template-columns: 1fr repeat(2, #{rem(math.div($grid-gutter-md, 2))}) 1fr;
+  }
+}
+
+.c-ssb-product-intro__col {
+  @include mappy-bp($bp-grid-collapse-lg) {
+    max-width: rem($content-narrow-width);
+  }
+}
+
+.c-ssb-product-intro__col--content1 {
+  @include mappy-bp(sm) {
+    grid-column-start: 2;
+    grid-column-end: 5;
+  }
+
+  @include mappy-bp(md) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    margin-left: auto;
+  }
+
+  .c-headline-tertiary {
+    margin-bottom: rem(20px);
+
+    @include mappy-bp(md) {
+      margin-bottom: rem(30px);
+    }
+  }
+}
+
+.c-ssb-product-intro__col--content2 {
+  margin-top: rem(60px);
+
+  @include mappy-bp(sm) {
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+
+  @include mappy-bp(md) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+}
+
+.c-ssb-product-intro__col--image1 {
+  margin-top: rem(80px);
+  margin-right: rem(-$container-gutter);
+
+  @include mappy-bp(sm) {
+    grid-row-start: 3;
+    grid-column-start: 4;
+    grid-column-end: 5;
+  }
+
+  @include mappy-bp(md) {
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: auto;
+    grid-row-start: 1;
+    max-width: rem(400px);
+    align-self: flex-end;
+  }
+}
+
+.c-ssb-product-intro__col--content3 {
+  margin-top: rem(60px);
+
+  @include mappy-bp(sm) {
+    grid-column-start: 2;
+    grid-column-end: 5;
+  }
+
+  @include mappy-bp(md) {
+    grid-row-start: 3;
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    margin-top: rem(80px);
+    grid-column-start: 4;
+    grid-row-start: auto
+  }
+
+  .c-headline-secondary {
+    margin-bottom: rem(20px);
+
+    @include mappy-bp(md) {
+      margin-bottom: rem(30px);
+    }
+  }
+}
+
+.c-ssb-product-intro__col--content4 {
+  margin-top: rem(60px);
+
+  @include mappy-bp(sm) {
+    grid-column-start: 2;
+    grid-column-end: 5;
+  }
+
+  @include mappy-bp(md) {
+    grid-row-start: 4;
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    grid-row-start: auto;
+    grid-column-start: 4;
+  }
+
+  .c-headline-secondary {
+    margin-bottom: rem(20px);
+
+    @include mappy-bp(md) {
+      margin-bottom: rem(30px);
+    }
+  }
+}
+
+.c-ssb-product-intro__col--image2 {
+  margin-top: rem(80px);
+  margin-left: rem(-$container-gutter);
+  margin-right: rem(-$container-gutter);
+
+  @include mappy-bp(sm) {
+    margin-right: 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    margin-top: rem(60px);
+    grid-row-start: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin-left: auto;
+    align-self: flex-end;
+  }
+}
+
+// Sticky header (for lack of a better place)
+.c-ssb-sticky-header {
+  pointer-events: none;
+  height: rem($product-sticky-header-height);
+  position: sticky;
+  top: rem($topbar-height-top + 20px);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  display: none;
+
+  @include mappy-bp(1700px) {
+    @supports(writing-mode: vertical-rl) {
+      display: block;
+    }
+  }
+
+  .o-container {
+    height: 100%;
+  }
+}
+
+.c-ssb-sticky-header__content {
+  height: 100%;
+  writing-mode: vertical-rl;
+  text-align: end;
+  transform: translateX(-100%) rotate(180deg);
+  margin-left: rem(-70px);
+  font-weight: 700;
+  @include font-ci;
+  @include font-smoothing;
+  font-size: rem(20px);
+  text-transform: uppercase;
+  color: $color-primary;
+}

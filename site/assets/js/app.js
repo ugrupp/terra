@@ -6,9 +6,19 @@
 const svgs = import.meta.globEager('../svg/*.svg')
 svgs;
 
+// Load scripts in development and on staging
+if (import.meta.env.DEV || !!import.meta.env.VITE_LOAD_BLOCKED_SCRIPTS) {
+  const scriptTags = document.querySelectorAll('script[data-cookieconsent]');
+  scriptTags.forEach((scriptTag) => {
+    scriptTag.type = 'text/javascript';
+    eval(scriptTag.innerText);
+  });
+}
+
 // module imports
 import './modules/fontfaceobserver';
 import './modules/slider';
+import './modules/slider-beta';
 import './modules/reveal-animations';
 import './modules/gmap';
 

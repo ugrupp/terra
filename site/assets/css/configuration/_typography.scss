@@ -57,6 +57,12 @@ $typi: (
     md: (28px)
   ),
 
+  headline--tertiary: (
+    null: (23px, 1.35),
+    sm: (25px),
+    md: (28px)
+  ),
+
   menu: (
     null: (18px, 1),
   ),
@@ -88,5 +94,16 @@ $typi: (
     null: (15px, 1.5),
     md: (23px),
   ),
+
+  ssb-colors-title: (
+    null: (11px, 1.25),
+    sm: (13px),
+  ),
+
+  teaser-headline: (
+    null: (21px, 1.2),
+    sm: (27px),
+    lg: (31px),
+  )
 );
 /* stylelint-enable */

@@ -1,3 +1,7 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+[context.staging]
+  publish = "dist"
+  command = "npm run build-staging"

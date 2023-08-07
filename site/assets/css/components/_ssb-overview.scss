@@ -1,0 +1,50 @@
+@use "sass:math";
+
+.c-ssb-overview__content {
+  .c-richtext {
+    strong {
+      color: inherit;
+    }
+  }
+
+  .c-headline-secondary {
+    color: $color-primary;
+  }
+}
+
+.c-ssb-overview__col-headline,
+.c-ssb-overview__col-content {
+  @include mappy-bp(sm) {
+    max-width: calc(50% + #{rem(math.div($grid-gutter, 2))});
+  }
+
+  @include mappy-bp(md) {
+    max-width: calc(50% - #{rem(math.div($grid-gutter, 2))});
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    max-width: rem($content-narrow-width);
+  }
+}
+
+// Special columns
+.c-ssb-overview__col-headline {
+  @include mappy-bp($bp-grid-collapse-lg) {
+    margin-left: auto;
+    margin-right: calc(50% + #{rem(math.div($grid-gutter-md, 2))});
+  }
+}
+
+.c-ssb-overview__col-content {
+  margin-top: rem(45px);
+
+  @include mappy-bp(sm) {
+    margin-left: auto;
+    margin-top: rem(60px);
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    margin-left: calc(50% + #{rem(math.div($grid-gutter-md, 2))});
+  }
+}
+

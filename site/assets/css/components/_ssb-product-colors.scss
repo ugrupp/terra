@@ -1,0 +1,166 @@
+@use "sass:math";
+
+.c-ssb-product-colors {
+  background-color: $color-gray-f;
+  @include section-padding;
+
+  .c-richtext {
+    strong {
+      color: inherit;
+    }
+  }
+
+  .c-headline-secondary {
+    color: $color-primary;
+  }
+}
+
+.c-ssb-product-colors__head {
+  .c-headline-secondary {
+    margin-bottom: rem(20px);
+
+    @include mappy-bp(sm) {
+      max-width: calc(50% + #{rem(math.div($grid-gutter, 2))});
+    }
+
+    @include mappy-bp(md) {
+      max-width: calc(50% - #{rem(math.div($grid-gutter, 2))});
+      margin-bottom: rem(30px);
+    }
+  }
+
+  .c-richtext {
+    @include mappy-bp(sm) {
+      margin-left: auto;
+      max-width: calc(50% + #{rem(math.div($grid-gutter, 2))});
+    }
+
+    @include mappy-bp(md) {
+      margin-left: 0;
+      max-width: calc(50% - #{rem(math.div($grid-gutter, 2))});
+    }
+
+    @include mappy-bp($bp-grid-collapse-lg) {
+      max-width: rem($content-narrow-width);
+      margin-left: auto;
+      margin-right: calc(50% + #{rem(math.div($grid-gutter-md, 2))});
+    }
+  }
+}
+
+.c-ssb-product-colors__colors {
+  margin-top: rem(60px);
+
+  @include mappy-bp(sm) {
+    margin-top: rem(80px);
+  }
+
+  ul {
+    display: grid;
+    gap: rem(30px);
+    grid-template-columns: 1fr 1fr;
+
+    @include mappy-bp(sm) {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: rem(40px);
+    }
+
+    @include mappy-bp(lg) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      column-gap: rem(80px);
+      row-gap: rem(60px);
+    }
+  }
+}
+
+.c-ssb-product-colors__img-wrapper {
+  background-color: $color-gray-d;
+  height: rem(183px);
+
+  @include mappy-bp(sm) {
+    height: rem(137px);
+  }
+
+  @include mappy-bp(md) {
+    height: rem(210px);
+  }
+
+  @include mappy-bp(sm) {
+    @supports(aspect-ratio: 1/1) {
+      height: auto;
+      aspect-ratio: 290/210;
+    }
+  }
+}
+
+.c-ssb-product-colors__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+  }
+}
+
+.c-ssb-product-colors__title {
+  position: relative;
+  vertical-align: top;
+  display: inline-block;
+  margin-left: rem(20px);
+  margin-right: rem(20px);
+  @include typi("ssb-colors-title");
+  text-transform: uppercase;
+  font-weight: 700;
+  @include font-ci;
+  @include font-smoothing;
+  background-color: $color-primary;
+  color: $color-white;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  padding-top: 0.6em;
+  padding-bottom: 0.2em;
+
+  @include mappy-bp(sm) {
+    padding-top: 0.4em;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: rem(10px);
+    bottom: 100%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0.65em 0.65em 0.65em;
+    border-color: transparent transparent $color-primary transparent;
+  }
+}
+
+// Download
+.c-ssb-product-colors__download {
+  margin-top: rem(60px);
+
+  @include mappy-bp(sm) {
+    margin-left: auto;
+    max-width: calc(50% + #{rem(math.div($grid-gutter, 2))});
+  }
+
+  @include mappy-bp(md) {
+    margin-top: rem($section-padding-md);
+    max-width: calc(50% - #{rem(math.div($grid-gutter, 2))});
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    max-width: rem($content-narrow-width);
+    margin-left: calc(50% + #{rem(math.div($grid-gutter-md, 2))});
+  }
+
+  .c-download {
+    margin-top: rem(30px);
+  }
+}

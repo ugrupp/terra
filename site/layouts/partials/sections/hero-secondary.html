@@ -1,7 +1,5 @@
-{{ with .Site.GetPage "page" "fussbodenheizung" }}
-  {{ $.Scratch.Set "imageContext1" (.Resources.GetMatch "header.jpg") }}
-  {{ $.Scratch.Set "imageContext2" (.Resources.GetMatch "header2.jpg") }}
-{{ end }}
+{{ $.Scratch.Set "imageContext1" (.Resources.GetMatch "header.jpg") }}
+{{ $.Scratch.Set "imageContext2" (.Resources.GetMatch "header2.jpg") }}
 
 <header class='c-hero-secondary' data-hero>
   {{/* Images */}}

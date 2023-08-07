@@ -22,6 +22,11 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     url = "/#parkett"
     weight = 10
   [[menu.main]]
+    name = "Sichtspachtel&shy;boden"
+    parent = "products"
+    url = "/produkte/sichtspachtelboden/"
+    weight = 15
+  [[menu.main]]
     name = "Fliese Ceratouch"
     parent = "products"
     url = "/#ceratouch"

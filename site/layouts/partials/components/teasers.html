@@ -1,0 +1,34 @@
+{{ with .Resources.GetMatch "teasers*.md" }}
+  <div class="c-teasers">
+    {{ range .Params.teasers }}
+      <a class="c-teaser" href="{{ .url }}">
+        <div class="c-teaser__inner">
+          {{/* Image */}}
+          <div class="c-teaser__img-wrapper">
+            {{ with $.Resources.GetMatch .image }}
+              {{ $imageSmall := .Resize "500x" }}
+              {{ $imageMedium := .Resize "800x" }}
+
+              <img
+                alt="{{ .Title }}"
+                src="{{ $imageMedium.RelPermalink }}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"
+                data-sizes="auto"
+                class="c-teaser__img lazyload" />
+            {{ end }}
+          </div>
+
+          {{/* Title */}}
+          <p class="c-teaser__title"><strong>{{ .title }}</strong></p>
+
+          {{/* Link label */}}
+          <p class="c-teaser__label">
+            {{ .label }}
+            {{ partial "components/svg" (dict "svg" "arrow-long-right") }}
+          </p>
+        </div>
+      </a>
+    {{ end }}
+  </div>
+{{ end }}
