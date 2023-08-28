@@ -9,6 +9,8 @@ downloads:
     title: Broschüre Wildwood 3D
   - href: https://broschuere-parkett.terra-boden.de/
     title: Broschüre Parkett
+  - href: pdf/broschuere-parkett.pdf
+    title: Broschüre Parkett
 visual: true
 visual_direction: vertical
 visual_position: 30% bottom
