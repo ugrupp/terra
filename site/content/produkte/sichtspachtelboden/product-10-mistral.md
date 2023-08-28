@@ -1,6 +1,7 @@
 ---
 id: mistral
-title: Mistral
+title: Mistral ColorCollection 3.0
+shortTitle: Mistral
 anchor: mistral
 content1: |
   Arturo Mistral sorgt für einen natürlichen und besonderen Akzent in Wohn- und Büroräumen, Einzelhandelsgeschäften und Restaurants. Die farbige, UV-stabile, lösemittelfreie 2-komponentige Verlaufbeschichtung auf Basis von Polyurethanharz hat eine natürliche, mineralische Ausstrahlung. Diese entsteht durch einen recycelten, nachwachsenden Rohstoff, durch den eine robuste, raue Ausstrahlung mit einer changierenden Oberfläche geschaffen wird. Durch dieses gewisse Extra unterscheidet sich Arturo Mistral von den anderen Beschichtungen ihrer Klasse - und behält dennoch die typischen Produkteigenschaften einer PU-Verlaufbeschichtung bei.
