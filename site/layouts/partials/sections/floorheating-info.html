@@ -77,12 +77,14 @@
 
         <div class="o-grid__col c-floorheating-info__col-narrow c-floorheating-info__col-tech">
           <div class="c-floorheating-info__col-inner" data-reveal>
-            <div>
-              <h2 class="c-headline-secondary">{{ .Params.technicalDetailsHeadline | markdownify }}</h2>
-              <div class="c-richtext">
-                {{ .Params.technicalDetails | markdownify }}
+            {{ if .Params.technicalDetails }}
+              <div>
+                <h2 class="c-headline-secondary">{{ .Params.technicalDetailsHeadline | markdownify }}</h2>
+                <div class="c-richtext">
+                  {{ .Params.technicalDetails | markdownify }}
+                </div>
               </div>
-            </div>
+            {{ end }}
 
             <div class="c-floorheating-info__download">
               <h2 class="c-headline-secondary">{{ .Params.downloadHeadline | markdownify }}</h2>
