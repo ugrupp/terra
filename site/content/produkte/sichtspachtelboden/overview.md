@@ -1,5 +1,5 @@
 ---
-headline1: "Sie lieben es minimalistisch. Sie schätzen klare Formen und ein ruhiges Raumbild. **Guss- und Sichtspachtelböden** sind ein optischer Hingucker, ohne in den Vordergrund zu treten. Sie sind robust und passen zu modernen Einrichtigungsstilen."
+headline1: "Sie lieben es minimalistisch. Sie schätzen klare Formen und ein ruhiges Raumbild. **Guss- und Sichtspachtelböden** sind ein optischer Hingucker, ohne in den Vordergrund zu treten. Sie sind robust und passen zu modernen Einrichtungsstilen."
 content1: |
   Ein Gussboden bringt viele Vorteile mit sich. Er ist äußerst <strong class="c-headline-secondary-inline">robust</strong> und <strong class="c-headline-secondary-inline">widerstandsfähig</strong> gegen Stöße, Kratzer und Abnutzung - der perfekte Bodenbelag für stark frequentierte Bereiche.
   
