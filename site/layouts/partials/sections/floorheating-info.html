@@ -89,12 +89,16 @@
             <div class="c-floorheating-info__download">
               <h2 class="c-headline-secondary">{{ .Params.downloadHeadline | markdownify }}</h2>
 
-              {{/* Download */}}
-              {{ with .Params.download }}
-                <a class="c-download" href="{{ .file }}" target="_blank">
-                  {{ partial "components/svg" (dict "svg" "download") }}
-                  <strong class="c-headline c-headline--sm c-headline--padded">{{ .title }}</strong>
-                </a>
+              {{/* Downloads */}}
+              {{ with .Params.downloads }}
+                <div class="c-floorheating-info__download-list">
+                  {{ range . }}
+                    <a class="c-download" href="{{ .file }}" target="_blank">
+                      {{ partial "components/svg" (dict "svg" "download") }}
+                      <strong class="c-headline c-headline--sm c-headline--padded">{{ .title | safeHTML }}</strong>
+                    </a>
+                  {{ end }}
+                </div>
               {{ end }}
             </div>
           </div>

@@ -21,8 +21,10 @@ applicationsContent: |
   - Sanitär, Waschräume
 
 downloadHeadline: "**Download**"
-download:
-  file: terra-bodenbelaege-faltblatt-fussbodenheizung.pdf
-  title: Infoblatt
+downloads:
+  - file: terra-bodenbelaege-faltblatt-fussbodenheizung.pdf
+    title: Infoblatt
+  - file: blanke-heiz-und-kuehlsysteme.pdf
+    title: Blanke&nbsp;Heiz- und&nbsp;Kühlsysteme
 ---
 
