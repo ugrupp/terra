@@ -20,17 +20,11 @@ applicationsContent: |
   - Gewerbliche Flächen
   - Sanitär, Waschräume
 
-technicalDetailsHeadline: "**Technische Details**"
-technicalDetails: |
-  - Nutzmaß: 140 × 80 cm  
-  - Nutzfläche: 1,12 m²  
-  - Plattenmaß: 145 × 85 cm  
-  - Materialdicke: 1,0 mm  
-  - Gesamthöhe: 20 mm
-
 downloadHeadline: "**Download**"
-download:
-  file: terra-bodenbelaege-faltblatt-fussbodenheizung.pdf
-  title: Infoblatt
+downloads:
+  - file: terra-bodenbelaege-faltblatt-fussbodenheizung.pdf
+    title: Infoblatt
+  - file: blanke-heiz-und-kuehlsysteme.pdf
+    title: Blanke&nbsp;Heiz- und&nbsp;Kühlsysteme
 ---
 

@@ -128,3 +128,13 @@
     margin-top: rem($grid-gutter-md);
   }
 }
+
+
+.c-floorheating-info__download-list {
+  display: flex;
+  flex-direction: column;
+
+  .c-download + .c-download {
+    margin-top: rem(20px);
+  }
+}
