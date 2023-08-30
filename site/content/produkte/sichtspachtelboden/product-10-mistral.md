@@ -1,6 +1,6 @@
 ---
 id: mistral
-title: Mistral ColorCollection 3.0
+title: "Mistral und Color&nbsp;Collection&nbsp;3.0"
 shortTitle: Mistral
 anchor: mistral
 content1: |
