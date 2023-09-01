@@ -101,6 +101,15 @@
   @include mappy-bp(md) {
     max-width: rem(310px);
   }
+
+  .layout-sichtspachtelboden & {
+    transform: translateY(-25%);
+
+    @include mappy-bp(md) {
+      transform: translateY(-50%);
+      max-width: rem(640px);
+    }
+  }
 }
 
 // Arrow hint

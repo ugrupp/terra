@@ -8,7 +8,7 @@
     {{ partial "global/includes-head.html" . }}
   </head>
 
-  <body>
+  <body{{ with .Params.layout }} class="layout-{{ . }}"{{ end }}>
     <a href="#main" class="u-invisible">Jump to content</a>
     <a href="#menu" class="u-invisible">Jump to menu</a>
 
