@@ -45,6 +45,12 @@
   {{ if .Params.heroText }}
     <div class="c-hero-secondary__content">
       <div class="o-container">
+        {{ if .Params.heroTextSm }}
+          <div class="c-hero-secondary__content-inner c-hero-secondary__content-inner--sm">
+            <p class="c-headline c-headline--padded c-headline--primary c-headline--lg">{{ .Params.heroTextSm | markdownify }}</p>
+          </div>
+        {{ end }}
+
         <div class="c-hero-secondary__content-inner">
           <p class="c-headline c-headline--padded c-headline--primary c-headline--lg">{{ .Params.heroText | markdownify }}</p>
         </div>

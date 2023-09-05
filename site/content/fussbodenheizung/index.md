@@ -4,7 +4,7 @@ meta_title: "Fußbodenheizung für Ihr Zuhause: von der Planung bis zur Installa
 description: "Wir fräsen Ihre Fußbodenheizung direkt in den vorhandenen Estrich und machen Ihren Boden so zum Wohlfühlbereich."
 layout: floorheating
 heroSecondary: true
-heroText: Fußbodenheizung für Ihr Zuhause
+heroText: Fußbodenheizung <br/>für Ihr Zuhause
 footer_headline: "**STARTKLAR?** Gerne klären wir Ihre Detailfragen persönlich. Sprechen Sie uns unverbindlich an."
 
 menu:
