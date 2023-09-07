@@ -2,7 +2,7 @@
 title: Türen
 anchor: tueren
 modifiers: o-main__section--no-pad-top
-reverse: true
+reverse: false
 gallery: images/tueren/*
 downloads:
   - href: pdf/hoermann-broschuere-wohnraumtueren.pdf

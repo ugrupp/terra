@@ -74,46 +74,6 @@ resources:
   title: Designboden, Vinylboden Vesuvius, Coretec Megastone
   params:
     title: A303210
-- src: images/laminat/laminat_01-A203001.jpg
-  title: Laminat, Furnierboden Eiche Heritage
-  params:
-    title: A203001
-- src: images/laminat/laminat_02-A203005.jpg
-  title: Laminat, Eiche Farco Elegance
-  params:
-    title: A203005
-- src: images/laminat/laminat_03-A203019.jpg
-  title: Laminat, Eiche Bari
-  params:
-    title: A203019
-- src: images/laminat/laminat_04-A203014.jpg
-  title: Laminat, Kiefer Harvest Original
-  params:
-    title: A203014
-- src: images/laminat/laminat_05-A203007.jpg
-  title: Laminat, Eiche Evoke Classic
-  params:
-    title: A203007
-- src: images/laminat/laminat_06-A203012.jpg
-  title: Laminat, Hemlock Barnwood Anco
-  params:
-    title: A203012
-- src: images/laminat/laminat_07-A203018.jpg
-  title: Laminat, Buche Swaran
-  params:
-    title: A203018
-- src: images/laminat/laminat_08-A203003.jpg
-  title: Laminat, Furnierboden Eiche Fresco Earth
-  params:
-    title: A203003
-- src: images/laminat/laminat_09-A203002.jpg
-  title: Laminat, Furnierboden Eiche Jungle
-  params:
-    title: A203002
-- src: images/laminat/laminat_10-A203017.jpg
-  title: Laminat, Eiche Trevi
-  params:
-    title: A203017
 - src: images/teppiche/teppiche*
   title: Teppiche
 - src: images/tueren/tueren*

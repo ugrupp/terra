@@ -109,6 +109,11 @@
 .c-gallery-section__svg-bg-inner {
   @include mappy-bp($bp-grid-collapse) {
     width: calc(50% - #{rem(math.div($grid-gutter, 2))});
+    margin-left: auto;
+
+    .c-gallery-section--reverse & {
+      margin-left: 0;
+    }
   }
 
   @include mappy-bp($bp-grid-collapse-lg) {

@@ -37,11 +37,6 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     url = "/#designboden"
     weight = 30
   [[menu.main]]
-    name = "Laminat"
-    parent = "products"
-    url = "/#laminat"
-    weight = 40
-  [[menu.main]]
     name = "Teppiche"
     parent = "products"
     url = "/#teppiche"
