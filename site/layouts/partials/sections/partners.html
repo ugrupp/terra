@@ -1,0 +1,38 @@
+{{ $baseContext := . }}
+
+<div class="c-partners-section">
+  <div class="o-container">
+    {{ with .Resources.GetMatch "partners*.md" }}
+      {{/* Head */}}
+      <div class="c-partners-section__head" data-reveal>
+        <h2 class="c-headline-secondary">{{ .Params.headline | markdownify }}</h2>
+      </div>
+
+      {{/* Colors */}}
+      <div class="c-partners-section__partners" data-reveal>
+        <ul>
+          {{ range .Params.partners }}
+            {{ $partnerTitle := .title }}
+            <li>
+              {{/* Image */}}
+              <div class="c-partners-section__img-wrapper">
+                {{ with $baseContext.Resources.GetMatch .image }}
+                  {{ $imageSmall := .Resize "290x" }}
+                  {{ $imageMedium := .Resize "550x" }}
+
+                  <img
+                    alt="{{ $partnerTitle }}"
+                    src="{{ $imageMedium.RelPermalink }}"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="{{ $imageSmall.RelPermalink }} 290w, {{ $imageMedium.RelPermalink }} 550w"
+                    data-sizes="auto"
+                    class="c-partners-section__img lazyload" />
+                {{ end }}
+              </div>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
+  </div>
+</div>
