@@ -95,5 +95,5 @@ system:
       E-Modul: ca. 10 N/mm²
   download:
     file: arturo-broschuere-mistral.pdf
-    title: Broschüre
+    title: Broschüre Mistral
 ---

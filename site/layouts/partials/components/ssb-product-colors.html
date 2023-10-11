@@ -45,19 +45,35 @@
     </div>
 
     {{/* Download */}}
-    {{ if .context.Params.colors.download }}
+    {{ if .context.Params.colors.download | or .context.Params.system.download }}
       <div class="c-ssb-product-colors__download" data-reveal>
-        <div class="c-richtext c-richtext--lg">
-          {{ .context.Params.colors.download.content | markdownify }}
-        </div>
+        {{/* Colors download */}}
+        {{ if .context.Params.colors.download }}
+          <div class="c-richtext c-richtext--lg">
+            {{ .context.Params.colors.download.content | markdownify }}
+          </div>
 
-        {{ with .context.Params.colors.download.download }}
-          <a class="c-download" href="{{ .file }}" target="_blank">
-            {{ partial "components/svg" (dict "svg" "download") }}
-            <strong class="c-headline c-headline--sm c-headline--padded">{{ .title | safeHTML }}</strong>
-          </a>
+          {{ with .context.Params.colors.download.download }}
+            <a class="c-download" href="{{ .file }}" target="_blank">
+              {{ partial "components/svg" (dict "svg" "download") }}
+              <strong class="c-headline c-headline--sm c-headline--padded">{{ .title | safeHTML }}</strong>
+            </a>
+          {{ end }}
+        {{ end }}
+
+        {{/* System download */}}
+        {{ if .context.Params.system.download }}
+          <h2 class="c-headline-secondary"><strong>Download</strong></h2>
+
+          {{ with .context.Params.system.download }}
+            <a class="c-download" href="{{ .file }}" target="_blank">
+              {{ partial "components/svg" (dict "svg" "download") }}
+              <strong class="c-headline c-headline--sm c-headline--padded">{{ .title | safeHTML }}</strong>
+            </a>
+          {{ end }}
         {{ end }}
       </div>
     {{ end }}
+
   </div>
 </div>

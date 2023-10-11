@@ -169,5 +169,9 @@
 
   .c-download {
     margin-top: rem(30px);
+
+    + .c-headline-secondary {
+      margin-top: rem(60px);
+    }
   }
 }

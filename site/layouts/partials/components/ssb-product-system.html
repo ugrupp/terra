@@ -75,20 +75,6 @@
             </div>
           </div>
         {{ end }}
-
-        {{/* Download */}}
-        {{ if .context.Params.system.download }}
-          <div class="c-ssb-product-system__download">
-            <h2 class="c-headline-secondary"><strong>Download</strong></h2>
-
-            {{ with .context.Params.system.download }}
-              <a class="c-download" href="{{ .file }}" target="_blank">
-                {{ partial "components/svg" (dict "svg" "download") }}
-                <strong class="c-headline c-headline--sm c-headline--padded">{{ .title | safeHTML }}</strong>
-              </a>
-            {{ end }}
-          </div>
-        {{ end }}
       </div>
     </div>
   </div>

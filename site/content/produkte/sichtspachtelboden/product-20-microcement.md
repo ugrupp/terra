@@ -100,6 +100,6 @@ system:
       Biegezugfestigkeit: 10 N/mm²
   download:
     file: arturo-broschuere-microcement.pdf
-    title: Broschüre
+    title: Broschüre Microcement
 ---
 
