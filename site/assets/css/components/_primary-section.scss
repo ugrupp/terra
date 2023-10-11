@@ -69,6 +69,26 @@
   }
 }
 
+.c-primary-section__content--beta {
+  @include mappy-bp(max $bp-grid-collapse) {
+    .o-grid {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    .o-grid__col {
+      width: 100%;
+
+      &:first-of-type {
+        padding-top: rem($section-padding);
+      }
+
+      &:not(:first-of-type) {
+        padding-top: 0;
+      }
+    }
+  }
+}
 
 .c-primary-section__alpha-headline {
   padding-top: rem(40px);
