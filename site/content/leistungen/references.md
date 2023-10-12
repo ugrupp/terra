@@ -1,7 +1,7 @@
 ---
-headline: Unsere Referenzen
+headline: Referenzen Parkett
 content_col1: |
-  <h3 class="c-headline c-headline--primary">Unsere Referenzen</h3>
+  <h3 class="c-headline c-headline--primary">Referenzen Parkett</h3>
 
   Schöne Dinge sprechen für sich. Wir sind stolz auf jedes unserer Projekte. Noch eindrucksvoller sind unsere Referenzböden natürlich in Natura. Unsere Galerien geben einen kleinen Eindruck.
 galleries1:

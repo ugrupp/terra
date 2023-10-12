@@ -64,10 +64,15 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     url = "/leistungen/"
     weight = 10
   [[menu.main]]
-    name = "Referenzen"
+    name = "Referenzen Parkett"
     parent = "unternehmen"
     url = "/leistungen/#referenzen"
     weight = 20
+  [[menu.main]]
+    name = "Referenzen Fußbodenheizung"
+    parent = "unternehmen"
+    url = "/leistungen/#referenzen-fussboden"
+    weight = 30
 
   [[menu.main]]
     name = "Anfrage"
