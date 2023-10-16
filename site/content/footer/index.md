@@ -1,6 +1,6 @@
 ---
 headless: true
-headline: "Wir bringen **Klarheit** in das Bodenlose Angebot an Bodenbelägen. Sprechen Sie uns an für einen persönlichen Beratungstermin."
+headline: "Wir bringen **Klarheit** in das bodenlose Angebot an Bodenbelägen. Sprechen Sie uns an für einen persönlichen Beratungstermin."
 locations:
   - id: kontakt-freiburg
     contact:
