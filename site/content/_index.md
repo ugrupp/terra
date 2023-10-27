@@ -4,8 +4,8 @@ meta_title: Parkett, Designböden, Laminat, Teppiche, Türen | Terra Bodenbeläg
 description: "Bei uns finden Sie die ganze Welt wertiger Bodenbeläge: markanter Parkett, flexibler Vinyl oder lebendiger Laminat? Wir haben den Belag, der Ihren Raum besonders macht."
 heroText: Bei uns finden Sie die ganze Welt **wertiger Bodenbeläge**
 heroBanner: 
-  headline: "Herbstfest 20. - 22. Oktober:"
-  text: "Wir laden Sie herzlich zu unserem **Herbstfest** ein. Entdecken Sie unsere große Ausstellung und erkunden Sie eine breite Auswahl an Bodenbelägen und Türen. / **Freitag**: 13 Uhr - 18 Uhr / **Samstag & Sonntag**: 10 Uhr - 15 Uhr / Unsere Räume bieten Ihnen die Möglichkeit, inspirierende Wohnideen und hochwertige Produkte zu entdecken. **Wir freuen uns darauf**, Sie bei uns begrüßen zu dürfen."
+  headline: "Unsere Angebote im Herbst:"
+  text: "tolle Angebote im Bereich Parkett, Vinyl und Türen finden Sie in unserem neuen <a href='https://herbstaktion.terra-boden.de/' target='_blank'>**Einleger**</a> / Gültig bis Ende 2023"
 hero: true
 
 menu:
