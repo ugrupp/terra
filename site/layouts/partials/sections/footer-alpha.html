@@ -10,12 +10,16 @@
         {{ with $footer.Resources.GetMatch (cond (isset .Params "footer_image") .Params.footer_image "footer.jpg") }}
           {{ $imageMedium := .Resize "1000x" }}
           {{ $imageBig := .Resize "1500x" }}
+          {{ $imageHuge := .Resize "1920x" }}
           {{ $imageTall := .Fill "767x1300 Smart" }}
           {{ $imageTallWide := .Fill "1000x1300 Smart" }}
 
           <source
+            data-srcset="{{ $imageHuge.RelPermalink }}"
+            media="(min-width: 1500px)" />
+          <source
             data-srcset="{{ $imageBig.RelPermalink }}"
-            media="(min-width: 1000px)" />
+            media="(min-width: 1000px) and (max-width: 1499px)" />
           <source
             data-srcset="{{ $imageTallWide.RelPermalink }}"
             media="(min-height: 500px) and (min-width: 768px)" />
