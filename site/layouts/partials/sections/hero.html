@@ -70,7 +70,10 @@
     <div class="c-hero__content">
       <div class="o-container">
         <div class="c-hero__content-inner">
-          <p class="c-headline">{{ .Params.heroText | markdownify }}</p>
+          <a class="c-download" href="https://herbstaktion.terra-boden.de/" target="_blank">
+            {{ partial "components/svg" (dict "svg" "download") }}
+            <strong class="c-headline c-headline--sm c-headline--padded">Unsere&nbsp;Angebote im&nbsp;Herbst</strong>
+          </a>
         </div>
       </div>
     </div>

@@ -151,10 +151,3 @@
   }
 }
 
-.c-hero__content-inner {
-  max-width: rem(200px);
-
-  @include mappy-bp(md) {
-    max-width: rem(220px);
-  }
-}
