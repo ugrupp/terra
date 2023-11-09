@@ -7,7 +7,7 @@ heroBanner:
   headline: "Unsere Angebote im Herbst:"
   text: "tolle Angebote im Bereich Parkett, Vinyl und Türen finden Sie in unserem neuen <a href='https://herbstaktion.terra-boden.de/' target='_blank'>**Einleger**</a> / Gültig bis Ende 2023"
 hero: true
-
+footer_image: footer_alternative.jpg
 menu:
   main:
     name: Produkte
