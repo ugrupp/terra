@@ -10,28 +10,35 @@
 
       {{/* Colors */}}
       <div class="c-partners-section__partners" data-reveal>
-        <ul>
-          {{ range .Params.partners }}
-            {{ $partnerTitle := .title }}
-            <li>
-              {{/* Image */}}
-              <div class="c-partners-section__img-wrapper">
-                {{ with $baseContext.Resources.GetMatch .image }}
-                  {{ $imageSmall := .Resize "290x" }}
-                  {{ $imageMedium := .Resize "550x" }}
+        {{ range .Params.categories }}
+          {{ $categoryTitle := .title }}
+          {{ $categoryPartners := .partners }}
+          <div class="c-partners-category-section">
+            <h4 class="c-headline-secondary">{{ $categoryTitle | markdownify }}</h4>
+            <ul>
+              {{ range $categoryPartners }}
+                {{ $partnerTitle := .title }}
+                <li>
+                  {{/* Image */}}
+                  <div class="c-partners-section__img-wrapper">
+                    {{ with $baseContext.Resources.GetMatch .image }}
+                      {{ $imageSmall := .Resize "290x" }}
+                      {{ $imageMedium := .Resize "550x" }}
 
-                  <img
-                    alt="{{ $partnerTitle }}"
-                    src="{{ $imageMedium.RelPermalink }}"
-                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    data-srcset="{{ $imageSmall.RelPermalink }} 290w, {{ $imageMedium.RelPermalink }} 550w"
-                    data-sizes="auto"
-                    class="c-partners-section__img lazyload" />
-                {{ end }}
-              </div>
-            </li>
-          {{ end }}
-        </ul>
+                      <img
+                        alt="{{ $partnerTitle }}"
+                        src="{{ $imageMedium.RelPermalink }}"
+                        srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        data-srcset="{{ $imageSmall.RelPermalink }} 290w, {{ $imageMedium.RelPermalink }} 550w"
+                        data-sizes="auto"
+                        class="c-partners-section__img lazyload" />
+                    {{ end }}
+                  </div>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        {{ end }}
       </div>
     {{ end }}
   </div>

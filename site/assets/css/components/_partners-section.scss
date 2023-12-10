@@ -9,11 +9,20 @@
   }
 }
 
-.c-partners-section__partners {
+.c-partners-category-section {
   margin-top: rem(60px);
 
   @include mappy-bp(sm) {
     margin-top: rem(80px);
+  }
+
+  .c-headline-secondary {
+    color: $color-primary;
+    margin-bottom: rem(12px);
+
+    @include mappy-bp(md) {
+      margin-bottom: rem(18px);
+    }
   }
 
   ul {
