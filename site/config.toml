@@ -22,7 +22,7 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     url = "/#parkett"
     weight = 10
   [[menu.main]]
-    name = "Sichtspachtel&shy;boden"
+    name = "Gussboden"
     parent = "products"
     url = "/produkte/sichtspachtelboden/"
     weight = 15
