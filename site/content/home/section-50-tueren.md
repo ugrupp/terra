@@ -5,7 +5,7 @@ modifiers: o-main__section--no-pad-top
 reverse: false
 gallery: images/tueren/*
 downloads:
-  - href: pdf/hoermann-broschuere-wohnraumtueren.pdf
+  - href: pdf/hoermann-broschuere-zimmertueren.pdf
     title: Broschüre Türen
 background_svg: doors
 ---
