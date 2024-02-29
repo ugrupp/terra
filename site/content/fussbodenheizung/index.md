@@ -1,10 +1,10 @@
 ---
-title: Fußbodenheizung
+title: HEATFlow-System
 meta_title: "Fußbodenheizung für Ihr Zuhause: von der Planung bis zur Installation | Terra Bodenbeläge aus Freiburg-Opfingen"
 description: "Wir fräsen Ihre Fußbodenheizung direkt in den vorhandenen Estrich und machen Ihren Boden so zum Wohlfühlbereich."
 layout: floorheating
 heroSecondary: true
-heroText: Fußbodenheizung <br/>für Ihr Zuhause
+heroText: <span class="c-floorheating-hero-text"><strong>HEAT</strong>Flow-System</span><br/><span class='c-floorheating-hero-text c-floorheating-hero-text__subtitle'><strong>FUSSBODENHEIZUNG</strong><br/>für Ihr Zuhause</span>
 footer_headline: "**STARTKLAR?** Gerne klären wir Ihre Detailfragen persönlich. Sprechen Sie uns unverbindlich an."
 
 menu:

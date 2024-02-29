@@ -171,6 +171,8 @@
     color: inherit;
 
     @include mappy-bp($bp-menu-collapse) {
+      white-space: nowrap;
+
       .c-topbar--headroom-initialized & {
         transition: color $transition-time-default;
       }
