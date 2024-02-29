@@ -1,0 +1,59 @@
+<div class="c-careers-section">
+  {{ with .Resources.GetMatch "careers.md" }}
+    <div class="o-container c-careers-section__content c-careers-section__content--alpha">
+      <div class="o-grid">
+        <div class="o-grid__col">
+          <div class="c-careers-section__content-section c-richtext" data-reveal>
+            <h3 class="c-headline-secondary">{{ .Params.headline1 | markdownify }}</h3>
+            <p>{{ .Params.content1 | markdownify }}</p>
+          </div>
+        </div>
+        <div class="o-grid__col">
+          <div class="c-careers-section__img1-wrapper">
+            {{ with $.Resources.GetMatch "terra-bodenbelaege-karriere-1.jpg" }}
+              {{ $imageSmall := .Resize "768x" }}
+              {{ $imageMedium := .Resize "1000x" }}
+
+              <img
+                alt="Karriere Team"
+                src="{{ $imageSmall.RelPermalink }}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w"
+                data-sizes="auto"
+                class="c-careers-section__img lazyload" />
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="o-container c-careers-section__content c-careers-section__content--beta">
+      <div class="o-grid">
+        <div class="o-grid__col">
+          <div class="c-careers-section__content-section c-careers-section__content-section-2 c-richtext" data-reveal>
+            <h3 class="c-headline-secondary">{{ .Params.headline2 | markdownify }}</h3>
+            {{ .Params.content2 | markdownify }}
+          </div>
+        </div>
+        <div class="o-grid__col">
+          <div class="c-careers-section__content-section c-careers-section__content-section-3 c-richtext" data-reveal>
+            <span>{{ .Params.lead3 | markdownify }}</span>
+            <h3 class="c-headline-secondary">{{ .Params.headline3 }}</h3>
+          </div>
+          <div class="c-careers-section__img2-wrapper">
+            {{ with $.Resources.GetMatch "terra-bodenbelaege-karriere-2.jpg" }}
+              {{ $imageSmall := .Resize "540x" }}
+              {{ $imageMedium := .Resize "1000x" }}
+
+              <img
+                alt="Karriere Jobangebot"
+                src="{{ $imageSmall.RelPermalink }}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w"
+                data-sizes="auto"
+                class="c-careers-section__img lazyload" />
+            {{ end }}
+          </div>
+        </div>
+    </div>
+  {{ end }}
+</div>
