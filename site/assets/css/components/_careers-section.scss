@@ -145,3 +145,11 @@
     opacity: 0;
   }
 }
+
+.c-careers-section__button {
+  margin-top: rem(30px);
+
+  @include mappy-bp($bp-grid-collapse) {
+    margin-top: rem(40px);
+  }
+}

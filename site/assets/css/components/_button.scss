@@ -41,6 +41,16 @@
   }
 }
 
+.c-button--primary {
+  background-color: $color-primary;
+  color: $color-white;
+
+  &:hover,
+  &:focus {
+    background-color: $color-content;
+  }
+}
+
 .c-button--block {
   display: flex;
   width: 100%;

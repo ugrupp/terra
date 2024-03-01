@@ -64,25 +64,30 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     url = "/leistungen/"
     weight = 10
   [[menu.main]]
+    name = "Neuigkeiten"
+    parent = "unternehmen"
+    url = "/unternehmen/#neuigkeiten"
+    weight = 20
+  [[menu.main]]
     name = "Karriere"
     parent = "unternehmen"
     url = "/unternehmen/#karriere"
-    weight = 20
+    weight = 30
   [[menu.main]]
     name = "Referenzen Parkett"
     parent = "unternehmen"
     url = "/leistungen/#referenzen"
-    weight = 30
+    weight = 40
   [[menu.main]]
     name = "Referenzen Fußbodenheizung"
     parent = "unternehmen"
     url = "/leistungen/#referenzen-fussboden"
-    weight = 40
+    weight = 50
   [[menu.main]]
     name = "Partner + Lieferanten"
     parent = "unternehmen"
     url = "/unternehmen/#partner-lieferanten"
-    weight = 50
+    weight = 60
 
   [[menu.main]]
     name = "Anfrage"

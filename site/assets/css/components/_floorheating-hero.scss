@@ -19,16 +19,29 @@
   strong {
     color: $color-white;
     font-family: $font-family-ci;
+    font-size: rem(22px);
+
+    @include mappy-bp(md) {
+      font-size: rem(33px);
+    }
   }
 }
 
 .c-floorheating-hero-text__subtitle {
-  background-color: $color-white;
+  background-color: transparent;
   color: $color-primary;
-  line-height: 1.25;
   margin-top: rem(8px);
+  padding: 0;
 
   strong {
     color: $color-primary;
+    padding-bottom: 0;
+  }
+
+  > * {
+    background-color: $color-white;
+    display: inline-block;
+    line-height: 1.25;
+    padding: rem(4px) rem(10px);
   }
 }

@@ -1,0 +1,37 @@
+<div class="c-news-section">
+  {{ with .Resources.GetMatch "news.md" }}
+    <div class="c-news-section__headline__wrapper">
+      <h3 class="c-news-section__headline c-headline c-headline--primary">{{ .Params.headline }}</h3>
+    </div>
+    <div class="c-news-section__container">
+      {{ range .Params.news }}
+        <div class="c-news-section__item">
+          <div class="c-news-section__item__header">
+            <span class="c-headline-secondary-inline">{{ .date }}</span>
+            {{/* Image */}}
+            <div class="c-news-section__item__img-wrapper">
+              {{ with $.Resources.GetMatch .image }}
+                {{ $image := .Fill "550x481" }}
+                <img
+                  alt="{{ $image.Title }}"
+                  src="{{ $image.RelPermalink }}"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="{{ $image.RelPermalink }} 550w"
+                  data-sizes="auto"
+                  class="c-news-section__item__img lazyload" />
+              {{ end }}
+            </div>
+          </div>
+          <div class="c-news-section__item__content__wrapper">
+            <h3 class="c-headline-secondary">
+              {{ .title | markdownify  }}
+            </h3>
+            <div class="c-news-section__item__content">
+              {{ .content | markdownify }}
+            </div>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  {{ end }}
+</div>

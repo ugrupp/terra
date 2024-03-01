@@ -1,0 +1,115 @@
+//
+// News section
+// --------------------------------------------------
+
+$news-item-horiz-padding: 40px;
+$news-item-horiz-padding-lg: 80px;
+
+.c-news-section__headline__wrapper {
+  padding-left: rem($container-gutter);
+  padding-right: rem($container-gutter);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: rem($container-width-default + 2 * $container-gutter);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+}
+
+.c-news-section__headline {
+  display: inline-block;
+  line-height: 1;
+  // Pixel perfect alignment with the news' dates :)
+  padding-right: rem(3px);
+  position: relative;
+  transform: rotate(-90deg) translateX(-100%);
+  transform-origin: left top;
+}
+
+.c-news-section__container {
+  display: flex;
+  overflow-x: scroll;
+  padding-right: rem($container-gutter);
+  padding-left: calc((100% - rem($container-width-default + 2 * $container-gutter)) / 2 );
+
+  // This breakpoint depends on the maximum width
+  // of the container: $container-width-default + 2 * $container-gutter;
+  @include mappy-bp(1480px) {
+    padding-right: calc((100% - rem($container-width-default + 2 * $container-gutter)) / 2 + $container-gutter );
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.c-news-section__item {
+  padding-left: rem($container-gutter);
+  flex: 0 0 100%;
+  z-index: 1; // > news section container headline
+
+  @include mappy-bp($bp-grid-collapse) {
+    flex: 0 0 56%;
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    flex: 0 0 38%;
+  }
+
+  &:not(:first-child) {
+    @include mappy-bp($bp-grid-collapse) {
+      margin-left: rem($news-item-horiz-padding);
+    }
+
+    @include mappy-bp($bp-grid-collapse-lg) {
+      margin-left: rem($news-item-horiz-padding-lg);
+    }
+  }
+}
+
+.c-news-section__item__header {
+  padding-left: 20%;
+}
+
+.c-news-section__item__img {
+  display: block;
+  width: 100%;
+}
+
+.c-news-section__item__content__wrapper {
+  padding-top: rem(28px);
+
+  @include mappy-bp($bp-grid-collapse) {
+    padding-top: rem(36px);
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    padding-top: rem(46px);
+  }
+
+  .c-headline-secondary {
+    color: $color-primary;
+  }
+}
+
+.c-news-section__item__content {
+  padding-top: rem(12px);
+
+  @include mappy-bp($bp-grid-collapse) {
+    padding-top: rem(18px);
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    padding-top: rem(24px);
+  }
+
+  .c-button {
+    margin-top: rem(20px);
+
+    @include mappy-bp($bp-grid-collapse) {
+      margin-top: rem(30px);
+    }
+  }
+}
