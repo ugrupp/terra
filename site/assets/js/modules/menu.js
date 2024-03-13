@@ -13,6 +13,7 @@ export default class Menu {
         this.inited = true;
         this.togglers = [...document.querySelectorAll('[data-menu-toggler]')];
         this.items = [...this.el.querySelectorAll('[data-menu-item]')];
+        this.itemsLinks = [...this.el.querySelectorAll('[data-menu-item] a')];
       } else {
         console.error('Error: Menu could not be initialized.'); // eslint-disable-line no-console
         return this;
@@ -22,6 +23,7 @@ export default class Menu {
       this.initMenuItemWidths();
       this.initTogglers();
       this.initOutsideClick();
+      this.initLinkClick();
     });
 
     return this;
@@ -57,6 +59,22 @@ export default class Menu {
       if (this.el !== e.target && !this.el.contains(e.target)) {
         this.close();
       }
+    });
+  }
+
+  // Close the overlay when clicking on anchor links on the same page
+  // to ensure the menu always closes, regardless of the scroll direction.
+  // Without this code, the menu will only close
+  // when the clicked anchor link scrolls the page down.
+  initLinkClick() {
+    this.itemsLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        // Close the overlay only when the clicked
+        // element is an anchor link on the same page.
+        if (link.href.indexOf('#') > -1 && link.href.split('#')[0] === window.location.href.split('#')[0]) {
+          this.close();
+        }
+      });
     });
   }
 
