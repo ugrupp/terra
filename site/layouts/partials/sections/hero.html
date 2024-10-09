@@ -65,6 +65,14 @@
     </div>
   {{ end }}
 
+  {{/* Herbstaktion */}}
+  {{ if true }}
+    <a class="c-hero__badge" href="https://herbstaktion.terra-boden.de" target="_blank">
+      {{ partial "components/svg" (dict "svg" "aktionsangebote") }}
+      <span class="u-invisible">Hier finden Sie unsere Aktions-Angebote</span>
+    </a>
+  {{ end }}
+
   {{/* Content */}}
   {{ if .Params.heroText }}
     <div class="c-hero__content">
