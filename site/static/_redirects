@@ -1,7 +1,9 @@
 # Redirect default Netlify subdomain to primary domain
 http://terra-boden.netlify.com/* https://www.terra-boden.de/:splat 301!
 https://terra-boden.netlify.com/* https://www.terra-boden.de/:splat 301!
-/broschuere-parkett/* https://broschuere-parkett.terra-boden.de/:splat 301!
 
 http://herbstaktion.terra-boden.de/* https://www.terra-boden.de/terra-bodenbelaege-herbsteinleger.pdf 301!
 https://herbstaktion.terra-boden.de/* https://www.terra-boden.de/terra-bodenbelaege-herbsteinleger.pdf 301!
+
+http://broschuere-parkett.terra-boden.de/* https://www.terra-boden.de/broschuere-parkett/ 301!
+https://broschuere-parkett.terra-boden.de/* https://www.terra-boden.de/broschuere-parkett/ 301!

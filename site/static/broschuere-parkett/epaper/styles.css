@@ -1,0 +1,309 @@
+.epaper {
+  font-family: "EPFontRegular";
+  font-size: 12px;
+  color: #ffffff;
+}
+b {
+  font-family: "EPFontBold";
+}
+strong {
+  font-family: "EPFontBold";
+}
+.background {
+  background-color: #f6f5f5;
+  background-image: url() no-repeat;
+}
+.flipArea {
+  color: #ffffff;
+  alpha: 0.5;
+  background-color: #404040;
+  background-alpha: 0.25;
+}
+.flipArea_rollover {
+  alpha: 1;
+  background-alpha: 0.5;
+}
+.pageNumber {
+  color: #ffffff;
+}
+.common_cancelButton {
+  color: #ffffff;
+  background-color: #ca2023;
+}
+.common_okayButton {
+  color: #ffffff;
+  background-color: #5192fc;
+}
+.common_inputField {
+  color: #ffffff;
+  background-color: #333333;
+}
+.common_scroller {
+  color: #bbbbbb;
+  background-color: #2d2d2d;
+  background-alpha: 0.7;
+}
+.common_scroller_rollover {
+  color: #ffffff;
+}
+.common_rightBound {
+  align: right;
+}
+.toolBar {
+  margin: 16px;
+  color: #ffffff;
+  background-alpha: 0.5;
+}
+.toolBar_searchInput {
+  color: #BCBDBD;
+  background-color: #2d2d2d;
+  background-alpha: 0.85;
+}
+.toolBar_searchInputDummy {
+  color: #AAAAAA;
+  font-size: 10px;
+}
+.toolBar_Button {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.toolBar_rollover {
+  color: #c3c3c3;
+}
+.toolBar_active {
+  color: #4f90f7;
+  background-color: #009FE3;
+  background-alpha: 0;
+}
+.toolbar_zoomTrack {
+  alpha: 0.2;
+  height: 9px;
+  width: 164px;
+}
+.pageNumberThumb {
+  color: #ffffff;
+}
+.title {
+  font-weight: bold;
+  leading: 8px;
+}
+.author {
+  font-weight: bold;
+  color: #999999;
+  leading: 6px;
+}
+.description {
+  font-size: 12px;
+  leading: 4px;
+}
+.tooltip {
+  margin: 4px;
+  max-width: 360px;
+  padding: 4px;
+  padding-left: 11px;
+  padding-right: 11px;
+  color: #ffffff;
+  background-color: #222222;
+  background-alpha: 0.9;
+}
+.tooltip_bigger {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding: 8px;
+  background-color: #222222;
+  background-alpha: 0.85;
+}
+.pagesNav {
+  margin: 16px;
+  padding: 12px;
+}
+.pagesNavScroller {
+  color: #eeeeee;
+  background-color: #ffffff;
+  background-alpha: 0.45;
+}
+.pagesNavScroller_rollover {
+  color: #ffffff;
+}
+.message {
+  width: 400px;
+}
+.messageHead {
+  padding: 6px;
+  height: 40px;
+  font-size: 14pt;
+  color: #ffffff;
+  background-color: #2b2b2b;
+}
+.messageBody {
+  padding: 6px;
+  color: #ffffff;
+  background-color: #3d3d3d;
+}
+.messageFooter {
+  padding: 10px;
+  padding-bottom: 6px;
+}
+.directory {
+  min-width: 260px;
+  max-width: 500px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.directoryHead {
+  padding: 6px;
+  height: 40px;
+  font-size: 13pt;
+  color: #ffffff;
+  background-color: #2b2b2b;
+  background-alpha: 0.8;
+}
+.directoryBody {
+  padding: 6px;
+  padding-top: 12px;
+  color: #ffffff;
+  background-color: #3d3d3d;
+  background-alpha: 0.6;
+}
+.directoryFooter {
+  padding: 4px;
+}
+.directoryItem {
+  color: #ffffff;
+}
+.directoryItem_active {
+  color: #ffffff;
+}
+.modalDialog {
+  min-width: 120px;
+  max-width: 500px;
+  background-color: #000000;
+  background-alpha: 0.35;
+}
+.modalDialogHead {
+  padding: 10px;
+  height: 40px;
+  font-size: 13pt;
+  color: #ffffff;
+  background-color: #2b2b2b;
+}
+.modalDialogBody {
+  padding: 10px;
+  padding-top: 6px;
+  padding-bottom: 20px;
+  color: #ffffff;
+  background-color: #3d3d3d;
+}
+.modalDialogFooter {
+  padding: 0;
+}
+.shareWinDialog {
+  min-width: 220px;
+  background-color: #000000;
+  background-alpha: 0.35;
+}
+.searchBox {
+  min-width: 260px;
+  max-width: 650px;
+  margin-top: 46px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.searchBoxEntry {
+  color: #cccccc;
+}
+.searchBoxEntry_term {
+  color: #ffffff;
+}
+.searchNotFoundFooter {
+  padding: 10px;
+}
+.embedDialog {
+  width: 560px;
+  background-color: #000000;
+  background-alpha: 0.35;
+}
+.embedDialogBody {
+  padding: 0;
+  padding-bottom: 16px;
+  color: #ffffff;
+  background-color: #3d3d3d;
+}
+.embedSelectionFrame {
+  font-size: 10pt;
+  color: #ffffff;
+}
+.overviewDialog {
+  min-width: 600px;
+  margin: 30px;
+  background-color: #000000;
+  background-alpha: 0.25;
+}
+.overviewDialogBody {
+  padding: 40px;
+  padding-top: 60px;
+  color: #ffffff;
+  background-color: #3d3d3d;
+}
+.mediaBox {
+  width: 246px;
+}
+.mediaBoxHead {
+  padding: 6px;
+  height: 10px;
+  background-color: #2b2b2b;
+  background-alpha: 0.7;
+}
+.mediaBoxBody {
+  padding: 12px;
+  padding-bottom: 6px;
+  background-color: #404040;
+  background-alpha: 0.5;
+}
+.mediaBoxFooter {
+  padding: 0;
+}
+.mediaBoxItem {
+  font-size: 11px;
+  color: #dddddd;
+}
+.mediaBoxItem_rollover {
+  font-size: 11px;
+  color: #ffffff;
+}
+.galleryHead {
+  color: #ffffff;
+  height: 40px;
+  padding: 6px;
+  background-color: #2b2b2b;
+}
+.galleryBody {
+  background-color: #2b2b2b;
+  background-alpha: 0.66;
+}
+.galleryBG {
+  background-color: #2b2b2b;
+  background-alpha: 0.5;
+}
+.galleryBG_embed {
+  background-color: #C0C0C0;
+  background-alpha: 0.15;
+}
+.playerFader {
+  color: #4E8DF3;
+  background-color: #19191a;
+}
+.playerSelector {
+  color: #ffffff;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 8px;
+}
+.playerTimeText {
+  font-size: 11pt;
+  color: #ffffff;
+}

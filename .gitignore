@@ -1,5 +1,4 @@
 dist/*
-!dist/broschuere-parkett/
 
 site/resources/_gen
 

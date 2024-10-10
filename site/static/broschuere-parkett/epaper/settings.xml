@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings errorlevel="ALL">
+  
+  <language lang="de"/>
+  
+  <!-- VERALTET! Für Abwärtskompativilität noch drin. Wird durch analogen Eintrag in der epaper.xml überschrieben! --> 
+  <pdfDownload enabled="0" src="ausgabe.pdf?rnd=5db1ae01246e8"/>
+  
+  <NoInterface hideCompleteInterface="0"/>
+  <smartInterface atWidth="800" atHeight="500"/>
+
+  <mouse useSystemCursor="0"/>
+  
+  <notes enabled="0" rememberWindowStates="0"/>
+  
+  <flipbook>
+	<book rotated="0" maxPagesLoaded="16" pagesLoadingParallel="3" avoidBrowserCache="0"/>
+	<pages pagewidth="724" pageheight="1024" scaling="0" readModeScale="1" bgcolor="0x62727f" shadows="1"/>
+	<flipping pagesMaxAutoAnim="4" pagesTurning4LowQual="2" flipSpeed="0.3">
+    <flipInnerArea width="0.18" widthSmartIFace="0.35"/> <!-- Breite des Blätterbereiches auf den Seiten, Angabe relativ zur Seitenbreite -->
+    <flipOuterArea width="0.05" widthSmartIFace="0.1"/> <!-- Breite des überstehenden Blätterbereiches, Angabe relativ zur Seitenbreite -->
+  </flipping>
+	<zoom zoomClicks_pageCentered="0" minZoomForReading="1.5" zoomMax="7"/>
+	<pagination showPageNumbers="0"/>
+  </flipbook>
+  
+  <toolbar enabled="1">			
+    <!-- align kann sein: TL oder left oder TR oder right ; width und height Angabe raus -->
+	  <logo visible="0" src="?rnd=5db1ae01246e8" align="TL" url="" targetAlpha="1"/> 
+		<buttons>
+			<directory enabled="0" useCaption="0" dividerLeft="0" dividerRight="0"/>
+			<overview enabled="1" useCaption="0" dividerLeft="0" dividerRight="0"/>
+			<tutorial enabled="0" useCaption="0" dividerLeft="0" dividerRight="0"/>
+			<notes enabled="0" useCaption="0" dividerLeft="0" dividerRight="0"/>
+			<bookmarks enabled="0" useCaption="0" dividerLeft="0" dividerRight="0"/>
+			<print enabled="0" useCaption="0" dividerLeft="0" dividerRight="0"/>
+			<share enabled="1" useCaption="0" dividerLeft="0" dividerRight="0"/>
+			<embed enabled="1" useCaption="0" dividerLeft="0" dividerRight="0"/>
+			<download enabled="1" useCaption="0" dividerLeft="0" dividerRight="0"/>
+			<shopping enabled="0" useCaption="0" dividerLeft="0" dividerRight="0" jsFunction=""/>
+
+			<!--<custom enabled="1" useCaption="0" dividerLeft="0" dividerRight="0" src="icons/flash_v3/menu_shopping.png" url="www.mfoptik.de" jsFunction="shareWith">
+				(shopping:) Beispiel für einen individuellen Eintrag.
+			</custom>
+			<custom enabled="1" useCaption="0" dividerLeft="0" dividerRight="0" src="icons/flash_v3/menu_linkextern.png" url="www.mfoptik.de" jsFunction="shareWith">
+				(linkextern:) Beispiel für einen individuellen Eintrag.
+			</custom>-->
+			
+			<fullscreen enabled="1" useCaption="0" dividerLeft="0" dividerRight="0" lockInFullscreen="0"/>
+		</buttons>
+		<zoomScroller useCaption="0"/>
+	<!-- <closeButton enabled="0"/>  momentan nicht genutzt .. aber sollte wieder rein?? -->
+
+  </toolbar>
+ 
+  <pagesNavigation enabled="1"/>
+ 
+  <player>
+	<galleries/>
+	<images maxScale="1"/>
+	<movies/>
+  </player>
+  
+  <contextmenu>
+	  <item url="http://www.1000grad-epaper.de/">powered by 1000°ePaper</item>
+  </contextmenu>
+  
+  <statistics sendJSevents="1" url="" policy_url="" id_epaper="foobar"/>
+
+  <share jsFunction="shareWith">
+		<btn id="facebook" enabled="1" iconAssetClass="SharePerFB" tooltip_langstringName="SHARE_PER_FB"/>
+		<btn id="gplus" enabled="1" iconAssetClass="SharePerGPlus" tooltip_langstringName="SHARE_PER_GP"/>
+		<btn id="twitter" enabled="1" iconAssetClass="SharePerTwitter" tooltip_langstringName="SHARE_PER_TW"/>
+		<btn id="whatsapp" enabled="0" iconAssetClass="" tooltip_langstringName=""/>
+		<btn id="telegram" enabled="0" iconAssetClass="" tooltip_langstringName=""/>
+		<btn id="line" enabled="0" iconAssetClass="" tooltip_langstringName=""/>
+		<btn id="tumblr" enabled="0" iconAssetClass="" tooltip_langstringName=""/>
+		<btn id="reddit" enabled="0" iconAssetClass="" tooltip_langstringName=""/>
+		<btn id="pocket" enabled="0" iconAssetClass="" tooltip_langstringName=""/>
+		<btn id="pinterest" enabled="0" iconAssetClass="" tooltip_langstringName=""/>
+		<btn id="renren" enabled="0" iconAssetClass="" tooltip_langstringName=""/>
+		<btn id="sinaweibo" enabled="0" iconAssetClass="" tooltip_langstringName=""/>
+		<btn id="vk" enabled="0" iconAssetClass="" tooltip_langstringName=""/>		
+		<btn id="email" enabled="1" iconAssetClass="SharePerMail" tooltip_langstringName="SHARE_PER_EM"/>
+		<btn id="xing" enabled="1" iconAssetClass="SharePerXING" tooltip_langstringName="SHARE_PER_XG"/>
+		<btn id="linkedin" enabled="1" iconAssetClass="SharePerLinkedIn" tooltip_langstringName="SHARE_PER_LI"/>
+  </share> 
+  <directory enabled="0" visibleAtStart="0" hideAtItemClick="1" hideAtPageTurn="1" hideAtZoom="1" pageNumbers_enabled="1"/>
+  <overview enabled="1" thumbWidth="120" thumbHeight="170"/>    
+  <linkedMedia hideEmptyBoxes="1" boxesOverlapEpaper="1" showAndLockInOverview="0" flexHeight="1">
+		<boxLeft enabled="1"/>
+		<boxRight enabled="1"/>
+		<icons showInBox="1" showOnGeo="1">
+		  <icon id="blank.png" src="icons/HTML5_V2/blank.png?rnd=5db1ae01246e8"/>
+		  <icon id="email.png" src="icons/HTML5_V2/email.png?rnd=5db1ae01246e8"/>
+		  <icon id="file.png" src="icons/HTML5_V2/file.png?rnd=5db1ae01246e8"/>
+		  <icon id="galery.png" src="icons/HTML5_V2/galery.png?rnd=5db1ae01246e8"/>
+		  <icon id="image.png" src="icons/HTML5_V2/image.png?rnd=5db1ae01246e8"/>
+		  <icon id="link.png" src="icons/HTML5_V2/link.png?rnd=5db1ae01246e8"/>
+		  <icon id="linkintern.png" src="icons/HTML5_V2/linkintern.png?rnd=5db1ae01246e8"/>
+		  <icon id="linkextern.png" src="icons/HTML5_V2/menu_linkextern.png?rnd=5db1ae01246e8"/>
+		  <icon id="pdf.png" src="icons/HTML5_V2/pdf.png?rnd=5db1ae01246e8"/>
+		  <icon id="readme.png" src="icons/HTML5_V2/readme.png?rnd=5db1ae01246e8"/>
+		  <icon id="menu_shopping.png" src="icons/HTML5_V2/menu_shopping.png?rnd=5db1ae01246e8"/>
+		  <icon id="shopping.png" src="icons/HTML5_V2/shopping.png?rnd=5db1ae01246e8"/>
+		  <icon id="video.png" src="icons/HTML5_V2/video.png?rnd=5db1ae01246e8"/>
+		  <icon id="zip.png" src="icons/HTML5_V2/zip.png?rnd=5db1ae01246e8"/>
+		</icons>
+		<geo enabled="1" color="0xC0C0C0" alpha="0.15" hoverColor="0xC0C0C0" hoverAlpha="0.5"/>
+  </linkedMedia>
+  
+  <search enabled="1" highlightColor="3399FF" hideAtItemClick="1" hideAtPageTurn="1" hideAtZoom="1">
+		<pureTextFile format="xml" src="search.xml?rnd=5db1ae01246e8"/>
+  </search>
+  
+  <stylesheets src="styles.css?rnd=5db1ae01246e8" fontsFile="" fontThickness="50" fontSharpness="-50"/>
+  <!-- fontsFile kann mehrere Dateien benennen, getrennt durch Komma. -->
+
+  <googleAdsense clientId="" slotId=""/>
+  
+<title><![CDATA[Broschüre Parkett]]></title></settings>
