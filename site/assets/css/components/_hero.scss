@@ -158,23 +158,3 @@
     max-width: rem(220px);
   }
 }
-
-.c-hero__badge {
-  position: absolute;
-  top: 53%;
-  right: rem(15px);
-  z-index: 12; // > content
-  height: rem(150px);
-  width: rem(150px);
-
-  @include mappy-bp(md) {
-    top: calc(#{rem($topbar-height-top + $hero-banner-height-md + 30px)});
-    right: rem(30px);
-  }
-
-  svg {
-    display: block;
-    height: 100%;
-    width: 100%;
-  }
-}
