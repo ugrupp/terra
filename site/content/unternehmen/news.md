@@ -1,6 +1,14 @@
 ---
 headline: Neuigkeiten
 news:
+  - image: news/neuigkeiten-getec-2025.jpg
+    title: "GETEC: <strong>07. - 09. FEBRUAR</strong>"
+    date: Februar 2025
+    content: "Wir sind vom 07.02.2025 - 09.02.2025 auf der GEBÄUDE ENERGIE.TECHNIK (GETEC) in Freiburg. Besuchen Sie uns am Messestand: <strong class='c-headline-secondary-inline'>HALLE 2, STAND 2.7.02</strong>"
+  - image: news/neuigkeiten-aktionstage.jpg
+    title: "AKTIONSTAGE: <strong>12. & 13. OKTOBER</strong>"
+    date: Oktober 2024
+    content: "Im vergangenen Oktober boten wir zwei Tage mit spannenden Einblicken in die Themen <strong class='c-headline-secondary-inline'>Bodenbeläge</strong>, <strong class='c-headline-secondary-inline'>Fussbodenheizung</strong>, <strong class='c-headline-secondary-inline'>Energieberatung</strong> und <strong class='c-headline-secondary-inline'>Vaillant Wärmepumpen</strong>. Der Wärmenpumpen-Hersteller VAILLANT zeigt die neuesten Modelle, HEIZUNGSBAU SONNER beriet zu Fußbodenheizung und Wärmepumpen und ÜBERENERGIE informierte zu Fördermöglichkeiten und Energieeffizienz."
   - image: news/neuigkeiten-getec.jpg
     title: "GETEC: <strong>01. - 03. März</strong>"
     date: März 2024
