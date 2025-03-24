@@ -3,8 +3,6 @@ title: Startseite
 meta_title: Parkett, Designböden, Laminat, Teppiche, Türen | Terra Bodenbeläge aus Freiburg-Opfingen
 description: "Bei uns finden Sie die ganze Welt wertiger Bodenbeläge: markanter Parkett, flexibler Vinyl oder lebendiger Laminat? Wir haben den Belag, der Ihren Raum besonders macht."
 heroText: Bei uns finden Sie die ganze Welt **wertiger Bodenbeläge**
-heroBanner:
-  text: "Wir sind vom 07.02.2025 - 09.02.2025 auf der **GEBÄUDE.ENERGIE.TECHNIK (GETEC)** in Freiburg. **BESUCHEN SIE UNS AM MESSESTAND:** Halle 2, Stand 2.7.02"
 hero: true
 footer_image: footer_alternative.jpg
 menu:
