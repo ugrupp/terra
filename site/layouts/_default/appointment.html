@@ -1,0 +1,41 @@
+{{ define "main" }}
+<div class="o-main__content" id="content">
+  <section class="o-main__section--appointment">
+    <div class="o-container">
+      <h1
+        class="c-headline c-headline--primary c-headline--with-spacing{{ if .Params.hide_title }} o-main__hidden-headline{{ end }}"
+      >
+        {{ .Title }}
+      </h1>
+
+      <!-- Full-width appointment section -->
+      <div class="c-appointment-section">
+        {{ if .Params.bookings_url }}
+        <iframe
+          src="{{ .Params.bookings_url }}"
+          width="100%"
+          height="auto"
+          scrolling="yes"
+          style="border: 0"
+        ></iframe>
+        {{ else }}
+        <!-- Fallback content when bookings_url is not set -->
+        <div class="c-richtext c-richtext--primary" style="padding: 2rem">
+          <p>
+            Bitte kontaktieren Sie uns telefonisch oder per E-Mail, um einen
+            Termin zu vereinbaren.
+          </p>
+          <p><strong>Telefon:</strong> <a href="tel:+49...">+49 ...</a></p>
+          <p>
+            <strong>E-Mail:</strong>
+            <a href="mailto:info@terra-bodenbelaege.de"
+              >info@terra-bodenbelaege.de</a
+            >
+          </p>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+</div>
+{{ end }}

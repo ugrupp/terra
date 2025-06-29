@@ -50,7 +50,6 @@
   opacity: 0;
 }
 
-
 .c-topbar__inner {
   height: 100%;
   display: flex;
@@ -70,7 +69,7 @@
   @include mappy-bp($bp-menu-collapse) {
     align-self: flex-start;
     margin-bottom: 0;
-    margin-top: rem(123px); // magic, aligns with the logo signet bottom edge
+    margin-top: rem(40px); // magic, aligns with the logo signet top edge
   }
 }
 

@@ -12,6 +12,7 @@ export default class Menu {
       if (this.el) {
         this.inited = true;
         this.togglers = [...document.querySelectorAll('[data-menu-toggler]')];
+        this.mainMenu = document.querySelector('[data-menu-main]');
         this.items = [...this.el.querySelectorAll('[data-menu-item]')];
         this.itemsLinks = [...this.el.querySelectorAll('[data-menu-item] a')];
       } else {
@@ -109,14 +110,14 @@ export default class Menu {
 
   // Opens submenu on menu hover
   initSubmenuToggler() {
-    this.el.addEventListener('mouseenter', () => {
+    this.mainMenu.addEventListener('mouseenter', () => {
       // mouseenter
       if (this._isDesktop()) {
         this.openSubmenu();
       }
     });
 
-    this.el.addEventListener('mouseleave', () => {
+    this.mainMenu.addEventListener('mouseleave', () => {
       // mouseleave
       if (this._isDesktop()) {
         this.closeSubmenu();

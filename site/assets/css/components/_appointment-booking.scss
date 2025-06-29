@@ -1,0 +1,29 @@
+.o-main__section--appointment {
+  background-color: #f4f4f4;
+  padding-bottom: 0;
+  padding-top: rem(40px);
+
+  @include mappy-bp(md) {
+    padding-top: rem(82px);
+  }
+
+  .o-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.c-appointment-section {
+  width: 100%;
+
+  iframe {
+    width: 100%;
+    height: 2100px;
+    border: none;
+    display: block;
+
+    @include mappy-bp(md) {
+      height: 2000px;
+    }
+  }
+}

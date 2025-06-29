@@ -8,15 +8,6 @@
 @include mappy-bp($bp-menu-collapse) {
   .c-menu {
     position: relative;
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: rem(-30px);
-      right: rem(-30px);
-      top: rem(-30px);
-      bottom: 0;
-    }
   }
 }
 
@@ -48,14 +39,14 @@
     // burger
     &:first-of-type {
       .is-open & {
-        transform: scale(.75);
+        transform: scale(0.75);
         opacity: 0;
       }
     }
 
     // close
     &:last-of-type {
-      transform: scale(.75);
+      transform: scale(0.75);
       opacity: 0;
 
       .is-open & {
@@ -101,6 +92,20 @@
   }
 }
 
+.c-menu__top {
+  margin-bottom: rem(50px);
+
+  @include mappy-bp($bp-menu-collapse) {
+    display: flex;
+    justify-content: end;
+    margin-bottom: rem(60px);
+  }
+
+  a {
+    font-size: rem(13px);
+  }
+}
+
 .c-menu__main {
   @include mappy-bp($bp-menu-collapse) {
     display: flex;
@@ -121,7 +126,7 @@
   > li {
     @include mappy-bp($bp-menu-collapse) {
       &::after {
-        content: '';
+        content: "";
         background-color: $color-gray-d;
         position: absolute;
         right: rem(20px);
@@ -164,7 +169,7 @@
     display: flex;
     align-items: baseline;
 
-    @include typi('menu');
+    @include typi("menu");
     @include font-ci;
     text-transform: uppercase;
     @include font-smoothing;
@@ -225,7 +230,7 @@ $submenu-desktop-padding: 12px;
     }
 
     &::after {
-      content: '';
+      content: "";
       background-color: $color-gray-d;
       position: absolute;
       right: 0;
@@ -240,7 +245,7 @@ $submenu-desktop-padding: 12px;
   }
 
   a {
-    @include typi('menu-sub');
+    @include typi("menu-sub");
 
     @include mappy-bp(max $bp-menu-collapse) {
       font-weight: 400;

@@ -110,3 +110,8 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     parent = "contact"
     weight = 20
     url = "/#kontakt-kehl"
+
+  [[menu.top]]
+    name = "Termin buchen"
+    identifier = "termin-buchen"
+    url = "/termin-buchen/"

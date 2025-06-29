@@ -7,8 +7,22 @@
   </a>
 
   <nav class="c-menu__inner c-menu__container o-container">
+    {{/* Menu top */}}
+    <ul class="c-menu__top">
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.top }}
+        <li>
+          <a class="c-headline c-headline--padded c-headline--primary {{if or ($currentPage.IsMenuCurrent "top" .) ($currentPage.HasMenuCurrent "top" .) }} active{{end}}"
+            href="{{ .URL }}"
+          >
+            {{ .Name }}
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+
     {{/* Main menu */}}
-    <ul class="c-menu__main">
+    <ul class="c-menu__main" data-menu-main>
       {{ $currentPage := . }}
       {{ range .Site.Menus.main }}
         <li data-menu-item>
