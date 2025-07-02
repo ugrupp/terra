@@ -13,7 +13,7 @@
     <ul class="c-menu__top">
       {{ range .Site.Menus.top }}
         <li>
-          <a class="c-headline c-headline--padded c-headline--primary{{ if $currentPage.IsMenuCurrent "top" . }} active{{ end }}"
+          <a class="c-button c-button--primary{{ if $currentPage.IsMenuCurrent "top" . }} active{{ end }}"
             href="{{ .URL }}"
           >
             {{ .Name }}

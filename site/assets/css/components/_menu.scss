@@ -93,10 +93,13 @@
 }
 
 .c-menu__top {
+  display: flex;
+  flex-direction: column;
   margin-bottom: rem(50px);
+  row-gap: rem(10px);
 
   @include mappy-bp($bp-menu-collapse) {
-    display: flex;
+    flex-direction: row;
     justify-content: end;
     column-gap: rem(10px);
     margin-bottom: rem(60px);
@@ -104,6 +107,22 @@
 
   a {
     font-size: rem(13px);
+    padding: rem(6px) rem(8px) rem(3px);
+
+    &.active {
+      background-color: $color-content;
+    }
+
+    @include mappy-bp(max $bp-menu-collapse) {
+      background-color: $color-white;
+      color: $color-primary;
+
+      &:hover,
+      &:focus,
+      &.active {
+        color: $color-white;
+      }
+    }
   }
 }
 
