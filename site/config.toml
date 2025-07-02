@@ -90,12 +90,6 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     weight = 60
 
   [[menu.main]]
-    name = "Anfrage"
-    identifier = "anfrage"
-    weight = 17
-    url = "/#anfrage"
-
-  [[menu.main]]
     name = "Kontakt"
     identifier = "contact"
     weight = 300
@@ -115,3 +109,8 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     name = "Termin buchen"
     identifier = "termin-buchen"
     url = "/termin-buchen/"
+  [[menu.top]]
+    name = "Anfrage"
+    identifier = "anfrage"
+    weight = 17
+    url = "/#anfrage"

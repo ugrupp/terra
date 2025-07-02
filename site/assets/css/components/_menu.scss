@@ -163,6 +163,44 @@
         padding-right: rem(80px);
       }
     }
+
+    &:last-child {
+      @include mappy-bp($bp-menu-collapse) {
+        &::after {
+          right: 0;
+        }
+
+        > a {
+          padding-right: rem(20px);
+        }
+      }
+
+      @include mappy-bp(lg) {
+        > a {
+          padding-right: rem(30px);
+        }
+      }
+
+      @include mappy-bp(xl) {
+        > a {
+          padding-right: rem(40px);
+        }
+      }
+
+      .c-menu__submenu {
+        @include mappy-bp($bp-menu-collapse) {
+          width: calc(var(--item-width) * 1px);
+
+          @include mappy-bp(lg) {
+            width: calc(var(--item-width) * 1px);
+          }
+
+          @include mappy-bp(xl) {
+            width: calc(var(--item-width) * 1px);
+          }
+        }
+      }
+    }
   }
 
   > li > a {
