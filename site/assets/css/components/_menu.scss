@@ -98,6 +98,7 @@
   @include mappy-bp($bp-menu-collapse) {
     display: flex;
     justify-content: end;
+    column-gap: rem(10px);
     margin-bottom: rem(60px);
   }
 

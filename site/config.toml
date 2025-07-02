@@ -108,9 +108,11 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
   [[menu.top]]
     name = "Termin buchen"
     identifier = "termin-buchen"
+    pageRef = "/termin-buchen"
     url = "/termin-buchen/"
   [[menu.top]]
     name = "Anfrage"
     identifier = "anfrage"
     weight = 17
+    pageRef = "/"
     url = "/#anfrage"

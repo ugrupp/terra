@@ -7,12 +7,13 @@
   </a>
 
   <nav class="c-menu__inner c-menu__container o-container">
+    {{ $currentPage := . }}
+
     {{/* Menu top */}}
     <ul class="c-menu__top">
-      {{ $currentPage := . }}
       {{ range .Site.Menus.top }}
         <li>
-          <a class="c-headline c-headline--padded c-headline--primary {{if or ($currentPage.IsMenuCurrent "top" .) ($currentPage.HasMenuCurrent "top" .) }} active{{end}}"
+          <a class="c-headline c-headline--padded c-headline--primary{{ if $currentPage.IsMenuCurrent "top" . }} active{{ end }}"
             href="{{ .URL }}"
           >
             {{ .Name }}
@@ -23,7 +24,6 @@
 
     {{/* Main menu */}}
     <ul class="c-menu__main" data-menu-main>
-      {{ $currentPage := . }}
       {{ range .Site.Menus.main }}
         <li data-menu-item>
           <a class="{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}"
