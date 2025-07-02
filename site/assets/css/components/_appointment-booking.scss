@@ -18,12 +18,12 @@
 
   iframe {
     width: 100%;
-    height: 2100px;
+    height: 2280px;
     border: none;
     display: block;
 
     @include mappy-bp(md) {
-      height: 2000px;
+      height: 2100px;
     }
   }
 }
