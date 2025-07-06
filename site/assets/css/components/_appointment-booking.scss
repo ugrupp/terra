@@ -7,7 +7,7 @@
     padding-top: rem(82px);
   }
 
-  .o-container {
+  > .o-container {
     padding-left: 0;
     padding-right: 0;
   }
@@ -24,6 +24,41 @@
 
     @include mappy-bp(md) {
       height: 2100px;
+    }
+  }
+}
+
+.microsoft-bookings-placeholder {
+  background-color: $color-gray-f;
+  background-image: url("/images/microsoft-bookings-placeholder.png");
+  background-position: top center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: rem(400px);
+  margin-bottom: rem(40px);
+  padding: 0 rem(20px);
+  position: relative;
+
+  @include mappy-bp(md) {
+    height: rem(600px);
+    margin-bottom: rem(82px);
+  }
+
+  &:after {
+    background-color: rgba(0, 0, 0, 0.05);
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  span {
+    font-size: rem(16px);
+    z-index: 10;
+
+    @include mappy-bp(md) {
+      font-size: rem(20px);
     }
   }
 }
