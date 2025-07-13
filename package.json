@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.19.1",
+    "@vitejs/plugin-vue": "^3.2.0",
     "autoprefixer": "^10.4.12",
     "babel-plugin-syntax-object-rest-spread": "^6.13.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -37,11 +38,15 @@
     "stylelint-config-recommended-scss": "^7.0.0",
     "stylelint-config-standard": "^28.0.0",
     "swiper": "^4.5.1",
+    "typescript": "^4.9.5",
+    "vee-validate": "^4.15.1",
     "vite": "^3.1.3",
     "vite-hugo-plugin": "^3.0.5",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-stylelint": "^3.0.7",
-    "vite-plugin-svg-sprite-component": "^1.0.10"
+    "vite-plugin-svg-sprite-component": "^1.0.10",
+    "vue": "^3.3.0",
+    "zod": "^4.0.5"
   },
   "browserslist": [
     "ie >= 11",

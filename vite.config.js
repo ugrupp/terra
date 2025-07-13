@@ -1,5 +1,6 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 import hugoPlugin from "vite-hugo-plugin";
 import eslint from "vite-plugin-eslint";
 import StylelintPlugin from "vite-plugin-stylelint";
@@ -12,6 +13,7 @@ export default defineConfig({
   },
   publicDir: "public",
   plugins: [
+    vue(),
     eslint({
       include: "site/assets/js/**/*.js",
       exclude: "site/assets/js/vendor/**/*",

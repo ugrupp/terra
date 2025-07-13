@@ -114,5 +114,5 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     name = "Anfrage"
     identifier = "anfrage"
     weight = 17
-    pageRef = "/"
-    url = "/#anfrage"
+    pageRef = "/anfrage"
+    url = "/anfrage/"
