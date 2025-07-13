@@ -6,6 +6,13 @@
 
     <Form @submit="onSubmit">
       <Field name="email" type="email" :rules="validateEmail" />
+      <TextInput
+        name="name"
+        type="text"
+        label="Vorname"
+        placeholder="Vorname"
+      />
+      <ErrorMessage name="name" />
       <ErrorMessage name="email" />
       <button>Sign up</button>
     </Form>
@@ -14,6 +21,7 @@
 
 <script setup lang="ts">
 import { Form, Field, ErrorMessage } from "vee-validate";
+import TextInput from "@/vue-components/forms/TextInput.vue";
 
 const onSubmit = (values) => {
   console.log(values, null, 2);

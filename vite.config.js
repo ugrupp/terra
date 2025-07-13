@@ -10,8 +10,33 @@ import svgSpritePlugin from "vite-plugin-svg-sprite-component";
 export default defineConfig({
   css: {
     devSourcemap: true,
+    preprocessorOptions: {
+      scss: {
+        additionalData: (content, filename) => {
+          // Only inject variables for .vue files
+          if (filename.endsWith(".vue")) {
+            return `
+              @import "site/assets/css/configuration/_colors.scss";
+              @import "site/assets/css/configuration/_settings.scss";
+              @import "site/assets/css/configuration/_typography.scss";
+              @import "site/assets/css/utility/_functions.scss";
+              @import "site/assets/css/utility/_mixins.scss";
+              @import "site/assets/css/vendor/mappy-breakpoints.scss";
+              @import "site/assets/css/vendor/typi/typi.scss";
+              ${content}
+            `;
+          }
+          return content;
+        },
+      },
+    },
   },
   publicDir: "public",
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "site/assets/js"),
+    },
+  },
   plugins: [
     vue(),
     eslint({
@@ -28,7 +53,7 @@ export default defineConfig({
     hugoPlugin({
       appDir: resolve(__dirname, "site"),
       hugoOutDir: resolve(__dirname, "dist"),
-      ignoreHTMLFiles: [resolve(__dirname, "dist/weihnachtsgruss/index.html",)]
+      ignoreHTMLFiles: [resolve(__dirname, "dist/weihnachtsgruss/index.html")],
     }),
   ],
 });
