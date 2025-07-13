@@ -12,6 +12,11 @@
         label="Vorname"
         placeholder="Vorname"
       />
+      <TextArea
+        name="message"
+        label="Ihre Anmerkungen"
+        placeholder="Ihre Anmerkungen"
+      />
       <ErrorMessage name="name" />
       <ErrorMessage name="email" />
       <button>Sign up</button>
@@ -21,6 +26,7 @@
 
 <script setup lang="ts">
 import { Form, Field, ErrorMessage } from "vee-validate";
+import TextArea from "@/vue-components/forms/TextArea.vue";
 import TextInput from "@/vue-components/forms/TextInput.vue";
 
 const onSubmit = (values) => {
