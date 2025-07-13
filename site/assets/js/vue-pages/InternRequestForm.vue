@@ -4,47 +4,69 @@
       <p class="form-description">Intern request form</p>
     </div>
 
-    <Form @submit="onSubmit">
-      <Field name="email" type="email" :rules="validateEmail" />
-      <TextInput
-        name="name"
-        type="text"
-        label="Vorname"
-        placeholder="Vorname"
-      />
-      <TextArea
+    <form @submit="onSubmit">
+      <FormField
+        v-slot="{ componentField }"
+        name="username"
+        :validate-on-blur="!isFieldDirty"
+      >
+        <FormItem>
+          <FormLabel class="u-invisible">Username</FormLabel>
+          <FormControl>
+            <Input type="text" placeholder="shadcn" v-bind="componentField" />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+
+      <FormField
+        v-slot="{ componentField }"
         name="message"
-        label="Ihre Anmerkungen"
-        placeholder="Ihre Anmerkungen"
-      />
-      <ErrorMessage name="name" />
-      <ErrorMessage name="email" />
+        :validate-on-blur="!isFieldDirty"
+      >
+        <FormItem>
+          <FormLabel class="u-invisible">Ihre Anmerkungen</FormLabel>
+          <FormControl>
+            <Textarea placeholder="Ihre Anmerkungen" v-bind="componentField" />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+
       <button>Sign up</button>
-    </Form>
+    </form>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Form, Field, ErrorMessage } from "vee-validate";
-import TextArea from "@/vue-components/forms/TextArea.vue";
-import TextInput from "@/vue-components/forms/TextInput.vue";
+import { toTypedSchema } from "@vee-validate/zod";
+import { useForm, Form, Field, ErrorMessage } from "vee-validate";
+import * as z from "zod";
 
-const onSubmit = (values) => {
-  console.log(values, null, 2);
-};
-const validateEmail = (value) => {
-  // if the field is empty
-  if (!value) {
-    return "This field is required";
-  }
-  // if the field is not a valid email
-  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-  if (!regex.test(value)) {
-    return "This field must be a valid email";
-  }
-  // All is good
-  return true;
-};
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/vue-components/shadcn/form";
+import { Input } from "@/vue-components/shadcn/input";
+import { Textarea } from "@/vue-components/shadcn/textarea";
+
+const formSchema = toTypedSchema(
+  z.object({
+    username: z.string().min(2).max(50),
+    message: z.string().min(2).max(500),
+  }),
+);
+
+const { isFieldDirty, handleSubmit } = useForm({
+  validationSchema: formSchema,
+});
+
+const onSubmit = handleSubmit((values) => {
+  console.log(values);
+});
 </script>
 
 <style lang="scss" scoped>
@@ -62,5 +84,11 @@ const validateEmail = (value) => {
     color: #666;
     font-size: 1.1rem;
   }
+}
+
+form > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
 </style>
