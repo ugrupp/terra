@@ -33,6 +33,34 @@
         </FormItem>
       </FormField>
 
+      <FormField v-slot="{ componentField }" type="radio" name="type">
+        <FormItem>
+          <FormControl>
+            <RadioGroup class="radio-group" v-bind="componentField">
+              <FormItem class="radio-form-item">
+                <FormControl>
+                  <RadioGroupItem value="all" />
+                </FormControl>
+                <FormLabel>All new messages</FormLabel>
+              </FormItem>
+              <FormItem class="radio-form-item">
+                <FormControl>
+                  <RadioGroupItem value="mentions" disabled />
+                </FormControl>
+                <FormLabel>Direct messages and mentions</FormLabel>
+              </FormItem>
+              <FormItem class="radio-form-item">
+                <FormControl>
+                  <RadioGroupItem value="none" />
+                </FormControl>
+                <FormLabel>Nothing</FormLabel>
+              </FormItem>
+            </RadioGroup>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+
       <button>Sign up</button>
     </form>
   </div>
@@ -51,12 +79,19 @@ import {
   FormMessage,
 } from "@/vue-components/shadcn/form";
 import { Input } from "@/vue-components/shadcn/input";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/vue-components/shadcn/radio-group";
 import { Textarea } from "@/vue-components/shadcn/textarea";
 
 const formSchema = toTypedSchema(
   z.object({
     username: z.string().min(2).max(50),
     message: z.string().min(2).max(500),
+    type: z.enum(["all", "mentions", "none"], {
+      required_error: "You need to select a notification type.",
+    }),
   }),
 );
 
@@ -90,5 +125,22 @@ form > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-form-item {
+  display: flex;
+  align-items: center;
+  column-gap: 0.75rem;
+
+  & > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(0px * var(--tw-space-y-reverse));
+  }
 }
 </style>
