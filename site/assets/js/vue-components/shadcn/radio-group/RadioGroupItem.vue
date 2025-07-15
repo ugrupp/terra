@@ -42,6 +42,7 @@ const forwardedProps = useForwardProps(delegatedProps);
   width: rem(30px);
   border: 1px solid $color-content;
   outline: none;
+  cursor: pointer;
 
   &:focus-visible {
     outline-offset: 2px;

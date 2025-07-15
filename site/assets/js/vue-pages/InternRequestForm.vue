@@ -142,5 +142,11 @@ form > :not([hidden]) ~ :not([hidden]) {
     margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
+
+  & > button:not(:disabled) {
+    + label {
+      cursor: pointer;
+    }
+  }
 }
 </style>
