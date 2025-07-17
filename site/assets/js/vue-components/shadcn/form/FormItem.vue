@@ -17,11 +17,3 @@ provide(FORM_ITEM_INJECTION_KEY, id);
     <slot />
   </div>
 </template>
-
-<style lang="scss" scoped>
-.form-item > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
-}
-</style>

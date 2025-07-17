@@ -85,6 +85,41 @@
         </FormItem>
       </FormField>
 
+      <FormField v-slot="{ componentField }" type="radio" name="type">
+        <FormItem>
+          <FormControl>
+            <RadioGroup
+              class="radio-group radio-group--with-images"
+              v-bind="componentField"
+            >
+              <FormItem class="radio-form-item">
+                <FormControl>
+                  <RadioGroupItem value="all" image="/images/form/altbau.jpg" />
+                </FormControl>
+                <FormLabel>All new messages</FormLabel>
+              </FormItem>
+              <FormItem class="radio-form-item">
+                <FormControl>
+                  <RadioGroupItem
+                    value="mentions"
+                    disabled
+                    image="/images/form/bodenbelag.jpg"
+                  />
+                </FormControl>
+                <FormLabel>Direct messages and mentions</FormLabel>
+              </FormItem>
+              <FormItem class="radio-form-item">
+                <FormControl>
+                  <RadioGroupItem value="none" image="/images/form/haus.jpg" />
+                </FormControl>
+                <FormLabel>Nothing</FormLabel>
+              </FormItem>
+            </RadioGroup>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+
       <button>Sign up</button>
     </form>
   </div>
@@ -141,7 +176,7 @@ const onSubmit = handleSubmit((values) => {
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .client-request-form {
   max-width: 800px;
   margin: 0 auto;
@@ -167,18 +202,27 @@ form > :not([hidden]) ~ :not([hidden]) {
 .radio-group {
   display: flex;
   flex-direction: column;
+
+  &--with-images {
+    .radio-form-item {
+      align-items: end;
+
+      label {
+        display: flex;
+        margin-bottom: rem(13px);
+
+        @include mappy-bp(xs) {
+          margin-bottom: rem(16px);
+        }
+      }
+    }
+  }
 }
 
 .radio-form-item {
   display: flex;
   align-items: center;
   column-gap: 0.75rem;
-
-  & > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 0;
-    margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(0px * var(--tw-space-y-reverse));
-  }
 
   & > button:not(:disabled) {
     + label {
