@@ -51,8 +51,8 @@ input {
     color: rgba($color-content, 0.5);
   }
 
-  &:focus {
-    border-color: rgba($color-content, 0.75);
+  &:focus-visible {
+    border-color: $color-content;
   }
 
   &[aria-invalid="true"] {

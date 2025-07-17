@@ -13,7 +13,22 @@ const delegatedProps = computed(() => {
 </script>
 
 <template>
-  <Label v-bind="delegatedProps" :class="cn(props.class)">
+  <Label v-bind="delegatedProps" :class="cn('label', props.class)">
     <slot />
   </Label>
 </template>
+
+<style lang="scss" scoped>
+.label {
+  @include typi("form-large");
+  @include font-smoothing;
+
+  // fallback font for initial render to avoid FOIT
+  font-family: $font-family-base-fallback;
+
+  // fonts-loaded flag, triggered by JS
+  .wf-active & {
+    font-family: $font-family-base;
+  }
+}
+</style>

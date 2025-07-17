@@ -61,6 +61,30 @@
         </FormItem>
       </FormField>
 
+      <FormField v-slot="{ componentField }" name="email">
+        <FormItem>
+          <FormLabel>Email</FormLabel>
+
+          <Select v-bind="componentField">
+            <FormControl>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a verified email to display" />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="m@example.com">
+                  m@example.comfrfrfrfr
+                </SelectItem>
+                <SelectItem value="m@google.com"> m@google.com </SelectItem>
+                <SelectItem value="m@support.com"> m@support.com </SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+
       <button>Sign up</button>
     </form>
   </div>
@@ -83,6 +107,14 @@ import {
   RadioGroup,
   RadioGroupItem,
 } from "@/vue-components/shadcn/radio-group";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/vue-components/shadcn/select";
 import { Textarea } from "@/vue-components/shadcn/textarea";
 
 const formSchema = toTypedSchema(
@@ -92,6 +124,11 @@ const formSchema = toTypedSchema(
     type: z.enum(["all", "mentions", "none"], {
       required_error: "You need to select a notification type.",
     }),
+    email: z
+      .string({
+        required_error: "Please select an email to display.",
+      })
+      .email(),
   }),
 );
 
