@@ -4,18 +4,26 @@
       <span
         class="step-number c-headline c-headline--padded c-headline--primary"
         >{{
-          stepIndex === 0 || !values.request_type ? "Anfrage" : `Frage ${currentStepNumber} von ${totalStepsInPath}`
+          hasError
+            ? "Fehler"
+            : isSubmitted || stepIndex === 0 || !values.request_type
+            ? "Anfrage"
+            : `Frage ${currentStepNumber} von ${totalStepsInPath}`
         }}</span
       >
       <h2 class="c-headline-secondary form-question">
         {{
-          stepIndex === 0
+          isSubmitted
+            ? "Vielen Dank für Ihre Anfrage. Wir werden uns in Kürze bei Ihnen melden."
+            : hasError
+            ? errorMessage
+            : stepIndex === 0
             ? "Um Ihre Anfrage direkt bearbeiten zu können, bitte wir Sie folgende Fragen zu beantworten."
             : steps[stepIndex - 1].question
         }}
       </h2>
       <div
-        v-if="stepIndex > 0"
+        v-if="stepIndex > 0 && !hasError"
         class="form-wrapper__left-container__navigation-container"
       >
         <button
@@ -55,7 +63,9 @@
     <div
       :class="[
         'form-wrapper__right-container',
-        stepIndex === 0 ? 'form-wrapper__right-container--start-form' : '',
+        stepIndex === 0 || isSubmitted || hasError
+          ? 'form-wrapper__right-container--start-form'
+          : '',
       ]"
     >
       <form
@@ -162,10 +172,13 @@
               <FormMessage />
             </FormItem>
           </FormField>
+
+          <!-- Honeypot -->
+          <input type="text" name="strawberry_fields" class="u-invisible" />
         </div>
 
         <button
-          v-if="stepIndex === steps.length"
+          v-if="stepIndex === steps.length && !hasError"
           type="submit"
           class="c-button c-button--primary form-submit-button"
         >
@@ -184,11 +197,47 @@
         </button>
       </form>
       <button
-        v-if="stepIndex === 0"
+        v-if="stepIndex === 0 && !isSubmitted && !hasError"
         class="c-button c-button--primary form-submit-button"
         @click="onStartForm"
       >
         <span>Jetzt loslegen</span>
+        <span class="form-submit-button__icon-wrapper">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15.756"
+            height="10.066"
+          >
+            <g fill="none" stroke="currentColor" stroke-miterlimit="10">
+              <path d="M0 5.033h15.05M10.38.353l4.67 4.68-4.67 4.68" />
+            </g>
+          </svg>
+        </span>
+      </button>
+      <button
+        v-if="isSubmitted"
+        class="c-button c-button--primary form-submit-button"
+        @click="goToHomepage"
+      >
+        <span>Zur Startseite</span>
+        <span class="form-submit-button__icon-wrapper">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15.756"
+            height="10.066"
+          >
+            <g fill="none" stroke="currentColor" stroke-miterlimit="10">
+              <path d="M0 5.033h15.05M10.38.353l4.67 4.68-4.67 4.68" />
+            </g>
+          </svg>
+        </span>
+      </button>
+      <button
+        v-if="hasError"
+        class="c-button c-button--primary form-submit-button"
+        @click="retrySubmission"
+      >
+        <span>Erneut versuchen</span>
         <span class="form-submit-button__icon-wrapper">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -272,6 +321,9 @@ interface Step {
 }
 
 const stepIndex = ref(0);
+const isSubmitted = ref(false);
+const hasError = ref(false);
+const errorMessage = ref("");
 
 const steps: Step[] = [
   {
@@ -969,25 +1021,44 @@ const visibleFields = computed(() => {
 // Calculate the correct step number and total for the current path
 const currentPathSteps = computed(() => {
   if (!values.request_type) return [];
-  
-  const sharedSteps = ["WHAT", "HOUSE_TYPE", "OBJECT", "HOW_MANY_METERS", "WHERE", "WHEN", "CONTACT"];
-  
+
+  const sharedSteps = [
+    "WHAT",
+    "HOUSE_TYPE",
+    "OBJECT",
+    "HOW_MANY_METERS",
+    "WHERE",
+    "WHEN",
+    "CONTACT",
+  ];
+
   if (values.request_type === "bodenbelag") {
-    return [...sharedSteps.slice(0, 3), "FLOOR_COVERING_TYPE", "HOW", ...sharedSteps.slice(3)];
+    return [
+      ...sharedSteps.slice(0, 3),
+      "FLOOR_COVERING_TYPE",
+      "HOW",
+      ...sharedSteps.slice(3),
+    ];
   } else if (values.request_type === "fussbodenheizung") {
-    return [...sharedSteps.slice(0, 3), "WHICH_SYSTEM", "UNDERGROUND", "YEAR_OF_CONSTRUCTION", ...sharedSteps.slice(3)];
+    return [
+      ...sharedSteps.slice(0, 3),
+      "WHICH_SYSTEM",
+      "UNDERGROUND",
+      "YEAR_OF_CONSTRUCTION",
+      ...sharedSteps.slice(3),
+    ];
   }
-  
+
   return sharedSteps;
 });
 
 const currentStepNumber = computed(() => {
   if (stepIndex.value === 0) return 0;
-  
+
   const currentStep = steps[stepIndex.value - 1];
   const pathSteps = currentPathSteps.value;
-  
-  return pathSteps.findIndex(stepId => stepId === currentStep.id) + 1;
+
+  return pathSteps.findIndex((stepId) => stepId === currentStep.id) + 1;
 });
 
 const totalStepsInPath = computed(() => {
@@ -1019,10 +1090,51 @@ const onStartForm = () => {
   stepIndex.value = 1;
 };
 
-const onSubmit = () => {
-  handleSubmit((values) => {
-    console.log(values);
-  });
+const onSubmit = async () => {
+  try {
+    // Reset error state
+    hasError.value = false;
+    errorMessage.value = "";
+
+    const formData = new FormData();
+
+    // Add all form values to FormData
+    Object.keys(values).forEach((key) => {
+      if (values[key] !== undefined && values[key] !== null) {
+        formData.append(key, values[key]);
+      }
+    });
+
+    // Submit to Formspark
+    const response = await fetch("https://submit-form.com/PKajTUBnF", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      console.log("Form submitted successfully!");
+      isSubmitted.value = true;
+    } else {
+      throw new Error("Form submission failed");
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    hasError.value = true;
+    errorMessage.value =
+      "Es gab ein Problem beim Senden Ihrer Anfrage. Bitte versuchen Sie es erneut.";
+  }
+};
+
+const retrySubmission = () => {
+  // Reset error state and go back to the last step
+  hasError.value = false;
+  errorMessage.value = "";
+  // User stays on the current step and can try submitting again
+};
+
+const goToHomepage = () => {
+  // Navigate to homepage - adjust this based on your routing setup
+  window.location.href = "/";
 };
 </script>
 
@@ -1107,6 +1219,7 @@ const onSubmit = () => {
       display: flex;
       align-items: flex-end;
       justify-content: flex-end;
+      gap: rem(40px);
     }
 
     .form-submit-button {
