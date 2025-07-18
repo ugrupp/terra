@@ -61,7 +61,6 @@ we style the span inside the trigger using '& > span'
 
   display: flex;
   height: rem(46px);
-  width: 100%;
   align-items: center;
   justify-content: space-between;
   border: 1px solid transparent;
