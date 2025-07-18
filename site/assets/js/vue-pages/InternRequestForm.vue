@@ -173,6 +173,18 @@
             </FormItem>
           </FormField>
 
+          <!-- Datenschutz for contact step -->
+          <div
+            v-if="stepIndex === steps.length && !hasError"
+            class="form-privacy-section"
+          >
+            <p class="form-privacy-text">
+              Wir legen großen Wert auf den Schutz Ihrer Daten. Hier finden Sie
+              unsere
+              <a href="/datenschutz/" target="_blank">Datenschutzerklärung</a>.
+            </p>
+          </div>
+
           <!-- Honeypot -->
           <input type="text" name="strawberry_fields" class="u-invisible" />
         </div>
@@ -1305,6 +1317,21 @@ form {
   & > button:not(:disabled) {
     + label {
       cursor: pointer;
+    }
+  }
+}
+
+.form-privacy-section {
+  margin-top: rem(30px);
+}
+
+.form-privacy-text {
+  a {
+    color: $color-primary;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
     }
   }
 }
