@@ -5,7 +5,7 @@
 .c-button {
   @include button-reset;
 
-  @include typi('button');
+  @include typi("button");
   @include font-ci;
   @include font-smoothing;
   text-transform: uppercase;
@@ -13,7 +13,7 @@
   cursor: pointer;
   background-color: $color-content;
   color: $color-white;
-  padding: .8em 1.3em;
+  padding: 0.8em 1.3em;
   transition: background-color $transition-time-default;
 
   display: inline-flex;
@@ -26,7 +26,7 @@
     background-color: $color-content-ci;
 
     .c-button__icon svg {
-      transform: translateX(.2em);
+      transform: translateX(0.2em);
     }
   }
 }
@@ -37,17 +37,28 @@
 
   &:hover,
   &:focus {
-    background-color: rgba(255, 255, 255, .8);
+    background-color: rgba(255, 255, 255, 0.8);
   }
 }
 
 .c-button--primary {
   background-color: $color-primary;
-  color: $color-white;
 
   &:hover,
   &:focus {
     background-color: $color-content;
+  }
+}
+
+.c-button--transparent {
+  background-color: transparent;
+  color: $color-content;
+  border: 1px solid $color-content;
+
+  &:hover,
+  &:focus {
+    background-color: $color-content;
+    color: $color-white;
   }
 }
 
@@ -73,7 +84,7 @@
     left: 0;
     top: 10%;
     bottom: 10%;
-    background-color: rgba(255, 255, 255, .3);
+    background-color: rgba(255, 255, 255, 0.3);
     width: 1px;
   }
 

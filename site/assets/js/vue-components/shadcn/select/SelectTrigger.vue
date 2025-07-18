@@ -88,7 +88,7 @@ we style the span inside the trigger using '& > span'
   }
 
   &[data-placeholder] {
-    color: rgba($color-content, 0.5);
+    color: rgba($color-content, 0.7);
   }
 
   & > span {
@@ -100,7 +100,6 @@ we style the span inside the trigger using '& > span'
   &__icon {
     color: $color-content;
     margin-left: rem(24px);
-    opacity: 0.6;
     flex-shrink: 0;
   }
 }

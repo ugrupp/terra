@@ -1,20 +1,16 @@
 {{ define "main" }}
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div id="vue-wrapper"></div>
+<div class="o-container">
+  <div id="vue-wrapper"></div>
 
-      <script type="module">
-        import { createApp } from "vue";
+  <script type="module">
+    import { createApp } from "vue";
 
-        const componentName = '{{ index .Params "vue-component" }}';
-        const { default: Component } = await import(
-          `/assets/js/vue-pages/${componentName}.vue`
-        );
+    const componentName = '{{ index .Params "vue-component" }}';
+    const { default: Component } = await import(
+      `/assets/js/vue-pages/${componentName}.vue`
+    );
 
-        const app = createApp(Component).mount("#vue-wrapper");
-      </script>
-    </div>
-  </div>
+    const app = createApp(Component).mount("#vue-wrapper");
+  </script>
 </div>
 {{ end }}

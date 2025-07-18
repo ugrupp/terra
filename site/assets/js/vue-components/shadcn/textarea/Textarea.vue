@@ -50,7 +50,7 @@ textarea {
     background-color 0.3s ease-in-out;
 
   &::placeholder {
-    color: rgba($color-content, 0.5);
+    color: rgba($color-content, 0.7);
   }
 
   &:focus {
