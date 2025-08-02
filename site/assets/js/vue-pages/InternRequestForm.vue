@@ -563,12 +563,6 @@ const steps: Step[] = [
             imageAlt: "HEATFlow-System",
           },
           {
-            value: "noppenplattensystem",
-            label: "Noppenplattensystem",
-            image: "/images/form/blanke-permatop.jpg",
-            imageAlt: "Noppenplattensystem",
-          },
-          {
             value: "noppenplattensystem_bekotec",
             label: "Noppenplattensystem SCHLÜTER BEKOTEC",
             image: "/images/form/schlueter-bekotec.jpg",
@@ -815,7 +809,6 @@ const formSchema = [
     heating_system: z.enum(
       [
         "heatflow",
-        "noppenplattensystem",
         "noppenplattensystem_bekotec",
         "klettsystem",
         "holzfaserplatte",
