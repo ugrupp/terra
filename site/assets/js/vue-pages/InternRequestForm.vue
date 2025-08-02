@@ -7,8 +7,8 @@
           hasError
             ? "Fehler"
             : isSubmitted || stepIndex === 0 || !values.request_type
-            ? "Anfrage"
-            : `Frage ${currentStepNumber} von ${totalStepsInPath}`
+              ? "Anfrage"
+              : `Frage ${currentStepNumber} von ${totalStepsInPath}`
         }}</span
       >
       <h2 class="c-headline-secondary form-question">
@@ -16,10 +16,10 @@
           isSubmitted
             ? "Vielen Dank für Ihre Anfrage. Wir werden uns in Kürze bei Ihnen melden."
             : hasError
-            ? errorMessage
-            : stepIndex === 0
-            ? "Um Ihre Anfrage direkt bearbeiten zu können, bitte wir Sie folgende Fragen zu beantworten."
-            : steps[stepIndex - 1].question
+              ? errorMessage
+              : stepIndex === 0
+                ? "Um Ihre Anfrage direkt bearbeiten zu können, bitte wir Sie folgende Fragen zu beantworten."
+                : steps[stepIndex - 1].question
         }}
       </h2>
       <div
@@ -791,7 +791,7 @@ const formSchema = [
       {
         message: "Bitte wählen Sie eine Option aus",
         path: ["remove_old_covering"],
-      }
+      },
     )
     .refine(
       (data) => {
@@ -804,7 +804,7 @@ const formSchema = [
       {
         message: "Bitte wählen Sie den Altbelag aus",
         path: ["old_covering_type"],
-      }
+      },
     ),
   z.object({
     floor_covering_type: z.enum(["parkett", "vinyl", "gussboden", "teppich"], {
@@ -822,7 +822,7 @@ const formSchema = [
       ],
       {
         required_error: "Bitte wählen Sie ein Heizsystem aus",
-      }
+      },
     ),
   }),
   z.object({
@@ -837,7 +837,7 @@ const formSchema = [
       ],
       {
         required_error: "Bitte wählen Sie einen Untergrund aus",
-      }
+      },
     ),
   }),
   z.object({
@@ -1085,7 +1085,7 @@ watch(
       setFieldValue("remove_old_covering", undefined);
       setFieldValue("old_covering_type", undefined);
     }
-  }
+  },
 );
 
 // Reset old_covering_type when switching from "ja" to "nein"
@@ -1095,7 +1095,7 @@ watch(
     if (oldValue === "ja" && newValue === "nein") {
       setFieldValue("old_covering_type", undefined);
     }
-  }
+  },
 );
 
 const onStartForm = () => {
