@@ -6,9 +6,14 @@
     import { createApp } from "vue";
 
     const componentName = '{{ index .Params "vue-component" }}';
-    const { default: Component } = await import(
-      `/assets/js/vue-pages/${componentName}.vue`
-    );
+    
+    // Use a static import map that Vite can resolve
+    const components = {
+      'ClientRequestForm': () => import('/assets/js/vue-pages/ClientRequestForm.vue'),
+      'InternRequestForm': () => import('/assets/js/vue-pages/InternRequestForm.vue')
+    };
+    
+    const { default: Component } = await components[componentName]();
 
     const app = createApp(Component).mount("#vue-wrapper");
   </script>
