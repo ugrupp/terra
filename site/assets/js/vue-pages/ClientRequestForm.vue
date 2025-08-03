@@ -308,7 +308,7 @@ import {
   SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG,
 } from "./ClientRequest/types";
 import { steps } from "./ClientRequest/formSteps";
-import { formSchema } from "./ClientRequest/formSchema";
+import { formSchema, SCHEMA_MAP } from "./ClientRequest/formSchema";
 
 import {
   FormControl,
@@ -376,27 +376,8 @@ const CURRENT_SCHEMA = computed(() => {
 
 const currentStepForSchema = computed(() => {
   if (stepIndex.value === 0) return 0;
-
   const currentStep = steps[stepIndex.value - 1];
-
-  // Map step IDs to schema indices
-  const schemaMap = {
-    WHAT: 0,
-    HOUSE_TYPE: 1,
-    OBJECT: 2,
-    FLOOR_COVERING_TYPE: 3,
-    HOW: 4,
-    HOW_MANY_METERS_BODENBELAG: 5,
-    WHICH_SYSTEM: 6,
-    UNDERGROUND: 7,
-    YEAR_OF_CONSTRUCTION: 8,
-    HOW_MANY_METERS_FUSSBODENHEIZUNG: 9,
-    WHERE: 10,
-    WHEN: 11,
-    CONTACT: 12,
-  };
-
-  return schemaMap[currentStep.id] || 0;
+  return SCHEMA_MAP[currentStep.id] || 0;
 });
 
 const validationSchema = computed(() => {

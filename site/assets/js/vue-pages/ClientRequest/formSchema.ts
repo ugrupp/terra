@@ -1,5 +1,21 @@
 import { z } from "zod";
 
+export const SCHEMA_MAP = {
+  WHAT: 0,
+  HOUSE_TYPE: 1,
+  OBJECT: 2,
+  FLOOR_COVERING_TYPE: 3,
+  HOW: 4,
+  HOW_MANY_METERS_BODENBELAG: 5,
+  WHICH_SYSTEM: 6,
+  UNDERGROUND: 7,
+  YEAR_OF_CONSTRUCTION: 8,
+  HOW_MANY_METERS_FUSSBODENHEIZUNG: 9,
+  WHERE: 10,
+  WHEN: 11,
+  CONTACT: 12,
+};
+
 export const formSchema = [
   z
     .object({
