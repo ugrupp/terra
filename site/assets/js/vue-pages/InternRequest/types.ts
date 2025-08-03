@@ -5,6 +5,7 @@ export type INTERN_FORM_STEP_ID =
   | "HOUSE_TYPE"
   | "OBJECT"
   | "FLOOR_COVERING_TYPE"
+  | "BODENBELAG_TYPE"
   | "ROOMS_BODENBELAG"
   | "SUBSTRATE_PREPARATION_BODENBELAG"
   | "HOW"
@@ -34,6 +35,7 @@ export const SCHEMA_BODENBELAG: INTERN_FORM_STEP_ID[] = [
   "HOUSE_TYPE",
   "OBJECT",
   "FLOOR_COVERING_TYPE",
+  "BODENBELAG_TYPE",
   "ROOMS_BODENBELAG",
   "SUBSTRATE_PREPARATION_BODENBELAG",
   "HOW",
@@ -76,6 +78,7 @@ export const SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG: INTERN_FORM_STEP_ID[] = [
   "HOUSE_TYPE",
   "OBJECT",
   "FLOOR_COVERING_TYPE",
+  "BODENBELAG_TYPE",
   "ROOMS_BODENBELAG",
   "SUBSTRATE_PREPARATION_BODENBELAG",
   "HOW",
@@ -96,6 +99,7 @@ export const SCHEMA_BODENBELAG_AND_REFURBISH_PARQUET: INTERN_FORM_STEP_ID[] = [
   "HOUSE_TYPE",
   "OBJECT",
   "FLOOR_COVERING_TYPE",
+  "BODENBELAG_TYPE",
   "ROOMS_BODENBELAG",
   "SUBSTRATE_PREPARATION_BODENBELAG",
   "HOW",
@@ -135,6 +139,7 @@ export const SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG_AND_REFURBISH_PARQUET: INTER
     "HOUSE_TYPE",
     "OBJECT",
     "FLOOR_COVERING_TYPE",
+    "BODENBELAG_TYPE",
     "ROOMS_BODENBELAG",
     "SUBSTRATE_PREPARATION_BODENBELAG",
     "HOW",
@@ -164,6 +169,10 @@ export interface FormValues {
   remove_old_covering?: string;
   old_covering_type?: string;
   floor_covering_type?: string;
+  bodenbelag_type_1?: string;
+  bodenbelag_type_2?: string;
+  bodenbelag_type_3?: string;
+  bodenbelag_type_notes?: string;
   room1_bodenbelag?: string;
   room2_bodenbelag?: string;
   room3_bodenbelag?: string;

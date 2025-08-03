@@ -5,23 +5,24 @@ export const SCHEMA_MAP = {
   HOUSE_TYPE: 1,
   OBJECT: 2,
   FLOOR_COVERING_TYPE: 3,
-  ROOMS_BODENBELAG: 4,
-  SUBSTRATE_PREPARATION_BODENBELAG: 5,
-  HOW: 6,
-  HOW_MANY_METERS_BODENBELAG: 7,
-  WHICH_SYSTEM: 8,
-  UNDERGROUND: 9,
-  YEAR_OF_CONSTRUCTION: 10,
-  ROOMS_FUSSBODENHEIZUNG: 11,
-  SUBSTRATE_PREPARATION_FUSSBODENHEIZUNG: 12,
-  HOW_MANY_METERS_FUSSBODENHEIZUNG: 13,
-  PARQUET_REFURBISH_TYPE: 14,
-  PARQUET_REFURBISH_HOW: 15,
-  PARQUET_REFURBISH_TREATMENT: 16,
-  HOW_MANY_METERS_PARQUET_REFURBISH: 17,
-  WHERE: 18,
-  WHEN: 19,
-  CONTACT: 20,
+  BODENBELAG_TYPE: 4,
+  ROOMS_BODENBELAG: 5,
+  SUBSTRATE_PREPARATION_BODENBELAG: 6,
+  HOW: 7,
+  HOW_MANY_METERS_BODENBELAG: 8,
+  WHICH_SYSTEM: 9,
+  UNDERGROUND: 10,
+  YEAR_OF_CONSTRUCTION: 11,
+  ROOMS_FUSSBODENHEIZUNG: 12,
+  SUBSTRATE_PREPARATION_FUSSBODENHEIZUNG: 13,
+  HOW_MANY_METERS_FUSSBODENHEIZUNG: 14,
+  PARQUET_REFURBISH_TYPE: 15,
+  PARQUET_REFURBISH_HOW: 16,
+  PARQUET_REFURBISH_TREATMENT: 17,
+  HOW_MANY_METERS_PARQUET_REFURBISH: 18,
+  WHERE: 19,
+  WHEN: 20,
+  CONTACT: 21,
 };
 
 export const formSchema = [
@@ -99,6 +100,16 @@ export const formSchema = [
     floor_covering_type: z.enum(["parkett", "vinyl", "gussboden", "teppich"], {
       required_error: "Bitte wählen Sie einen Bodenbelag aus",
     }),
+  }),
+  z.object({
+    bodenbelag_type_1: z
+      .string({
+        required_error: "Bitte geben Sie den ersten Bodenbelag ein",
+      })
+      .min(1, "Bitte geben Sie den ersten Bodenbelag ein"),
+    bodenbelag_type_2: z.string().optional(),
+    bodenbelag_type_3: z.string().optional(),
+    bodenbelag_type_notes: z.string().optional(),
   }),
   z.object({
     room1_bodenbelag: z

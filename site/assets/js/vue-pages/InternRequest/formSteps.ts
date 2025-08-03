@@ -181,6 +181,36 @@ export const steps: Intern_Form_Step[] = [
     ],
   },
   {
+    id: "BODENBELAG_TYPE",
+    question: "Welchen Bodenbelag wünschen Sie sich?",
+    fields: [
+      {
+        id: "bodenbelag_type_1",
+        type: "INPUT",
+        placeholder: "Bodenbelag #1 *",
+        label: "Bodenbelag #1",
+      },
+      {
+        id: "bodenbelag_type_2",
+        type: "INPUT",
+        placeholder: "Bodenbelag #2",
+        label: "Bodenbelag #2",
+      },
+      {
+        id: "bodenbelag_type_3",
+        type: "INPUT",
+        placeholder: "Bodenbelag #3",
+        label: "Bodenbelag #3",
+      },
+      {
+        id: "bodenbelag_type_notes",
+        type: "TEXTAREA",
+        placeholder: "Anmerkungen",
+        label: "Anmerkungen",
+      },
+    ],
+  },
+  {
     id: "ROOMS_BODENBELAG",
     question: "Bodenbelag: Um welche Räume geht es?",
     fields: [

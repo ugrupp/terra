@@ -321,6 +321,10 @@ const initialValues: FormValues = {
   remove_old_covering: undefined,
   old_covering_type: undefined,
   floor_covering_type: undefined,
+  bodenbelag_type_1: undefined,
+  bodenbelag_type_2: undefined,
+  bodenbelag_type_3: undefined,
+  bodenbelag_type_notes: undefined,
   room1_bodenbelag: undefined,
   room2_bodenbelag: undefined,
   room3_bodenbelag: undefined,
@@ -471,6 +475,7 @@ const visibleFields = computed(() => {
   // Filter out steps that don't belong to the current path
   if (
     currentStep.id === "FLOOR_COVERING_TYPE" ||
+    currentStep.id === "BODENBELAG_TYPE" ||
     currentStep.id === "ROOMS_BODENBELAG" ||
     currentStep.id === "SUBSTRATE_PREPARATION_BODENBELAG" ||
     currentStep.id === "HOW" ||
@@ -602,6 +607,10 @@ watch(
   (newValue, oldValue) => {
     if (oldValue === true && newValue === false) {
       setFieldValue("floor_covering_type", undefined);
+      setFieldValue("bodenbelag_type_1", undefined);
+      setFieldValue("bodenbelag_type_2", undefined);
+      setFieldValue("bodenbelag_type_3", undefined);
+      setFieldValue("bodenbelag_type_notes", undefined);
       setFieldValue("room1_bodenbelag", undefined);
       setFieldValue("room2_bodenbelag", undefined);
       setFieldValue("room3_bodenbelag", undefined);
