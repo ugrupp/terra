@@ -6,7 +6,10 @@
         >{{
           hasError
             ? "Fehler"
-            : isSubmitted || stepIndex === 0 || !values.request_type
+            : isSubmitted ||
+                stepIndex === 0 ||
+                (!values.request_type_bodenbelag &&
+                  !values.request_type_fussbodenheizung)
               ? "Anfrage"
               : `Frage ${currentStepNumber} von ${totalStepsInPath}`
         }}</span
@@ -17,9 +20,7 @@
             ? "Vielen Dank für Ihre Anfrage. Wir werden uns in Kürze bei Ihnen melden."
             : hasError
               ? errorMessage
-              : stepIndex === 0
-                ? "Um Ihre Anfrage direkt bearbeiten zu können, bitte wir Sie folgende Fragen zu beantworten."
-                : steps[stepIndex - 1].question
+              : currentStepQuestion
         }}
       </h2>
       <div
@@ -45,7 +46,6 @@
           v-if="stepIndex < steps.length"
           class="c-button c-button--transparent form-next-button"
           @click="handleNextStep()"
-          :disabled="!meta.valid"
         >
           <span>weiter</span>
           <svg
@@ -84,26 +84,24 @@
           <FormField
             v-for="field in visibleFields"
             :key="field.id"
-            v-slot="{ componentField }"
+            v-slot="{ componentField, value, handleChange }"
             :name="field.id"
             :validate-on-blur="!isFieldDirty"
             :type="
               field.type === 'RADIO' || field.type === 'RADIO_IMAGE'
                 ? 'radio'
-                : null
+                : field.type === 'CHECKBOX_IMAGE'
+                  ? 'checkbox'
+                  : null
             "
           >
             <FormItem>
-              <FormLabel v-if="field.label" class="u-invisibled">{{
-                field.label
-              }}</FormLabel>
-              <FormControl>
-                <!-- RADIO -->
-                <RadioGroup
-                  v-if="field.type === 'RADIO'"
-                  class="radio-group"
-                  v-bind="componentField"
-                >
+              <!-- RADIO -->
+              <template v-if="field.type === 'RADIO'">
+                <p v-if="field.label" class="form-field-headline">
+                  {{ field.label }}
+                </p>
+                <RadioGroup class="radio-group" v-bind="componentField">
                   <FormItem
                     v-for="(option, index) in field.values as FieldValue[]"
                     :key="index"
@@ -115,9 +113,13 @@
                     <FormLabel>{{ option.label }}</FormLabel>
                   </FormItem>
                 </RadioGroup>
-                <!-- RADIO IMAGE -->
+              </template>
+              <!-- RADIO IMAGE -->
+              <template v-if="field.type === 'RADIO_IMAGE'">
+                <p v-if="field.label" class="form-field-headline">
+                  {{ field.label }}
+                </p>
                 <RadioGroup
-                  v-if="field.type === 'RADIO_IMAGE'"
                   class="radio-group radio-group--with-images"
                   v-bind="componentField"
                 >
@@ -136,8 +138,26 @@
                     <FormLabel>{{ option.label }}</FormLabel>
                   </FormItem>
                 </RadioGroup>
-                <!-- SELECT -->
-                <Select v-if="field.type === 'SELECT'" v-bind="componentField">
+              </template>
+              <!-- CHECKBOX IMAGE -->
+              <div
+                v-if="field.type === 'CHECKBOX_IMAGE'"
+                class="checkbox-form-item checkbox-form-item--with-images"
+              >
+                <FormControl>
+                  <Checkbox
+                    :model-value="value"
+                    @update:model-value="handleChange"
+                    :image="field.image"
+                    :image-alt="field.imageAlt"
+                  />
+                </FormControl>
+                <FormLabel>{{ field.label }}</FormLabel>
+              </div>
+              <!-- SELECT -->
+              <template v-if="field.type === 'SELECT'">
+                <FormLabel class="u-invisible">{{ field.label }}</FormLabel>
+                <Select v-bind="componentField">
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue :placeholder="field.placeholder" />
@@ -155,20 +175,28 @@
                     </SelectGroup>
                   </SelectContent>
                 </Select>
-                <!--  Input -->
-                <Input
-                  v-if="field.type === 'INPUT'"
-                  type="text"
-                  :placeholder="field.placeholder"
-                  v-bind="componentField"
-                />
-                <!--  Textarea -->
-                <Textarea
-                  v-if="field.type === 'TEXTAREA'"
-                  :placeholder="field.placeholder"
-                  v-bind="componentField"
-                />
-              </FormControl>
+              </template>
+              <!--  Input -->
+              <template v-if="field.type === 'INPUT'">
+                <FormLabel class="u-invisible">{{ field.label }}</FormLabel>
+                <FormControl>
+                  <Input
+                    type="text"
+                    :placeholder="field.placeholder"
+                    v-bind="componentField"
+                  />
+                </FormControl>
+              </template>
+              <!--  Textarea -->
+              <template v-if="field.type === 'TEXTAREA'">
+                <FormLabel class="u-invisible">{{ field.label }}</FormLabel>
+                <FormControl>
+                  <Textarea
+                    :placeholder="field.placeholder"
+                    v-bind="componentField"
+                  />
+                </FormControl>
+              </template>
               <FormMessage />
             </FormItem>
           </FormField>
@@ -279,6 +307,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/vue-components/shadcn/form";
+import { Checkbox } from "@/vue-components/shadcn/checkbox";
 import { Input } from "@/vue-components/shadcn/input";
 import {
   RadioGroup,
@@ -303,7 +332,8 @@ type STEP_ID =
   | "WHICH_SYSTEM"
   | "UNDERGROUND"
   | "YEAR_OF_CONSTRUCTION"
-  | "HOW_MANY_METERS"
+  | "HOW_MANY_METERS_BODENBELAG"
+  | "HOW_MANY_METERS_FUSSBODENHEIZUNG"
   | "WHERE"
   | "WHEN"
   | "CONTACT";
@@ -318,10 +348,18 @@ interface FieldValue {
 
 interface Field {
   id: string;
-  type: "INPUT" | "TEXTAREA" | "SELECT" | "RADIO" | "RADIO_IMAGE";
+  type:
+    | "INPUT"
+    | "TEXTAREA"
+    | "SELECT"
+    | "RADIO"
+    | "RADIO_IMAGE"
+    | "CHECKBOX_IMAGE";
   values?: FieldValue[];
   label?: string;
   placeholder?: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 interface Step {
@@ -345,22 +383,18 @@ const steps: Step[] = [
     previousStep: undefined,
     fields: [
       {
-        id: "request_type",
-        type: "RADIO_IMAGE",
-        values: [
-          {
-            value: "bodenbelag",
-            label: "Bodenbelag",
-            image: "/images/form/bodenbelag.jpg",
-            imageAlt: "Bodenbelag",
-          },
-          {
-            value: "fussbodenheizung",
-            label: "Fußbodenheizung",
-            image: "/images/form/fussbodenheizung.jpg",
-            imageAlt: "Fußbodenheizung",
-          },
-        ],
+        id: "request_type_bodenbelag",
+        type: "CHECKBOX_IMAGE",
+        label: "Bodenbelag",
+        image: "/images/form/bodenbelag.jpg",
+        imageAlt: "Bodenbelag",
+      },
+      {
+        id: "request_type_fussbodenheizung",
+        type: "CHECKBOX_IMAGE",
+        label: "Fußbodenheizung",
+        image: "/images/form/fussbodenheizung.jpg",
+        imageAlt: "Fußbodenheizung",
       },
     ],
   },
@@ -391,7 +425,8 @@ const steps: Step[] = [
       {
         id: "stockwerk",
         type: "SELECT",
-        placeholder: "Welches Stockwerk?",
+        placeholder: "Welches Stockwerk? *",
+        label: "Welches Stockwerk?",
         values: [
           {
             value: "eg",
@@ -448,7 +483,7 @@ const steps: Step[] = [
       {
         id: "remove_old_covering",
         type: "RADIO",
-        label: "Sollen wir die Entfernung des Altbelags für Sie übernehmen?",
+        label: "Sollen wir die Entfernung des Altbelags für Sie übernehmen? *",
         values: [
           {
             value: "ja",
@@ -463,7 +498,7 @@ const steps: Step[] = [
       {
         id: "old_covering_type",
         type: "RADIO",
-        label: "Welchen Altbelag haben Sie?",
+        label: "Welchen Altbelag haben Sie? *",
         values: [
           {
             value: "parkett",
@@ -498,7 +533,8 @@ const steps: Step[] = [
       {
         id: "floor_covering_type",
         type: "SELECT",
-        placeholder: "Bitte Bodenbelag auswählen",
+        placeholder: "Bitte Bodenbelag auswählen *",
+        label: "Bitte Bodenbelag auswählen",
         values: [
           {
             value: "parkett",
@@ -522,8 +558,8 @@ const steps: Step[] = [
   },
   {
     id: "HOW",
-    question: "Wie soll verlegt werden?",
-    nextStep: "HOW_MANY_METERS",
+    question: "Bodenbelag: Wie soll verlegt werden?",
+    nextStep: "HOW_MANY_METERS_BODENBELAG",
     previousStep: "FLOOR_COVERING_TYPE",
     fields: [
       {
@@ -547,8 +583,22 @@ const steps: Step[] = [
     ],
   },
   {
+    id: "HOW_MANY_METERS_BODENBELAG",
+    question: "Bodenbelag: Wieviel m² benötigen Sie?",
+    nextStep: "WHICH_SYSTEM",
+    previousStep: "HOW",
+    fields: [
+      {
+        id: "square_meters_bodenbelag",
+        type: "INPUT",
+        placeholder: "Bitte m² für Bodenbelag eingeben *",
+        label: "Bitte m² für Bodenbelag eingeben",
+      },
+    ],
+  },
+  {
     id: "WHICH_SYSTEM",
-    question: "Welches System soll eingebaut werden?",
+    question: "Fußbodenheizung: Welches System soll eingebaut werden?",
     nextStep: "UNDERGROUND",
     previousStep: "OBJECT",
     fields: [
@@ -586,14 +636,15 @@ const steps: Step[] = [
   },
   {
     id: "UNDERGROUND",
-    question: "Welchen Untergrund haben Sie?",
+    question: "Fußbodenheizung: Welchen Untergrund haben Sie?",
     nextStep: "YEAR_OF_CONSTRUCTION",
     previousStep: "WHICH_SYSTEM",
     fields: [
       {
         id: "underground_type",
         type: "SELECT",
-        placeholder: "Bitte Untergrund auswählen",
+        placeholder: "Bitte Untergrund auswählen *",
+        label: "Bitte Untergrund auswählen",
         values: [
           {
             value: "zementestrich",
@@ -626,26 +677,28 @@ const steps: Step[] = [
   {
     id: "YEAR_OF_CONSTRUCTION",
     question: "Welches Baujahr hat das Objekt?",
-    nextStep: "HOW_MANY_METERS",
+    nextStep: "HOW_MANY_METERS_FUSSBODENHEIZUNG",
     previousStep: "UNDERGROUND",
     fields: [
       {
         id: "construction_year",
         type: "INPUT",
-        placeholder: "Baujahr eingeben",
+        placeholder: "Baujahr eingeben *",
+        label: "Baujahr eingeben",
       },
     ],
   },
   {
-    id: "HOW_MANY_METERS",
-    question: "Wieviel m² benötigen Sie?",
+    id: "HOW_MANY_METERS_FUSSBODENHEIZUNG",
+    question: "Fußbodenheizung: Wieviel m² benötigen Sie?",
     nextStep: "WHERE",
-    previousStep: "HOW",
+    previousStep: "YEAR_OF_CONSTRUCTION",
     fields: [
       {
-        id: "square_meters",
+        id: "square_meters_fussbodenheizung",
         type: "INPUT",
-        placeholder: "Bitte m² eingeben",
+        placeholder: "Bitte m² für Fußbodenheizung eingeben *",
+        label: "Bitte m² für Fußbodenheizung eingeben",
       },
     ],
   },
@@ -653,35 +706,39 @@ const steps: Step[] = [
     id: "WHERE",
     question: "Wo befindet sich Ihr Bauvorhaben?",
     nextStep: "WHEN",
-    previousStep: "HOW_MANY_METERS",
+    previousStep: "HOW_MANY_METERS_FUSSBODENHEIZUNG",
     fields: [
       {
         id: "city",
         type: "INPUT",
-        placeholder: "Ort",
+        placeholder: "Ort *",
+        label: "Ort",
       },
       {
         id: "postal_code",
         type: "INPUT",
-        placeholder: "Postleitzahl",
+        placeholder: "Postleitzahl *",
+        label: "Postleitzahl",
       },
       {
         id: "street",
         type: "INPUT",
-        placeholder: "Straße",
+        placeholder: "Straße *",
+        label: "Straße",
       },
     ],
   },
   {
     id: "WHEN",
-    question: "Wann soll verlegt werden?",
+    question: "Wann soll die Arbeit stattfinden?",
     nextStep: "CONTACT",
     previousStep: "WHERE",
     fields: [
       {
         id: "timing_preference",
-        type: "TEXTAREA",
-        placeholder: "Tragen Sie Ihre Terminvorstellung ein",
+        type: "INPUT",
+        placeholder: "Tragen Sie Ihre Terminvorstellung ein *",
+        label: "Tragen Sie Ihre Terminvorstellung ein",
       },
     ],
   },
@@ -694,34 +751,40 @@ const steps: Step[] = [
       {
         id: "first_name",
         type: "INPUT",
-        placeholder: "Vorname",
+        placeholder: "Vorname *",
+        label: "Vorname",
       },
       {
         id: "last_name",
         type: "INPUT",
-        placeholder: "Nachname",
+        placeholder: "Nachname *",
+        label: "Nachname",
       },
       {
         id: "email",
         type: "INPUT",
-        placeholder: "E-Mail",
+        placeholder: "E-Mail *",
+        label: "E-Mail",
       },
       {
         id: "phone",
         type: "INPUT",
         placeholder: "Telefon",
+        label: "Telefon",
       },
       {
         id: "comments",
         type: "TEXTAREA",
         placeholder: "Ihre Anmerkungen",
+        label: "Ihre Anmerkungen",
       },
     ],
   },
 ];
 
 const initialValues = {
-  request_type: undefined,
+  request_type_bodenbelag: undefined,
+  request_type_fussbodenheizung: undefined,
   house_type: undefined,
   stockwerk: undefined,
   object_age: undefined,
@@ -732,7 +795,8 @@ const initialValues = {
   heating_system: undefined,
   underground_type: undefined,
   construction_year: undefined,
-  square_meters: undefined,
+  square_meters_bodenbelag: undefined,
+  square_meters_fussbodenheizung: undefined,
   city: undefined,
   postal_code: undefined,
   street: undefined,
@@ -745,11 +809,23 @@ const initialValues = {
 };
 
 const formSchema = [
-  z.object({
-    request_type: z.enum(["bodenbelag", "fussbodenheizung"], {
-      required_error: "Bitte wählen Sie eine Option aus",
-    }),
-  }),
+  z
+    .object({
+      request_type_bodenbelag: z.boolean().optional(),
+      request_type_fussbodenheizung: z.boolean().optional(),
+    })
+    .refine(
+      (data) => {
+        // At least one checkbox must be selected
+        return (
+          data.request_type_bodenbelag || data.request_type_fussbodenheizung
+        );
+      },
+      {
+        message: "Bitte wählen Sie mindestens eine Option aus",
+        path: ["request_type_fussbodenheizung"], // This will show the error on the second checkbox
+      },
+    ),
   z.object({
     house_type: z.enum(["haus", "wohnung"], {
       required_error: "Bitte wählen Sie eine Option aus",
@@ -806,6 +882,22 @@ const formSchema = [
     }),
   }),
   z.object({
+    installation_method: z.enum(["geklebt", "schwimmend"], {
+      required_error: "Bitte wählen Sie eine Verlegeart aus",
+    }),
+  }),
+  z.object({
+    square_meters_bodenbelag: z
+      .string({
+        required_error: "Bitte geben Sie die Quadratmeter für Bodenbelag an",
+      })
+      .min(1, "Bitte geben Sie die Quadratmeter für Bodenbelag an")
+      .refine((val) => {
+        const num = parseFloat(val);
+        return !isNaN(num) && num > 0;
+      }, "Bitte geben Sie eine gültige Zahl ein"),
+  }),
+  z.object({
     heating_system: z.enum(
       [
         "heatflow",
@@ -843,39 +935,59 @@ const formSchema = [
       }, "Bitte geben Sie ein gültiges Baujahr ein"),
   }),
   z.object({
-    installation_method: z.enum(["geklebt", "schwimmend"], {
-      required_error: "Bitte wählen Sie eine Verlegeart aus",
-    }),
-  }),
-  z.object({
-    square_meters: z
-      .string()
-      .min(1, "Bitte geben Sie die Quadratmeter an")
+    square_meters_fussbodenheizung: z
+      .string({
+        required_error:
+          "Bitte geben Sie die Quadratmeter für Fußbodenheizung an",
+      })
+      .min(1, "Bitte geben Sie die Quadratmeter für Fußbodenheizung an")
       .refine((val) => {
         const num = parseFloat(val);
         return !isNaN(num) && num > 0;
       }, "Bitte geben Sie eine gültige Zahl ein"),
   }),
   z.object({
-    city: z.string().min(1, "Bitte geben Sie den Ort ein"),
+    city: z
+      .string({
+        required_error: "Bitte geben Sie den Ort ein",
+      })
+      .min(1, "Bitte geben Sie den Ort ein"),
     postal_code: z
-      .string()
+      .string({
+        required_error: "Bitte geben Sie die Postleitzahl ein",
+      })
       .min(1, "Bitte geben Sie die Postleitzahl ein")
       .refine((val) => {
         return /^\d{5}$/.test(val);
       }, "Bitte geben Sie eine gültige Postleitzahl ein"),
-    street: z.string().min(1, "Bitte geben Sie die Straße ein"),
+    street: z
+      .string({
+        required_error: "Bitte geben Sie die Straße ein",
+      })
+      .min(1, "Bitte geben Sie die Straße ein"),
   }),
   z.object({
     timing_preference: z
-      .string()
+      .string({
+        required_error: "Bitte geben Sie Ihre Terminvorstellung ein",
+      })
       .min(1, "Bitte geben Sie Ihre Terminvorstellung ein"),
   }),
   z.object({
-    first_name: z.string().min(1, "Bitte geben Sie Ihren Vornamen ein"),
-    last_name: z.string().min(1, "Bitte geben Sie Ihren Nachnamen ein"),
+    first_name: z
+      .string({
+        required_error: "Bitte geben Sie Ihren Vornamen ein",
+      })
+      .min(1, "Bitte geben Sie Ihren Vornamen ein"),
+    last_name: z
+      .string({
+        required_error: "Bitte geben Sie Ihren Nachnamen ein",
+      })
+      .min(1, "Bitte geben Sie Ihren Nachnamen ein"),
     email: z
-      .string()
+      .string({
+        required_error: "Bitte geben Sie Ihre E-Mail-Adresse ein",
+      })
       .min(1, "Bitte geben Sie Ihre E-Mail-Adresse ein")
       .email("Bitte geben Sie eine gültige E-Mail-Adresse ein"),
     phone: z.string().optional(),
@@ -894,14 +1006,15 @@ const currentStepForSchema = computed(() => {
     HOUSE_TYPE: 1,
     OBJECT: 2,
     FLOOR_COVERING_TYPE: 3,
-    WHICH_SYSTEM: 4,
-    UNDERGROUND: 5,
-    YEAR_OF_CONSTRUCTION: 6,
-    HOW: 7,
-    HOW_MANY_METERS: 8,
-    WHERE: 9,
-    WHEN: 10,
-    CONTACT: 11,
+    HOW: 4,
+    HOW_MANY_METERS_BODENBELAG: 5,
+    WHICH_SYSTEM: 6,
+    UNDERGROUND: 7,
+    YEAR_OF_CONSTRUCTION: 8,
+    HOW_MANY_METERS_FUSSBODENHEIZUNG: 9,
+    WHERE: 10,
+    WHEN: 11,
+    CONTACT: 12,
   };
 
   return schemaMap[currentStep.id] || 0;
@@ -933,21 +1046,16 @@ const prevStep = () => {
   const currentStep = steps[stepIndex.value - 1];
   let prevStepId = currentStep.previousStep;
 
-  // Handle dynamic navigation based on request type
-  if (
-    currentStep.id === "FLOOR_COVERING_TYPE" ||
-    currentStep.id === "WHICH_SYSTEM"
-  ) {
-    prevStepId = "OBJECT";
+  if (currentStep.id === "WHERE") {
+    if (!values.request_type_fussbodenheizung) {
+      // Fußbodenheizung is not selected - comes after HOW_MANY_METERS_BODENBELAG
+      prevStepId = "HOW_MANY_METERS_BODENBELAG";
+    }
   }
 
-  if (currentStep.id === "HOW_MANY_METERS") {
-    // Determine previous step based on request type
-    if (values.request_type === "bodenbelag") {
-      prevStepId = "HOW";
-    } else if (values.request_type === "fussbodenheizung") {
-      prevStepId = "YEAR_OF_CONSTRUCTION";
-    }
+  // Handle going back from Fußbodenheizung steps when both are selected
+  if (currentStep.id === "WHICH_SYSTEM" && values.request_type_bodenbelag) {
+    prevStepId = "HOW_MANY_METERS_BODENBELAG";
   }
 
   if (prevStepId) {
@@ -961,19 +1069,20 @@ const nextStep = () => {
   const currentStep = steps[stepIndex.value - 1];
   let nextStepId = currentStep.nextStep;
 
-  // Handle dynamic navigation based on request type
+  // Handle dynamic navigation based on request types
   if (currentStep.id === "OBJECT") {
-    if (values.request_type === "bodenbelag") {
-      nextStepId = "FLOOR_COVERING_TYPE";
-    } else if (values.request_type === "fussbodenheizung") {
+    if (!values.request_type_bodenbelag) {
+      // Only Fußbodenheizung selected
       nextStepId = "WHICH_SYSTEM";
     }
   }
 
-  // Handle dynamic navigation for HOW_MANY_METERS previousStep
-  if (currentStep.id === "HOW_MANY_METERS") {
-    // This step can be reached from either HOW or YEAR_OF_CONSTRUCTION
-    // Navigation to next step remains the same (WHERE)
+  // Navigation from Bodenbelag meters when only Bodenbelag is selected, go to WHERE
+  if (
+    currentStep.id === "HOW_MANY_METERS_BODENBELAG" &&
+    !values.request_type_fussbodenheizung
+  ) {
+    nextStepId = "WHERE";
   }
 
   if (nextStepId) {
@@ -1008,16 +1117,21 @@ const visibleFields = computed(() => {
   const currentStep = steps[stepIndex.value - 1];
 
   // Filter out steps that don't belong to the current path
-  if (currentStep.id === "FLOOR_COVERING_TYPE" || currentStep.id === "HOW") {
-    if (values.request_type !== "bodenbelag") return [];
+  if (
+    currentStep.id === "FLOOR_COVERING_TYPE" ||
+    currentStep.id === "HOW" ||
+    currentStep.id === "HOW_MANY_METERS_BODENBELAG"
+  ) {
+    if (!values.request_type_bodenbelag) return [];
   }
 
   if (
     currentStep.id === "WHICH_SYSTEM" ||
     currentStep.id === "UNDERGROUND" ||
-    currentStep.id === "YEAR_OF_CONSTRUCTION"
+    currentStep.id === "YEAR_OF_CONSTRUCTION" ||
+    currentStep.id === "HOW_MANY_METERS_FUSSBODENHEIZUNG"
   ) {
-    if (values.request_type !== "fussbodenheizung") return [];
+    if (!values.request_type_fussbodenheizung) return [];
   }
 
   return currentStep.fields.filter(shouldShowField);
@@ -1025,36 +1139,39 @@ const visibleFields = computed(() => {
 
 // Calculate the correct step number and total for the current path
 const currentPathSteps = computed(() => {
-  if (!values.request_type) return [];
+  if (!values.request_type_bodenbelag && !values.request_type_fussbodenheizung)
+    return [];
 
   const sharedSteps = [
     "WHAT",
     "HOUSE_TYPE",
     "OBJECT",
-    "HOW_MANY_METERS",
     "WHERE",
     "WHEN",
     "CONTACT",
   ];
 
-  if (values.request_type === "bodenbelag") {
-    return [
-      ...sharedSteps.slice(0, 3),
-      "FLOOR_COVERING_TYPE",
-      "HOW",
-      ...sharedSteps.slice(3),
-    ];
-  } else if (values.request_type === "fussbodenheizung") {
-    return [
-      ...sharedSteps.slice(0, 3),
+  const pathSteps = [...sharedSteps.slice(0, 3)]; // WHAT, HOUSE_TYPE, OBJECT
+
+  // Add Bodenbelag-specific steps if selected
+  if (values.request_type_bodenbelag) {
+    pathSteps.push("FLOOR_COVERING_TYPE", "HOW", "HOW_MANY_METERS_BODENBELAG");
+  }
+
+  // Add Fußbodenheizung-specific steps if selected
+  if (values.request_type_fussbodenheizung) {
+    pathSteps.push(
       "WHICH_SYSTEM",
       "UNDERGROUND",
       "YEAR_OF_CONSTRUCTION",
-      ...sharedSteps.slice(3),
-    ];
+      "HOW_MANY_METERS_FUSSBODENHEIZUNG",
+    );
   }
 
-  return sharedSteps;
+  // Add remaining shared steps
+  pathSteps.push(...sharedSteps.slice(3)); // WHERE, WHEN, CONTACT
+
+  return pathSteps;
 });
 
 const currentStepNumber = computed(() => {
@@ -1068,6 +1185,32 @@ const currentStepNumber = computed(() => {
 
 const totalStepsInPath = computed(() => {
   return currentPathSteps.value.length;
+});
+
+// Dynamic question text based on selected request types
+const currentStepQuestion = computed(() => {
+  if (stepIndex.value === 0) {
+    return "Um Ihre Anfrage direkt bearbeiten zu können, bitte wir Sie folgende Fragen zu beantworten.";
+  }
+
+  const currentStep = steps[stepIndex.value - 1];
+
+  // Dynamic question for HOUSE_TYPE step
+  if (currentStep.id === "HOUSE_TYPE") {
+    if (
+      values.request_type_bodenbelag &&
+      values.request_type_fussbodenheizung
+    ) {
+      return "Wo wollen Sie Ihren neuen Bodenbelag verlegen und Ihre neue Fußbodenheizung einbauen?";
+    } else if (values.request_type_bodenbelag) {
+      return "Wo wollen Sie Ihren neuen Bodenbelag verlegen?";
+    } else if (values.request_type_fussbodenheizung) {
+      return "Wo wollen Sie Ihre neue Fußbodenheizung einbauen?";
+    }
+  }
+
+  // Use default question for all other steps
+  return currentStep.question;
 });
 
 // Reset conditional fields when switching from altbau to neubau
@@ -1087,6 +1230,31 @@ watch(
   (newValue, oldValue) => {
     if (oldValue === "ja" && newValue === "nein") {
       setFieldValue("old_covering_type", undefined);
+    }
+  },
+);
+
+// Reset Bodenbelag-related fields when unchecking Bodenbelag
+watch(
+  () => values.request_type_bodenbelag,
+  (newValue, oldValue) => {
+    if (oldValue === true && newValue === false) {
+      setFieldValue("floor_covering_type", undefined);
+      setFieldValue("installation_method", undefined);
+      setFieldValue("square_meters_bodenbelag", undefined);
+    }
+  },
+);
+
+// Reset Fußbodenheizung-related fields when unchecking Fußbodenheizung
+watch(
+  () => values.request_type_fussbodenheizung,
+  (newValue, oldValue) => {
+    if (oldValue === true && newValue === false) {
+      setFieldValue("heating_system", undefined);
+      setFieldValue("underground_type", undefined);
+      setFieldValue("construction_year", undefined);
+      setFieldValue("square_meters_fussbodenheizung", undefined);
     }
   },
 );
@@ -1272,6 +1440,12 @@ form {
   }
 }
 
+.form-field-headline {
+  @include typi("form-large");
+  @include font-smoothing;
+  margin-bottom: rem(20px);
+}
+
 .form-fields-container {
   flex-grow: 1;
 
@@ -1302,6 +1476,7 @@ form {
   }
 }
 
+.checkbox-form-item,
 .radio-form-item {
   display: flex;
   align-items: center;
@@ -1310,6 +1485,19 @@ form {
   & > button:not(:disabled) {
     + label {
       cursor: pointer;
+    }
+  }
+}
+
+.checkbox-form-item--with-images {
+  align-items: end;
+
+  label {
+    display: flex;
+    margin-bottom: rem(13px);
+
+    @include mappy-bp(xs) {
+      margin-bottom: rem(16px);
     }
   }
 }
