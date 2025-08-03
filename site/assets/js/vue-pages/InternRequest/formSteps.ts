@@ -329,6 +329,95 @@ export const steps: Intern_Form_Step[] = [
     ],
   },
   {
+    id: "BASEBOARDS",
+    question: "Werden Sockelleisten benötigt?",
+    fields: [
+      {
+        id: "baseboards_needed",
+        type: "RADIO",
+        label: "Werden Sockelleisten benötigt? *",
+        values: [
+          {
+            value: "ja",
+            label: "Ja",
+          },
+          {
+            value: "nein",
+            label: "Nein",
+          },
+        ],
+      },
+      {
+        id: "baseboard_type",
+        type: "RADIO",
+        label: "Welche Sockelleisten? *",
+        values: [
+          {
+            value: "sockelleiste_cube_weiss_16x58",
+            label: "Sockelleiste Cube weiß 16x58",
+          },
+          {
+            value: "sockelleiste_cube_weiss_16x40",
+            label: "Sockelleiste Cube weiß 16x40",
+          },
+          {
+            value: "sockelleiste_eiche_furnier_16x58",
+            label: "Sockelleiste Eiche Furnier 16x58",
+          },
+          {
+            value: "sockelleiste_eiche_furnier_16x40",
+            label: "Sockelleiste Eiche Furnier 16x40",
+          },
+        ],
+      },
+      {
+        id: "baseboard_notes",
+        type: "TEXTAREA",
+        placeholder: "Anmerkungen",
+        label: "Anmerkungen",
+      },
+    ],
+  },
+  {
+    id: "ROOM_DOORS",
+    question: "Werden Zimmertüren benötigt?",
+    fields: [
+      {
+        id: "room_doors_needed",
+        type: "RADIO",
+        label: "Werden Zimmertüren benötigt? *",
+        values: [
+          {
+            value: "ja",
+            label: "Ja",
+          },
+          {
+            value: "nein",
+            label: "Nein",
+          },
+        ],
+      },
+      {
+        id: "room_doors_quantity",
+        type: "INPUT",
+        placeholder: "Anzahl *",
+        label: "Anzahl",
+      },
+      {
+        id: "room_doors_measurements",
+        type: "TEXTAREA",
+        placeholder: "Maße *",
+        label: "Maße",
+      },
+      {
+        id: "room_doors_execution",
+        type: "TEXTAREA",
+        placeholder: "Ausführung *",
+        label: "Ausführung",
+      },
+    ],
+  },
+  {
     id: "WHICH_SYSTEM",
     question: "Fußbodenheizung: Welches System soll eingebaut werden?",
     fields: [

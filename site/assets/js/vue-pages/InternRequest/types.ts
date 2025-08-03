@@ -10,6 +10,8 @@ export type INTERN_FORM_STEP_ID =
   | "SUBSTRATE_PREPARATION_BODENBELAG"
   | "HOW"
   | "HOW_MANY_METERS_BODENBELAG"
+  | "BASEBOARDS"
+  | "ROOM_DOORS"
   | "WHICH_SYSTEM"
   | "UNDERGROUND"
   | "YEAR_OF_CONSTRUCTION"
@@ -40,6 +42,8 @@ export const SCHEMA_BODENBELAG: INTERN_FORM_STEP_ID[] = [
   "SUBSTRATE_PREPARATION_BODENBELAG",
   "HOW",
   "HOW_MANY_METERS_BODENBELAG",
+  "BASEBOARDS",
+  "ROOM_DOORS",
   "WHERE",
   "WHEN",
   "CONTACT",
@@ -83,6 +87,8 @@ export const SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG: INTERN_FORM_STEP_ID[] = [
   "SUBSTRATE_PREPARATION_BODENBELAG",
   "HOW",
   "HOW_MANY_METERS_BODENBELAG",
+  "BASEBOARDS",
+  "ROOM_DOORS",
   "WHICH_SYSTEM",
   "UNDERGROUND",
   "YEAR_OF_CONSTRUCTION",
@@ -104,6 +110,8 @@ export const SCHEMA_BODENBELAG_AND_REFURBISH_PARQUET: INTERN_FORM_STEP_ID[] = [
   "SUBSTRATE_PREPARATION_BODENBELAG",
   "HOW",
   "HOW_MANY_METERS_BODENBELAG",
+  "BASEBOARDS",
+  "ROOM_DOORS",
   "PARQUET_REFURBISH_TYPE",
   "PARQUET_REFURBISH_HOW",
   "PARQUET_REFURBISH_TREATMENT",
@@ -144,6 +152,8 @@ export const SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG_AND_REFURBISH_PARQUET: INTER
     "SUBSTRATE_PREPARATION_BODENBELAG",
     "HOW",
     "HOW_MANY_METERS_BODENBELAG",
+    "BASEBOARDS",
+    "ROOM_DOORS",
     "WHICH_SYSTEM",
     "UNDERGROUND",
     "YEAR_OF_CONSTRUCTION",
@@ -183,6 +193,13 @@ export interface FormValues {
   substrate_preparation_comments_bodenbelag?: string;
   installation_method?: string;
   square_meters_bodenbelag?: string;
+  baseboards_needed?: string;
+  baseboard_type?: string;
+  baseboard_notes?: string;
+  room_doors_needed?: string;
+  room_doors_quantity?: string;
+  room_doors_measurements?: string;
+  room_doors_execution?: string;
   heating_system?: string;
   underground_type?: string;
   construction_year?: string;

@@ -10,19 +10,21 @@ export const SCHEMA_MAP = {
   SUBSTRATE_PREPARATION_BODENBELAG: 6,
   HOW: 7,
   HOW_MANY_METERS_BODENBELAG: 8,
-  WHICH_SYSTEM: 9,
-  UNDERGROUND: 10,
-  YEAR_OF_CONSTRUCTION: 11,
-  ROOMS_FUSSBODENHEIZUNG: 12,
-  SUBSTRATE_PREPARATION_FUSSBODENHEIZUNG: 13,
-  HOW_MANY_METERS_FUSSBODENHEIZUNG: 14,
-  PARQUET_REFURBISH_TYPE: 15,
-  PARQUET_REFURBISH_HOW: 16,
-  PARQUET_REFURBISH_TREATMENT: 17,
-  HOW_MANY_METERS_PARQUET_REFURBISH: 18,
-  WHERE: 19,
-  WHEN: 20,
-  CONTACT: 21,
+  BASEBOARDS: 9,
+  ROOM_DOORS: 10,
+  WHICH_SYSTEM: 11,
+  UNDERGROUND: 12,
+  YEAR_OF_CONSTRUCTION: 13,
+  ROOMS_FUSSBODENHEIZUNG: 14,
+  SUBSTRATE_PREPARATION_FUSSBODENHEIZUNG: 15,
+  HOW_MANY_METERS_FUSSBODENHEIZUNG: 16,
+  PARQUET_REFURBISH_TYPE: 17,
+  PARQUET_REFURBISH_HOW: 18,
+  PARQUET_REFURBISH_TREATMENT: 19,
+  HOW_MANY_METERS_PARQUET_REFURBISH: 20,
+  WHERE: 21,
+  WHEN: 22,
+  CONTACT: 23,
 };
 
 export const formSchema = [
@@ -163,6 +165,65 @@ export const formSchema = [
         return !isNaN(num) && num > 0;
       }, "Bitte geben Sie eine gültige Zahl ein"),
   }),
+  z
+    .object({
+      baseboards_needed: z.enum(["ja", "nein"], {
+        required_error: "Bitte wählen Sie eine Option aus",
+      }),
+      baseboard_type: z
+        .enum(
+          [
+            "sockelleiste_cube_weiss_16x58",
+            "sockelleiste_cube_weiss_16x40",
+            "sockelleiste_eiche_furnier_16x58",
+            "sockelleiste_eiche_furnier_16x40",
+          ],
+          {
+            required_error: "Bitte wählen Sie eine Sockelleiste aus",
+          },
+        )
+        .optional(),
+      baseboard_notes: z.string().optional(),
+    })
+    .refine(
+      (data) => {
+        // If "ja" is selected, baseboard_type is required
+        if (data.baseboards_needed === "ja") {
+          return data.baseboard_type !== undefined;
+        }
+        return true;
+      },
+      {
+        message: "Bitte wählen Sie eine Sockelleiste aus",
+        path: ["baseboard_type"],
+      },
+    ),
+  z
+    .object({
+      room_doors_needed: z.enum(["ja", "nein"], {
+        required_error: "Bitte wählen Sie eine Option aus",
+      }),
+      room_doors_quantity: z.string().optional(),
+      room_doors_measurements: z.string().optional(),
+      room_doors_execution: z.string().optional(),
+    })
+    .refine(
+      (data) => {
+        // If "ja" is selected, quantity, measurements, and execution are required
+        if (data.room_doors_needed === "ja") {
+          return (
+            data.room_doors_quantity !== undefined &&
+            data.room_doors_measurements !== undefined &&
+            data.room_doors_execution !== undefined
+          );
+        }
+        return true;
+      },
+      {
+        message: "Bitte geben Sie die Anzahl der Türen ein",
+        path: ["room_doors_quantity"],
+      },
+    ),
   z.object({
     heating_system: z.enum(
       [
@@ -227,7 +288,9 @@ export const formSchema = [
       (data) => {
         // If "ja" is selected, substrate_preparation_method is required
         if (data.substrate_preparation_fussbodenheizung === "ja") {
-          return data.substrate_preparation_method_fussbodenheizung !== undefined;
+          return (
+            data.substrate_preparation_method_fussbodenheizung !== undefined
+          );
         }
         return true;
       },

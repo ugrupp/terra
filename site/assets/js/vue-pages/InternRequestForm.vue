@@ -335,6 +335,13 @@ const initialValues: FormValues = {
   substrate_preparation_comments_bodenbelag: undefined,
   installation_method: undefined,
   square_meters_bodenbelag: undefined,
+  baseboards_needed: undefined,
+  baseboard_type: undefined,
+  baseboard_notes: undefined,
+  room_doors_needed: undefined,
+  room_doors_quantity: undefined,
+  room_doors_measurements: undefined,
+  room_doors_execution: undefined,
   heating_system: undefined,
   underground_type: undefined,
   construction_year: undefined,
@@ -450,21 +457,31 @@ const shouldShowField = (field: FieldType) => {
       values.object_age === "altbau" && values.remove_old_covering === "ja"
     );
   }
-  // Show Bodenbelag substrate preparation method only if substrate_preparation_bodenbelag is "ja"
-  if (field.id === "substrate_preparation_method_bodenbelag") {
+  // Show Bodenbelag substrate preparation method and comments only if substrate_preparation_bodenbelag is "ja"
+  if (
+    field.id === "substrate_preparation_method_bodenbelag" ||
+    field.id === "substrate_preparation_comments_bodenbelag"
+  ) {
     return values.substrate_preparation_bodenbelag === "ja";
   }
-  // Show Bodenbelag substrate preparation comments only if substrate_preparation_bodenbelag is "ja"
-  if (field.id === "substrate_preparation_comments_bodenbelag") {
-    return values.substrate_preparation_bodenbelag === "ja";
-  }
-  // Show Fußbodenheizung substrate preparation method only if substrate_preparation_fussbodenheizung is "ja"
-  if (field.id === "substrate_preparation_method_fussbodenheizung") {
+  // Show Fußbodenheizung substrate preparation method and comments only if substrate_preparation_fussbodenheizung is "ja"
+  if (
+    field.id === "substrate_preparation_method_fussbodenheizung" ||
+    field.id === "substrate_preparation_comments_fussbodenheizung"
+  ) {
     return values.substrate_preparation_fussbodenheizung === "ja";
   }
-  // Show Fußbodenheizung substrate preparation comments only if substrate_preparation_fussbodenheizung is "ja"
-  if (field.id === "substrate_preparation_comments_fussbodenheizung") {
-    return values.substrate_preparation_fussbodenheizung === "ja";
+  // Show baseboard type and notes only if baseboards_needed is "ja"
+  if (field.id === "baseboard_type" || field.id === "baseboard_notes") {
+    return values.baseboards_needed === "ja";
+  }
+  // Show room doors fields only if room_doors_needed is "ja"
+  if (
+    field.id === "room_doors_quantity" ||
+    field.id === "room_doors_measurements" ||
+    field.id === "room_doors_execution"
+  ) {
+    return values.room_doors_needed === "ja";
   }
   return true;
 };
@@ -479,7 +496,9 @@ const visibleFields = computed(() => {
     currentStep.id === "ROOMS_BODENBELAG" ||
     currentStep.id === "SUBSTRATE_PREPARATION_BODENBELAG" ||
     currentStep.id === "HOW" ||
-    currentStep.id === "HOW_MANY_METERS_BODENBELAG"
+    currentStep.id === "HOW_MANY_METERS_BODENBELAG" ||
+    currentStep.id === "BASEBOARDS" ||
+    currentStep.id === "ROOM_DOORS"
   ) {
     if (!values.request_type_bodenbelag) return [];
   }
@@ -596,7 +615,33 @@ watch(
   (newValue, oldValue) => {
     if (oldValue === "ja" && newValue === "nein") {
       setFieldValue("substrate_preparation_method_fussbodenheizung", undefined);
-      setFieldValue("substrate_preparation_comments_fussbodenheizung", undefined);
+      setFieldValue(
+        "substrate_preparation_comments_fussbodenheizung",
+        undefined,
+      );
+    }
+  },
+);
+
+// Reset baseboard type and notes when switching from "ja" to "nein"
+watch(
+  () => values.baseboards_needed,
+  (newValue, oldValue) => {
+    if (oldValue === "ja" && newValue === "nein") {
+      setFieldValue("baseboard_type", undefined);
+      setFieldValue("baseboard_notes", undefined);
+    }
+  },
+);
+
+// Reset room doors related fields when switching from "ja" to "nein"
+watch(
+  () => values.room_doors_needed,
+  (newValue, oldValue) => {
+    if (oldValue === "ja" && newValue === "nein") {
+      setFieldValue("room_doors_quantity", undefined);
+      setFieldValue("room_doors_measurements", undefined);
+      setFieldValue("room_doors_execution", undefined);
     }
   },
 );
@@ -621,6 +666,13 @@ watch(
       setFieldValue("substrate_preparation_comments_bodenbelag", undefined);
       setFieldValue("installation_method", undefined);
       setFieldValue("square_meters_bodenbelag", undefined);
+      setFieldValue("baseboards_needed", undefined);
+      setFieldValue("baseboard_type", undefined);
+      setFieldValue("baseboard_notes", undefined);
+      setFieldValue("room_doors_needed", undefined);
+      setFieldValue("room_doors_quantity", undefined);
+      setFieldValue("room_doors_measurements", undefined);
+      setFieldValue("room_doors_execution", undefined);
     }
   },
 );
@@ -640,7 +692,10 @@ watch(
       setFieldValue("room5_fussbodenheizung", undefined);
       setFieldValue("substrate_preparation_fussbodenheizung", undefined);
       setFieldValue("substrate_preparation_method_fussbodenheizung", undefined);
-      setFieldValue("substrate_preparation_comments_fussbodenheizung", undefined);
+      setFieldValue(
+        "substrate_preparation_comments_fussbodenheizung",
+        undefined,
+      );
       setFieldValue("square_meters_fussbodenheizung", undefined);
     }
   },
