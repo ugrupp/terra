@@ -300,6 +300,7 @@ import { toTypedSchema } from "@vee-validate/zod";
 import { useForm, Form, Field, ErrorMessage } from "vee-validate";
 
 // Import types and configurations
+import { Field as FieldType, FieldValue } from "./types";
 import {
   FormValues,
   SCHEMA_BODENBELAG,
@@ -420,49 +421,15 @@ const {
 
 const prevStep = () => {
   if (stepIndex.value === 0) return;
-
-  const currentStep = steps[stepIndex.value - 1];
-  let prevStepId = currentStep.previousStep;
-
-  if (currentStep.id === "WHERE") {
-    if (!values.request_type_fussbodenheizung) {
-      // Fußbodenheizung is not selected - comes after HOW_MANY_METERS_BODENBELAG
-      prevStepId = "HOW_MANY_METERS_BODENBELAG";
-    }
-  }
-
-  // Handle going back from Fußbodenheizung steps when both are selected
-  if (currentStep.id === "WHICH_SYSTEM" && values.request_type_bodenbelag) {
-    prevStepId = "HOW_MANY_METERS_BODENBELAG";
-  }
-
+  let prevStepId = CURRENT_SCHEMA.value[currentStepNumber.value - 2]; // -2 because currentStepNumber is 1-based
   if (prevStepId) {
     stepIndex.value = steps.findIndex((step) => step.id === prevStepId) + 1;
   }
 };
 
 const nextStep = () => {
-  if (stepIndex.value === steps.length) return;
-
-  const currentStep = steps[stepIndex.value - 1];
-  let nextStepId = currentStep.nextStep;
-
-  // Handle dynamic navigation based on request types
-  if (currentStep.id === "OBJECT") {
-    if (!values.request_type_bodenbelag) {
-      // Only Fußbodenheizung selected
-      nextStepId = "WHICH_SYSTEM";
-    }
-  }
-
-  // Navigation from Bodenbelag meters when only Bodenbelag is selected, go to WHERE
-  if (
-    currentStep.id === "HOW_MANY_METERS_BODENBELAG" &&
-    !values.request_type_fussbodenheizung
-  ) {
-    nextStepId = "WHERE";
-  }
-
+  if (currentStepNumber.value === totalStepsInPath.value) return;
+  let nextStepId = CURRENT_SCHEMA.value[currentStepNumber.value]; // currentStepNumber is already 1-based, so no +1 needed
   if (nextStepId) {
     stepIndex.value = steps.findIndex((step) => step.id === nextStepId) + 1;
   }
@@ -475,7 +442,7 @@ const handleNextStep = async () => {
   }
 };
 
-const shouldShowField = (field: Field) => {
+const shouldShowField = (field: FieldType) => {
   // Show the remove_old_covering field only if altbau is selected
   if (field.id === "remove_old_covering") {
     return values.object_age === "altbau";
@@ -515,54 +482,17 @@ const visibleFields = computed(() => {
   return currentStep.fields.filter(shouldShowField);
 });
 
-// Calculate the correct step number and total for the current path
-const currentPathSteps = computed(() => {
-  if (!values.request_type_bodenbelag && !values.request_type_fussbodenheizung)
-    return [];
-
-  const sharedSteps = [
-    "WHAT",
-    "HOUSE_TYPE",
-    "OBJECT",
-    "WHERE",
-    "WHEN",
-    "CONTACT",
-  ];
-
-  const pathSteps = [...sharedSteps.slice(0, 3)]; // WHAT, HOUSE_TYPE, OBJECT
-
-  // Add Bodenbelag-specific steps if selected
-  if (values.request_type_bodenbelag) {
-    pathSteps.push("FLOOR_COVERING_TYPE", "HOW", "HOW_MANY_METERS_BODENBELAG");
-  }
-
-  // Add Fußbodenheizung-specific steps if selected
-  if (values.request_type_fussbodenheizung) {
-    pathSteps.push(
-      "WHICH_SYSTEM",
-      "UNDERGROUND",
-      "YEAR_OF_CONSTRUCTION",
-      "HOW_MANY_METERS_FUSSBODENHEIZUNG",
-    );
-  }
-
-  // Add remaining shared steps
-  pathSteps.push(...sharedSteps.slice(3)); // WHERE, WHEN, CONTACT
-
-  return pathSteps;
-});
-
 const currentStepNumber = computed(() => {
   if (stepIndex.value === 0) return 0;
 
   const currentStep = steps[stepIndex.value - 1];
-  const pathSteps = currentPathSteps.value;
+  const pathSteps = CURRENT_SCHEMA.value;
 
   return pathSteps.findIndex((stepId) => stepId === currentStep.id) + 1;
 });
 
 const totalStepsInPath = computed(() => {
-  return currentPathSteps.value.length;
+  return CURRENT_SCHEMA.value.length;
 });
 
 // Dynamic question text based on selected request types
