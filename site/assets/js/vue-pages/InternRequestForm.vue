@@ -7,9 +7,9 @@
           hasError
             ? "Fehler"
             : isSubmitted ||
-                stepIndex === 0 ||
                 (!values.request_type_bodenbelag &&
-                  !values.request_type_fussbodenheizung)
+                  !values.request_type_fussbodenheizung &&
+                  !values.request_type_refurbish_parquet)
               ? "Anfrage"
               : `Frage ${currentStepNumber} von ${totalStepsInPath}`
         }}</span
@@ -24,11 +24,11 @@
         }}
       </h2>
       <div
-        v-if="stepIndex > 0 && !hasError"
+        v-if="!hasError"
         class="form-wrapper__left-container__navigation-container"
       >
         <button
-          v-if="stepIndex > 1"
+          v-if="stepIndex > 0"
           class="c-button c-button--transparent"
           @click="prevStep"
         >
@@ -43,7 +43,7 @@
           </svg>
         </button>
         <button
-          v-if="stepIndex < steps.length"
+          v-if="stepIndex < steps.length - 1"
           class="c-button c-button--transparent form-next-button"
           @click="handleNextStep()"
         >
@@ -63,18 +63,17 @@
     <div
       :class="[
         'form-wrapper__right-container',
-        stepIndex === 0 || isSubmitted || hasError
+        isSubmitted || hasError
           ? 'form-wrapper__right-container--start-form'
           : '',
       ]"
     >
       <form
-        v-if="stepIndex > 0"
         @submit="
           (e) => {
             e.preventDefault();
             validate();
-            if (stepIndex === steps.length && meta.valid) {
+            if (stepIndex === steps.length - 1 && meta.valid) {
               onSubmit();
             }
           }
@@ -201,24 +200,12 @@
             </FormItem>
           </FormField>
 
-          <!-- Datenschutz for contact step -->
-          <div
-            v-if="stepIndex === steps.length && !hasError"
-            class="form-privacy-section"
-          >
-            <p class="form-privacy-text">
-              Wir legen großen Wert auf den Schutz Ihrer Daten. Hier finden Sie
-              unsere
-              <a href="/datenschutz/" target="_blank">Datenschutzerklärung</a>.
-            </p>
-          </div>
-
           <!-- Honeypot -->
           <input type="text" name="strawberry_fields" class="u-invisible" />
         </div>
 
         <button
-          v-if="stepIndex === steps.length && !hasError"
+          v-if="stepIndex === steps.length - 1 && !hasError"
           type="submit"
           class="c-button c-button--primary form-submit-button"
         >
@@ -236,24 +223,6 @@
           </span>
         </button>
       </form>
-      <button
-        v-if="stepIndex === 0 && !isSubmitted && !hasError"
-        class="c-button c-button--primary form-submit-button"
-        @click="onStartForm"
-      >
-        <span>Jetzt loslegen</span>
-        <span class="form-submit-button__icon-wrapper">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="15.756"
-            height="10.066"
-          >
-            <g fill="none" stroke="currentColor" stroke-miterlimit="10">
-              <path d="M0 5.033h15.05M10.38.353l4.67 4.68-4.67 4.68" />
-            </g>
-          </svg>
-        </span>
-      </button>
       <button
         v-if="isSubmitted"
         class="c-button c-button--primary form-submit-button"
@@ -297,12 +266,22 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 import { toTypedSchema } from "@vee-validate/zod";
-import { useForm, Form, Field, ErrorMessage } from "vee-validate";
+import { useForm } from "vee-validate";
 
 // Import types and configurations
-import type { FormValues } from "./ClientRequest/types";
-import { steps } from "./ClientRequest/formSteps";
-import { formSchema } from "./ClientRequest/formSchema";
+import { Field as FieldType, FieldValue } from "./types";
+import {
+  FormValues,
+  SCHEMA_BODENBELAG,
+  SCHEMA_FUSSBODENHEIZUNG,
+  SCHEMA_REFURBISH_PARQUET,
+  SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG,
+  SCHEMA_BODENBELAG_AND_REFURBISH_PARQUET,
+  SCHEMA_FUSSBODENHEIZUNG_AND_REFURBISH_PARQUET,
+  SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG_AND_REFURBISH_PARQUET,
+} from "./InternRequest/types";
+import { steps } from "./InternRequest/formSteps";
+import { formSchema, SCHEMA_MAP } from "./InternRequest/formSchema";
 
 import {
   FormControl,
@@ -335,6 +314,7 @@ const errorMessage = ref("");
 const initialValues: FormValues = {
   request_type_bodenbelag: undefined,
   request_type_fussbodenheizung: undefined,
+  request_type_refurbish_parquet: undefined,
   house_type: undefined,
   stockwerk: undefined,
   object_age: undefined,
@@ -342,11 +322,15 @@ const initialValues: FormValues = {
   old_covering_type: undefined,
   floor_covering_type: undefined,
   installation_method: undefined,
+  square_meters_bodenbelag: undefined,
   heating_system: undefined,
   underground_type: undefined,
   construction_year: undefined,
-  square_meters_bodenbelag: undefined,
   square_meters_fussbodenheizung: undefined,
+  parquet_refurbish_type: undefined,
+  parquet_refurbish_how: undefined,
+  parquet_refurbish_treatment: undefined,
+  square_meters_parquet_refurbish: undefined,
   city: undefined,
   postal_code: undefined,
   street: undefined,
@@ -358,29 +342,40 @@ const initialValues: FormValues = {
   comments: undefined,
 };
 
+const CURRENT_SCHEMA = computed(() => {
+  if (
+    values.request_type_bodenbelag &&
+    values.request_type_fussbodenheizung &&
+    values.request_type_refurbish_parquet
+  ) {
+    return SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG_AND_REFURBISH_PARQUET;
+  } else if (
+    values.request_type_bodenbelag &&
+    values.request_type_fussbodenheizung
+  ) {
+    return SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG;
+  } else if (
+    values.request_type_bodenbelag &&
+    values.request_type_refurbish_parquet
+  ) {
+    return SCHEMA_BODENBELAG_AND_REFURBISH_PARQUET;
+  } else if (
+    values.request_type_fussbodenheizung &&
+    values.request_type_refurbish_parquet
+  ) {
+    return SCHEMA_FUSSBODENHEIZUNG_AND_REFURBISH_PARQUET;
+  } else if (values.request_type_bodenbelag) {
+    return SCHEMA_BODENBELAG;
+  } else if (values.request_type_fussbodenheizung) {
+    return SCHEMA_FUSSBODENHEIZUNG;
+  } else if (values.request_type_refurbish_parquet) {
+    return SCHEMA_REFURBISH_PARQUET;
+  } else return [];
+});
+
 const currentStepForSchema = computed(() => {
-  if (stepIndex.value === 0) return 0;
-
-  const currentStep = steps[stepIndex.value - 1];
-
-  // Map step IDs to schema indices
-  const schemaMap = {
-    WHAT: 0,
-    HOUSE_TYPE: 1,
-    OBJECT: 2,
-    FLOOR_COVERING_TYPE: 3,
-    HOW: 4,
-    HOW_MANY_METERS_BODENBELAG: 5,
-    WHICH_SYSTEM: 6,
-    UNDERGROUND: 7,
-    YEAR_OF_CONSTRUCTION: 8,
-    HOW_MANY_METERS_FUSSBODENHEIZUNG: 9,
-    WHERE: 10,
-    WHEN: 11,
-    CONTACT: 12,
-  };
-
-  return schemaMap[currentStep.id] || 0;
+  const currentStep = steps[stepIndex.value];
+  return SCHEMA_MAP[currentStep.id] || 0;
 });
 
 const validationSchema = computed(() => {
@@ -405,51 +400,17 @@ const {
 
 const prevStep = () => {
   if (stepIndex.value === 0) return;
-
-  const currentStep = steps[stepIndex.value - 1];
-  let prevStepId = currentStep.previousStep;
-
-  if (currentStep.id === "WHERE") {
-    if (!values.request_type_fussbodenheizung) {
-      // Fußbodenheizung is not selected - comes after HOW_MANY_METERS_BODENBELAG
-      prevStepId = "HOW_MANY_METERS_BODENBELAG";
-    }
-  }
-
-  // Handle going back from Fußbodenheizung steps when both are selected
-  if (currentStep.id === "WHICH_SYSTEM" && values.request_type_bodenbelag) {
-    prevStepId = "HOW_MANY_METERS_BODENBELAG";
-  }
-
+  let prevStepId = CURRENT_SCHEMA.value[currentStepNumber.value - 2];
   if (prevStepId) {
-    stepIndex.value = steps.findIndex((step) => step.id === prevStepId) + 1;
+    stepIndex.value = steps.findIndex((step) => step.id === prevStepId);
   }
 };
 
 const nextStep = () => {
-  if (stepIndex.value === steps.length) return;
-
-  const currentStep = steps[stepIndex.value - 1];
-  let nextStepId = currentStep.nextStep;
-
-  // Handle dynamic navigation based on request types
-  if (currentStep.id === "OBJECT") {
-    if (!values.request_type_bodenbelag) {
-      // Only Fußbodenheizung selected
-      nextStepId = "WHICH_SYSTEM";
-    }
-  }
-
-  // Navigation from Bodenbelag meters when only Bodenbelag is selected, go to WHERE
-  if (
-    currentStep.id === "HOW_MANY_METERS_BODENBELAG" &&
-    !values.request_type_fussbodenheizung
-  ) {
-    nextStepId = "WHERE";
-  }
-
+  if (currentStepNumber.value === totalStepsInPath.value) return;
+  let nextStepId = CURRENT_SCHEMA.value[currentStepNumber.value];
   if (nextStepId) {
-    stepIndex.value = steps.findIndex((step) => step.id === nextStepId) + 1;
+    stepIndex.value = steps.findIndex((step) => step.id === nextStepId);
   }
 };
 
@@ -460,7 +421,7 @@ const handleNextStep = async () => {
   }
 };
 
-const shouldShowField = (field: Field) => {
+const shouldShowField = (field: FieldType) => {
   // Show the remove_old_covering field only if altbau is selected
   if (field.id === "remove_old_covering") {
     return values.object_age === "altbau";
@@ -475,9 +436,7 @@ const shouldShowField = (field: Field) => {
 };
 
 const visibleFields = computed(() => {
-  if (stepIndex.value === 0) return [];
-
-  const currentStep = steps[stepIndex.value - 1];
+  const currentStep = steps[stepIndex.value];
 
   // Filter out steps that don't belong to the current path
   if (
@@ -497,78 +456,62 @@ const visibleFields = computed(() => {
     if (!values.request_type_fussbodenheizung) return [];
   }
 
+  if (
+    currentStep.id === "PARQUET_REFURBISH_TYPE" ||
+    currentStep.id === "PARQUET_REFURBISH_HOW" ||
+    currentStep.id === "PARQUET_REFURBISH_TREATMENT" ||
+    currentStep.id === "HOW_MANY_METERS_PARQUET_REFURBISH"
+  ) {
+    if (!values.request_type_refurbish_parquet) return [];
+  }
+
   return currentStep.fields.filter(shouldShowField);
 });
 
-// Calculate the correct step number and total for the current path
-const currentPathSteps = computed(() => {
-  if (!values.request_type_bodenbelag && !values.request_type_fussbodenheizung)
-    return [];
-
-  const sharedSteps = [
-    "WHAT",
-    "HOUSE_TYPE",
-    "OBJECT",
-    "WHERE",
-    "WHEN",
-    "CONTACT",
-  ];
-
-  const pathSteps = [...sharedSteps.slice(0, 3)]; // WHAT, HOUSE_TYPE, OBJECT
-
-  // Add Bodenbelag-specific steps if selected
-  if (values.request_type_bodenbelag) {
-    pathSteps.push("FLOOR_COVERING_TYPE", "HOW", "HOW_MANY_METERS_BODENBELAG");
-  }
-
-  // Add Fußbodenheizung-specific steps if selected
-  if (values.request_type_fussbodenheizung) {
-    pathSteps.push(
-      "WHICH_SYSTEM",
-      "UNDERGROUND",
-      "YEAR_OF_CONSTRUCTION",
-      "HOW_MANY_METERS_FUSSBODENHEIZUNG",
-    );
-  }
-
-  // Add remaining shared steps
-  pathSteps.push(...sharedSteps.slice(3)); // WHERE, WHEN, CONTACT
-
-  return pathSteps;
-});
-
 const currentStepNumber = computed(() => {
-  if (stepIndex.value === 0) return 0;
-
-  const currentStep = steps[stepIndex.value - 1];
-  const pathSteps = currentPathSteps.value;
+  const currentStep = steps[stepIndex.value];
+  const pathSteps = CURRENT_SCHEMA.value;
 
   return pathSteps.findIndex((stepId) => stepId === currentStep.id) + 1;
 });
 
 const totalStepsInPath = computed(() => {
-  return currentPathSteps.value.length;
+  return CURRENT_SCHEMA.value.length;
 });
 
 // Dynamic question text based on selected request types
 const currentStepQuestion = computed(() => {
-  if (stepIndex.value === 0) {
-    return "Um Ihre Anfrage direkt bearbeiten zu können, bitte wir Sie folgende Fragen zu beantworten.";
-  }
-
-  const currentStep = steps[stepIndex.value - 1];
+  const currentStep = steps[stepIndex.value];
 
   // Dynamic question for HOUSE_TYPE step
   if (currentStep.id === "HOUSE_TYPE") {
     if (
       values.request_type_bodenbelag &&
+      values.request_type_fussbodenheizung &&
+      values.request_type_refurbish_parquet
+    ) {
+      return "Wo wollen Sie Ihren neuen Bodenbelag verlegen, Ihre neue Fußbodenheizung einbauen und Ihr Parkett aufbereiten?";
+    } else if (
+      values.request_type_bodenbelag &&
       values.request_type_fussbodenheizung
     ) {
       return "Wo wollen Sie Ihren neuen Bodenbelag verlegen und Ihre neue Fußbodenheizung einbauen?";
+    } else if (
+      values.request_type_bodenbelag &&
+      values.request_type_refurbish_parquet
+    ) {
+      return "Wo wollen Sie Ihren neuen Bodenbelag verlegen und Ihr Parkett aufbereiten?";
+    } else if (
+      values.request_type_fussbodenheizung &&
+      values.request_type_refurbish_parquet
+    ) {
+      return "Wo wollen Sie Ihre neue Fußbodenheizung einbauen und Ihr Parkett aufbereiten?";
     } else if (values.request_type_bodenbelag) {
       return "Wo wollen Sie Ihren neuen Bodenbelag verlegen?";
     } else if (values.request_type_fussbodenheizung) {
       return "Wo wollen Sie Ihre neue Fußbodenheizung einbauen?";
+    } else if (values.request_type_refurbish_parquet) {
+      return "Wo wollen Sie Ihr Parkett aufbereiten?";
     }
   }
 
@@ -622,9 +565,18 @@ watch(
   },
 );
 
-const onStartForm = () => {
-  stepIndex.value = 1;
-};
+// Reset RefurbishParquet-related fields when unchecking Fußbodenheizung
+watch(
+  () => values.request_type_refurbish_parquet,
+  (newValue, oldValue) => {
+    if (oldValue === true && newValue === false) {
+      setFieldValue("parquet_refurbish_type", undefined);
+      setFieldValue("parquet_refurbish_how", undefined);
+      setFieldValue("parquet_refurbish_treatment", undefined);
+      setFieldValue("square_meters_parquet_refurbish", undefined);
+    }
+  },
+);
 
 const onSubmit = async () => {
   try {

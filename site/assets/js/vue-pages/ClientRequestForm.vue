@@ -298,7 +298,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 import { toTypedSchema } from "@vee-validate/zod";
-import { useForm, Form, Field, ErrorMessage } from "vee-validate";
+import { useForm } from "vee-validate";
 
 // Import types and configurations
 import { Field as FieldType, FieldValue } from "./types";
