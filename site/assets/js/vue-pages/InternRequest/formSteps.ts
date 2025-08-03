@@ -303,6 +303,88 @@ export const steps: Intern_Form_Step[] = [
     ],
   },
   {
+    id: "ROOMS",
+    question: "Fußbodenheizung: Um welche Räume geht es?",
+    fields: [
+      {
+        id: "room1",
+        type: "INPUT",
+        placeholder: "Raum #1 *",
+        label: "Raum #1",
+      },
+      {
+        id: "room2",
+        type: "INPUT",
+        placeholder: "Raum #2",
+        label: "Raum #2",
+      },
+      {
+        id: "room3",
+        type: "INPUT",
+        placeholder: "Raum #3",
+        label: "Raum #3",
+      },
+      {
+        id: "room4",
+        type: "INPUT",
+        placeholder: "Raum #4",
+        label: "Raum #4",
+      },
+      {
+        id: "room5",
+        type: "INPUT",
+        placeholder: "Raum #5",
+        label: "Raum #5",
+      },
+    ],
+  },
+  {
+    id: "SUBSTRATE_PREPARATION",
+    question: "Fußbodenheizung: Soll der Untergrund vorbereitet werden?",
+    fields: [
+      {
+        id: "substrate_preparation",
+        type: "RADIO",
+        label: "Soll der Untergrund vorbereitet werden? *",
+        values: [
+          {
+            value: "ja",
+            label: "Ja",
+          },
+          {
+            value: "nein",
+            label: "Nein",
+          },
+        ],
+      },
+      {
+        id: "substrate_preparation_method",
+        type: "RADIO",
+        label: "Wie soll der Untergrund vorbereitet werden? *",
+        values: [
+          {
+            value: "schleifen",
+            label: "schleifen",
+          },
+          {
+            value: "grundieren",
+            label: "grundieren",
+          },
+          {
+            value: "spachteln",
+            label: "spachteln",
+          },
+        ],
+      },
+      {
+        id: "substrate_preparation_comments",
+        type: "INPUT",
+        placeholder: "Anmerkungen",
+        label: "Anmerkungen",
+      },
+    ],
+  },
+  {
     id: "HOW_MANY_METERS_FUSSBODENHEIZUNG",
     question: "Fußbodenheizung: Wieviel m² benötigen Sie?",
     fields: [

@@ -10,14 +10,16 @@ export const SCHEMA_MAP = {
   WHICH_SYSTEM: 6,
   UNDERGROUND: 7,
   YEAR_OF_CONSTRUCTION: 8,
-  HOW_MANY_METERS_FUSSBODENHEIZUNG: 9,
-  PARQUET_REFURBISH_TYPE: 10,
-  PARQUET_REFURBISH_HOW: 11,
-  PARQUET_REFURBISH_TREATMENT: 12,
-  HOW_MANY_METERS_PARQUET_REFURBISH: 13,
-  WHERE: 14,
-  WHEN: 15,
-  CONTACT: 16,
+  ROOMS: 9,
+  SUBSTRATE_PREPARATION: 10,
+  HOW_MANY_METERS_FUSSBODENHEIZUNG: 11,
+  PARQUET_REFURBISH_TYPE: 12,
+  PARQUET_REFURBISH_HOW: 13,
+  PARQUET_REFURBISH_TREATMENT: 14,
+  HOW_MANY_METERS_PARQUET_REFURBISH: 15,
+  WHERE: 16,
+  WHEN: 17,
+  CONTACT: 18,
 };
 
 export const formSchema = [
@@ -149,6 +151,42 @@ export const formSchema = [
         return !isNaN(year) && year > 1800 && year <= new Date().getFullYear();
       }, "Bitte geben Sie ein gültiges Baujahr ein"),
   }),
+  z.object({
+    room1: z
+      .string({
+        required_error: "Bitte geben Sie Informationen zum ersten Raum ein",
+      })
+      .min(1, "Bitte geben Sie Informationen zum ersten Raum ein"),
+    room2: z.string().optional(),
+    room3: z.string().optional(),
+    room4: z.string().optional(),
+    room5: z.string().optional(),
+  }),
+  z
+    .object({
+      substrate_preparation: z.enum(["ja", "nein"], {
+        required_error: "Bitte wählen Sie eine Option aus",
+      }),
+      substrate_preparation_method: z
+        .enum(["schleifen", "grundieren", "spachteln"], {
+          required_error: "Bitte wählen Sie eine Vorbereitungsmethode aus",
+        })
+        .optional(),
+      substrate_preparation_comments: z.string().optional(),
+    })
+    .refine(
+      (data) => {
+        // If "ja" is selected, substrate_preparation_method is required
+        if (data.substrate_preparation === "ja") {
+          return data.substrate_preparation_method !== undefined;
+        }
+        return true;
+      },
+      {
+        message: "Bitte wählen Sie eine Vorbereitungsmethode aus",
+        path: ["substrate_preparation_method"],
+      },
+    ),
   z.object({
     square_meters_fussbodenheizung: z
       .string({

@@ -326,6 +326,14 @@ const initialValues: FormValues = {
   heating_system: undefined,
   underground_type: undefined,
   construction_year: undefined,
+  rooms1: undefined,
+  rooms2: undefined,
+  rooms3: undefined,
+  rooms4: undefined,
+  rooms5: undefined,
+  substrate_preparation: undefined,
+  substrate_preparation_method: undefined,
+  substrate_preparation_comments: undefined,
   square_meters_fussbodenheizung: undefined,
   parquet_refurbish_type: undefined,
   parquet_refurbish_how: undefined,
@@ -391,8 +399,6 @@ const {
   setFieldValue,
   resetForm,
 } = useForm({
-  // Our stepIndex 0 is not a step of the form and we need to skip it.
-  // Not the cleanest code, sorry.
   validationSchema,
   initialValues,
   keepValuesOnUnmount: true,
@@ -432,6 +438,14 @@ const shouldShowField = (field: FieldType) => {
       values.object_age === "altbau" && values.remove_old_covering === "ja"
     );
   }
+  // Show substrate preparation method only if substrate_preparation is "ja"
+  if (field.id === "substrate_preparation_method") {
+    return values.substrate_preparation === "ja";
+  }
+  // Show substrate preparation comments only if substrate_preparation is "ja"
+  if (field.id === "substrate_preparation_comments") {
+    return values.substrate_preparation === "ja";
+  }
   return true;
 };
 
@@ -451,6 +465,8 @@ const visibleFields = computed(() => {
     currentStep.id === "WHICH_SYSTEM" ||
     currentStep.id === "UNDERGROUND" ||
     currentStep.id === "YEAR_OF_CONSTRUCTION" ||
+    currentStep.id === "ROOMS" ||
+    currentStep.id === "SUBSTRATE_PREPARATION" ||
     currentStep.id === "HOW_MANY_METERS_FUSSBODENHEIZUNG"
   ) {
     if (!values.request_type_fussbodenheizung) return [];
@@ -540,6 +556,17 @@ watch(
   },
 );
 
+// Reset substrate preparation method and comments when switching from "ja" to "nein"
+watch(
+  () => values.substrate_preparation,
+  (newValue, oldValue) => {
+    if (oldValue === "ja" && newValue === "nein") {
+      setFieldValue("substrate_preparation_method", undefined);
+      setFieldValue("substrate_preparation_comments", undefined);
+    }
+  },
+);
+
 // Reset Bodenbelag-related fields when unchecking Bodenbelag
 watch(
   () => values.request_type_bodenbelag,
@@ -560,6 +587,14 @@ watch(
       setFieldValue("heating_system", undefined);
       setFieldValue("underground_type", undefined);
       setFieldValue("construction_year", undefined);
+      setFieldValue("room1", undefined);
+      setFieldValue("room2", undefined);
+      setFieldValue("room3", undefined);
+      setFieldValue("room4", undefined);
+      setFieldValue("room5", undefined);
+      setFieldValue("substrate_preparation", undefined);
+      setFieldValue("substrate_preparation_method", undefined);
+      setFieldValue("substrate_preparation_comments", undefined);
       setFieldValue("square_meters_fussbodenheizung", undefined);
     }
   },
