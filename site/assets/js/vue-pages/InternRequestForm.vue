@@ -321,19 +321,27 @@ const initialValues: FormValues = {
   remove_old_covering: undefined,
   old_covering_type: undefined,
   floor_covering_type: undefined,
+  room1_bodenbelag: undefined,
+  room2_bodenbelag: undefined,
+  room3_bodenbelag: undefined,
+  room4_bodenbelag: undefined,
+  room5_bodenbelag: undefined,
+  substrate_preparation_bodenbelag: undefined,
+  substrate_preparation_method_bodenbelag: undefined,
+  substrate_preparation_comments_bodenbelag: undefined,
   installation_method: undefined,
   square_meters_bodenbelag: undefined,
   heating_system: undefined,
   underground_type: undefined,
   construction_year: undefined,
-  rooms1: undefined,
-  rooms2: undefined,
-  rooms3: undefined,
-  rooms4: undefined,
-  rooms5: undefined,
-  substrate_preparation: undefined,
-  substrate_preparation_method: undefined,
-  substrate_preparation_comments: undefined,
+  room1_fussbodenheizung: undefined,
+  room2_fussbodenheizung: undefined,
+  room3_fussbodenheizung: undefined,
+  room4_fussbodenheizung: undefined,
+  room5_fussbodenheizung: undefined,
+  substrate_preparation_fussbodenheizung: undefined,
+  substrate_preparation_method_fussbodenheizung: undefined,
+  substrate_preparation_comments_fussbodenheizung: undefined,
   square_meters_fussbodenheizung: undefined,
   parquet_refurbish_type: undefined,
   parquet_refurbish_how: undefined,
@@ -438,13 +446,21 @@ const shouldShowField = (field: FieldType) => {
       values.object_age === "altbau" && values.remove_old_covering === "ja"
     );
   }
-  // Show substrate preparation method only if substrate_preparation is "ja"
-  if (field.id === "substrate_preparation_method") {
-    return values.substrate_preparation === "ja";
+  // Show Bodenbelag substrate preparation method only if substrate_preparation_bodenbelag is "ja"
+  if (field.id === "substrate_preparation_method_bodenbelag") {
+    return values.substrate_preparation_bodenbelag === "ja";
   }
-  // Show substrate preparation comments only if substrate_preparation is "ja"
-  if (field.id === "substrate_preparation_comments") {
-    return values.substrate_preparation === "ja";
+  // Show Bodenbelag substrate preparation comments only if substrate_preparation_bodenbelag is "ja"
+  if (field.id === "substrate_preparation_comments_bodenbelag") {
+    return values.substrate_preparation_bodenbelag === "ja";
+  }
+  // Show Fußbodenheizung substrate preparation method only if substrate_preparation_fussbodenheizung is "ja"
+  if (field.id === "substrate_preparation_method_fussbodenheizung") {
+    return values.substrate_preparation_fussbodenheizung === "ja";
+  }
+  // Show Fußbodenheizung substrate preparation comments only if substrate_preparation_fussbodenheizung is "ja"
+  if (field.id === "substrate_preparation_comments_fussbodenheizung") {
+    return values.substrate_preparation_fussbodenheizung === "ja";
   }
   return true;
 };
@@ -455,6 +471,8 @@ const visibleFields = computed(() => {
   // Filter out steps that don't belong to the current path
   if (
     currentStep.id === "FLOOR_COVERING_TYPE" ||
+    currentStep.id === "ROOMS_BODENBELAG" ||
+    currentStep.id === "SUBSTRATE_PREPARATION_BODENBELAG" ||
     currentStep.id === "HOW" ||
     currentStep.id === "HOW_MANY_METERS_BODENBELAG"
   ) {
@@ -465,8 +483,8 @@ const visibleFields = computed(() => {
     currentStep.id === "WHICH_SYSTEM" ||
     currentStep.id === "UNDERGROUND" ||
     currentStep.id === "YEAR_OF_CONSTRUCTION" ||
-    currentStep.id === "ROOMS" ||
-    currentStep.id === "SUBSTRATE_PREPARATION" ||
+    currentStep.id === "ROOMS_FUSSBODENHEIZUNG" ||
+    currentStep.id === "SUBSTRATE_PREPARATION_FUSSBODENHEIZUNG" ||
     currentStep.id === "HOW_MANY_METERS_FUSSBODENHEIZUNG"
   ) {
     if (!values.request_type_fussbodenheizung) return [];
@@ -556,13 +574,24 @@ watch(
   },
 );
 
-// Reset substrate preparation method and comments when switching from "ja" to "nein"
+// Reset Bodenbelag substrate preparation method and comments when switching from "ja" to "nein"
 watch(
-  () => values.substrate_preparation,
+  () => values.substrate_preparation_bodenbelag,
   (newValue, oldValue) => {
     if (oldValue === "ja" && newValue === "nein") {
-      setFieldValue("substrate_preparation_method", undefined);
-      setFieldValue("substrate_preparation_comments", undefined);
+      setFieldValue("substrate_preparation_method_bodenbelag", undefined);
+      setFieldValue("substrate_preparation_comments_bodenbelag", undefined);
+    }
+  },
+);
+
+// Reset Fußbodenheizung substrate preparation method and comments when switching from "ja" to "nein"
+watch(
+  () => values.substrate_preparation_fussbodenheizung,
+  (newValue, oldValue) => {
+    if (oldValue === "ja" && newValue === "nein") {
+      setFieldValue("substrate_preparation_method_fussbodenheizung", undefined);
+      setFieldValue("substrate_preparation_comments_fussbodenheizung", undefined);
     }
   },
 );
@@ -573,6 +602,14 @@ watch(
   (newValue, oldValue) => {
     if (oldValue === true && newValue === false) {
       setFieldValue("floor_covering_type", undefined);
+      setFieldValue("room1_bodenbelag", undefined);
+      setFieldValue("room2_bodenbelag", undefined);
+      setFieldValue("room3_bodenbelag", undefined);
+      setFieldValue("room4_bodenbelag", undefined);
+      setFieldValue("room5_bodenbelag", undefined);
+      setFieldValue("substrate_preparation_bodenbelag", undefined);
+      setFieldValue("substrate_preparation_method_bodenbelag", undefined);
+      setFieldValue("substrate_preparation_comments_bodenbelag", undefined);
       setFieldValue("installation_method", undefined);
       setFieldValue("square_meters_bodenbelag", undefined);
     }
@@ -587,14 +624,14 @@ watch(
       setFieldValue("heating_system", undefined);
       setFieldValue("underground_type", undefined);
       setFieldValue("construction_year", undefined);
-      setFieldValue("room1", undefined);
-      setFieldValue("room2", undefined);
-      setFieldValue("room3", undefined);
-      setFieldValue("room4", undefined);
-      setFieldValue("room5", undefined);
-      setFieldValue("substrate_preparation", undefined);
-      setFieldValue("substrate_preparation_method", undefined);
-      setFieldValue("substrate_preparation_comments", undefined);
+      setFieldValue("room1_fussbodenheizung", undefined);
+      setFieldValue("room2_fussbodenheizung", undefined);
+      setFieldValue("room3_fussbodenheizung", undefined);
+      setFieldValue("room4_fussbodenheizung", undefined);
+      setFieldValue("room5_fussbodenheizung", undefined);
+      setFieldValue("substrate_preparation_fussbodenheizung", undefined);
+      setFieldValue("substrate_preparation_method_fussbodenheizung", undefined);
+      setFieldValue("substrate_preparation_comments_fussbodenheizung", undefined);
       setFieldValue("square_meters_fussbodenheizung", undefined);
     }
   },

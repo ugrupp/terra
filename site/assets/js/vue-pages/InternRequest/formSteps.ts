@@ -181,6 +181,88 @@ export const steps: Intern_Form_Step[] = [
     ],
   },
   {
+    id: "ROOMS_BODENBELAG",
+    question: "Bodenbelag: Um welche Räume geht es?",
+    fields: [
+      {
+        id: "room1_bodenbelag",
+        type: "INPUT",
+        placeholder: "Raum #1 *",
+        label: "Raum #1",
+      },
+      {
+        id: "room2_bodenbelag",
+        type: "INPUT",
+        placeholder: "Raum #2",
+        label: "Raum #2",
+      },
+      {
+        id: "room3_bodenbelag",
+        type: "INPUT",
+        placeholder: "Raum #3",
+        label: "Raum #3",
+      },
+      {
+        id: "room4_bodenbelag",
+        type: "INPUT",
+        placeholder: "Raum #4",
+        label: "Raum #4",
+      },
+      {
+        id: "room5_bodenbelag",
+        type: "INPUT",
+        placeholder: "Raum #5",
+        label: "Raum #5",
+      },
+    ],
+  },
+  {
+    id: "SUBSTRATE_PREPARATION_BODENBELAG",
+    question: "Bodenbelag: Soll der Untergrund vorbereitet werden?",
+    fields: [
+      {
+        id: "substrate_preparation_bodenbelag",
+        type: "RADIO",
+        label: "Soll der Untergrund vorbereitet werden? *",
+        values: [
+          {
+            value: "ja",
+            label: "Ja",
+          },
+          {
+            value: "nein",
+            label: "Nein",
+          },
+        ],
+      },
+      {
+        id: "substrate_preparation_method_bodenbelag",
+        type: "RADIO",
+        label: "Wie soll der Untergrund vorbereitet werden? *",
+        values: [
+          {
+            value: "schleifen",
+            label: "schleifen",
+          },
+          {
+            value: "grundieren",
+            label: "grundieren",
+          },
+          {
+            value: "spachteln",
+            label: "spachteln",
+          },
+        ],
+      },
+      {
+        id: "substrate_preparation_comments_bodenbelag",
+        type: "TEXTAREA",
+        placeholder: "Anmerkungen",
+        label: "Anmerkungen",
+      },
+    ],
+  },
+  {
     id: "HOW",
     question: "Bodenbelag: Wie soll verlegt werden?",
     fields: [
@@ -303,35 +385,35 @@ export const steps: Intern_Form_Step[] = [
     ],
   },
   {
-    id: "ROOMS",
+    id: "ROOMS_FUSSBODENHEIZUNG",
     question: "Fußbodenheizung: Um welche Räume geht es?",
     fields: [
       {
-        id: "room1",
+        id: "room1_fussbodenheizung",
         type: "INPUT",
         placeholder: "Raum #1 *",
         label: "Raum #1",
       },
       {
-        id: "room2",
+        id: "room2_fussbodenheizung",
         type: "INPUT",
         placeholder: "Raum #2",
         label: "Raum #2",
       },
       {
-        id: "room3",
+        id: "room3_fussbodenheizung",
         type: "INPUT",
         placeholder: "Raum #3",
         label: "Raum #3",
       },
       {
-        id: "room4",
+        id: "room4_fussbodenheizung",
         type: "INPUT",
         placeholder: "Raum #4",
         label: "Raum #4",
       },
       {
-        id: "room5",
+        id: "room5_fussbodenheizung",
         type: "INPUT",
         placeholder: "Raum #5",
         label: "Raum #5",
@@ -339,11 +421,11 @@ export const steps: Intern_Form_Step[] = [
     ],
   },
   {
-    id: "SUBSTRATE_PREPARATION",
+    id: "SUBSTRATE_PREPARATION_FUSSBODENHEIZUNG",
     question: "Fußbodenheizung: Soll der Untergrund vorbereitet werden?",
     fields: [
       {
-        id: "substrate_preparation",
+        id: "substrate_preparation_fussbodenheizung",
         type: "RADIO",
         label: "Soll der Untergrund vorbereitet werden? *",
         values: [
@@ -358,7 +440,7 @@ export const steps: Intern_Form_Step[] = [
         ],
       },
       {
-        id: "substrate_preparation_method",
+        id: "substrate_preparation_method_fussbodenheizung",
         type: "RADIO",
         label: "Wie soll der Untergrund vorbereitet werden? *",
         values: [
@@ -377,8 +459,8 @@ export const steps: Intern_Form_Step[] = [
         ],
       },
       {
-        id: "substrate_preparation_comments",
-        type: "INPUT",
+        id: "substrate_preparation_comments_fussbodenheizung",
+        type: "TEXTAREA",
         placeholder: "Anmerkungen",
         label: "Anmerkungen",
       },

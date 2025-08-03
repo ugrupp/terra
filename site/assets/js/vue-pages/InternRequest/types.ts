@@ -5,13 +5,15 @@ export type INTERN_FORM_STEP_ID =
   | "HOUSE_TYPE"
   | "OBJECT"
   | "FLOOR_COVERING_TYPE"
+  | "ROOMS_BODENBELAG"
+  | "SUBSTRATE_PREPARATION_BODENBELAG"
   | "HOW"
   | "HOW_MANY_METERS_BODENBELAG"
   | "WHICH_SYSTEM"
   | "UNDERGROUND"
   | "YEAR_OF_CONSTRUCTION"
-  | "ROOMS"
-  | "SUBSTRATE_PREPARATION"
+  | "ROOMS_FUSSBODENHEIZUNG"
+  | "SUBSTRATE_PREPARATION_FUSSBODENHEIZUNG"
   | "HOW_MANY_METERS_FUSSBODENHEIZUNG"
   | "PARQUET_REFURBISH_TYPE"
   | "PARQUET_REFURBISH_HOW"
@@ -32,6 +34,8 @@ export const SCHEMA_BODENBELAG: INTERN_FORM_STEP_ID[] = [
   "HOUSE_TYPE",
   "OBJECT",
   "FLOOR_COVERING_TYPE",
+  "ROOMS_BODENBELAG",
+  "SUBSTRATE_PREPARATION_BODENBELAG",
   "HOW",
   "HOW_MANY_METERS_BODENBELAG",
   "WHERE",
@@ -46,8 +50,8 @@ export const SCHEMA_FUSSBODENHEIZUNG: INTERN_FORM_STEP_ID[] = [
   "WHICH_SYSTEM",
   "UNDERGROUND",
   "YEAR_OF_CONSTRUCTION",
-  "ROOMS",
-  "SUBSTRATE_PREPARATION",
+  "ROOMS_FUSSBODENHEIZUNG",
+  "SUBSTRATE_PREPARATION_FUSSBODENHEIZUNG",
   "HOW_MANY_METERS_FUSSBODENHEIZUNG",
   "WHERE",
   "WHEN",
@@ -72,13 +76,15 @@ export const SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG: INTERN_FORM_STEP_ID[] = [
   "HOUSE_TYPE",
   "OBJECT",
   "FLOOR_COVERING_TYPE",
+  "ROOMS_BODENBELAG",
+  "SUBSTRATE_PREPARATION_BODENBELAG",
   "HOW",
   "HOW_MANY_METERS_BODENBELAG",
   "WHICH_SYSTEM",
   "UNDERGROUND",
   "YEAR_OF_CONSTRUCTION",
-  "ROOMS",
-  "SUBSTRATE_PREPARATION",
+  "ROOMS_FUSSBODENHEIZUNG",
+  "SUBSTRATE_PREPARATION_FUSSBODENHEIZUNG",
   "HOW_MANY_METERS_FUSSBODENHEIZUNG",
   "WHERE",
   "WHEN",
@@ -90,6 +96,8 @@ export const SCHEMA_BODENBELAG_AND_REFURBISH_PARQUET: INTERN_FORM_STEP_ID[] = [
   "HOUSE_TYPE",
   "OBJECT",
   "FLOOR_COVERING_TYPE",
+  "ROOMS_BODENBELAG",
+  "SUBSTRATE_PREPARATION_BODENBELAG",
   "HOW",
   "HOW_MANY_METERS_BODENBELAG",
   "PARQUET_REFURBISH_TYPE",
@@ -109,8 +117,8 @@ export const SCHEMA_FUSSBODENHEIZUNG_AND_REFURBISH_PARQUET: INTERN_FORM_STEP_ID[
     "WHICH_SYSTEM",
     "UNDERGROUND",
     "YEAR_OF_CONSTRUCTION",
-    "ROOMS",
-    "SUBSTRATE_PREPARATION",
+    "ROOMS_FUSSBODENHEIZUNG",
+    "SUBSTRATE_PREPARATION_FUSSBODENHEIZUNG",
     "HOW_MANY_METERS_FUSSBODENHEIZUNG",
     "PARQUET_REFURBISH_TYPE",
     "PARQUET_REFURBISH_HOW",
@@ -127,13 +135,15 @@ export const SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG_AND_REFURBISH_PARQUET: INTER
     "HOUSE_TYPE",
     "OBJECT",
     "FLOOR_COVERING_TYPE",
+    "ROOMS_BODENBELAG",
+    "SUBSTRATE_PREPARATION_BODENBELAG",
     "HOW",
     "HOW_MANY_METERS_BODENBELAG",
     "WHICH_SYSTEM",
     "UNDERGROUND",
     "YEAR_OF_CONSTRUCTION",
-    "ROOMS",
-    "SUBSTRATE_PREPARATION",
+    "ROOMS_FUSSBODENHEIZUNG",
+    "SUBSTRATE_PREPARATION_FUSSBODENHEIZUNG",
     "HOW_MANY_METERS_FUSSBODENHEIZUNG",
     "PARQUET_REFURBISH_TYPE",
     "PARQUET_REFURBISH_HOW",
@@ -154,19 +164,27 @@ export interface FormValues {
   remove_old_covering?: string;
   old_covering_type?: string;
   floor_covering_type?: string;
+  room1_bodenbelag?: string;
+  room2_bodenbelag?: string;
+  room3_bodenbelag?: string;
+  room4_bodenbelag?: string;
+  room5_bodenbelag?: string;  
+  substrate_preparation_bodenbelag?: string;
+  substrate_preparation_method_bodenbelag?: string;
+  substrate_preparation_comments_bodenbelag?: string;
   installation_method?: string;
   square_meters_bodenbelag?: string;
   heating_system?: string;
   underground_type?: string;
   construction_year?: string;
-  rooms1?: string;
-  rooms2?: string;
-  rooms3?: string;
-  rooms4?: string;
-  rooms5?: string;
-  substrate_preparation?: string;
-  substrate_preparation_method?: string;
-  substrate_preparation_comments?: string;
+  room1_fussbodenheizung?: string;
+  room2_fussbodenheizung?: string;
+  room3_fussbodenheizung?: string;
+  room4_fussbodenheizung?: string;
+  room5_fussbodenheizung?: string;
+  substrate_preparation_fussbodenheizung?: string;
+  substrate_preparation_method_fussbodenheizung?: string;
+  substrate_preparation_comments_fussbodenheizung?: string;
   square_meters_fussbodenheizung?: string;
   parquet_refurbish_type?: string;
   parquet_refurbish_how?: string;
