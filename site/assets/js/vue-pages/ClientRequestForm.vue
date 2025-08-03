@@ -42,8 +42,26 @@
           </svg>
         </span>
       </button>
+      <button
+        v-if="isSubmitted"
+        class="c-button c-button--primary form-submit-button form-is-submitted-button"
+        @click="goToHomepage"
+      >
+        <span>Zur Startseite</span>
+        <span class="form-submit-button__icon-wrapper">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15.756"
+            height="10.066"
+          >
+            <g fill="none" stroke="currentColor" stroke-miterlimit="10">
+              <path d="M0 5.033h15.05M10.38.353l4.67 4.68-4.67 4.68" />
+            </g>
+          </svg>
+        </span>
+      </button>
       <div
-        v-if="stepIndex > 0 && !hasError"
+        v-if="stepIndex > 0 && !hasError && !isSubmitted"
         class="form-wrapper__left-container__navigation-container"
       >
         <button
@@ -88,7 +106,7 @@
       ]"
     >
       <form
-        v-if="stepIndex > 0"
+        v-if="stepIndex > 0 && !isSubmitted"
         @submit="
           (e) => {
             e.preventDefault();
@@ -237,7 +255,7 @@
         </div>
 
         <button
-          v-if="stepIndex === steps.length && !hasError"
+          v-if="stepIndex === steps.length && !hasError && !isSubmitted"
           type="submit"
           class="c-button c-button--primary form-submit-button"
         >
@@ -261,24 +279,6 @@
         @click="onStartForm"
       >
         <span>Jetzt loslegen</span>
-        <span class="form-submit-button__icon-wrapper">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="15.756"
-            height="10.066"
-          >
-            <g fill="none" stroke="currentColor" stroke-miterlimit="10">
-              <path d="M0 5.033h15.05M10.38.353l4.67 4.68-4.67 4.68" />
-            </g>
-          </svg>
-        </span>
-      </button>
-      <button
-        v-if="isSubmitted"
-        class="c-button c-button--primary form-submit-button"
-        @click="goToHomepage"
-      >
-        <span>Zur Startseite</span>
         <span class="form-submit-button__icon-wrapper">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -879,7 +879,8 @@ form {
   }
 }
 
-.form-error-button {
+.form-error-button,
+.form-is-submitted-button {
   margin-top: rem(20px);
 }
 </style>
