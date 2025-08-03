@@ -23,6 +23,24 @@
               : currentStepQuestion
         }}
       </h2>
+      <button
+        v-if="hasError"
+        class="c-button c-button--primary form-submit-button form-error-button"
+        @click="retrySubmission"
+      >
+        <span>Erneut versuchen</span>
+        <span class="form-submit-button__icon-wrapper">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15.756"
+            height="10.066"
+          >
+            <g fill="none" stroke="currentColor" stroke-miterlimit="10">
+              <path d="M0 5.033h15.05M10.38.353l4.67 4.68-4.67 4.68" />
+            </g>
+          </svg>
+        </span>
+      </button>
       <div
         v-if="!hasError"
         class="form-wrapper__left-container__navigation-container"
@@ -229,24 +247,6 @@
         @click="goToHomepage"
       >
         <span>Zur Startseite</span>
-        <span class="form-submit-button__icon-wrapper">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="15.756"
-            height="10.066"
-          >
-            <g fill="none" stroke="currentColor" stroke-miterlimit="10">
-              <path d="M0 5.033h15.05M10.38.353l4.67 4.68-4.67 4.68" />
-            </g>
-          </svg>
-        </span>
-      </button>
-      <button
-        v-if="hasError"
-        class="c-button c-button--primary form-submit-button"
-        @click="retrySubmission"
-      >
-        <span>Erneut versuchen</span>
         <span class="form-submit-button__icon-wrapper">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -885,6 +885,8 @@ const goToHomepage = () => {
 }
 
 form {
+  flex-grow: 1;
+
   @include mappy-bp(xxl) {
     display: flex;
     gap: rem(40px);
@@ -953,18 +955,7 @@ form {
   }
 }
 
-.form-privacy-section {
-  margin-top: rem(30px);
-}
-
-.form-privacy-text {
-  a {
-    color: $color-primary;
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
+.form-error-button {
+  margin-top: rem(20px);
 }
 </style>
