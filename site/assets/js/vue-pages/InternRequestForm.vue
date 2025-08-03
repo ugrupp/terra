@@ -878,7 +878,7 @@ const formSchema = [
       .string()
       .min(1, "Bitte geben Sie Ihre E-Mail-Adresse ein")
       .email("Bitte geben Sie eine gültige E-Mail-Adresse ein"),
-    phone: z.string().min(1, "Bitte geben Sie Ihre Telefonnummer ein"),
+    phone: z.string().optional(),
     comments: z.string().optional(),
   }),
 ];
