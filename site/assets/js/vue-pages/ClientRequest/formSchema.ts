@@ -11,9 +11,13 @@ export const SCHEMA_MAP = {
   UNDERGROUND: 7,
   YEAR_OF_CONSTRUCTION: 8,
   HOW_MANY_METERS_FUSSBODENHEIZUNG: 9,
-  WHERE: 10,
-  WHEN: 11,
-  CONTACT: 12,
+  PARQUET_REFURBISH_TYPE: 10,
+  PARQUET_REFURBISH_HOW: 11,
+  PARQUET_REFURBISH_TREATMENT: 12,
+  HOW_MANY_METERS_PARQUET_REFURBISH: 13,
+  WHERE: 14,
+  WHEN: 15,
+  CONTACT: 16,
 };
 
 export const formSchema = [
@@ -21,17 +25,20 @@ export const formSchema = [
     .object({
       request_type_bodenbelag: z.boolean().optional(),
       request_type_fussbodenheizung: z.boolean().optional(),
+      request_type_refurbish_parquet: z.boolean().optional(),
     })
     .refine(
       (data) => {
         // At least one checkbox must be selected
         return (
-          data.request_type_bodenbelag || data.request_type_fussbodenheizung
+          data.request_type_bodenbelag ||
+          data.request_type_fussbodenheizung ||
+          data.request_type_refurbish_parquet
         );
       },
       {
         message: "Bitte wählen Sie mindestens eine Option aus",
-        path: ["request_type_fussbodenheizung"], // This will show the error on the second checkbox
+        path: ["request_type_refurbish_parquet"], // This will show the error on the third and last checkbox
       },
     ),
   z.object({
@@ -149,6 +156,33 @@ export const formSchema = [
           "Bitte geben Sie die Quadratmeter für Fußbodenheizung an",
       })
       .min(1, "Bitte geben Sie die Quadratmeter für Fußbodenheizung an")
+      .refine((val) => {
+        const num = parseFloat(val);
+        return !isNaN(num) && num > 0;
+      }, "Bitte geben Sie eine gültige Zahl ein"),
+  }),
+  z.object({
+    parquet_refurbish_type: z.enum(["ahorn", "buche", "eiche"], {
+      required_error: "Bitte wählen Sie einen Holztyp aus",
+    }),
+  }),
+  z.object({
+    parquet_refurbish_how: z.enum(["schleifen", "grundreinigen"], {
+      required_error: "Bitte wählen Sie eine Behandlungsmethode aus",
+    }),
+  }),
+  z.object({
+    parquet_refurbish_treatment: z.enum(["ölen", "lackieren"], {
+      required_error: "Bitte wählen Sie eine Behandlungsmethode aus",
+    }),
+  }),
+  z.object({
+    square_meters_parquet_refurbish: z
+      .string({
+        required_error:
+          "Bitte geben Sie die Quadratmeter für Parquetsaufbereitung an",
+      })
+      .min(1, "Bitte geben Sie die Quadratmeter für Parquetsaufbereitung an")
       .refine((val) => {
         const num = parseFloat(val);
         return !isNaN(num) && num > 0;

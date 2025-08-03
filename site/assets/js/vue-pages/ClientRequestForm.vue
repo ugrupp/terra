@@ -9,7 +9,8 @@
             : isSubmitted ||
                 stepIndex === 0 ||
                 (!values.request_type_bodenbelag &&
-                  !values.request_type_fussbodenheizung)
+                  !values.request_type_fussbodenheizung &&
+                  !values.request_type_refurbish_parquet)
               ? "Anfrage"
               : `Frage ${currentStepNumber} von ${totalStepsInPath}`
         }}</span
@@ -305,7 +306,11 @@ import {
   FormValues,
   SCHEMA_BODENBELAG,
   SCHEMA_FUSSBODENHEIZUNG,
+  SCHEMA_REFURBISH_PARQUET,
   SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG,
+  SCHEMA_BODENBELAG_AND_REFURBISH_PARQUET,
+  SCHEMA_FUSSBODENHEIZUNG_AND_REFURBISH_PARQUET,
+  SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG_AND_REFURBISH_PARQUET,
 } from "./ClientRequest/types";
 import { steps } from "./ClientRequest/formSteps";
 import { formSchema, SCHEMA_MAP } from "./ClientRequest/formSchema";
@@ -341,6 +346,7 @@ const errorMessage = ref("");
 const initialValues: FormValues = {
   request_type_bodenbelag: undefined,
   request_type_fussbodenheizung: undefined,
+  request_type_refurbish_parquet: undefined,
   house_type: undefined,
   stockwerk: undefined,
   object_age: undefined,
@@ -348,11 +354,15 @@ const initialValues: FormValues = {
   old_covering_type: undefined,
   floor_covering_type: undefined,
   installation_method: undefined,
+  square_meters_bodenbelag: undefined,
   heating_system: undefined,
   underground_type: undefined,
   construction_year: undefined,
-  square_meters_bodenbelag: undefined,
   square_meters_fussbodenheizung: undefined,
+  parquet_refurbish_type: undefined,
+  parquet_refurbish_how: undefined,
+  parquet_refurbish_treatment: undefined,
+  square_meters_parquet_refurbish: undefined,
   city: undefined,
   postal_code: undefined,
   street: undefined,
@@ -365,12 +375,33 @@ const initialValues: FormValues = {
 };
 
 const CURRENT_SCHEMA = computed(() => {
-  if (values.request_type_bodenbelag && values.request_type_fussbodenheizung) {
+  if (
+    values.request_type_bodenbelag &&
+    values.request_type_fussbodenheizung &&
+    values.request_type_refurbish_parquet
+  ) {
+    return SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG_AND_REFURBISH_PARQUET;
+  } else if (
+    values.request_type_bodenbelag &&
+    values.request_type_fussbodenheizung
+  ) {
     return SCHEMA_BODENBELAG_AND_FUSSBODENHEIZUNG;
+  } else if (
+    values.request_type_bodenbelag &&
+    values.request_type_refurbish_parquet
+  ) {
+    return SCHEMA_BODENBELAG_AND_REFURBISH_PARQUET;
+  } else if (
+    values.request_type_fussbodenheizung &&
+    values.request_type_refurbish_parquet
+  ) {
+    return SCHEMA_FUSSBODENHEIZUNG_AND_REFURBISH_PARQUET;
   } else if (values.request_type_bodenbelag) {
     return SCHEMA_BODENBELAG;
   } else if (values.request_type_fussbodenheizung) {
     return SCHEMA_FUSSBODENHEIZUNG;
+  } else if (values.request_type_refurbish_parquet) {
+    return SCHEMA_REFURBISH_PARQUET;
   } else return [];
 });
 
@@ -460,6 +491,15 @@ const visibleFields = computed(() => {
     if (!values.request_type_fussbodenheizung) return [];
   }
 
+  if (
+    currentStep.id === "PARQUET_REFURBISH_TYPE" ||
+    currentStep.id === "PARQUET_REFURBISH_HOW" ||
+    currentStep.id === "PARQUET_REFURBISH_TREATMENT" ||
+    currentStep.id === "HOW_MANY_METERS_PARQUET_REFURBISH"
+  ) {
+    if (!values.request_type_refurbish_parquet) return [];
+  }
+
   return currentStep.fields.filter(shouldShowField);
 });
 
@@ -488,13 +528,31 @@ const currentStepQuestion = computed(() => {
   if (currentStep.id === "HOUSE_TYPE") {
     if (
       values.request_type_bodenbelag &&
+      values.request_type_fussbodenheizung &&
+      values.request_type_refurbish_parquet
+    ) {
+      return "Wo wollen Sie Ihren neuen Bodenbelag verlegen, Ihre neue Fußbodenheizung einbauen und Ihr Parkett aufbereiten?";
+    } else if (
+      values.request_type_bodenbelag &&
       values.request_type_fussbodenheizung
     ) {
       return "Wo wollen Sie Ihren neuen Bodenbelag verlegen und Ihre neue Fußbodenheizung einbauen?";
+    } else if (
+      values.request_type_bodenbelag &&
+      values.request_type_refurbish_parquet
+    ) {
+      return "Wo wollen Sie Ihren neuen Bodenbelag verlegen und Ihr Parkett aufbereiten?";
+    } else if (
+      values.request_type_fussbodenheizung &&
+      values.request_type_refurbish_parquet
+    ) {
+      return "Wo wollen Sie Ihre neue Fußbodenheizung einbauen und Ihr Parkett aufbereiten?";
     } else if (values.request_type_bodenbelag) {
       return "Wo wollen Sie Ihren neuen Bodenbelag verlegen?";
     } else if (values.request_type_fussbodenheizung) {
       return "Wo wollen Sie Ihre neue Fußbodenheizung einbauen?";
+    } else if (values.request_type_refurbish_parquet) {
+      return "Wo wollen Sie Ihr Parkett aufbereiten?";
     }
   }
 
@@ -544,6 +602,19 @@ watch(
       setFieldValue("underground_type", undefined);
       setFieldValue("construction_year", undefined);
       setFieldValue("square_meters_fussbodenheizung", undefined);
+    }
+  },
+);
+
+// Reset RefurbishParquet-related fields when unchecking Fußbodenheizung
+watch(
+  () => values.request_type_refurbish_parquet,
+  (newValue, oldValue) => {
+    if (oldValue === true && newValue === false) {
+      setFieldValue("parquet_refurbish_type", undefined);
+      setFieldValue("parquet_refurbish_how", undefined);
+      setFieldValue("parquet_refurbish_treatment", undefined);
+      setFieldValue("square_meters_parquet_refurbish", undefined);
     }
   },
 );

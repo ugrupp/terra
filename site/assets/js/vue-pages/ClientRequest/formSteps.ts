@@ -19,6 +19,13 @@ export const steps: Client_Form_Step[] = [
         image: "/images/form/fussbodenheizung.jpg",
         imageAlt: "Fußbodenheizung",
       },
+      {
+        id: "request_type_refurbish_parquet",
+        type: "CHECKBOX_IMAGE",
+        label: "Parkett aufbereiten",
+        image: "/images/form/parkett-aufbereiten.jpg",
+        imageAlt: "Parkett aufbereiten",
+      },
     ],
   },
   {
@@ -304,6 +311,92 @@ export const steps: Client_Form_Step[] = [
         type: "INPUT",
         placeholder: "Bitte m² für Fußbodenheizung eingeben *",
         label: "Bitte m² für Fußbodenheizung eingeben",
+      },
+    ],
+  },
+  {
+    id: "PARQUET_REFURBISH_TYPE",
+    question: "Parkett aufbereiten: Welchen Parkettboden haben Sie?",
+    fields: [
+      {
+        id: "parquet_refurbish_type",
+        type: "SELECT",
+        placeholder: "Bitte Holzart auswählen *",
+        label: "Bitte Holzart auswählen",
+        values: [
+          {
+            value: "ahorn",
+            label: "Ahorn",
+          },
+          {
+            value: "buche",
+            label: "Buche",
+          },
+          {
+            value: "eiche",
+            label: "Eiche",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "PARQUET_REFURBISH_HOW",
+    question: "Wie soll Ihr Parkett aufbereitet werden?",
+    fields: [
+      {
+        id: "parquet_refurbish_how",
+        type: "RADIO_IMAGE",
+        values: [
+          {
+            value: "schleifen",
+            label: "schleifen",
+            image: "/images/form/parkett-schleifen.jpg",
+            imageAlt: "schleifen",
+          },
+          {
+            value: "grundreinigen",
+            label: "grundreinigen",
+            image: "/images/form/parkett-grundreinigen.jpg",
+            imageAlt: "grundreinigen",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "PARQUET_REFURBISH_TREATMENT",
+    question: "Parkett aufbereiten: Wie soll die Oberfläche behandelt werden?",
+    fields: [
+      {
+        id: "parquet_refurbish_treatment",
+        type: "RADIO_IMAGE",
+        values: [
+          {
+            value: "ölen",
+            label: "ölen",
+            image: "/images/form/oelen.jpg",
+            imageAlt: "ölen",
+          },
+          {
+            value: "lackieren",
+            label: "lackieren",
+            image: "/images/form/lackieren.jpg",
+            imageAlt: "lackieren",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "HOW_MANY_METERS_PARQUET_REFURBISH",
+    question: "Parkett aufbereiten: Wieviel m² benötigen Sie?",
+    fields: [
+      {
+        id: "square_meters_parquet_refurbish",
+        type: "INPUT",
+        placeholder: "Bitte m² für Parkett aufbereiten eingeben *",
+        label: "Bitte m² für Parkett aufbereiten eingeben",
       },
     ],
   },
