@@ -330,7 +330,7 @@ export const steps: Intern_Form_Step[] = [
   },
   {
     id: "BASEBOARDS",
-    question: "Werden Sockelleisten benötigt?",
+    question: "Bodenbelag: Werden Sockelleisten benötigt?",
     fields: [
       {
         id: "baseboards_needed",
@@ -380,7 +380,7 @@ export const steps: Intern_Form_Step[] = [
   },
   {
     id: "ROOM_DOORS",
-    question: "Werden Zimmertüren benötigt?",
+    question: "Bodenbelag: Werden Zimmertüren benötigt?",
     fields: [
       {
         id: "room_doors_needed",
