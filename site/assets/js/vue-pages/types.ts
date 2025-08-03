@@ -1,0 +1,22 @@
+export interface FieldValue {
+  value: string;
+  label: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+export interface Field {
+  id: string;
+  type:
+    | "INPUT"
+    | "TEXTAREA"
+    | "SELECT"
+    | "RADIO"
+    | "RADIO_IMAGE"
+    | "CHECKBOX_IMAGE";
+  values?: FieldValue[];
+  label?: string;
+  placeholder?: string;
+  image?: string;
+  imageAlt?: string;
+}
