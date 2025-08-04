@@ -105,18 +105,7 @@
           : '',
       ]"
     >
-      <form
-        v-if="stepIndex > 0 && !isSubmitted"
-        @submit="
-          (e) => {
-            e.preventDefault();
-            validate();
-            if (stepIndex === steps.length && meta.valid) {
-              onSubmit();
-            }
-          }
-        "
-      >
+      <form v-if="stepIndex > 0 && !isSubmitted" @submit="onSubmit">
         <div class="form-fields-container">
           <FormField
             v-for="field in visibleFields"
@@ -250,6 +239,13 @@
             </p>
           </div>
 
+          <!-- Subject -->
+          <input
+            type="hidden"
+            name="_email.subject"
+            value="Neue Nachricht vom terra-boden.de Anfrageformular"
+          />
+
           <!-- Honeypot -->
           <input type="text" name="strawberry_fields" class="u-invisible" />
         </div>
@@ -258,6 +254,7 @@
           v-if="stepIndex === steps.length && !hasError && !isSubmitted"
           type="submit"
           class="c-button c-button--primary form-submit-button"
+          :disabled="submitting"
         >
           <span>Jetzt anfragen</span>
           <span class="form-submit-button__icon-wrapper">
@@ -299,6 +296,7 @@
 import { computed, ref, watch } from "vue";
 import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate";
+import { useFormspark } from "@formspark/vue-use-formspark";
 
 // Import types and configurations
 import { Field as FieldType, FieldValue } from "./types";
@@ -342,6 +340,10 @@ const stepIndex = ref(0);
 const isSubmitted = ref(false);
 const hasError = ref(false);
 const errorMessage = ref("");
+
+const [submit, submitting] = useFormspark({
+  formId: "PKajTUBnF",
+});
 
 const initialValues: FormValues = {
   request_type_bodenbelag: undefined,
@@ -415,15 +417,7 @@ const validationSchema = computed(() => {
   return toTypedSchema(formSchema[currentStepForSchema.value]);
 });
 
-const {
-  handleSubmit,
-  values,
-  meta,
-  validate,
-  isFieldDirty,
-  setFieldValue,
-  resetForm,
-} = useForm({
+const { values, meta, validate, isFieldDirty, setFieldValue } = useForm({
   // Our stepIndex 0 is not a step of the form and we need to skip it.
   // Not the cleanest code, sorry.
   validationSchema,
@@ -623,38 +617,21 @@ const onStartForm = () => {
   stepIndex.value = 1;
 };
 
-const onSubmit = async () => {
-  try {
-    // Reset error state
-    hasError.value = false;
-    errorMessage.value = "";
-
-    const formData = new FormData();
-
-    // Add all form values to FormData
-    Object.keys(values).forEach((key) => {
-      if (values[key] !== undefined && values[key] !== null) {
-        formData.append(key, values[key]);
-      }
-    });
-
-    // Submit to Formspark
-    const response = await fetch("https://submit-form.com/PKajTUBnF", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (response.ok) {
-      console.log("Form submitted successfully!");
+const onSubmit = async (e) => {
+  e.preventDefault();
+  validate();
+  if (stepIndex.value === steps.length - 1 && meta.value.valid) {
+    try {
+      // Reset error state
+      hasError.value = false;
+      errorMessage.value = "";
+      await submit({ ...values });
       isSubmitted.value = true;
-    } else {
-      throw new Error("Form submission failed");
+    } catch (error) {
+      hasError.value = true;
+      errorMessage.value =
+        "Es gab ein Problem beim Senden Ihrer Anfrage. Bitte versuchen Sie es erneut.";
     }
-  } catch (error) {
-    console.error("Error submitting form:", error);
-    hasError.value = true;
-    errorMessage.value =
-      "Es gab ein Problem beim Senden Ihrer Anfrage. Bitte versuchen Sie es erneut.";
   }
 };
 
