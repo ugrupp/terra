@@ -620,7 +620,7 @@ const onStartForm = () => {
 const onSubmit = async (e) => {
   e.preventDefault();
   validate();
-  if (stepIndex.value === steps.length - 1 && meta.value.valid) {
+  if (meta.value.valid) {
     try {
       // Reset error state
       hasError.value = false;
