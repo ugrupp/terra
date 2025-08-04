@@ -106,6 +106,7 @@ export const formSchema = [
       .string({
         required_error: "Bitte geben Sie die Quadratmeter für Bodenbelag an",
       })
+      .trim()
       .min(1, "Bitte geben Sie die Quadratmeter für Bodenbelag an")
       .refine((val) => {
         const num = parseFloat(val);
@@ -143,6 +144,7 @@ export const formSchema = [
   z.object({
     construction_year: z
       .string()
+      .trim()
       .min(1, "Bitte geben Sie das Baujahr ein")
       .refine((val) => {
         const year = parseInt(val);
@@ -155,6 +157,7 @@ export const formSchema = [
         required_error:
           "Bitte geben Sie die Quadratmeter für Fußbodenheizung an",
       })
+      .trim()
       .min(1, "Bitte geben Sie die Quadratmeter für Fußbodenheizung an")
       .refine((val) => {
         const num = parseFloat(val);
@@ -182,6 +185,7 @@ export const formSchema = [
         required_error:
           "Bitte geben Sie die Quadratmeter für Parquetsaufbereitung an",
       })
+      .trim()
       .min(1, "Bitte geben Sie die Quadratmeter für Parquetsaufbereitung an")
       .refine((val) => {
         const num = parseFloat(val);
@@ -193,11 +197,13 @@ export const formSchema = [
       .string({
         required_error: "Bitte geben Sie den Ort ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie den Ort ein"),
     postal_code: z
       .string({
         required_error: "Bitte geben Sie die Postleitzahl ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie die Postleitzahl ein")
       .refine((val) => {
         return /^\d{5}$/.test(val);
@@ -206,6 +212,7 @@ export const formSchema = [
       .string({
         required_error: "Bitte geben Sie die Straße ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie die Straße ein"),
   }),
   z.object({
@@ -213,6 +220,7 @@ export const formSchema = [
       .string({
         required_error: "Bitte geben Sie Ihre Terminvorstellung ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie Ihre Terminvorstellung ein"),
   }),
   z.object({
@@ -220,19 +228,22 @@ export const formSchema = [
       .string({
         required_error: "Bitte geben Sie Ihren Vornamen ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie Ihren Vornamen ein"),
     last_name: z
       .string({
         required_error: "Bitte geben Sie Ihren Nachnamen ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie Ihren Nachnamen ein"),
     email: z
       .string({
         required_error: "Bitte geben Sie Ihre E-Mail-Adresse ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie Ihre E-Mail-Adresse ein")
       .email("Bitte geben Sie eine gültige E-Mail-Adresse ein"),
-    phone: z.string().optional(),
-    comments: z.string().optional(),
+    phone: z.string().trim().optional(),
+    comments: z.string().trim().optional(),
   }),
 ];

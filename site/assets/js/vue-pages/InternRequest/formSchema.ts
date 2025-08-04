@@ -108,21 +108,23 @@ export const formSchema = [
       .string({
         required_error: "Bitte geben Sie den ersten Bodenbelag ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie den ersten Bodenbelag ein"),
-    bodenbelag_type_2: z.string().optional(),
-    bodenbelag_type_3: z.string().optional(),
-    bodenbelag_type_notes: z.string().optional(),
+    bodenbelag_type_2: z.string().trim().optional(),
+    bodenbelag_type_3: z.string().trim().optional(),
+    bodenbelag_type_notes: z.string().trim().optional(),
   }),
   z.object({
     room1_bodenbelag: z
       .string({
         required_error: "Bitte geben Sie Informationen zum ersten Raum ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie Informationen zum ersten Raum ein"),
-    room2_bodenbelag: z.string().optional(),
-    room3_bodenbelag: z.string().optional(),
-    room4_bodenbelag: z.string().optional(),
-    room5_bodenbelag: z.string().optional(),
+    room2_bodenbelag: z.string().trim().optional(),
+    room3_bodenbelag: z.string().trim().optional(),
+    room4_bodenbelag: z.string().trim().optional(),
+    room5_bodenbelag: z.string().trim().optional(),
   }),
   z
     .object({
@@ -134,7 +136,7 @@ export const formSchema = [
           required_error: "Bitte wählen Sie eine Vorbereitungsmethode aus",
         })
         .optional(),
-      substrate_preparation_comments_bodenbelag: z.string().optional(),
+      substrate_preparation_comments_bodenbelag: z.string().trim().optional(),
     })
     .refine(
       (data) => {
@@ -159,6 +161,7 @@ export const formSchema = [
       .string({
         required_error: "Bitte geben Sie die Quadratmeter für Bodenbelag an",
       })
+      .trim()
       .min(1, "Bitte geben Sie die Quadratmeter für Bodenbelag an")
       .refine((val) => {
         const num = parseFloat(val);
@@ -183,7 +186,7 @@ export const formSchema = [
           },
         )
         .optional(),
-      baseboard_notes: z.string().optional(),
+      baseboard_notes: z.string().trim().optional(),
     })
     .refine(
       (data) => {
@@ -203,18 +206,17 @@ export const formSchema = [
       room_doors_needed: z.enum(["ja", "nein"], {
         required_error: "Bitte wählen Sie eine Option aus",
       }),
-      room_doors_quantity: z.string().optional(),
-      room_doors_measurements: z.string().optional(),
-      room_doors_execution: z.string().optional(),
+      room_doors_quantity: z.string().trim().optional(),
+      room_doors_measurements: z.string().trim().optional(),
+      room_doors_execution: z.string().trim().optional(),
     })
     .refine(
       (data) => {
-        // If "ja" is selected, quantity, measurements, and execution are required
+        // If "ja" is selected, quantity is required
         if (data.room_doors_needed === "ja") {
           return (
             data.room_doors_quantity !== undefined &&
-            data.room_doors_measurements !== undefined &&
-            data.room_doors_execution !== undefined
+            data.room_doors_quantity.trim() !== ""
           );
         }
         return true;
@@ -222,6 +224,38 @@ export const formSchema = [
       {
         message: "Bitte geben Sie die Anzahl der Türen ein",
         path: ["room_doors_quantity"],
+      },
+    )
+    .refine(
+      (data) => {
+        // If "ja" is selected measurements is required
+        if (data.room_doors_needed === "ja") {
+          return (
+            data.room_doors_measurements !== undefined &&
+            data.room_doors_measurements.trim() !== ""
+          );
+        }
+        return true;
+      },
+      {
+        message: "Bitte geben Sie die Maße der Türen ein",
+        path: ["room_doors_measurements"],
+      },
+    )
+    .refine(
+      (data) => {
+        // If "ja" is selected, execution is required
+        if (data.room_doors_needed === "ja") {
+          return (
+            data.room_doors_execution !== undefined &&
+            data.room_doors_execution.trim() !== ""
+          );
+        }
+        return true;
+      },
+      {
+        message: "Bitte geben Sie die Ausführung der Türen ein",
+        path: ["room_doors_execution"],
       },
     ),
   z.object({
@@ -255,6 +289,7 @@ export const formSchema = [
   z.object({
     construction_year: z
       .string()
+      .trim()
       .min(1, "Bitte geben Sie das Baujahr ein")
       .refine((val) => {
         const year = parseInt(val);
@@ -266,11 +301,12 @@ export const formSchema = [
       .string({
         required_error: "Bitte geben Sie Informationen zum ersten Raum ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie Informationen zum ersten Raum ein"),
-    room2_fussbodenheizung: z.string().optional(),
-    room3_fussbodenheizung: z.string().optional(),
-    room4_fussbodenheizung: z.string().optional(),
-    room5_fussbodenheizung: z.string().optional(),
+    room2_fussbodenheizung: z.string().trim().optional(),
+    room3_fussbodenheizung: z.string().trim().optional(),
+    room4_fussbodenheizung: z.string().trim().optional(),
+    room5_fussbodenheizung: z.string().trim().optional(),
   }),
   z
     .object({
@@ -282,7 +318,10 @@ export const formSchema = [
           required_error: "Bitte wählen Sie eine Vorbereitungsmethode aus",
         })
         .optional(),
-      substrate_preparation_comments_fussbodenheizung: z.string().optional(),
+      substrate_preparation_comments_fussbodenheizung: z
+        .string()
+        .trim()
+        .optional(),
     })
     .refine(
       (data) => {
@@ -305,6 +344,7 @@ export const formSchema = [
         required_error:
           "Bitte geben Sie die Quadratmeter für Fußbodenheizung an",
       })
+      .trim()
       .min(1, "Bitte geben Sie die Quadratmeter für Fußbodenheizung an")
       .refine((val) => {
         const num = parseFloat(val);
@@ -332,6 +372,7 @@ export const formSchema = [
         required_error:
           "Bitte geben Sie die Quadratmeter für Parquetsaufbereitung an",
       })
+      .trim()
       .min(1, "Bitte geben Sie die Quadratmeter für Parquetsaufbereitung an")
       .refine((val) => {
         const num = parseFloat(val);
@@ -343,11 +384,13 @@ export const formSchema = [
       .string({
         required_error: "Bitte geben Sie den Ort ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie den Ort ein"),
     postal_code: z
       .string({
         required_error: "Bitte geben Sie die Postleitzahl ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie die Postleitzahl ein")
       .refine((val) => {
         return /^\d{5}$/.test(val);
@@ -356,6 +399,7 @@ export const formSchema = [
       .string({
         required_error: "Bitte geben Sie die Straße ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie die Straße ein"),
   }),
   z.object({
@@ -363,6 +407,7 @@ export const formSchema = [
       .string({
         required_error: "Bitte geben Sie Ihre Terminvorstellung ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie Ihre Terminvorstellung ein"),
   }),
   z.object({
@@ -370,19 +415,22 @@ export const formSchema = [
       .string({
         required_error: "Bitte geben Sie Ihren Vornamen ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie Ihren Vornamen ein"),
     last_name: z
       .string({
         required_error: "Bitte geben Sie Ihren Nachnamen ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie Ihren Nachnamen ein"),
     email: z
       .string({
         required_error: "Bitte geben Sie Ihre E-Mail-Adresse ein",
       })
+      .trim()
       .min(1, "Bitte geben Sie Ihre E-Mail-Adresse ein")
       .email("Bitte geben Sie eine gültige E-Mail-Adresse ein"),
-    phone: z.string().optional(),
-    comments: z.string().optional(),
+    phone: z.string().trim().optional(),
+    comments: z.string().trim().optional(),
   }),
 ];
