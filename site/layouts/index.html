@@ -27,11 +27,6 @@
           {{ partial "components/gallery-section.html" (dict "context" . "gallery" .Params.gallery "reverse" .Params.reverse "baseContext" $baseContext) }}
         </section>
       {{ end }}
-
-      <!-- {{/* Contact form */}}
-      <section class="o-main__section o-main__section--bg-white" id="anfrage">
-        {{ partial "components/contactform.html" . }}
-      </section> -->
     </div>
   {{ end }}
 {{ end }}
