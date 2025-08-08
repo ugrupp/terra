@@ -60,42 +60,6 @@
           </svg>
         </span>
       </button>
-      <div
-        v-if="stepIndex > 0 && !hasError && !isSubmitted"
-        class="form-wrapper__left-container__navigation-container"
-      >
-        <button
-          v-if="stepIndex > 1"
-          class="c-button c-button--transparent"
-          @click="prevStep"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="15.756"
-            height="10.066"
-          >
-            <g fill="none" stroke="currentColor" stroke-miterlimit="10">
-              <path d="M15.756 5.033H.706M5.376 9.713l-4.67-4.68 4.67-4.68" />
-            </g>
-          </svg>
-        </button>
-        <button
-          v-if="stepIndex < steps.length"
-          class="c-button c-button--transparent form-next-button"
-          @click="handleNextStep()"
-        >
-          <span>weiter</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="15.756"
-            height="10.066"
-          >
-            <g fill="none" stroke="currentColor" stroke-miterlimit="10">
-              <path d="M0 5.033h15.05M10.38.353l4.67 4.68-4.67 4.68" />
-            </g>
-          </svg>
-        </button>
-      </div>
     </div>
     <div
       :class="[
@@ -247,17 +211,38 @@
           />
 
           <!-- Honeypot -->
-          <input type="text" name="strawberry_fields" class="u-invisible" />
+          <input
+            type="text"
+            name="strawberry_fields"
+            class="u-invisible"
+            tabindex="-1"
+          />
         </div>
 
-        <button
-          v-if="stepIndex === steps.length && !hasError && !isSubmitted"
-          type="submit"
-          class="c-button c-button--primary form-submit-button"
-          :disabled="submitting"
-        >
-          <span>Jetzt anfragen</span>
-          <span class="form-submit-button__icon-wrapper">
+        <div class="form-wrapper__right-container__navigation-container">
+          <button
+            v-if="stepIndex > 1 && !hasError && !isSubmitted"
+            class="c-button c-button--transparent navigation-button"
+            type="button"
+            @click="prevStep"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="15.756"
+              height="10.066"
+            >
+              <g fill="none" stroke="currentColor" stroke-miterlimit="10">
+                <path d="M15.756 5.033H.706M5.376 9.713l-4.67-4.68 4.67-4.68" />
+              </g>
+            </svg>
+          </button>
+          <button
+            v-if="stepIndex < steps.length && !hasError && !isSubmitted"
+            class="c-button c-button--primary form-next-button navigation-button"
+            type="button"
+            @click="handleNextStep()"
+          >
+            <span>weiter</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="15.756"
@@ -267,8 +252,27 @@
                 <path d="M0 5.033h15.05M10.38.353l4.67 4.68-4.67 4.68" />
               </g>
             </svg>
-          </span>
-        </button>
+          </button>
+          <button
+            v-if="stepIndex === steps.length && !hasError && !isSubmitted"
+            type="submit"
+            class="c-button c-button--primary form-submit-button"
+            :disabled="submitting"
+          >
+            <span>Jetzt anfragen</span>
+            <span class="form-submit-button__icon-wrapper">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="15.756"
+                height="10.066"
+              >
+                <g fill="none" stroke="currentColor" stroke-miterlimit="10">
+                  <path d="M0 5.033h15.05M10.38.353l4.67 4.68-4.67 4.68" />
+                </g>
+              </svg>
+            </span>
+          </button>
+        </div>
       </form>
       <button
         v-if="stepIndex === 0 && !isSubmitted && !hasError"
@@ -688,33 +692,6 @@ const goToHomepage = () => {
         left: rem(5px);
       }
     }
-
-    &__navigation-container {
-      margin-top: rem(30px);
-      display: flex;
-      gap: rem(15px);
-
-      @include mappy-bp(md) {
-        margin-top: rem(120px);
-      }
-
-      button {
-        height: rem(30px);
-        padding: 0 rem(7px);
-      }
-
-      .form-next-button {
-        text-transform: none;
-        font-weight: 400;
-        display: flex;
-        align-items: center;
-        gap: rem(20px);
-
-        .wf-active & {
-          font-family: $font-family-base;
-        }
-      }
-    }
   }
 
   &__right-container {
@@ -732,38 +709,26 @@ const goToHomepage = () => {
       gap: rem(40px);
     }
 
-    .form-submit-button {
-      @include typi("form-large");
-      text-transform: none;
-      font-weight: 400;
+    &__navigation-container {
+      margin-top: rem(60px);
       display: flex;
       align-items: center;
-      gap: rem(30px);
-      height: rem(46px);
-      padding: 0 rem(15px);
-      margin-top: rem(60px);
+      gap: rem(15px);
 
-      @include mappy-bp(xxl) {
-        margin-top: 0;
-        flex-shrink: 0;
-        align-self: flex-end;
+      .navigation-button {
+        height: rem(30px);
+        padding: 0 rem(7px);
       }
 
-      .wf-active & {
-        font-family: $font-family-base;
-      }
-
-      &__icon-wrapper {
-        border: 1px solid $color-white;
-        width: rem(25px);
-        height: rem(25px);
+      .form-next-button {
+        text-transform: none;
+        font-weight: 400;
         display: flex;
         align-items: center;
-        justify-content: center;
+        gap: rem(20px);
 
-        @include mappy-bp(md) {
-          width: rem(30px);
-          height: rem(30px);
+        .wf-active & {
+          font-family: $font-family-base;
         }
       }
     }
@@ -772,11 +737,6 @@ const goToHomepage = () => {
 
 form {
   flex-grow: 1;
-
-  @include mappy-bp(xxl) {
-    display: flex;
-    gap: rem(40px);
-  }
 }
 
 .form-field-headline {
@@ -792,6 +752,35 @@ form {
     --tw-space-y-reverse: 0;
     margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
     margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+  }
+}
+
+.form-submit-button {
+  @include typi("form-large");
+  text-transform: none;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: rem(30px);
+  height: rem(46px);
+  padding: 0 rem(15px);
+
+  .wf-active & {
+    font-family: $font-family-base;
+  }
+
+  &__icon-wrapper {
+    border: 1px solid $color-white;
+    width: rem(25px);
+    height: rem(25px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mappy-bp(md) {
+      width: rem(30px);
+      height: rem(30px);
+    }
   }
 }
 
