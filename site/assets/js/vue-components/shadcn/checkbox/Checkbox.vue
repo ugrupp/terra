@@ -94,6 +94,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
     width: rem(120px);
     height: rem(84px);
     position: relative;
+    background-color: $color-gray-4;
 
     @include mappy-bp(xs) {
       width: rem(172px);
