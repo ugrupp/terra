@@ -143,6 +143,42 @@
                 </FormControl>
                 <FormLabel>{{ field.label }}</FormLabel>
               </div>
+              <!-- CHECKBOX -->
+              <template v-if="field.type === 'CHECKBOX'">
+                <p v-if="field.label" class="form-field-headline">
+                  {{ field.label }}
+                </p>
+                <div class="checkbox-group">
+                  <FormItem
+                    v-for="(option, index) in field.values as FieldValue[]"
+                    :key="index"
+                    class="checkbox-form-item"
+                  >
+                    <FormControl>
+                      <Checkbox
+                        :model-value="
+                          Array.isArray(value) && value.includes(option.value)
+                        "
+                        @update:model-value="
+                          (checked) => {
+                            const currentValue = Array.isArray(value)
+                              ? value
+                              : [];
+                            if (checked) {
+                              handleChange([...currentValue, option.value]);
+                            } else {
+                              handleChange(
+                                currentValue.filter((v) => v !== option.value),
+                              );
+                            }
+                          }
+                        "
+                      />
+                    </FormControl>
+                    <FormLabel>{{ option.label }}</FormLabel>
+                  </FormItem>
+                </div>
+              </template>
               <!-- SELECT -->
               <template v-if="field.type === 'SELECT'">
                 <FormLabel class="u-invisible">{{ field.label }}</FormLabel>
@@ -338,7 +374,7 @@ const initialValues: FormValues = {
   room4_bodenbelag: undefined,
   room5_bodenbelag: undefined,
   substrate_preparation_bodenbelag: undefined,
-  substrate_preparation_method_bodenbelag: undefined,
+  substrate_preparation_method_bodenbelag: [],
   substrate_preparation_comments_bodenbelag: undefined,
   installation_method: undefined,
   square_meters_bodenbelag: undefined,
@@ -358,7 +394,7 @@ const initialValues: FormValues = {
   room4_fussbodenheizung: undefined,
   room5_fussbodenheizung: undefined,
   substrate_preparation_fussbodenheizung: undefined,
-  substrate_preparation_method_fussbodenheizung: undefined,
+  substrate_preparation_method_fussbodenheizung: [],
   substrate_preparation_comments_fussbodenheizung: undefined,
   square_meters_fussbodenheizung: undefined,
   parquet_refurbish_type: undefined,
@@ -602,7 +638,7 @@ watch(
   () => values.substrate_preparation_bodenbelag,
   (newValue, oldValue) => {
     if (oldValue === "ja" && newValue === "nein") {
-      setFieldValue("substrate_preparation_method_bodenbelag", undefined);
+      setFieldValue("substrate_preparation_method_bodenbelag", []);
       setFieldValue("substrate_preparation_comments_bodenbelag", undefined);
     }
   },
@@ -613,7 +649,7 @@ watch(
   () => values.substrate_preparation_fussbodenheizung,
   (newValue, oldValue) => {
     if (oldValue === "ja" && newValue === "nein") {
-      setFieldValue("substrate_preparation_method_fussbodenheizung", undefined);
+      setFieldValue("substrate_preparation_method_fussbodenheizung", []);
       setFieldValue(
         "substrate_preparation_comments_fussbodenheizung",
         undefined,
@@ -661,7 +697,7 @@ watch(
       setFieldValue("room4_bodenbelag", undefined);
       setFieldValue("room5_bodenbelag", undefined);
       setFieldValue("substrate_preparation_bodenbelag", undefined);
-      setFieldValue("substrate_preparation_method_bodenbelag", undefined);
+      setFieldValue("substrate_preparation_method_bodenbelag", []);
       setFieldValue("substrate_preparation_comments_bodenbelag", undefined);
       setFieldValue("installation_method", undefined);
       setFieldValue("square_meters_bodenbelag", undefined);
@@ -690,7 +726,7 @@ watch(
       setFieldValue("room4_fussbodenheizung", undefined);
       setFieldValue("room5_fussbodenheizung", undefined);
       setFieldValue("substrate_preparation_fussbodenheizung", undefined);
-      setFieldValue("substrate_preparation_method_fussbodenheizung", undefined);
+      setFieldValue("substrate_preparation_method_fussbodenheizung", []);
       setFieldValue(
         "substrate_preparation_comments_fussbodenheizung",
         undefined,
@@ -894,6 +930,11 @@ form {
       }
     }
   }
+}
+
+.checkbox-group {
+  display: grid;
+  gap: rem(30px);
 }
 
 .checkbox-form-item,

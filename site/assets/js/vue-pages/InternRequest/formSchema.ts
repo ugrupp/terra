@@ -132,22 +132,20 @@ export const formSchema = [
         required_error: "Bitte wählen Sie eine Option aus",
       }),
       substrate_preparation_method_bodenbelag: z
-        .enum(["schleifen", "grundieren", "spachteln"], {
-          required_error: "Bitte wählen Sie eine Vorbereitungsmethode aus",
-        })
+        .array(z.enum(["schleifen", "grundieren", "spachteln"]))
         .optional(),
       substrate_preparation_comments_bodenbelag: z.string().trim().optional(),
     })
     .refine(
       (data) => {
-        // If "ja" is selected, substrate_preparation_method is required
+        // If "ja" is selected, at least one substrate_preparation_method is required
         if (data.substrate_preparation_bodenbelag === "ja") {
-          return data.substrate_preparation_method_bodenbelag !== undefined;
+          return data.substrate_preparation_method_bodenbelag && data.substrate_preparation_method_bodenbelag.length > 0;
         }
         return true;
       },
       {
-        message: "Bitte wählen Sie eine Vorbereitungsmethode aus",
+        message: "Bitte wählen Sie mindestens eine Vorbereitungsmethode aus",
         path: ["substrate_preparation_method_bodenbelag"],
       },
     ),
@@ -314,9 +312,7 @@ export const formSchema = [
         required_error: "Bitte wählen Sie eine Option aus",
       }),
       substrate_preparation_method_fussbodenheizung: z
-        .enum(["schleifen", "grundieren", "spachteln"], {
-          required_error: "Bitte wählen Sie eine Vorbereitungsmethode aus",
-        })
+        .array(z.enum(["schleifen", "grundieren", "spachteln"]))
         .optional(),
       substrate_preparation_comments_fussbodenheizung: z
         .string()
@@ -325,16 +321,14 @@ export const formSchema = [
     })
     .refine(
       (data) => {
-        // If "ja" is selected, substrate_preparation_method is required
+        // If "ja" is selected, at least one substrate_preparation_method is required
         if (data.substrate_preparation_fussbodenheizung === "ja") {
-          return (
-            data.substrate_preparation_method_fussbodenheizung !== undefined
-          );
+          return data.substrate_preparation_method_fussbodenheizung && data.substrate_preparation_method_fussbodenheizung.length > 0;
         }
         return true;
       },
       {
-        message: "Bitte wählen Sie eine Vorbereitungsmethode aus",
+        message: "Bitte wählen Sie mindestens eine Vorbereitungsmethode aus",
         path: ["substrate_preparation_method_fussbodenheizung"],
       },
     ),

@@ -144,6 +144,42 @@
                 </FormControl>
                 <FormLabel>{{ field.label }}</FormLabel>
               </div>
+              <!-- CHECKBOX -->
+              <template v-if="field.type === 'CHECKBOX'">
+                <p v-if="field.label" class="form-field-headline">
+                  {{ field.label }}
+                </p>
+                <div class="checkbox-group">
+                  <FormItem
+                    v-for="(option, index) in field.values as FieldValue[]"
+                    :key="index"
+                    class="checkbox-form-item"
+                  >
+                    <FormControl>
+                      <Checkbox
+                        :model-value="
+                          Array.isArray(value) && value.includes(option.value)
+                        "
+                        @update:model-value="
+                          (checked) => {
+                            const currentValue = Array.isArray(value)
+                              ? value
+                              : [];
+                            if (checked) {
+                              handleChange([...currentValue, option.value]);
+                            } else {
+                              handleChange(
+                                currentValue.filter((v) => v !== option.value),
+                              );
+                            }
+                          }
+                        "
+                      />
+                    </FormControl>
+                    <FormLabel>{{ option.label }}</FormLabel>
+                  </FormItem>
+                </div>
+              </template>
               <!-- SELECT -->
               <template v-if="field.type === 'SELECT'">
                 <FormLabel class="u-invisible">{{ field.label }}</FormLabel>
@@ -802,6 +838,11 @@ form {
       }
     }
   }
+}
+
+.checkbox-group {
+  display: grid;
+  gap: rem(30px);
 }
 
 .checkbox-form-item,

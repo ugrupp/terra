@@ -13,6 +13,7 @@ export interface Field {
     | "SELECT"
     | "RADIO"
     | "RADIO_IMAGE"
+    | "CHECKBOX"
     | "CHECKBOX_IMAGE";
   values?: FieldValue[];
   label?: string;

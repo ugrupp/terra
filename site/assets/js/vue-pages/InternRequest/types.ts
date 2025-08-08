@@ -189,7 +189,7 @@ export interface FormValues {
   room4_bodenbelag?: string;
   room5_bodenbelag?: string;  
   substrate_preparation_bodenbelag?: string;
-  substrate_preparation_method_bodenbelag?: string;
+  substrate_preparation_method_bodenbelag?: string[];
   substrate_preparation_comments_bodenbelag?: string;
   installation_method?: string;
   square_meters_bodenbelag?: string;
@@ -209,7 +209,7 @@ export interface FormValues {
   room4_fussbodenheizung?: string;
   room5_fussbodenheizung?: string;
   substrate_preparation_fussbodenheizung?: string;
-  substrate_preparation_method_fussbodenheizung?: string;
+  substrate_preparation_method_fussbodenheizung?: string[];
   substrate_preparation_comments_fussbodenheizung?: string;
   square_meters_fussbodenheizung?: string;
   parquet_refurbish_type?: string;

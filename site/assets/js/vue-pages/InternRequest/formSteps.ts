@@ -267,7 +267,7 @@ export const steps: Intern_Form_Step[] = [
       },
       {
         id: "substrate_preparation_method_bodenbelag",
-        type: "RADIO",
+        type: "CHECKBOX",
         label: "Wie soll der Untergrund vorbereitet werden? *",
         values: [
           {
@@ -560,7 +560,7 @@ export const steps: Intern_Form_Step[] = [
       },
       {
         id: "substrate_preparation_method_fussbodenheizung",
-        type: "RADIO",
+        type: "CHECKBOX",
         label: "Wie soll der Untergrund vorbereitet werden? *",
         values: [
           {
