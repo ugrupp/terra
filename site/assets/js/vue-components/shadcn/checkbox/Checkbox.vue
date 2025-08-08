@@ -58,7 +58,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
   </CheckboxRoot>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .checkbox-root {
   aspect-ratio: 1 / 1;
   height: rem(30px);
@@ -79,8 +79,8 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
   }
 
   &--image {
-    width: rem(86px);
-    height: rem(60px);
+    width: rem(120px);
+    height: rem(84px);
     border: none;
     position: relative;
 
@@ -91,8 +91,8 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
   }
 
   &__image-wrapper {
-    width: rem(86px);
-    height: rem(60px);
+    width: rem(120px);
+    height: rem(84px);
     position: relative;
 
     @include mappy-bp(xs) {
@@ -120,6 +120,10 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
         right: rem(15px);
       }
     }
+  }
+
+  + label {
+    hyphens: auto;
   }
 }
 

@@ -56,7 +56,7 @@ const forwardedProps = useForwardProps(delegatedProps);
   </RadioGroupItem>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .radio-group-item {
   aspect-ratio: 1 / 1;
   height: rem(30px);
@@ -76,8 +76,8 @@ const forwardedProps = useForwardProps(delegatedProps);
   }
 
   &--image {
-    width: rem(86px);
-    height: rem(60px);
+    width: rem(120px);
+    height: rem(84px);
     border: none;
     position: relative;
 
@@ -88,8 +88,8 @@ const forwardedProps = useForwardProps(delegatedProps);
   }
 
   &__image-wrapper {
-    width: rem(86px);
-    height: rem(60px);
+    width: rem(120px);
+    height: rem(84px);
     position: relative;
 
     @include mappy-bp(xs) {
@@ -117,6 +117,10 @@ const forwardedProps = useForwardProps(delegatedProps);
         right: rem(15px);
       }
     }
+  }
+
+  + label {
+    hyphens: auto;
   }
 }
 
