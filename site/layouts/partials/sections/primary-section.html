@@ -50,29 +50,24 @@
           <div class="o-grid__col">
             <div class="c-richtext c-richtext--inverted">
               {{ .Content }}
-
-              {{/* Image 3 */}}
-              <div class="c-primary-section__img3-wrapper">
-                {{ with $.Resources.GetMatch "company3.jpg" }}
-                  {{ $imageSmall := .Resize "500x" }}
-                  {{ $imageMedium := .Resize "1000x" }}
-
-                  <img
-                    alt="Unternehmen"
-                    src="{{ $imageSmall.RelPermalink }}"
-                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w"
-                    data-sizes="auto"
-                    class="c-primary-section__img3 lazyload" />
-                {{ end }}
-              </div>
             </div>
           </div>
 
           <div class="o-grid__col">
             {{/* Image 2 */}}
             <div class="c-primary-section__img2-wrapper">
-              <iframe src= "https://cdn5.3dswissmedia.com/360/terra-bodenbelage/" width="600" height="500" allowfullscreen></iframe>
+              {{ with $.Resources.GetMatch "company3.jpg" }}
+                {{ $imageSmall := .Resize "500x" }}
+                {{ $imageMedium := .Resize "1000x" }}
+
+                <img
+                  alt="Unternehmen"
+                  src="{{ $imageSmall.RelPermalink }}"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w"
+                  data-sizes="auto"
+                  class="c-primary-section__img2 lazyload" />
+              {{ end }}
             </div>
           </div>
         </div>
