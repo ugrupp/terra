@@ -7,5 +7,5 @@ footer_image_position: "41% 61%"
 menu:
   main:
     identifier: unternehmen
-    weight: 20
+    weight: 200
 ---
