@@ -10,27 +10,20 @@
         {{ with $footer.Resources.GetMatch (cond (isset .Params "footer_image") .Params.footer_image "footer.jpg") }}
           {{ $imageMedium := .Resize "1000x" }}
           {{ $imageBig := .Resize "1500x" }}
-          {{ $imageHuge := .Resize "1920x" }}
-          {{ $imageTall := .Fill "767x1300 Smart" }}
-          {{ $imageTallWide := .Fill "1000x1300 Smart" }}
+          {{ $imageHuge := .Resize "2700x" }}
+          {{ $imageTall := .Crop "700x1000 Center" }}
 
           <source
             data-srcset="{{ $imageHuge.RelPermalink }}"
             media="(min-width: 1500px)" />
           <source
             data-srcset="{{ $imageBig.RelPermalink }}"
-            media="(min-width: 1000px) and (max-width: 1499px)" />
-          <source
-            data-srcset="{{ $imageTallWide.RelPermalink }}"
-            media="(min-height: 500px) and (min-width: 768px)" />
-          <source
-            data-srcset="{{ $imageTall.RelPermalink }}"
-            media="(min-height: 500px) and (max-width: 767px)" />
-          <source
-            data-srcset="{{ $imageMedium.RelPermalink }}"
             media="(min-width: 500px)" />
           <source
-              data-srcset="{{ $imageBig.RelPermalink }}" />
+            data-srcset="{{ $imageTall.RelPermalink }}"
+            media="(min-height: 500px)" />
+          <source
+              data-srcset="{{ $imageMedium.RelPermalink }}" />
           <img
               src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
               data-src="{{ $imageBig.RelPermalink }}"

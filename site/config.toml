@@ -116,3 +116,7 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     weight = 17
     pageRef = "/anfrage"
     url = "/anfrage/"
+
+[imaging]
+  quality = 85
+  resampleFilter = 'Lanczos'
