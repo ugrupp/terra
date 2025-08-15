@@ -1,12 +1,16 @@
 .c-team-section__img-wrapper {
   margin-bottom: rem($section-padding);
+  margin-left: rem(-$container-gutter);
+  margin-right: rem(-$container-gutter);
 
-  @include mappy-bp(sm) {
+  @include mappy-bp(lg) {
     width: 50%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   @include mappy-bp(md) {
-  margin-bottom: rem($section-padding-md);
+    margin-bottom: rem($section-padding-md);
   }
 }
 
@@ -66,7 +70,7 @@
 
 .c-team-member__img-wrapper {
   height: rem(240px);
-  max-width: rem(274px);
+  max-width: rem(225px);
 
   @include mappy-bp(xs) {
     max-width: none;
