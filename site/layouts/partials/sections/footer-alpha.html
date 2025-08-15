@@ -7,23 +7,31 @@
   {{ if ne .Params.layout "plain" }}
     <div class="c-footer-alpha__bg-img-wrapper">
       <picture>
-        {{ with $footer.Resources.GetMatch (cond (isset .Params "footer_image") .Params.footer_image "footer.jpg") }}
-          {{ $imageMedium := .Resize "1000x" }}
-          {{ $imageBig := .Resize "1500x" }}
+        {{ $footerImage := cond (isset .Params "footer_image") .Params.footer_image "footer.jpg" }}
+        {{ $footerImage := $footer.Resources.GetMatch $footerImage }}
+        {{ with $footerImage }}
           {{ $imageHuge := .Resize "2700x" }}
-          {{ $imageTall := .Crop "700x1000 Center" }}
-
+          {{ $imageBig := .Resize "1500x" }}
           <source
             data-srcset="{{ $imageHuge.RelPermalink }}"
             media="(min-width: 1500px)" />
           <source
             data-srcset="{{ $imageBig.RelPermalink }}"
-            media="(min-width: 500px)" />
+            media="(min-width: 900px)" />
+        {{ end }}
+
+        {{ $footerImage := cond (isset .Params "footer_image_mobile") .Params.footer_image_mobile "footer-mobile.jpg" }}
+        {{ $footerImage := $footer.Resources.GetMatch $footerImage }}
+        {{ with $footerImage }}
+          {{ $imageMobile := .Resize "1000x" }}
           <source
-            data-srcset="{{ $imageTall.RelPermalink }}"
-            media="(min-height: 500px)" />
-          <source
-              data-srcset="{{ $imageMedium.RelPermalink }}" />
+              data-srcset="{{ $imageMobile.RelPermalink }}" />
+        {{ end }}
+
+        {{ $footerImage := cond (isset .Params "footer_image") .Params.footer_image "footer.jpg" }}
+        {{ $footerImage := $footer.Resources.GetMatch $footerImage }}
+        {{ with $footerImage }}
+          {{ $imageBig := .Resize "1500x" }}
           <img
               src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
               data-src="{{ $imageBig.RelPermalink }}"

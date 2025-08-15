@@ -5,7 +5,7 @@
 .c-footer-alpha {
   position: relative;
   z-index: index($z-index, footer-alpha);
-  padding-top: rem(420px);
+  padding-top: rem(320px);
 
   @include mappy-bp(md) {
     padding-top: rem(561px);
