@@ -13,8 +13,6 @@ departments:
     members: 
       - image: team/veronique.jpg
         name: Veronique Saporito
-      - image: team/sarah.jpg
-        name: Sarah Schopp
       - image: team/simone.jpg
         name: Simone Maier
       - image: team/thomas.jpg
