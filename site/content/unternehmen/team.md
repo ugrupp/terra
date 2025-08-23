@@ -16,6 +16,7 @@ departments:
       - image: team/simone.jpg
         name: Simone Maier
       - image: team/thomas.jpg
+        image_position: "center 25%"
         name: Thomas Trieber
       - image: team/maria.jpg
         name: Maria Richter
@@ -41,4 +42,7 @@ departments:
       - image: team/elmin.jpg
         image_position: "center 15%"
         name: Elmin Avdic
+      - image: team/richard.jpg
+        image_position: "center 25%"
+        name: Richard Orzolek
 ---
