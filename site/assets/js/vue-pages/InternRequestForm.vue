@@ -1,6 +1,35 @@
 <template>
   <div class="form-wrapper">
     <div class="form-wrapper__left-container">
+      <!-- PDF Export Button - always visible, positioned below navigation -->
+      <div v-if="!isSubmitted" class="form-pdf-export-container">
+        <button
+          class="c-button c-button--secondary form-pdf-button"
+          type="button"
+          @click="exportToPDF"
+        >
+          <span>Speichern als PDF</span>
+          <span class="form-submit-button__icon-wrapper">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="14 14 17 16"
+              fill="currentColor"
+            >
+              <path
+                d="M30 22.79v4.43a2.19 2.19 0 0 1-2.18 2.18H17.16A2.18 2.18 0 0 1 15 27.22v-4.5h-1v4.5a3.16 3.16 0 0 0 3.16 3.15h10.68A3.16 3.16 0 0 0 31 27.22v-4.43z"
+              />
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-miterlimit="10"
+                d="M22.5 14.63v11.52M26.08 22.57l-3.58 3.58-3.58-3.58"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
       <span
         class="step-number c-headline c-headline--padded c-headline--primary"
         >{{
@@ -344,6 +373,7 @@ import {
   SelectValue,
 } from "@/vue-components/shadcn/select";
 import { Textarea } from "@/vue-components/shadcn/textarea";
+import { generatePDF } from "./InternRequest/pdfGenerator";
 
 const stepIndex = ref(0);
 const isSubmitted = ref(false);
@@ -774,6 +804,10 @@ const retrySubmission = () => {
   // User stays on the current step and can try submitting again
 };
 
+const exportToPDF = () => {
+  generatePDF(values);
+};
+
 const goToHomepage = () => {
   // Navigate to homepage - adjust this based on your routing setup
   window.location.href = "/";
@@ -966,5 +1000,42 @@ form {
 .form-error-button,
 .form-is-submitted-button {
   margin-top: rem(20px);
+}
+
+.form-pdf-export-container {
+  margin-bottom: rem(20px);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.form-pdf-button {
+  @include typi("form");
+  font-size: rem(12px);
+  text-transform: none;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: rem(8px);
+  height: rem(30px);
+
+  .wf-active & {
+    font-family: $font-family-base;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-content;
+    outline-offset: rem(1px);
+  }
+
+  .form-submit-button__icon-wrapper {
+    border: none;
+    width: auto;
+    height: auto;
+  }
+
+  svg {
+    width: rem(13px);
+    height: rem(13px);
+  }
 }
 </style>
