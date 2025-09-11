@@ -1,0 +1,71 @@
+<div class="c-team-section">
+  <div class="o-container">
+    {{ with .Resources.GetMatch "team*.md" }}
+      <div class="c-team-section__img-wrapper">
+        {{ with $.Resources.GetMatch "team/team-1.jpg" }}
+          {{ $imageSmall := .Resize "600x" }}
+          {{ $imageMedium := .Resize "1400x" }}
+
+          <img
+            alt="{{ .Title }}"
+            src="{{ $imageMedium.RelPermalink }}"
+            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            data-srcset="{{ $imageSmall.RelPermalink }} 600w, {{ $imageMedium.RelPermalink }} 1400w"
+            data-sizes="auto"
+            class="c-team-section__img lazyload" />
+        {{ end }}
+      </div>
+
+      <div class="c-team-section__team" data-reveal>
+        {{ range .Params.departments }}
+          {{ $departmentTitle := .title }}
+          {{ $departmentMembers := .members }}
+          <div class="c-team-section__department">
+
+            {{ if $departmentTitle }}
+              <h4 class="c-headline-secondary">{{ $departmentTitle | markdownify }}</h4>
+            {{ end }}
+
+            <ul>
+              {{ range $departmentMembers }}
+                {{ $memberName := .name }}
+                {{ $memberPosition := .position }}
+                {{ $memberImagePosition := (cond (isset . "image_position") .image_position "center 20%") }}
+
+                <li>
+                  <div class="c-team-member">
+                    {{/* Image */}}
+                    <div class="c-team-member__img-wrapper">
+                      {{ with $.Resources.GetMatch .image }}
+                        {{ $imageSmall := .Resize "290x" }}
+                        {{ $imageMedium := .Resize "550x" }}
+
+                        <img
+                          alt="{{ $memberName }}"
+                          src="{{ $imageMedium.RelPermalink }}"
+                          srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                          data-srcset="{{ $imageSmall.RelPermalink }} 290w, {{ $imageMedium.RelPermalink }} 550w"
+                          data-sizes="auto"
+                          {{ if $memberImagePosition }}style="object-position: {{ $memberImagePosition }}"{{ end }}
+                          class="c-team-member__img lazyload" />
+                      {{ end }}
+                    </div>
+
+                    {{/* Info */}}
+                    <div class="c-team-member__info">
+                      <h5 class="c-team-member__name c-headline c-headline--text-sizing-lg">{{ $memberName }}</h5>
+
+                      {{ if $memberPosition }}
+                        <p class="c-team-member__position">{{ $memberPosition }}</p>
+                      {{ end }}
+                    </div>
+                  </div>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</div>

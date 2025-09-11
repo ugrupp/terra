@@ -150,32 +150,20 @@
 .c-primary-section__img2-wrapper {
   background-color: $color-gray-4;
 
-  iframe {
-    width: 100%;
+  .c-primary-section__img2 {
     display: block;
+    width: 100%;
+    height: auto;
+    transition: all $transition-time-long;
+
+    &.lazyload,
+    &.lazyloading {
+      opacity: 0;
+    }
   }
 }
 
 .c-primary-section__img2 {
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: all $transition-time-long;
-
-  &.lazyload,
-  &.lazyloading {
-    opacity: 0;
-  }
-}
-
-// Image 3
-.c-primary-section__img3-wrapper {
-  margin-top: rem($section-padding);
-  background-color: $color-gray-4;
-  width: 80%;
-}
-
-.c-primary-section__img3 {
   display: block;
   width: 100%;
   height: auto;

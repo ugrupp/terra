@@ -71,8 +71,12 @@
 }
 
 .c-footer-contact__text {
-  max-width: rem(300px);
+  max-width: rem(200px);
   @include typi("footer-text-large");
+
+  @include mappy-bp(md) {
+    max-width: rem(300px);
+  }
 
   h3 {
     margin-bottom: rem(20px);

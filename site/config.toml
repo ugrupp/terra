@@ -60,9 +60,25 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
 
   [[menu.main]]
     name = "Leistungen"
-    parent = "unternehmen"
+    identifier = "leistungen"
     url = "/leistungen/"
+    weight = 100
+  [[menu.main]]
+    name = "Referenzen Parkett"
+    parent = "leistungen"
+    url = "/leistungen/#referenzen"
     weight = 10
+  [[menu.main]]
+    name = "Referenzen Fußbodenheizung"
+    parent = "leistungen"
+    url = "/leistungen/#referenzen-fussboden"
+    weight = 20
+
+  [[menu.main]]
+    name = "Team"
+    parent = "unternehmen"
+    url = "/unternehmen/#team"
+    weight = 15
   [[menu.main]]
     name = "Neuigkeiten"
     parent = "unternehmen"
@@ -73,16 +89,6 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     parent = "unternehmen"
     url = "/unternehmen/#karriere"
     weight = 30
-  [[menu.main]]
-    name = "Referenzen Parkett"
-    parent = "unternehmen"
-    url = "/leistungen/#referenzen"
-    weight = 40
-  [[menu.main]]
-    name = "Referenzen Fußbodenheizung"
-    parent = "unternehmen"
-    url = "/leistungen/#referenzen-fussboden"
-    weight = 50
   [[menu.main]]
     name = "Partner + Lieferanten"
     parent = "unternehmen"
@@ -116,3 +122,7 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     weight = 17
     pageRef = "/anfrage"
     url = "/anfrage/"
+
+[imaging]
+  quality = 85
+  resampleFilter = 'Lanczos'

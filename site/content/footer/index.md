@@ -28,6 +28,7 @@ locations:
       address: |
         **m** 0176 81179185  
         [am@terra-boden.de](mailto:am@terra-boden.de)
+      image: axel_mueller.jpg
     exhibition:
       headline: "Unsere Ausstellung in Kehl:"
       address: |
