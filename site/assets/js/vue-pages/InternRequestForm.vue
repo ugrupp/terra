@@ -804,8 +804,8 @@ const retrySubmission = () => {
   // User stays on the current step and can try submitting again
 };
 
-const exportToPDF = () => {
-  generatePDF(values);
+const exportToPDF = async () => {
+  await generatePDF(values);
 };
 
 const goToHomepage = () => {

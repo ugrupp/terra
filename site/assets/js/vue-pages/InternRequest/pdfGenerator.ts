@@ -7,106 +7,146 @@ const FIELD_LABELS: Record<string, string> = {
   request_type_bodenbelag: "Bodenbelag",
   request_type_fussbodenheizung: "Fußbodenheizung",
   request_type_refurbish_parquet: "Parkett aufbereiten",
-  
+
   // House and object details
   house_type: "Haustyp",
   stockwerk: "Stockwerk",
   object_age: "Objektalter",
   remove_old_covering: "Alten Belag entfernen",
   old_covering_type: "Art des alten Belags",
-  
+
   // Flooring details
   floor_covering_type: "Art des Bodenbelags",
   bodenbelag_type_1: "Bodenbelag Typ 1",
   bodenbelag_type_2: "Bodenbelag Typ 2",
   bodenbelag_type_3: "Bodenbelag Typ 3",
   bodenbelag_type_notes: "Anmerkungen Bodenbelag",
-  
+
   // Rooms for flooring
   room1_bodenbelag: "Raum 1 (Bodenbelag)",
   room2_bodenbelag: "Raum 2 (Bodenbelag)",
   room3_bodenbelag: "Raum 3 (Bodenbelag)",
   room4_bodenbelag: "Raum 4 (Bodenbelag)",
   room5_bodenbelag: "Raum 5 (Bodenbelag)",
-  
+
   // Substrate preparation
   substrate_preparation_bodenbelag: "Untergrundvorbereitung Bodenbelag",
   substrate_preparation_method_bodenbelag: "Methode Untergrundvorbereitung",
-  substrate_preparation_comments_bodenbelag: "Kommentare Untergrundvorbereitung",
-  
+  substrate_preparation_comments_bodenbelag:
+    "Kommentare Untergrundvorbereitung",
+
   // Installation
   installation_method: "Verlegeart",
   square_meters_bodenbelag: "Quadratmeter Bodenbelag",
-  
+
   // Baseboards
   baseboards_needed: "Sockelleisten erforderlich",
   baseboard_type: "Art der Sockelleisten",
   baseboard_notes: "Anmerkungen Sockelleisten",
-  
+
   // Room doors
   room_doors_needed: "Zimmertüren erforderlich",
   room_doors_quantity: "Anzahl Zimmertüren",
   room_doors_measurements: "Maße Zimmertüren",
   room_doors_execution: "Ausführung Zimmertüren",
-  
+
   // Heating system
   heating_system: "Heizsystem",
   underground_type: "Untergrundtyp",
   construction_year: "Baujahr",
-  
+
   // Rooms for heating
   room1_fussbodenheizung: "Raum 1 (Fußbodenheizung)",
   room2_fussbodenheizung: "Raum 2 (Fußbodenheizung)",
   room3_fussbodenheizung: "Raum 3 (Fußbodenheizung)",
   room4_fussbodenheizung: "Raum 4 (Fußbodenheizung)",
   room5_fussbodenheizung: "Raum 5 (Fußbodenheizung)",
-  
+
   // Substrate preparation for heating
-  substrate_preparation_fussbodenheizung: "Untergrundvorbereitung Fußbodenheizung",
-  substrate_preparation_method_fussbodenheizung: "Methode Untergrundvorbereitung",
-  substrate_preparation_comments_fussbodenheizung: "Kommentare Untergrundvorbereitung",
+  substrate_preparation_fussbodenheizung:
+    "Untergrundvorbereitung Fußbodenheizung",
+  substrate_preparation_method_fussbodenheizung:
+    "Methode Untergrundvorbereitung",
+  substrate_preparation_comments_fussbodenheizung:
+    "Kommentare Untergrundvorbereitung",
   square_meters_fussbodenheizung: "Quadratmeter Fußbodenheizung",
-  
+
   // Parquet refurbishment
   parquet_refurbish_type: "Art der Parkettaufbereitung",
   parquet_refurbish_how: "Wie aufbereiten",
   parquet_refurbish_treatment: "Behandlung",
   square_meters_parquet_refurbish: "Quadratmeter Parkettaufbereitung",
-  
+
   // Location and timing
   city: "Stadt",
   postal_code: "Postleitzahl",
   street: "Straße",
   timing_preference: "Terminwunsch",
-  
+
   // Contact details
   first_name: "Vorname",
   last_name: "Nachname",
   email: "E-Mail",
   phone: "Telefon",
-  comments: "Kommentare"
+  comments: "Kommentare",
 };
 
-export function generatePDF(formValues: FormValues): void {
+export async function generatePDF(formValues: FormValues): Promise<void> {
   const doc = new jsPDF();
-  
-  // Set font
-  doc.setFont("helvetica");
-  
-  // Title
-  doc.setFontSize(20);
+
+  // Brand color
+  const primaryColor = "#00a65c";
+  const darkGray = "#473d38";
+
+  // Add very small green header background
+  doc.setFillColor(primaryColor);
+  doc.rect(0, 0, 210, 5, "F");
+
+  // Add logo below the green header with more spacing
+  try {
+    const logoImg = new Image();
+    logoImg.src = "/signatur/logo.png";
+
+    await new Promise((resolve, reject) => {
+      logoImg.onload = () => resolve(true);
+      logoImg.onerror = () => reject(new Error("Failed to load logo"));
+      // Set timeout in case image doesn't load
+      setTimeout(() => reject(new Error("Logo load timeout")), 3000);
+    });
+
+    doc.addImage(logoImg, "PNG", 20, 15, 40, 20);
+  } catch (error) {
+    // Fallback to text if image fails to load
+    console.error("Failed to load logo:", error);
+    doc.setFontSize(24);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(primaryColor);
+    doc.text("TERRA", 20, 25);
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "normal");
+    doc.text("Bodenbeläge", 20, 33);
+  }
+
+  // Document title
+  doc.setTextColor(darkGray);
+  doc.setFontSize(18);
   doc.setFont("helvetica", "bold");
-  doc.text("Terra Bodenbeläge - Interne Anfrage", 20, 20);
-  
-  // Subtitle with date
-  doc.setFontSize(12);
+  doc.text("Interne Anfrage", 20, 47);
+
+  // Date and time
+  doc.setFontSize(11);
   doc.setFont("helvetica", "normal");
-  const currentDate = new Date().toLocaleDateString("de-DE");
-  doc.text(`Erstellt am: ${currentDate}`, 20, 30);
-  
-  let yPosition = 50;
+  const now = new Date();
+  const currentDate = now.toLocaleDateString("de-DE");
+  const currentTime = now.toLocaleTimeString("de-DE", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  doc.text(`Erstellt am: ${currentDate} um ${currentTime} Uhr`, 20, 55);
+
+  let yPosition = 69;
   doc.setFontSize(10);
-  
+
   // Helper function to add a section header
   const addSectionHeader = (title: string) => {
     if (yPosition > 260) {
@@ -115,24 +155,31 @@ export function generatePDF(formValues: FormValues): void {
     }
     doc.setFont("helvetica", "bold");
     doc.setFontSize(12);
+    doc.setTextColor(primaryColor);
     doc.text(title, 20, yPosition);
-    yPosition += 10;
+    yPosition += 2;
+    // Add a subtle line under the section header
+    doc.setDrawColor(primaryColor);
+    doc.setLineWidth(0.5);
+    doc.line(20, yPosition, 190, yPosition);
+    yPosition += 8;
     doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
+    doc.setTextColor(darkGray);
   };
-  
+
   // Helper function to add a field
   const addField = (key: string, value: any) => {
     if (!value) return;
-    
+
     if (yPosition > 270) {
       doc.addPage();
       yPosition = 20;
     }
-    
+
     const label = FIELD_LABELS[key] || key;
     let displayValue = "";
-    
+
     if (typeof value === "boolean") {
       displayValue = value ? "Ja" : "Nein";
     } else if (Array.isArray(value)) {
@@ -140,20 +187,25 @@ export function generatePDF(formValues: FormValues): void {
     } else {
       displayValue = String(value);
     }
-    
+
     // Split long text into multiple lines
     const maxWidth = 170;
     const lines = doc.splitTextToSize(`${label}: ${displayValue}`, maxWidth);
-    
+
     for (const line of lines) {
       doc.text(line, 20, yPosition);
       yPosition += 5;
     }
     yPosition += 2;
   };
-  
+
   // Contact Information (at the top for better overview)
-  if (formValues.first_name || formValues.last_name || formValues.email || formValues.phone) {
+  if (
+    formValues.first_name ||
+    formValues.last_name ||
+    formValues.email ||
+    formValues.phone
+  ) {
     addSectionHeader("Kontaktdaten");
     addField("first_name", formValues.first_name);
     addField("last_name", formValues.last_name);
@@ -161,9 +213,14 @@ export function generatePDF(formValues: FormValues): void {
     addField("phone", formValues.phone);
     yPosition += 5;
   }
-  
+
   // Location and Timing (at the top for better overview)
-  if (formValues.city || formValues.postal_code || formValues.street || formValues.timing_preference) {
+  if (
+    formValues.city ||
+    formValues.postal_code ||
+    formValues.street ||
+    formValues.timing_preference
+  ) {
     addSectionHeader("Ort und Terminwunsch");
     addField("street", formValues.street);
     addField("postal_code", formValues.postal_code);
@@ -171,16 +228,23 @@ export function generatePDF(formValues: FormValues): void {
     addField("timing_preference", formValues.timing_preference);
     yPosition += 5;
   }
-  
+
   // Request Types Section
-  if (formValues.request_type_bodenbelag || formValues.request_type_fussbodenheizung || formValues.request_type_refurbish_parquet) {
+  if (
+    formValues.request_type_bodenbelag ||
+    formValues.request_type_fussbodenheizung ||
+    formValues.request_type_refurbish_parquet
+  ) {
     addSectionHeader("Art der Anfrage");
-    if (formValues.request_type_bodenbelag) addField("request_type_bodenbelag", true);
-    if (formValues.request_type_fussbodenheizung) addField("request_type_fussbodenheizung", true);
-    if (formValues.request_type_refurbish_parquet) addField("request_type_refurbish_parquet", true);
+    if (formValues.request_type_bodenbelag)
+      addField("request_type_bodenbelag", true);
+    if (formValues.request_type_fussbodenheizung)
+      addField("request_type_fussbodenheizung", true);
+    if (formValues.request_type_refurbish_parquet)
+      addField("request_type_refurbish_parquet", true);
     yPosition += 5;
   }
-  
+
   // House and Object Details
   if (formValues.house_type || formValues.stockwerk || formValues.object_age) {
     addSectionHeader("Objektdetails");
@@ -191,7 +255,7 @@ export function generatePDF(formValues: FormValues): void {
     addField("old_covering_type", formValues.old_covering_type);
     yPosition += 5;
   }
-  
+
   // Bodenbelag Section
   if (formValues.request_type_bodenbelag) {
     addSectionHeader("Bodenbelag");
@@ -200,75 +264,114 @@ export function generatePDF(formValues: FormValues): void {
     addField("bodenbelag_type_2", formValues.bodenbelag_type_2);
     addField("bodenbelag_type_3", formValues.bodenbelag_type_3);
     addField("bodenbelag_type_notes", formValues.bodenbelag_type_notes);
-    
+
     // Rooms
     addField("room1_bodenbelag", formValues.room1_bodenbelag);
     addField("room2_bodenbelag", formValues.room2_bodenbelag);
     addField("room3_bodenbelag", formValues.room3_bodenbelag);
     addField("room4_bodenbelag", formValues.room4_bodenbelag);
     addField("room5_bodenbelag", formValues.room5_bodenbelag);
-    
+
     // Substrate preparation
-    addField("substrate_preparation_bodenbelag", formValues.substrate_preparation_bodenbelag);
-    addField("substrate_preparation_method_bodenbelag", formValues.substrate_preparation_method_bodenbelag);
-    addField("substrate_preparation_comments_bodenbelag", formValues.substrate_preparation_comments_bodenbelag);
-    
+    addField(
+      "substrate_preparation_bodenbelag",
+      formValues.substrate_preparation_bodenbelag
+    );
+    // Only show method and comments if substrate preparation is "ja"
+    if (formValues.substrate_preparation_bodenbelag === "ja") {
+      addField(
+        "substrate_preparation_method_bodenbelag",
+        formValues.substrate_preparation_method_bodenbelag
+      );
+      addField(
+        "substrate_preparation_comments_bodenbelag",
+        formValues.substrate_preparation_comments_bodenbelag
+      );
+    }
+
     addField("installation_method", formValues.installation_method);
     addField("square_meters_bodenbelag", formValues.square_meters_bodenbelag);
-    
+
     // Baseboards
     addField("baseboards_needed", formValues.baseboards_needed);
-    addField("baseboard_type", formValues.baseboard_type);
-    addField("baseboard_notes", formValues.baseboard_notes);
-    
+    // Only show baseboard details if baseboards are needed
+    if (formValues.baseboards_needed === "ja") {
+      addField("baseboard_type", formValues.baseboard_type);
+      addField("baseboard_notes", formValues.baseboard_notes);
+    }
+
     // Room doors
     addField("room_doors_needed", formValues.room_doors_needed);
-    addField("room_doors_quantity", formValues.room_doors_quantity);
-    addField("room_doors_measurements", formValues.room_doors_measurements);
-    addField("room_doors_execution", formValues.room_doors_execution);
-    
+    // Only show room door details if room doors are needed
+    if (formValues.room_doors_needed === "ja") {
+      addField("room_doors_quantity", formValues.room_doors_quantity);
+      addField("room_doors_measurements", formValues.room_doors_measurements);
+      addField("room_doors_execution", formValues.room_doors_execution);
+    }
+
     yPosition += 5;
   }
-  
+
   // Fußbodenheizung Section
   if (formValues.request_type_fussbodenheizung) {
     addSectionHeader("Fußbodenheizung");
     addField("heating_system", formValues.heating_system);
     addField("underground_type", formValues.underground_type);
     addField("construction_year", formValues.construction_year);
-    
+
     // Rooms
     addField("room1_fussbodenheizung", formValues.room1_fussbodenheizung);
     addField("room2_fussbodenheizung", formValues.room2_fussbodenheizung);
     addField("room3_fussbodenheizung", formValues.room3_fussbodenheizung);
     addField("room4_fussbodenheizung", formValues.room4_fussbodenheizung);
     addField("room5_fussbodenheizung", formValues.room5_fussbodenheizung);
-    
+
     // Substrate preparation
-    addField("substrate_preparation_fussbodenheizung", formValues.substrate_preparation_fussbodenheizung);
-    addField("substrate_preparation_method_fussbodenheizung", formValues.substrate_preparation_method_fussbodenheizung);
-    addField("substrate_preparation_comments_fussbodenheizung", formValues.substrate_preparation_comments_fussbodenheizung);
-    
-    addField("square_meters_fussbodenheizung", formValues.square_meters_fussbodenheizung);
+    addField(
+      "substrate_preparation_fussbodenheizung",
+      formValues.substrate_preparation_fussbodenheizung
+    );
+    // Only show method and comments if substrate preparation is "ja"
+    if (formValues.substrate_preparation_fussbodenheizung === "ja") {
+      addField(
+        "substrate_preparation_method_fussbodenheizung",
+        formValues.substrate_preparation_method_fussbodenheizung
+      );
+      addField(
+        "substrate_preparation_comments_fussbodenheizung",
+        formValues.substrate_preparation_comments_fussbodenheizung
+      );
+    }
+
+    addField(
+      "square_meters_fussbodenheizung",
+      formValues.square_meters_fussbodenheizung
+    );
     yPosition += 5;
   }
-  
+
   // Parquet Refurbishment Section
   if (formValues.request_type_refurbish_parquet) {
     addSectionHeader("Parkett Aufbereitung");
     addField("parquet_refurbish_type", formValues.parquet_refurbish_type);
     addField("parquet_refurbish_how", formValues.parquet_refurbish_how);
-    addField("parquet_refurbish_treatment", formValues.parquet_refurbish_treatment);
-    addField("square_meters_parquet_refurbish", formValues.square_meters_parquet_refurbish);
+    addField(
+      "parquet_refurbish_treatment",
+      formValues.parquet_refurbish_treatment
+    );
+    addField(
+      "square_meters_parquet_refurbish",
+      formValues.square_meters_parquet_refurbish
+    );
     yPosition += 5;
   }
-  
+
   // Comments
   if (formValues.comments) {
     addSectionHeader("Weitere Kommentare");
     addField("comments", formValues.comments);
   }
-  
+
   // Save the PDF
   const fileName = `Terra_Anfrage_${currentDate.replace(/\./g, "_")}.pdf`;
   doc.save(fileName);
