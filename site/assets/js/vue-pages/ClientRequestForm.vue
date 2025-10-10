@@ -412,6 +412,9 @@ const initialValues: FormValues = {
   first_name: undefined,
   last_name: undefined,
   email: undefined,
+  client_city: undefined,
+  client_postal_code: undefined,
+  client_street: undefined,
   phone: undefined,
   comments: undefined,
 };

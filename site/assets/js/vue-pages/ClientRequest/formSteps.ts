@@ -459,6 +459,24 @@ export const steps: Client_Form_Step[] = [
         label: "E-Mail",
       },
       {
+        id: "client_city",
+        type: "INPUT",
+        placeholder: "Ort *",
+        label: "Ort",
+      },
+      {
+        id: "client_postal_code",
+        type: "INPUT",
+        placeholder: "Postleitzahl *",
+        label: "Postleitzahl",
+      },
+      {
+        id: "client_street",
+        type: "INPUT",
+        placeholder: "Straße *",
+        label: "Straße",
+      },
+      {
         id: "phone",
         type: "INPUT",
         placeholder: "Telefon",

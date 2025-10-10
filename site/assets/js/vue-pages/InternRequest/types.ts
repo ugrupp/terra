@@ -187,7 +187,7 @@ export interface FormValues {
   room2_bodenbelag?: string;
   room3_bodenbelag?: string;
   room4_bodenbelag?: string;
-  room5_bodenbelag?: string;  
+  room5_bodenbelag?: string;
   substrate_preparation_bodenbelag?: string;
   substrate_preparation_method_bodenbelag?: string[];
   substrate_preparation_comments_bodenbelag?: string;
@@ -223,6 +223,9 @@ export interface FormValues {
   first_name?: string;
   last_name?: string;
   email?: string;
+  client_city?: string;
+  client_postal_code?: string;
+  client_street?: string;
   phone?: string;
   comments?: string;
 }

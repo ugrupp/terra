@@ -140,7 +140,10 @@ export const formSchema = [
       (data) => {
         // If "ja" is selected, at least one substrate_preparation_method is required
         if (data.substrate_preparation_bodenbelag === "ja") {
-          return data.substrate_preparation_method_bodenbelag && data.substrate_preparation_method_bodenbelag.length > 0;
+          return (
+            data.substrate_preparation_method_bodenbelag &&
+            data.substrate_preparation_method_bodenbelag.length > 0
+          );
         }
         return true;
       },
@@ -323,7 +326,10 @@ export const formSchema = [
       (data) => {
         // If "ja" is selected, at least one substrate_preparation_method is required
         if (data.substrate_preparation_fussbodenheizung === "ja") {
-          return data.substrate_preparation_method_fussbodenheizung && data.substrate_preparation_method_fussbodenheizung.length > 0;
+          return (
+            data.substrate_preparation_method_fussbodenheizung &&
+            data.substrate_preparation_method_fussbodenheizung.length > 0
+          );
         }
         return true;
       },
@@ -424,6 +430,27 @@ export const formSchema = [
       .trim()
       .min(1, "Bitte geben Sie Ihre E-Mail-Adresse ein")
       .email("Bitte geben Sie eine gültige E-Mail-Adresse ein"),
+    client_city: z
+      .string({
+        required_error: "Bitte geben Sie Ihren Ort ein",
+      })
+      .trim()
+      .min(1, "Bitte geben Sie Ihren Ort ein"),
+    client_postal_code: z
+      .string({
+        required_error: "Bitte geben Sie Ihre Postleitzahl ein",
+      })
+      .trim()
+      .min(1, "Bitte geben Sie Ihre Postleitzahl ein")
+      .refine((val) => {
+        return /^\d{5}$/.test(val);
+      }, "Bitte geben Sie eine gültige Postleitzahl ein"),
+    client_street: z
+      .string({
+        required_error: "Bitte geben Sie Ihre Straße ein",
+      })
+      .trim()
+      .min(1, "Bitte geben Sie Ihre Straße ein"),
     phone: z.string().trim().optional(),
     comments: z.string().trim().optional(),
   }),

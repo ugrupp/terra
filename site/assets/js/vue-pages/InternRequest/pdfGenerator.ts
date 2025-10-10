@@ -87,6 +87,9 @@ const FIELD_LABELS: Record<string, string> = {
   first_name: "Vorname",
   last_name: "Nachname",
   email: "E-Mail",
+  client_city: "Stadt",
+  client_street: "Straße",
+  client_postal_code: "Postleitzahl",
   phone: "Telefon",
   comments: "Kommentare",
 };
@@ -204,12 +207,18 @@ export async function generatePDF(formValues: FormValues): Promise<void> {
     formValues.first_name ||
     formValues.last_name ||
     formValues.email ||
-    formValues.phone
+    formValues.phone ||
+    formValues.client_street ||
+    formValues.client_postal_code ||
+    formValues.client_city
   ) {
     addSectionHeader("Kontaktdaten");
     addField("first_name", formValues.first_name);
     addField("last_name", formValues.last_name);
     addField("email", formValues.email);
+    addField("client_street", formValues.client_street);
+    addField("client_postal_code", formValues.client_postal_code);
+    addField("client_city", formValues.client_city);
     addField("phone", formValues.phone);
     yPosition += 5;
   }

@@ -161,6 +161,9 @@ export interface FormValues {
   first_name?: string;
   last_name?: string;
   email?: string;
+  client_city?: string;
+  client_postal_code?: string;
+  client_street?: string;
   phone?: string;
   comments?: string;
 }
