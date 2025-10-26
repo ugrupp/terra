@@ -166,4 +166,5 @@ export interface FormValues {
   client_street?: string;
   phone?: string;
   comments?: string;
+  privacy_accepted?: boolean;
 }

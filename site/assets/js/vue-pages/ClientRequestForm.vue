@@ -7,12 +7,12 @@
           hasError
             ? "Fehler"
             : isSubmitted ||
-                stepIndex === 0 ||
-                (!values.request_type_bodenbelag &&
-                  !values.request_type_fussbodenheizung &&
-                  !values.request_type_refurbish_parquet)
-              ? "Anfrage"
-              : `Frage ${currentStepNumber} von ${totalStepsInPath}`
+              stepIndex === 0 ||
+              (!values.request_type_bodenbelag &&
+                !values.request_type_fussbodenheizung &&
+                !values.request_type_refurbish_parquet)
+            ? "Anfrage"
+            : `Frage ${currentStepNumber} von ${totalStepsInPath}`
         }}</span
       >
       <h2 class="c-headline-secondary form-question">
@@ -20,8 +20,8 @@
           isSubmitted
             ? "Vielen Dank für Ihre Anfrage. Wir werden uns in Kürze bei Ihnen melden."
             : hasError
-              ? errorMessage
-              : currentStepQuestion
+            ? errorMessage
+            : currentStepQuestion
         }}
       </h2>
       <button
@@ -81,8 +81,8 @@
               field.type === 'RADIO' || field.type === 'RADIO_IMAGE'
                 ? 'radio'
                 : field.type === 'CHECKBOX_IMAGE'
-                  ? 'checkbox'
-                  : null
+                ? 'checkbox'
+                : null
             "
           >
             <FormItem>
@@ -169,7 +169,7 @@
                               handleChange([...currentValue, option.value]);
                             } else {
                               handleChange(
-                                currentValue.filter((v) => v !== option.value),
+                                currentValue.filter((v) => v !== option.value)
                               );
                             }
                           }
@@ -228,16 +228,32 @@
           </FormField>
 
           <!-- Datenschutz for contact step -->
-          <div
+          <FormField
             v-if="stepIndex === steps.length && !hasError"
-            class="form-privacy-section"
+            v-slot="{ componentField, value, handleChange }"
+            name="privacy_accepted"
+            type="checkbox"
           >
-            <p class="form-privacy-text">
-              Wir legen großen Wert auf den Schutz Ihrer Daten. Hier finden Sie
-              unsere
-              <a href="/datenschutz/" target="_blank">Datenschutzerklärung</a>.
-            </p>
-          </div>
+            <FormItem class="form-privacy-section">
+              <div class="checkbox-form-item checkbox-form-item--privacy">
+                <FormControl>
+                  <Checkbox
+                    :model-value="value"
+                    @update:model-value="handleChange"
+                  />
+                </FormControl>
+                <FormLabel class="form-privacy-text">
+                  Ich habe die
+                  <a href="/datenschutz/" target="_blank"
+                    >Datenschutzerklärung</a
+                  >
+                  zur Kenntnis genommen. Ich stimme zu, dass meine Angaben zur
+                  Kontaktaufnahme und für Rückfragen gespeichert werden.
+                </FormLabel>
+              </div>
+              <FormMessage />
+            </FormItem>
+          </FormField>
 
           <!-- Subject -->
           <input
@@ -417,6 +433,7 @@ const initialValues: FormValues = {
   client_street: undefined,
   phone: undefined,
   comments: undefined,
+  privacy_accepted: undefined,
 };
 
 const CURRENT_SCHEMA = computed(() => {
@@ -605,7 +622,7 @@ watch(
       setFieldValue("remove_old_covering", undefined);
       setFieldValue("old_covering_type", undefined);
     }
-  },
+  }
 );
 
 // Reset old_covering_type when switching from "ja" to "nein"
@@ -615,7 +632,7 @@ watch(
     if (oldValue === "ja" && newValue === "nein") {
       setFieldValue("old_covering_type", undefined);
     }
-  },
+  }
 );
 
 // Reset Bodenbelag-related fields when unchecking Bodenbelag
@@ -627,7 +644,7 @@ watch(
       setFieldValue("installation_method", undefined);
       setFieldValue("square_meters_bodenbelag", undefined);
     }
-  },
+  }
 );
 
 // Reset Fußbodenheizung-related fields when unchecking Fußbodenheizung
@@ -640,7 +657,7 @@ watch(
       setFieldValue("construction_year", undefined);
       setFieldValue("square_meters_fussbodenheizung", undefined);
     }
-  },
+  }
 );
 
 // Reset RefurbishParquet-related fields when unchecking Fußbodenheizung
@@ -653,7 +670,7 @@ watch(
       setFieldValue("parquet_refurbish_treatment", undefined);
       setFieldValue("square_meters_parquet_refurbish", undefined);
     }
-  },
+  }
 );
 
 const onStartForm = () => {
@@ -872,6 +889,10 @@ form {
       margin-bottom: rem(16px);
     }
   }
+}
+
+.checkbox-form-item--privacy {
+  align-items: flex-start;
 }
 
 .form-privacy-section {

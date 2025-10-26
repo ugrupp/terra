@@ -266,5 +266,12 @@ export const formSchema = [
       .min(1, "Bitte geben Sie Ihre Straße ein"),
     phone: z.string().trim().optional(),
     comments: z.string().trim().optional(),
+    privacy_accepted: z
+      .boolean({
+        required_error: "Bitte akzeptieren Sie die Datenschutzerklärung",
+      })
+      .refine((val) => val === true, {
+        message: "Bitte akzeptieren Sie die Datenschutzerklärung",
+      }),
   }),
 ];
