@@ -2,10 +2,6 @@
 ---
 {{% figure src="header.jpg" alt="Datenschutz" %}}
 
-<h3 class="c-headline c-headline--no-spacing c-headline--text-sizing c-headline--body-font">9. Google Maps</h3>
-
-Diese Seite nutzt den Kartendienst Google Maps. Anbieter ist die Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Irland. Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre IP-Adresse zu speichern. Diese Informationen werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung. Die Nutzung von Google Maps erfolgt im Interesse einer ansprechenden Darstellung unserer Online-Angebote und an einer leichten Auffindbarkeit der von uns auf der Website angegebenen Orte. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO; die Einwilligung ist jederzeit widerrufbar. Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie hier: https://privacy.google.com/businesses/gdprcontrollerterms/ und https://privacy.google.com/businesses/gdprcontrollerterms/sccs/. Mehr Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von Google: https://policies.google.com/privacy?hl=de.
-
 <h3 class="c-headline c-headline--no-spacing c-headline--text-sizing c-headline--body-font">10. Google reCAPTCHA</h3>
 
 Wir nutzen „Google reCAPTCHA“ (im Folgenden „reCAPTCHA“) auf dieser Website. Anbieter ist die Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Irland.
@@ -19,6 +15,52 @@ Diese Website nutzt zur einheitlichen Darstellung bestimmter Schriftarten Web Fo
 
 Terra Bodenbeläge erhebt und verarbeitet personenbezogene Daten zur Online-Buchung von Besprechungsterminen. Dazu setzt Terra Bodenbeläge den Dienst „Microsoft Bookings" der Microsoft Corporation, One Microsoft Way, Redmond, WA 98052-6399, USA, ein. Die Verbindung zu dem Dienst wird nur hergestellt, wenn Sie über eine Schaltfläche auf unserer Webseite die Online-Buchungs-Funktion aufrufen. Weitere Informationen zum Umgang von Nutzerdaten finden Sie in der Datenschutzerklärung von Microsoft hier https://www.microsoft.com/de-de/privacy/privacystatement. Wir weisen darauf hin, dass Sie nicht verpflichtet sind, Microsoft Bookings zur Vereinbarung eines Termins zu nutzen. Wenn Sie den Dienst nicht nutzen möchten, nutzen Sie bitte eine andere der angebotenen Kontaktmöglichkeiten zur Terminvereinbarung. Rechtsgrundlage für die Datenübermittlung, Speicherung und Verarbeitung ist Ihre Einwilligung (Artikel sechs Absatz eins 1 lit. a DSGVO). Die Daten werden gelöscht, sobald sie für die Erreichung des Zweckes ihrer Erhebung nicht mehr erforderlich sind. Sie haben jederzeit die Möglichkeit, die Einwilligung in die Datenverarbeitung zu widerrufen oder der Nutzung der Daten zu widersprechen. In diesem Fall ist die beabsichtigte Kontaktaufnahme zum Nutzer nicht mehr möglich beziehungsweise kann eine bereits begonnene Kommunikation nicht mehr fortgeführt werden.
 
-<h3 class="c-headline c-headline--no-spacing c-headline--text-sizing c-headline--body-font">13. Widerruf, Änderungen, Berichtigungen und Aktualisierungen</h3>
+<h3 class="c-headline c-headline--no-spacing c-headline--text-sizing c-headline--body-font">Externe Dienste für Formulare und E-Mail-Versand</h3>
+<h3 class="c-headline c-headline--no-spacing c-headline--text-sizing c-headline--body-font">13. Formspark – Verarbeitung von Kontaktformularen</h3>
+
+Wir nutzen den Dienst Formspark zur Verarbeitung und Verwaltung von Kontaktanfragen, die über unsere Website-Formulare übermittelt werden.<br>
+Anbieter: Trampoline Software SRL, Avenue des Villas 38, Box 203, 1340 Ottignies, Belgien<br>
+Zweck der Verarbeitung: Erfassung, Speicherung und Verwaltung von Kontaktanfragen über unsere Website-Formulare (z. B. Anfragen zu Bodenbelägen, Fußbodenheizung, Parkett-Aufbereitung).<br>
+Verarbeitete Daten:<br>
+Kontaktdaten: Vor- und Nachname, E-Mail-Adresse, Telefonnummer<br>
+Adressdaten: Straße, Postleitzahl, Stadt (Kunden- und Projektadresse)<br>
+Anfragedaten: Details zu gewünschten Leistungen, Projektbeschreibung, Kommentare<br>
+Technische Daten: IP-Adresse, Browser-Typ, verweisende Website<br>
+Rechtsgrundlage:<br>
+Die Verarbeitung erfolgt gemäß Art. 6 Abs. 1 lit. b DSGVO (zur Durchführung vorvertraglicher Maßnahmen) sowie Art. 6 Abs. 1 lit. f DSGVO (unser berechtigtes Interesse an der effizienten Bearbeitung von Anfragen).<br>
+Datenspeicherort:<br>
+Die Daten werden innerhalb der Europäischen Union (Irland) gespeichert.<br>
+Speicherdauer:<br>
+Die Formulardaten werden für die Dauer der Bearbeitung Ihrer Anfrage und gemäß gesetzlicher Aufbewahrungspflichten gespeichert.<br>
+Auftragsverarbeitung:<br>
+Mit Formspark besteht ein Auftragsverarbeitungsvertrag nach Art. 28 DSGVO.<br>
+Weitere Informationen:<br>
+Datenschutzerklärung: https://formspark.io/legal/privacy-policy/<br>
+DSGVO-Informationen: https://formspark.io/legal/gdpr/<br>
+
+<h3 class="c-headline c-headline--no-spacing c-headline--text-sizing c-headline--body-font">14. Resend – E-Mail-Versanddienst</h3>
+
+Wir verwenden den Dienst Resend für den Versand von transaktionalen E-Mails und Benachrichtigungen im Zusammenhang mit Ihren Anfragen.<br>
+Anbieter: Resend Inc., 440 N Barranca Ave #8115, Covina, CA 91723, USA<br>
+Zweck der Verarbeitung: Versand von E-Mails im Zusammenhang mit Ihrer Anfrage, einschließlich Bestätigungen, Antworten auf Kontaktanfragen und Übermittlung von PDF-Dokumenten mit Ihren Anfragedaten.<br>
+Verarbeitete Daten:<br>
+E-Mail-Adresse des Empfängers und Absenders<br>
+Name (falls angegeben)<br>
+Inhalt der E-Mail inkl. Anhänge (z. B. PDF-Dokumente)<br>
+Metadaten zum Versand (Zeitstempel, Zustellstatus)<br>
+Rechtsgrundlage:<br>
+Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung bzw. Durchführung vorvertraglicher Maßnahmen) sowie Art. 6 Abs. 1 lit. f DSGVO (unser berechtigtes Interesse an einer zuverlässigen E-Mail-Kommunikation mit Kunden).<br>
+Datenspeicherort und Drittlandtransfer:<br>
+Die Daten werden in den Vereinigten Staaten (USA) verarbeitet. Resend ist nach dem EU–US Data Privacy Framework zertifiziert und verwendet zusätzlich Standardvertragsklauseln (SCC) gemäß Art. 46 DSGVO als geeignete Garantien für den Datenschutz.<br>
+Speicherdauer:<br>
+Die E-Mail-Daten werden für die Dauer der Bearbeitung Ihrer Anfrage gespeichert. Metadaten werden gemäß den Aufbewahrungsrichtlinien von Resend verarbeitet und anschließend gelöscht.<br>
+Auftragsverarbeitung:<br>
+Mit Resend besteht ein Auftragsverarbeitungsvertrag (Data Processing Addendum) gemäß Art. 28 DSGVO. Dieser tritt automatisch mit der Nutzung des Dienstes in Kraft.<br>
+Weitere Informationen:<br>
+Datenschutzerklärung: https://resend.com/legal/privacy-policy/<br>
+DSGVO-Informationen: https://resend.com/security/gdpr<br>
+Data Processing Addendum: https://resend.com/legal/dpa<br>
+
+<h3 class="c-headline c-headline--no-spacing c-headline--text-sizing c-headline--body-font">15. Widerruf, Änderungen, Berichtigungen und Aktualisierungen</h3>
 
 Der Nutzer hat das Recht, auf Antrag unentgeltlich Auskunft zu erhalten über die personenbezogenen Daten, die über ihn gespeichert wurden. Zusätzlich hat der Nutzer das Recht auf Berichtigung unrichtiger Daten, Sperrung und Löschung seiner personenbezogenen Daten, soweit dem keine gesetzliche Aufbewahrungspflicht entgegensteht.
