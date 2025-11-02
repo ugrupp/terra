@@ -37,6 +37,7 @@
     "onchange": "^7.1.0",
     "postcss": "^8.4.16",
     "reka-ui": "^2.3.2",
+    "resend": "^6.1.2",
     "sass": "^1.54.9",
     "scrollreveal": "^4.0.9",
     "stylelint": "^14.12.0",

@@ -1,12 +1,12 @@
 <template>
   <div class="form-wrapper">
     <div class="form-wrapper__left-container">
-      <!-- PDF Export Button - always visible, positioned below navigation -->
+      <!-- PDF Export Buttons - always visible, positioned below navigation -->
       <div v-if="!isSubmitted" class="form-pdf-export-container">
         <button
           class="c-button c-button--secondary form-pdf-button"
           type="button"
-          @click="exportToPDF"
+          @click="downloadPDF"
         >
           <span>Speichern als PDF</span>
           <span class="form-submit-button__icon-wrapper">
@@ -26,6 +26,29 @@
                 stroke-miterlimit="10"
                 d="M22.5 14.63v11.52M26.08 22.57l-3.58 3.58-3.58-3.58"
               />
+            </svg>
+          </span>
+        </button>
+        <button
+          class="c-button c-button--secondary form-pdf-button"
+          type="button"
+          @click="sendPDFByEmail"
+        >
+          <span>Als E-Mail senden</span>
+          <span class="form-submit-button__icon-wrapper">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
           </span>
         </button>
@@ -305,25 +328,6 @@
               </g>
             </svg>
           </button>
-          <button
-            v-if="stepIndex === steps.length - 1 && !hasError && !isSubmitted"
-            type="submit"
-            class="c-button c-button--primary form-submit-button"
-            :disabled="submitting"
-          >
-            <span>Jetzt anfragen</span>
-            <span class="form-submit-button__icon-wrapper">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="15.756"
-                height="10.066"
-              >
-                <g fill="none" stroke="currentColor" stroke-miterlimit="10">
-                  <path d="M0 5.033h15.05M10.38.353l4.67 4.68-4.67 4.68" />
-                </g>
-              </svg>
-            </span>
-          </button>
         </div>
       </form>
     </div>
@@ -373,7 +377,7 @@ import {
   SelectValue,
 } from "@/vue-components/shadcn/select";
 import { Textarea } from "@/vue-components/shadcn/textarea";
-import { generatePDF } from "./InternRequest/pdfGenerator";
+import { generatePDF, generatePDFData } from "./InternRequest/pdfGenerator";
 
 const stepIndex = ref(0);
 const isSubmitted = ref(false);
@@ -807,8 +811,49 @@ const retrySubmission = () => {
   // User stays on the current step and can try submitting again
 };
 
-const exportToPDF = async () => {
-  await generatePDF(values);
+const downloadPDF = async () => {
+  try {
+    // Simply download the PDF
+    await generatePDF(values);
+  } catch (error) {
+    alert("Fehler beim Erstellen des PDFs. Bitte versuchen Sie es erneut.");
+  }
+};
+
+const sendPDFByEmail = async () => {
+  try {
+    // Generate the PDF data
+    const pdfData = await generatePDFData(values);
+
+    // Send the PDF via email using Netlify Function
+    const response = await fetch("/.netlify/functions/send-pdf-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        pdfBase64: pdfData.base64,
+        fileName: pdfData.fileName,
+        formData: values,
+        requestType: "internal",
+      }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      alert("PDF wurde erfolgreich per E-Mail versendet!");
+    } else {
+      alert(
+        "Fehler beim Versenden der E-Mail: " +
+          (result.error || "Unbekannter Fehler"),
+      );
+    }
+  } catch (error) {
+    alert(
+      "Fehler beim Erstellen oder Versenden des PDFs. Bitte versuchen Sie es erneut.",
+    );
+  }
 };
 
 const goToHomepage = () => {
@@ -920,35 +965,6 @@ form {
   }
 }
 
-.form-submit-button {
-  @include typi("form-large");
-  text-transform: none;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  gap: rem(30px);
-  height: rem(46px);
-  padding: 0 rem(15px);
-
-  .wf-active & {
-    font-family: $font-family-base;
-  }
-
-  &__icon-wrapper {
-    border: 1px solid $color-white;
-    width: rem(25px);
-    height: rem(25px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    @include mappy-bp(md) {
-      width: rem(30px);
-      height: rem(30px);
-    }
-  }
-}
-
 .radio-group {
   display: flex;
   flex-direction: column;
@@ -1009,6 +1025,8 @@ form {
   margin-bottom: rem(20px);
   display: flex;
   justify-content: flex-start;
+  gap: rem(10px);
+  flex-wrap: wrap;
 }
 
 .form-pdf-button {

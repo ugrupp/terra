@@ -391,6 +391,7 @@ import {
   SelectValue,
 } from "@/vue-components/shadcn/select";
 import { Textarea } from "@/vue-components/shadcn/textarea";
+import { generatePDFData } from "./ClientRequest/pdfGenerator";
 
 const stepIndex = ref(0);
 const isSubmitted = ref(false);
@@ -685,7 +686,35 @@ const onSubmit = async (e) => {
       // Reset error state
       hasError.value = false;
       errorMessage.value = "";
+
+      // Submit to FormSpark
       await submit({ ...values });
+
+      // Generate PDF and send via email
+      try {
+        const pdfData = await generatePDFData(values);
+
+        // Send the PDF via email using Netlify Function
+        const response = await fetch("/.netlify/functions/send-pdf-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            pdfBase64: pdfData.base64,
+            fileName: pdfData.fileName,
+            formData: values,
+            requestType: "client",
+          }),
+        });
+
+        if (!response.ok) {
+          // Don't show error to user
+        }
+      } catch (emailError) {
+        // Don't show error to user
+      }
+
       isSubmitted.value = true;
     } catch (error) {
       hasError.value = true;

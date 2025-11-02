@@ -17,58 +17,13 @@ const FIELD_LABELS: Record<string, string> = {
 
   // Flooring details
   floor_covering_type: "Art des Bodenbelags",
-  bodenbelag_type_1: "Bodenbelag Typ 1",
-  bodenbelag_type_2: "Bodenbelag Typ 2",
-  bodenbelag_type_3: "Bodenbelag Typ 3",
-  bodenbelag_type_notes: "Anmerkungen Bodenbelag",
-
-  // Rooms for flooring
-  room1_bodenbelag: "Raum 1 (Bodenbelag)",
-  room2_bodenbelag: "Raum 2 (Bodenbelag)",
-  room3_bodenbelag: "Raum 3 (Bodenbelag)",
-  room4_bodenbelag: "Raum 4 (Bodenbelag)",
-  room5_bodenbelag: "Raum 5 (Bodenbelag)",
-
-  // Substrate preparation
-  substrate_preparation_bodenbelag: "Untergrundvorbereitung Bodenbelag",
-  substrate_preparation_method_bodenbelag: "Methode Untergrundvorbereitung",
-  substrate_preparation_comments_bodenbelag:
-    "Kommentare Untergrundvorbereitung",
-
-  // Installation
   installation_method: "Verlegeart",
   square_meters_bodenbelag: "Quadratmeter Bodenbelag",
-
-  // Baseboards
-  baseboards_needed: "Sockelleisten erforderlich",
-  baseboard_type: "Art der Sockelleisten",
-  baseboard_notes: "Anmerkungen Sockelleisten",
-
-  // Room doors
-  room_doors_needed: "Zimmertüren erforderlich",
-  room_doors_quantity: "Anzahl Zimmertüren",
-  room_doors_measurements: "Maße Zimmertüren",
-  room_doors_execution: "Ausführung Zimmertüren",
 
   // Heating system
   heating_system: "Heizsystem",
   underground_type: "Untergrundtyp",
   construction_year: "Baujahr",
-
-  // Rooms for heating
-  room1_fussbodenheizung: "Raum 1 (Fußbodenheizung)",
-  room2_fussbodenheizung: "Raum 2 (Fußbodenheizung)",
-  room3_fussbodenheizung: "Raum 3 (Fußbodenheizung)",
-  room4_fussbodenheizung: "Raum 4 (Fußbodenheizung)",
-  room5_fussbodenheizung: "Raum 5 (Fußbodenheizung)",
-
-  // Substrate preparation for heating
-  substrate_preparation_fussbodenheizung:
-    "Untergrundvorbereitung Fußbodenheizung",
-  substrate_preparation_method_fussbodenheizung:
-    "Methode Untergrundvorbereitung",
-  substrate_preparation_comments_fussbodenheizung:
-    "Kommentare Untergrundvorbereitung",
   square_meters_fussbodenheizung: "Quadratmeter Fußbodenheizung",
 
   // Parquet refurbishment
@@ -92,6 +47,7 @@ const FIELD_LABELS: Record<string, string> = {
   client_postal_code: "Postleitzahl",
   phone: "Telefon",
   comments: "Kommentare",
+  privacy_accepted: "Datenschutzerklärung akzeptiert",
 };
 
 // Helper function to build the PDF document
@@ -134,7 +90,7 @@ async function buildPDFDocument(formValues: FormValues) {
   doc.setTextColor(darkGray);
   doc.setFontSize(18);
   doc.setFont("helvetica", "bold");
-  doc.text("Interne Anfrage", 20, 47);
+  doc.text("Kundenanfrage", 20, 47);
 
   // Date and time
   doc.setFontSize(11);
@@ -210,7 +166,8 @@ async function buildPDFDocument(formValues: FormValues) {
     formValues.phone ||
     formValues.client_street ||
     formValues.client_postal_code ||
-    formValues.client_city
+    formValues.client_city ||
+    formValues.privacy_accepted
   ) {
     addSectionHeader("Kontaktdaten");
     addField("first_name", formValues.first_name);
@@ -220,6 +177,7 @@ async function buildPDFDocument(formValues: FormValues) {
     addField("client_postal_code", formValues.client_postal_code);
     addField("client_city", formValues.client_city);
     addField("phone", formValues.phone);
+    addField("privacy_accepted", formValues.privacy_accepted);
     yPosition += 5;
   }
 
@@ -268,73 +226,10 @@ async function buildPDFDocument(formValues: FormValues) {
   // Bodenbelag Section
   if (formValues.request_type_bodenbelag) {
     addSectionHeader("Bodenbelag");
+    addField("floor_covering_type", formValues.floor_covering_type);
     addField("installation_method", formValues.installation_method);
     addField("square_meters_bodenbelag", formValues.square_meters_bodenbelag);
-
-    addField("floor_covering_type", formValues.floor_covering_type);
-    addField("bodenbelag_type_1", formValues.bodenbelag_type_1);
-    addField("bodenbelag_type_2", formValues.bodenbelag_type_2);
-    addField("bodenbelag_type_3", formValues.bodenbelag_type_3);
-    addField("bodenbelag_type_notes", formValues.bodenbelag_type_notes);
-
-    // Rooms
-    addField("room1_bodenbelag", formValues.room1_bodenbelag);
-    addField("room2_bodenbelag", formValues.room2_bodenbelag);
-    addField("room3_bodenbelag", formValues.room3_bodenbelag);
-    addField("room4_bodenbelag", formValues.room4_bodenbelag);
-    addField("room5_bodenbelag", formValues.room5_bodenbelag);
-
     yPosition += 5;
-
-    // Substrate preparation
-    if (formValues.substrate_preparation_bodenbelag) {
-      addSectionHeader("Untergrundvorbereitung Bodenbelag");
-      addField(
-        "substrate_preparation_bodenbelag",
-        formValues.substrate_preparation_bodenbelag,
-      );
-
-      // Only show method and comments if substrate preparation is "ja"
-      if (formValues.substrate_preparation_bodenbelag === "ja") {
-        addField(
-          "substrate_preparation_method_bodenbelag",
-          formValues.substrate_preparation_method_bodenbelag,
-        );
-        addField(
-          "substrate_preparation_comments_bodenbelag",
-          formValues.substrate_preparation_comments_bodenbelag,
-        );
-      }
-
-      yPosition += 5;
-    }
-
-    // Baseboards
-    if (formValues.baseboards_needed) {
-      addSectionHeader("Sockelleisten Bodenbelag");
-      addField("baseboards_needed", formValues.baseboards_needed);
-      // Only show baseboard details if baseboards are needed
-      if (formValues.baseboards_needed === "ja") {
-        addField("baseboard_type", formValues.baseboard_type);
-        addField("baseboard_notes", formValues.baseboard_notes);
-      }
-
-      yPosition += 5;
-    }
-
-    // Room doors
-    if (formValues.room_doors_needed) {
-      addSectionHeader("Zimmertüren Bodenbelag");
-      addField("room_doors_needed", formValues.room_doors_needed);
-      // Only show room door details if room doors are needed
-      if (formValues.room_doors_needed === "ja") {
-        addField("room_doors_quantity", formValues.room_doors_quantity);
-        addField("room_doors_measurements", formValues.room_doors_measurements);
-        addField("room_doors_execution", formValues.room_doors_execution);
-      }
-
-      yPosition += 5;
-    }
   }
 
   // Fußbodenheizung Section
@@ -342,42 +237,12 @@ async function buildPDFDocument(formValues: FormValues) {
     addSectionHeader("Fußbodenheizung");
     addField("heating_system", formValues.heating_system);
     addField("underground_type", formValues.underground_type);
+    addField("construction_year", formValues.construction_year);
     addField(
       "square_meters_fussbodenheizung",
       formValues.square_meters_fussbodenheizung,
     );
-    addField("construction_year", formValues.construction_year);
-
-    // Rooms
-    addField("room1_fussbodenheizung", formValues.room1_fussbodenheizung);
-    addField("room2_fussbodenheizung", formValues.room2_fussbodenheizung);
-    addField("room3_fussbodenheizung", formValues.room3_fussbodenheizung);
-    addField("room4_fussbodenheizung", formValues.room4_fussbodenheizung);
-    addField("room5_fussbodenheizung", formValues.room5_fussbodenheizung);
-
     yPosition += 5;
-
-    // Substrate preparation
-    if (formValues.substrate_preparation_fussbodenheizung) {
-      addSectionHeader("Untergrundvorbereitung Fußbodenheizung");
-      addField(
-        "substrate_preparation_fussbodenheizung",
-        formValues.substrate_preparation_fussbodenheizung,
-      );
-      // Only show method and comments if substrate preparation is "ja"
-      if (formValues.substrate_preparation_fussbodenheizung === "ja") {
-        addField(
-          "substrate_preparation_method_fussbodenheizung",
-          formValues.substrate_preparation_method_fussbodenheizung,
-        );
-        addField(
-          "substrate_preparation_comments_fussbodenheizung",
-          formValues.substrate_preparation_comments_fussbodenheizung,
-        );
-      }
-
-      yPosition += 5;
-    }
   }
 
   // Parquet Refurbishment Section
@@ -403,7 +268,7 @@ async function buildPDFDocument(formValues: FormValues) {
   }
 
   // Return the doc and fileName for use by other functions
-  const fileName = `Terra_Anfrage_${currentDate.replace(/\./g, "_")}.pdf`;
+  const fileName = `Terra_Kundenanfrage_${currentDate.replace(/\./g, "_")}.pdf`;
   return { doc, fileName };
 }
 
