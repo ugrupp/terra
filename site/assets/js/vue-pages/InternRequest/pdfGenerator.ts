@@ -175,6 +175,7 @@ async function buildPDFDocument(formValues: FormValues) {
   // Helper function to add a field
   const addField = (key: string, value: any) => {
     if (!value) return;
+    if (typeof value === "string" && !value.trim()) return;
 
     if (yPosition > 270) {
       doc.addPage();
@@ -205,13 +206,13 @@ async function buildPDFDocument(formValues: FormValues) {
 
   // Contact Information (at the top for better overview)
   if (
-    formValues.first_name ||
-    formValues.last_name ||
-    formValues.email ||
-    formValues.phone ||
-    formValues.client_street ||
-    formValues.client_postal_code ||
-    formValues.client_city ||
+    formValues.first_name?.trim() ||
+    formValues.last_name?.trim() ||
+    formValues.email?.trim() ||
+    formValues.phone?.trim() ||
+    formValues.client_street?.trim() ||
+    formValues.client_postal_code?.trim() ||
+    formValues.client_city?.trim() ||
     formValues.referral_source?.trim()
   ) {
     addSectionHeader("Kontaktdaten");
@@ -222,18 +223,16 @@ async function buildPDFDocument(formValues: FormValues) {
     addField("client_postal_code", formValues.client_postal_code);
     addField("client_city", formValues.client_city);
     addField("phone", formValues.phone);
-    if (formValues.referral_source?.trim()) {
-      addField("referral_source", formValues.referral_source);
-    }
+    addField("referral_source", formValues.referral_source);
     yPosition += 5;
   }
 
   // Location and Timing (at the top for better overview)
   if (
-    formValues.city ||
-    formValues.postal_code ||
-    formValues.street ||
-    formValues.timing_preference
+    formValues.city?.trim() ||
+    formValues.postal_code?.trim() ||
+    formValues.street?.trim() ||
+    formValues.timing_preference?.trim()
   ) {
     addSectionHeader("Bauvorhaben und Terminwunsch");
     addField("street", formValues.street);
@@ -260,7 +259,11 @@ async function buildPDFDocument(formValues: FormValues) {
   }
 
   // House and Object Details
-  if (formValues.house_type || formValues.stockwerk || formValues.object_age) {
+  if (
+    formValues.house_type?.trim() ||
+    formValues.stockwerk?.trim() ||
+    formValues.object_age?.trim()
+  ) {
     addSectionHeader("Objektdetails");
     addField("house_type", formValues.house_type);
     addField("stockwerk", formValues.stockwerk);
@@ -292,7 +295,7 @@ async function buildPDFDocument(formValues: FormValues) {
     yPosition += 5;
 
     // Substrate preparation
-    if (formValues.substrate_preparation_bodenbelag) {
+    if (formValues.substrate_preparation_bodenbelag?.trim()) {
       addSectionHeader("Untergrundvorbereitung Bodenbelag");
       addField(
         "substrate_preparation_bodenbelag",
@@ -300,7 +303,7 @@ async function buildPDFDocument(formValues: FormValues) {
       );
 
       // Only show method and comments if substrate preparation is "ja"
-      if (formValues.substrate_preparation_bodenbelag === "ja") {
+      if (formValues.substrate_preparation_bodenbelag?.trim() === "ja") {
         addField(
           "substrate_preparation_method_bodenbelag",
           formValues.substrate_preparation_method_bodenbelag,
@@ -315,11 +318,11 @@ async function buildPDFDocument(formValues: FormValues) {
     }
 
     // Baseboards
-    if (formValues.baseboards_needed) {
+    if (formValues.baseboards_needed?.trim()) {
       addSectionHeader("Sockelleisten Bodenbelag");
       addField("baseboards_needed", formValues.baseboards_needed);
       // Only show baseboard details if baseboards are needed
-      if (formValues.baseboards_needed === "ja") {
+      if (formValues.baseboards_needed?.trim() === "ja") {
         addField("baseboard_type", formValues.baseboard_type);
         addField("baseboard_notes", formValues.baseboard_notes);
       }
@@ -328,11 +331,11 @@ async function buildPDFDocument(formValues: FormValues) {
     }
 
     // Room doors
-    if (formValues.room_doors_needed) {
+    if (formValues.room_doors_needed?.trim()) {
       addSectionHeader("Zimmertüren Bodenbelag");
       addField("room_doors_needed", formValues.room_doors_needed);
       // Only show room door details if room doors are needed
-      if (formValues.room_doors_needed === "ja") {
+      if (formValues.room_doors_needed?.trim() === "ja") {
         addField("room_doors_quantity", formValues.room_doors_quantity);
         addField("room_doors_measurements", formValues.room_doors_measurements);
         addField("room_doors_execution", formValues.room_doors_execution);
@@ -363,14 +366,14 @@ async function buildPDFDocument(formValues: FormValues) {
     yPosition += 5;
 
     // Substrate preparation
-    if (formValues.substrate_preparation_fussbodenheizung) {
+    if (formValues.substrate_preparation_fussbodenheizung?.trim()) {
       addSectionHeader("Untergrundvorbereitung Fußbodenheizung");
       addField(
         "substrate_preparation_fussbodenheizung",
         formValues.substrate_preparation_fussbodenheizung,
       );
       // Only show method and comments if substrate preparation is "ja"
-      if (formValues.substrate_preparation_fussbodenheizung === "ja") {
+      if (formValues.substrate_preparation_fussbodenheizung?.trim() === "ja") {
         addField(
           "substrate_preparation_method_fussbodenheizung",
           formValues.substrate_preparation_method_fussbodenheizung,
@@ -402,7 +405,7 @@ async function buildPDFDocument(formValues: FormValues) {
   }
 
   // Comments
-  if (formValues.comments) {
+  if (formValues.comments?.trim()) {
     addSectionHeader("Weitere Kommentare");
     addField("comments", formValues.comments);
   }
