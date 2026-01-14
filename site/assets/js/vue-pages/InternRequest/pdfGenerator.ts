@@ -261,7 +261,7 @@ async function buildPDFDocument(formValues: FormValues) {
   // House and Object Details
   if (
     formValues.house_type?.trim() ||
-    formValues.stockwerk?.trim() ||
+    (formValues.stockwerk && formValues.stockwerk.length > 0) ||
     formValues.object_age?.trim()
   ) {
     addSectionHeader("Objektdetails");

@@ -52,9 +52,8 @@ export const steps: Intern_Form_Step[] = [
       },
       {
         id: "stockwerk",
-        type: "SELECT",
-        placeholder: "Welches Stockwerk? *",
-        label: "Welches Stockwerk?",
+        type: "CHECKBOX",
+        label: "Welches Stockwerk? *",
         values: [
           {
             value: "eg",

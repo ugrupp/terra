@@ -139,7 +139,7 @@ export interface FormValues {
   request_type_fussbodenheizung?: boolean;
   request_type_refurbish_parquet?: boolean;
   house_type?: string;
-  stockwerk?: string;
+  stockwerk?: string[];
   object_age?: string;
   remove_old_covering?: string;
   old_covering_type?: string;

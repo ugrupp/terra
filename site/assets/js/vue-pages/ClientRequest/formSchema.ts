@@ -45,9 +45,9 @@ export const formSchema = [
     house_type: z.enum(["haus", "wohnung"], {
       required_error: "Bitte wählen Sie eine Option aus",
     }),
-    stockwerk: z.enum(["eg", "1.og", "2.og", "3.og", "4.og", "5.og"], {
-      required_error: "Bitte wählen Sie ein Stockwerk aus",
-    }),
+    stockwerk: z
+      .array(z.enum(["eg", "1.og", "2.og", "3.og", "4.og", "5.og"]))
+      .min(1, "Bitte wählen Sie mindestens ein Stockwerk aus"),
   }),
   z
     .object({
