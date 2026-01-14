@@ -296,7 +296,7 @@
 
         <div class="form-wrapper__right-container__navigation-container">
           <button
-            v-if="stepIndex > 0 && !hasError && !isSubmitted"
+            v-if="currentStepNumber > 1 && !hasError && !isSubmitted"
             class="c-button c-button--transparent navigation-button"
             type="button"
             @click="prevStep"
@@ -312,7 +312,7 @@
             </svg>
           </button>
           <button
-            v-if="stepIndex < steps.length - 1 && !hasError && !isSubmitted"
+            v-if="currentStepNumber < totalStepsInPath && !hasError && !isSubmitted"
             class="c-button c-button--primary form-next-button navigation-button"
             type="button"
             @click="handleNextStep()"
