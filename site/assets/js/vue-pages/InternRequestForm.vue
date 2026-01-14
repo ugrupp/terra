@@ -502,7 +502,7 @@ const { values, meta, validate, isFieldDirty, setFieldValue } = useForm({
 });
 
 const prevStep = () => {
-  if (stepIndex.value === 0) return;
+  if (currentStepNumber.value <= 1) return;
   let prevStepId = CURRENT_SCHEMA.value[currentStepNumber.value - 2];
   if (prevStepId) {
     stepIndex.value = steps.findIndex((step) => step.id === prevStepId);
