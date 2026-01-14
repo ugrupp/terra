@@ -349,7 +349,7 @@ export const steps: Intern_Form_Step[] = [
       {
         id: "baseboard_type",
         type: "RADIO",
-        label: "Welche Sockelleisten? *",
+        label: "Welche Sockelleisten?",
         values: [
           {
             value: "sockelleiste_cube_weiss_16x58",

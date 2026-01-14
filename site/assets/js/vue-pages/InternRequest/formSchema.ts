@@ -189,14 +189,19 @@ export const formSchema = [
     })
     .refine(
       (data) => {
-        // If "ja" is selected, baseboard_type is required
+        // If "ja" is selected, either baseboard_type OR baseboard_notes is required
         if (data.baseboards_needed === "ja") {
-          return data.baseboard_type !== undefined;
+          return (
+            data.baseboard_type !== undefined ||
+            (data.baseboard_notes !== undefined &&
+              data.baseboard_notes.trim() !== "")
+          );
         }
         return true;
       },
       {
-        message: "Bitte wählen Sie eine Sockelleiste aus",
+        message:
+          "Bitte wählen Sie eine Sockelleiste aus oder geben Sie eine Anmerkung ein",
         path: ["baseboard_type"],
       },
     ),
