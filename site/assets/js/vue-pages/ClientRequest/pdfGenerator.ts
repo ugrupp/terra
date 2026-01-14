@@ -50,6 +50,29 @@ const FIELD_LABELS: Record<string, string> = {
   privacy_accepted: "Datenschutzerklärung akzeptiert",
 };
 
+// Floor order for sorting (logical sequence)
+const FLOOR_ORDER = ["eg", "1.og", "2.og", "3.og", "4.og", "5.og"];
+
+// Format stockwerk values: sort logically, uppercase, and return with appropriate label
+function formatStockwerk(
+  stockwerk: string[] | undefined,
+): { label: string; value: string } | null {
+  if (!stockwerk || stockwerk.length === 0) return null;
+
+  // Sort in logical order
+  const sorted = [...stockwerk].sort(
+    (a, b) => FLOOR_ORDER.indexOf(a) - FLOOR_ORDER.indexOf(b),
+  );
+
+  // Convert to uppercase
+  const uppercase = sorted.map((s) => s.toUpperCase());
+
+  return {
+    label: stockwerk.length === 1 ? "Stockwerk" : "Stockwerke",
+    value: uppercase.join(", "),
+  };
+}
+
 // Helper function to build the PDF document
 async function buildPDFDocument(formValues: FormValues) {
   const doc = new jsPDF();
@@ -158,6 +181,25 @@ async function buildPDFDocument(formValues: FormValues) {
     yPosition += 2;
   };
 
+  // Helper function to add a field with custom label
+  const addFieldWithLabel = (label: string, value: string) => {
+    if (!value) return;
+
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 20;
+    }
+
+    const maxWidth = 170;
+    const lines = doc.splitTextToSize(`${label}: ${value}`, maxWidth);
+
+    for (const line of lines) {
+      doc.text(line, 20, yPosition);
+      yPosition += 5;
+    }
+    yPosition += 2;
+  };
+
   // Contact Information (at the top for better overview)
   if (
     formValues.first_name ||
@@ -216,7 +258,11 @@ async function buildPDFDocument(formValues: FormValues) {
   if (formValues.house_type || formValues.stockwerk || formValues.object_age) {
     addSectionHeader("Objektdetails");
     addField("house_type", formValues.house_type);
-    addField("stockwerk", formValues.stockwerk);
+    // Custom formatting for stockwerk (sorted, uppercase, singular/plural)
+    const stockwerkFormatted = formatStockwerk(formValues.stockwerk);
+    if (stockwerkFormatted) {
+      addFieldWithLabel(stockwerkFormatted.label, stockwerkFormatted.value);
+    }
     addField("object_age", formValues.object_age);
     addField("remove_old_covering", formValues.remove_old_covering);
     addField("old_covering_type", formValues.old_covering_type);
