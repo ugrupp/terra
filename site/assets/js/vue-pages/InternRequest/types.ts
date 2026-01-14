@@ -177,7 +177,7 @@ export interface FormValues {
   stockwerk?: string[];
   object_age?: string;
   remove_old_covering?: string;
-  old_covering_type?: string;
+  old_covering_type?: string[];
   floor_covering_type?: string;
   bodenbelag_type_1?: string;
   bodenbelag_type_2?: string;

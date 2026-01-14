@@ -122,7 +122,7 @@ export const steps: Intern_Form_Step[] = [
       },
       {
         id: "old_covering_type",
-        type: "RADIO",
+        type: "CHECKBOX",
         label: "Welchen Altbelag haben Sie? *",
         values: [
           {
