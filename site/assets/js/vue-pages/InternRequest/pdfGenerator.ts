@@ -92,6 +92,7 @@ const FIELD_LABELS: Record<string, string> = {
   client_postal_code: "Postleitzahl",
   phone: "Telefon",
   comments: "Kommentare",
+  referral_source: "Wie sind Sie auf uns aufmerksam geworden?",
 };
 
 // Helper function to build the PDF document
@@ -210,7 +211,8 @@ async function buildPDFDocument(formValues: FormValues) {
     formValues.phone ||
     formValues.client_street ||
     formValues.client_postal_code ||
-    formValues.client_city
+    formValues.client_city ||
+    formValues.referral_source?.trim()
   ) {
     addSectionHeader("Kontaktdaten");
     addField("first_name", formValues.first_name);
@@ -220,6 +222,9 @@ async function buildPDFDocument(formValues: FormValues) {
     addField("client_postal_code", formValues.client_postal_code);
     addField("client_city", formValues.client_city);
     addField("phone", formValues.phone);
+    if (formValues.referral_source?.trim()) {
+      addField("referral_source", formValues.referral_source);
+    }
     yPosition += 5;
   }
 

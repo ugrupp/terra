@@ -453,5 +453,6 @@ export const formSchema = [
       .min(1, "Bitte geben Sie Ihre Straße ein"),
     phone: z.string().trim().optional(),
     comments: z.string().trim().optional(),
+    referral_source: z.string().trim().optional(),
   }),
 ];
