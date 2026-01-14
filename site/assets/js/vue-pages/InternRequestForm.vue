@@ -379,7 +379,9 @@ import {
 import { Textarea } from "@/vue-components/shadcn/textarea";
 import { generatePDF, generatePDFData } from "./InternRequest/pdfGenerator";
 
-const stepIndex = ref(0);
+// Find the initial step (CONTACT) in the steps array
+const initialStepIndex = steps.findIndex((step) => step.id === "CONTACT");
+const stepIndex = ref(initialStepIndex);
 const isSubmitted = ref(false);
 const hasError = ref(false);
 const errorMessage = ref("");
@@ -477,7 +479,11 @@ const CURRENT_SCHEMA = computed(() => {
     return SCHEMA_FUSSBODENHEIZUNG;
   } else if (values.request_type_refurbish_parquet) {
     return SCHEMA_REFURBISH_PARQUET;
-  } else return [];
+  } else {
+    // Default path when no request types are selected yet
+    // Allows navigation from CONTACT to WHAT
+    return ["CONTACT", "WHAT"];
+  }
 });
 
 const currentStepForSchema = computed(() => {
