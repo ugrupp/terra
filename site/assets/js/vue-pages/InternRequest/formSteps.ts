@@ -771,6 +771,12 @@ export const steps: Intern_Form_Step[] = [
         placeholder: "Ihre Anmerkungen",
         label: "Ihre Anmerkungen",
       },
+      {
+        id: "referral_source",
+        type: "INPUT",
+        placeholder: "Wie sind Sie auf uns aufmerksam geworden?",
+        label: "Wie sind Sie auf uns aufmerksam geworden?",
+      },
     ],
   },
 ];
