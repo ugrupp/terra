@@ -53,7 +53,9 @@ export const formSchema = [
       required_error: "Bitte wählen Sie eine Option aus",
     }),
     stockwerk: z
-      .array(z.enum(["eg", "1.og", "2.og", "3.og", "4.og", "5.og"]))
+      .array(z.enum(["eg", "1.og", "2.og", "3.og", "4.og", "5.og"]), {
+        required_error: "Bitte wählen Sie mindestens ein Stockwerk aus",
+      })
       .min(1, "Bitte wählen Sie mindestens ein Stockwerk aus"),
   }),
   z
