@@ -52,9 +52,8 @@ export const steps: Intern_Form_Step[] = [
       },
       {
         id: "stockwerk",
-        type: "SELECT",
-        placeholder: "Welches Stockwerk? *",
-        label: "Welches Stockwerk?",
+        type: "CHECKBOX",
+        label: "Welches Stockwerk? *",
         values: [
           {
             value: "eg",
@@ -123,7 +122,7 @@ export const steps: Intern_Form_Step[] = [
       },
       {
         id: "old_covering_type",
-        type: "RADIO",
+        type: "CHECKBOX",
         label: "Welchen Altbelag haben Sie? *",
         values: [
           {
@@ -350,7 +349,7 @@ export const steps: Intern_Form_Step[] = [
       {
         id: "baseboard_type",
         type: "RADIO",
-        label: "Welche Sockelleisten? *",
+        label: "Welche Sockelleisten?",
         values: [
           {
             value: "sockelleiste_cube_weiss_16x58",

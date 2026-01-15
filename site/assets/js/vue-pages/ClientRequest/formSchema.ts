@@ -45,9 +45,11 @@ export const formSchema = [
     house_type: z.enum(["haus", "wohnung"], {
       required_error: "Bitte wählen Sie eine Option aus",
     }),
-    stockwerk: z.enum(["eg", "1.og", "2.og", "3.og", "4.og", "5.og"], {
-      required_error: "Bitte wählen Sie ein Stockwerk aus",
-    }),
+    stockwerk: z
+      .array(z.enum(["eg", "1.og", "2.og", "3.og", "4.og", "5.og"]), {
+        required_error: "Bitte wählen Sie mindestens ein Stockwerk aus",
+      })
+      .min(1, "Bitte wählen Sie mindestens ein Stockwerk aus"),
   }),
   z
     .object({
@@ -60,9 +62,7 @@ export const formSchema = [
         })
         .optional(),
       old_covering_type: z
-        .enum(["parkett", "vinyl", "fliesen", "laminat", "teppich"], {
-          required_error: "Bitte wählen Sie den Altbelag aus",
-        })
+        .array(z.enum(["parkett", "vinyl", "fliesen", "laminat", "teppich"]))
         .optional(),
     })
     .refine(
@@ -82,12 +82,12 @@ export const formSchema = [
       (data) => {
         // If altbau is selected and remove_old_covering is "ja", old_covering_type is required
         if (data.object_age === "altbau" && data.remove_old_covering === "ja") {
-          return data.old_covering_type !== undefined;
+          return data.old_covering_type && data.old_covering_type.length > 0;
         }
         return true;
       },
       {
-        message: "Bitte wählen Sie den Altbelag aus",
+        message: "Bitte wählen Sie mindestens einen Altbelag aus",
         path: ["old_covering_type"],
       },
     ),

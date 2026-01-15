@@ -139,10 +139,10 @@ export interface FormValues {
   request_type_fussbodenheizung?: boolean;
   request_type_refurbish_parquet?: boolean;
   house_type?: string;
-  stockwerk?: string;
+  stockwerk?: string[];
   object_age?: string;
   remove_old_covering?: string;
-  old_covering_type?: string;
+  old_covering_type?: string[];
   floor_covering_type?: string;
   installation_method?: string;
   square_meters_bodenbelag?: string;

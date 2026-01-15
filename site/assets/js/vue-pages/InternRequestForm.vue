@@ -296,7 +296,7 @@
 
         <div class="form-wrapper__right-container__navigation-container">
           <button
-            v-if="stepIndex > 0 && !hasError && !isSubmitted"
+            v-if="currentStepNumber > 1 && !hasError && !isSubmitted"
             class="c-button c-button--transparent navigation-button"
             type="button"
             @click="prevStep"
@@ -312,7 +312,7 @@
             </svg>
           </button>
           <button
-            v-if="stepIndex < steps.length - 1 && !hasError && !isSubmitted"
+            v-if="currentStepNumber < totalStepsInPath && !hasError && !isSubmitted"
             class="c-button c-button--primary form-next-button navigation-button"
             type="button"
             @click="handleNextStep()"
@@ -379,7 +379,9 @@ import {
 import { Textarea } from "@/vue-components/shadcn/textarea";
 import { generatePDF, generatePDFData } from "./InternRequest/pdfGenerator";
 
-const stepIndex = ref(0);
+// Find the initial step (CONTACT) in the steps array
+const initialStepIndex = steps.findIndex((step) => step.id === "CONTACT");
+const stepIndex = ref(initialStepIndex);
 const isSubmitted = ref(false);
 const hasError = ref(false);
 const errorMessage = ref("");
@@ -477,7 +479,11 @@ const CURRENT_SCHEMA = computed(() => {
     return SCHEMA_FUSSBODENHEIZUNG;
   } else if (values.request_type_refurbish_parquet) {
     return SCHEMA_REFURBISH_PARQUET;
-  } else return [];
+  } else {
+    // Default path when no request types are selected yet
+    // Allows navigation from CONTACT to WHAT
+    return ["CONTACT", "WHAT"];
+  }
 });
 
 const currentStepForSchema = computed(() => {
@@ -496,7 +502,7 @@ const { values, meta, validate, isFieldDirty, setFieldValue } = useForm({
 });
 
 const prevStep = () => {
-  if (stepIndex.value === 0) return;
+  if (currentStepNumber.value <= 1) return;
   let prevStepId = CURRENT_SCHEMA.value[currentStepNumber.value - 2];
   if (prevStepId) {
     stepIndex.value = steps.findIndex((step) => step.id === prevStepId);
