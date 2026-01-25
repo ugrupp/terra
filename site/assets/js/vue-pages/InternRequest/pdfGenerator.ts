@@ -17,6 +17,7 @@ const FIELD_LABELS: Record<string, string> = {
 
   // Flooring details
   floor_covering_type: "Art des Bodenbelags",
+  use_easylift_primer: "Easylift Primer als Grundierung",
   bodenbelag_type_1: "Bodenbelag Typ 1",
   bodenbelag_type_2: "Bodenbelag Typ 2",
   bodenbelag_type_3: "Bodenbelag Typ 3",
@@ -326,6 +327,13 @@ async function buildPDFDocument(formValues: FormValues) {
     addField("square_meters_bodenbelag", formValues.square_meters_bodenbelag);
 
     addField("floor_covering_type", formValues.floor_covering_type);
+    // Show Easylift Primer only when Vinyl is selected, always as Ja/Nein
+    if (formValues.floor_covering_type === "vinyl") {
+      addFieldWithLabel(
+        FIELD_LABELS["use_easylift_primer"],
+        formValues.use_easylift_primer ? "Ja" : "Nein",
+      );
+    }
     addField("bodenbelag_type_1", formValues.bodenbelag_type_1);
     addField("bodenbelag_type_2", formValues.bodenbelag_type_2);
     addField("bodenbelag_type_3", formValues.bodenbelag_type_3);

@@ -14,7 +14,8 @@ export interface Field {
     | "RADIO"
     | "RADIO_IMAGE"
     | "CHECKBOX"
-    | "CHECKBOX_IMAGE";
+    | "CHECKBOX_IMAGE"
+    | "CHECKBOX_SINGLE";
   values?: FieldValue[];
   label?: string;
   placeholder?: string;

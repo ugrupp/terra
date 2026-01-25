@@ -231,6 +231,18 @@
                   </FormItem>
                 </div>
               </template>
+              <!-- CHECKBOX_SINGLE (single boolean checkbox) -->
+              <template v-if="field.type === 'CHECKBOX_SINGLE'">
+                <FormItem class="checkbox-form-item checkbox-single-item">
+                  <FormControl>
+                    <Checkbox
+                      :model-value="!!value"
+                      @update:model-value="(checked) => handleChange(checked)"
+                    />
+                  </FormControl>
+                  <FormLabel>{{ field.label }}</FormLabel>
+                </FormItem>
+              </template>
               <!-- SELECT -->
               <template v-if="field.type === 'SELECT'">
                 <FormLabel class="u-invisible">{{ field.label }}</FormLabel>
@@ -481,8 +493,8 @@ const CURRENT_SCHEMA = computed(() => {
     return SCHEMA_REFURBISH_PARQUET;
   } else {
     // Default path when no request types are selected yet
-    // Allows navigation from CONTACT to WHAT
-    return ["CONTACT", "WHAT"];
+    // Allows navigation from CONTACT to WHERE to WHAT
+    return ["CONTACT", "WHERE", "WHAT"];
   }
 });
 
@@ -560,6 +572,10 @@ const shouldShowField = (field: FieldType) => {
     field.id === "room_doors_execution"
   ) {
     return values.room_doors_needed === "ja";
+  }
+  // Show Easylift Primer checkbox only if Vinyl is selected
+  if (field.id === "use_easylift_primer") {
+    return values.floor_covering_type === "vinyl";
   }
   return true;
 };
@@ -708,6 +724,16 @@ watch(
     if (oldValue === "ja" && newValue === "nein") {
       setFieldValue("baseboard_type", undefined);
       setFieldValue("baseboard_notes", undefined);
+    }
+  },
+);
+
+// Reset Easylift Primer checkbox when switching away from vinyl
+watch(
+  () => values.floor_covering_type,
+  (newValue, oldValue) => {
+    if (oldValue === "vinyl" && newValue !== "vinyl") {
+      setFieldValue("use_easylift_primer", undefined);
     }
   },
 );

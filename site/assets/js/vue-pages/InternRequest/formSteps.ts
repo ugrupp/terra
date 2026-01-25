@@ -177,6 +177,11 @@ export const steps: Intern_Form_Step[] = [
           },
         ],
       },
+      {
+        id: "use_easylift_primer",
+        type: "CHECKBOX_SINGLE",
+        label: "Soll Easylift Primer als Grundierung verwendet werden?",
+      },
     ],
   },
   {
