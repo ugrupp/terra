@@ -233,7 +233,7 @@
               </template>
               <!-- CHECKBOX_SINGLE (single boolean checkbox) -->
               <template v-if="field.type === 'CHECKBOX_SINGLE'">
-                <FormItem class="checkbox-form-item checkbox-single-item">
+                <FormItem class="checkbox-form-item">
                   <FormControl>
                     <Checkbox
                       :model-value="!!value"
