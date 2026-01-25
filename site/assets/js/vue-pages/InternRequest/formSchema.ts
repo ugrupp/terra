@@ -102,6 +102,7 @@ export const formSchema = [
     floor_covering_type: z.enum(["parkett", "vinyl", "gussboden", "teppich"], {
       required_error: "Bitte wählen Sie einen Bodenbelag aus",
     }),
+    use_easylift_primer: z.boolean().optional(),
   }),
   z.object({
     bodenbelag_type_1: z
