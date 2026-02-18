@@ -22,8 +22,8 @@ applicationsContent: |
 
 downloadHeadline: "**Download**"
 downloads:
-  - file: terra-bodenbelaege-faltblatt-fussbodenheizung.pdf
-    title: Infoblatt
+  - file: terra-bodenbelaege-broschuere-fussbodenheizung.pdf
+    title: Broschüre Fußbodenheizung
   - file: blanke-heiz-und-kuehlsysteme.pdf
     title: Blanke&nbsp;Heiz- und&nbsp;Kühlsysteme
 ---
