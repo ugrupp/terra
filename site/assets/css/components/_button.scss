@@ -25,7 +25,7 @@
   &:focus {
     background-color: $color-content-ci;
 
-    .c-button__icon svg {
+    .c-button__icon:not(.c-button__icon--no-spacing) svg {
       transform: translateX(0.2em);
     }
   }
@@ -96,5 +96,21 @@
     transition: transform $transition-time-default;
     width: rem(16px);
     height: rem(16px);
+  }
+}
+
+.c-button__icon--no-spacing {
+  padding-left: 0;
+  margin-left: rem(10px);
+
+  &::before {
+    display: none;
+  }
+
+  svg {
+    transform: translateY(-0.1em);
+    transition: none;
+    width: rem(14px);
+    height: rem(14px);
   }
 }

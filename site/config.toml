@@ -112,16 +112,21 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
     url = "/#kontakt-kehl"
 
   [[menu.top]]
+    name = "Shop"
+    identifier = "shop"
+    pageRef = "https://shop.terra-boden.de/"
+    url = "https://shop.terra-boden.de/"
+    weight = 50
+  [[menu.top]]
+    name = "Anfrage"
+    identifier = "anfrage"
+    pageRef = "/anfrage"
+    url = "/anfrage/"
+  [[menu.top]]
     name = "Termin buchen"
     identifier = "termin-buchen"
     pageRef = "/termin-buchen"
     url = "/termin-buchen/"
-  [[menu.top]]
-    name = "Anfrage"
-    identifier = "anfrage"
-    weight = 17
-    pageRef = "/anfrage"
-    url = "/anfrage/"
 
 [imaging]
   quality = 85

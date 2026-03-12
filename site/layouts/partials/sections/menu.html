@@ -12,11 +12,18 @@
     {{/* Menu top */}}
     <ul class="c-menu__top">
       {{ range .Site.Menus.top }}
+        {{ $isExternal := or (hasPrefix .URL "http://") (hasPrefix .URL "https://") }}
         <li>
-          <a class="c-button c-button--primary{{ if $currentPage.IsMenuCurrent "top" . }} active{{ end }}"
+          <a class="c-button{{ if ne .Identifier "shop" }} c-button--primary{{ end }}{{ if $currentPage.IsMenuCurrent "top" . }} active{{ end }}"
             href="{{ .URL }}"
+            {{ if $isExternal }}target="_blank" rel="noopener noreferrer"{{ end }}
           >
             {{ .Name }}
+            {{ if $isExternal }}
+              <span class="c-button__icon c-button__icon--no-spacing">
+                {{ partial "components/svg" (dict "svg" "external") }}
+              </span>
+            {{ end }}
           </a>
         </li>
       {{ end }}
