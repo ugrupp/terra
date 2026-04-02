@@ -26,18 +26,31 @@
         </div>
       </div>
     </div>
-    <div class="o-container c-careers-section__content c-careers-section__content--beta">
+    <div class="o-container c-careers-section__content c-careers-section__content--beta" data-reveal>
       <div class="o-grid">
         <div class="o-grid__col">
-          <div class="c-careers-section__content-section c-careers-section__content-section-2 c-richtext" data-reveal>
+          <div class="c-careers-section__content-section c-careers-section__content-section-2 c-richtext">
             <h3 class="c-headline-secondary">{{ .Params.headline2 | markdownify }}</h3>
             {{ .Params.content2 | markdownify }}
           </div>
         </div>
         <div class="o-grid__col">
-          <div class="c-careers-section__content-section c-careers-section__content-section-3 c-richtext" data-reveal>
-            <span>{{ .Params.lead3 | markdownify }}</span>
-            <h3 class="c-headline-secondary">{{ .Params.headline3 }}</h3>
+          <div class="c-careers-section__content-section c-careers-section__content-section-3">
+            <h3 class="c-headline-secondary-inline">{{ .Params.headlineJobs | markdownify }}</h3>
+            {{ with .Params.jobs }}
+              <ul class="c-careers-section__jobs">
+                {{ range . }}
+                  <li class="c-careers-section__job">
+                    <p class="c-headline-secondary">{{ .title | markdownify }}</p>
+                    {{ with .pdf }}
+                      <p class="c-careers-section__job-link">
+                        <a href="{{ . | relURL }}" target="_blank" rel="noopener noreferrer" class="c-headline-secondary-inline">Mehr erfahren</a>
+                      </p>
+                    {{ end }}
+                  </li>
+                {{ end }}
+              </ul>
+            {{ end }}
           </div>
           <div class="c-careers-section__img2-wrapper">
             {{ with $.Resources.GetMatch "terra-bodenbelaege-karriere-2.jpg" }}

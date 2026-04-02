@@ -115,6 +115,30 @@
   }
 }
 
+.c-careers-section__jobs {
+  margin-top: rem(20px);
+}
+
+.c-careers-section__job {
+  + .c-careers-section__job {
+    margin-top: rem(25px);
+  }
+}
+
+.c-careers-section__job-link {
+  margin-top: rem(5px);
+
+  a {
+    color: $color-content-ci;
+    transition: all $transition-time-default;
+
+    &:hover,
+    &:focus {
+      color: $color-content;
+    }
+  }
+}
+
 .c-careers-section__img1-wrapper {
   margin-left: rem(-$container-gutter);
   margin-right: rem(-$container-gutter);
@@ -127,7 +151,7 @@
 
 .c-careers-section__img2-wrapper {
   margin-right: rem(-$container-gutter);
-  padding-top: rem(20px);
+  padding-top: rem(30px);
 
   @include mappy-bp($bp-grid-collapse) {
     margin-right: 0;
