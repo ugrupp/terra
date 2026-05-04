@@ -175,7 +175,7 @@ exports.handler = async (event) => {
 
     const data = await resend.emails.send({
       from: "Terra Bodenbeläge <anfragen@terra-boden.de>",
-      to: ["cm@terra-boden.de"],
+      to: ["info@terra-boden.de"],
       subject: `Neue ${requestTypeLabel}`,
       html: emailBody,
       attachments: [
@@ -230,7 +230,7 @@ exports.handler = async (event) => {
           <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
             <h2 style="color: #00a65c;">Vielen Dank für Ihre Anfrage!</h2>
             <p>Ihre Anfrage ist bei uns eingegangen.</p>
-            <p>Wir werden Ihre Anfrage schnellstmöglich bearbeiten, bei Zwischenfragen können Sie sich gerne bei uns melden unter <strong>07664 9273500</strong> oder <a href="mailto:cm@terra-boden.de" style="color: #00a65c;">cm@terra-boden.de</a>.</p>
+            <p>Wir werden Ihre Anfrage schnellstmöglich bearbeiten, bei Zwischenfragen können Sie sich gerne bei uns melden unter <strong>07664 9273500</strong> oder <a href="mailto:info@terra-boden.de" style="color: #00a65c;">info@terra-boden.de</a>.</p>
             <p>Ihr TERRA Bodenbeläge Team</p>
 
             <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 30px 0;">
@@ -275,7 +275,7 @@ exports.handler = async (event) => {
 
         try {
           await resend.emails.send({
-            from: "Terra Bodenbeläge <cm@terra-boden.de>",
+            from: "Terra Bodenbeläge <info@terra-boden.de>",
             to: [formData.email],
             subject: "Vielen Dank für Ihre Anfrage - Terra Bodenbeläge",
             html: customerEmailBody,
