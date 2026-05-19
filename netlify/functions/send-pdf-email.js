@@ -244,7 +244,7 @@ exports.handler = async (event) => {
                 79112 Freiburg Opfingen<br>
                 <br>
                 <strong>telefon</strong> +49 7664 9273500<br>
-                <strong>e-mail</strong> <a href="mailto:cm@terra-boden.de" style="color: #00a65c; text-decoration: none;">cm@terra-boden.de</a><br>
+                <strong>e-mail</strong> <a href="mailto:info@terra-boden.de" style="color: #00a65c; text-decoration: none;">info@terra-boden.de</a><br>
                 <br>
                 USt-IdNr. DE348946247<br>
                 Geschäftsführer Claus Müller<br>

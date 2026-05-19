@@ -20,5 +20,5 @@ news:
   - image: terra-bodenbelaege-karriere-2.jpg
     title: "<strong>Wir suchen</strong> Boden-/Parkettleger (m/w/d)"
     date: Februar 2024
-    content: "Entdecke dein neues Handwerker-Abenteuer mit uns.<a href='mailto:cm@terra-boden.de' class='c-button c-button--primary'><div class='c-button__text'>Jetzt bewerben</div><span class='c-button__icon'><svg class='o-icon'><use xlink:href='#icon-arrow-right'></use></svg></span></a>"
+    content: "Entdecke dein neues Handwerker-Abenteuer mit uns.<a href='mailto:info@terra-boden.de' class='c-button c-button--primary'><div class='c-button__text'>Jetzt bewerben</div><span class='c-button__icon'><svg class='o-icon'><use xlink:href='#icon-arrow-right'></use></svg></span></a>"
 ---

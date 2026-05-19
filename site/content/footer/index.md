@@ -8,7 +8,7 @@ locations:
       name: Claus Müller
       address: |
         **t** 07664 9273500  
-        [cm@terra-boden.de](mailto:cm@terra-boden.de)
+        [info@terra-boden.de](mailto:info@terra-boden.de)
       image: claus_mueller.jpg
     exhibition:
       headline: "Unsere Ausstellung in Freiburg:"
