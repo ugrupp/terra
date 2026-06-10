@@ -1,0 +1,38 @@
+{{ with .Resources.GetMatch "features.md" }}
+  <div class="c-prktt-features">
+    <div class="o-container">
+      {{/* Head */}}
+      <div class="c-prktt-features__head" data-reveal>
+        <div class="o-grid">
+          <div class="o-grid__col">
+            <div class="o-grid__col-inner o-grid__col-inner--narrow">
+              <h2 class="c-headline-secondary">{{ .Params.headline | markdownify }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{/* Features grid */}}
+      <ul class="c-prktt-features__list" data-reveal>
+        {{ range .Params.features }}
+          {{ $feature := . }}
+          <li class="c-prktt-features__item">
+            {{/* Icon */}}
+            {{ with .svg }}
+              <div class="c-prktt-features__icon" aria-hidden="true">
+                {{ partial "components/svg" (dict "svg" .) }}
+              </div>
+            {{ end }}
+
+            {{/* Content */}}
+            <h3 class="c-prktt-features__title c-headline c-headline-secondary c-headline--with-spacing-sm">{{ $feature.title | safeHTML }}</h3>
+            <div class="c-richtext c-richtext--lg">
+              <p>{{ $feature.text | markdownify }}</p>
+            </div>
+          </li>
+        {{ end }}
+      </ul>
+
+    </div>
+  </div>
+{{ end }}

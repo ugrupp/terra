@@ -1,0 +1,112 @@
+//
+// Teaser section
+// --------------------------------------------------
+
+@use "sass:math";
+
+.c-teaser-section__content,
+.c-teaser-section__img {
+  position: relative;
+  z-index: 10;
+}
+
+.c-teaser-section {
+  position: relative;
+
+  .o-grid__col {
+    padding-top: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    @include mappy-bp($bp-grid-collapse) {
+      min-height: rem($gallery-height-sm);
+    }
+
+    @include mappy-bp(xl) {
+      min-height: rem($gallery-height-xl);
+    }
+  }
+}
+
+.c-teaser-section__img-wrapper {
+  display: block;
+  margin-top: rem(40px);
+
+  background-color: $color-primary;
+  width: calc(100% - #{rem($container-gutter)});
+  height: rem($gallery-height-xs);
+
+  .c-teaser-section--reverse & {
+    margin-left: auto;
+  }
+
+  @include mappy-bp($bp-grid-collapse) {
+    margin-top: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: calc(50% - #{rem(math.div($grid-gutter, 2))});
+    height: 100%;
+
+    .c-teaser-section--reverse & {
+      margin-left: 0;
+      left: auto;
+      right: 0;
+    }
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    width: calc(50% - #{rem(math.div($grid-gutter-md, 2))});
+  }
+}
+
+.c-teaser-section__content {
+  .c-teaser-section--reverse & {
+    .o-grid__col-inner--narrow {
+      margin-left: auto;
+    }
+  }
+}
+
+.c-teaser-section__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+  }
+}
+
+// Label
+.c-teaser-section__label {
+  margin-top: rem(40px);
+  position: relative;
+  z-index: 10;
+
+  @include typi("richtext-lg");
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: rem(20px);
+  transition: color $transition-time-default;
+
+  @include mappy-bp($bp-grid-collapse) {
+    margin-top: rem(80px);
+  }
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  svg {
+    width: rem(50px);
+    height: rem(12px);
+  }
+}

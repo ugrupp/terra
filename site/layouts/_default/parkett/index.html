@@ -1,0 +1,32 @@
+{{ define "main" }}
+  <div class="o-main__content" id="content">
+    <div class="c-topbox-secondary"></div>
+    <section class="o-main__section o-main__section--no-pad-bottom">
+      {{ partial "sections/parkett-overview.html" . }}
+    </section>
+
+    {{/* Teaser sections */}}
+    {{ $baseContext := . }}
+    {{ $sections := .Resources.Match "section-*.md" }}
+    {{ range (sort $sections "Name") }}
+      <section class="o-main__section o-main__section--no-pad-bottom {{ .Params.modifiers }}">
+        {{ partial "components/prktt-teaser-section.html" (dict "context" . "reverse" .Params.reverse "baseContext" $baseContext) }}
+      </section>
+    {{ end }}
+
+
+    <section class="o-main__section o-main__section--bg-white o-main__section--no-pad">
+      {{ partial "sections/prktt-info.html" . }}
+    </section>
+
+    <section class="o-main__section">
+      {{ partial "sections/prktt-features.html" . }}
+    </section>
+
+    {{/* Teasers */}}
+    <section class="o-main__section o-main__section--no-pad">
+      {{ partial "components/teasers.html" . }}
+    </section>
+  </div>
+{{ end }}
+

@@ -1,0 +1,74 @@
+//
+// Parkett features section
+// --------------------------------------------------
+
+.c-prktt-features__head {
+  margin-bottom: rem(50px);
+
+  @include mappy-bp(sm) {
+    margin-bottom: rem(80px);
+  }
+
+  @include mappy-bp(lg) {
+    margin-bottom: rem(110px);
+  }
+
+  .c-headline-secondary {
+    color: $color-primary;
+  }
+
+  .o-grid__col-inner--narrow {
+    @include mappy-bp(sm) {
+      margin-left: auto;
+    }
+  }
+}
+
+.c-prktt-features__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: rem(50px) rem($grid-gutter);
+
+  @include mappy-bp(sm) {
+    grid-template-columns: 1fr 1fr;
+    gap: rem(80px) rem($grid-gutter);
+  }
+
+  @include mappy-bp(lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: rem(110px) rem($grid-gutter);
+    margin-bottom: rem(100px);
+  }
+}
+
+.c-prktt-features__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-prktt-features__icon {
+  width: rem(80px);
+  height: rem(80px);
+  margin-bottom: rem(20px);
+  flex-shrink: 0;
+  color: $color-primary;
+
+  @include mappy-bp(md) {
+  margin-bottom: rem(35px);
+    width: rem(120px);
+    height: rem(120px);
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.c-prktt-features__title {
+  color: $color-primary;
+}

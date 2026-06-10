@@ -104,6 +104,10 @@
       transform: translateY(-50%);
     }
   }
+
+  .layout-parkett & {
+    transform: translateY(-33.3333333%);
+  }
 }
 
 .c-hero-secondary__content-inner--sm {

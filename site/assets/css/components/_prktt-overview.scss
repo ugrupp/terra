@@ -1,0 +1,29 @@
+@use "sass:math";
+
+.c-prktt-overview__content {
+  .c-richtext {
+    strong {
+      color: inherit;
+    }
+  }
+
+  .c-headline-secondary {
+    color: $color-primary;
+  }
+}
+
+.c-prktt-overview__col-headline {
+  @include mappy-bp(sm) {
+    max-width: calc(50% + #{rem(math.div($grid-gutter, 2))});
+  }
+
+  @include mappy-bp(md) {
+    max-width: calc(50% - #{rem(math.div($grid-gutter, 2))});
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    max-width: rem($content-narrow-width);
+    margin-left: auto;
+    margin-right: calc(50% + #{rem(math.div($grid-gutter-md, 2))});
+  }
+}

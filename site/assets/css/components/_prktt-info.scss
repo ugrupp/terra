@@ -1,0 +1,76 @@
+//
+// Parkett info section
+// --------------------------------------------------
+
+@use "sass:math";
+
+.c-prktt-info {
+  position: relative;
+
+  .o-grid__col {
+    padding-top: 0;
+
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.c-prktt-info__content,
+.c-prktt-info__img {
+  position: relative;
+  z-index: 10;
+}
+
+.c-prktt-info__content {
+  padding-top: rem($grid-gutter);
+
+  @include mappy-bp($bp-grid-collapse) {
+    padding-bottom: rem($grid-gutter);
+  }
+
+  @include mappy-bp(md) {
+    padding-top: rem($section-padding-md);
+    padding-bottom: rem($section-padding-md);
+  }
+
+  .c-richtext strong {
+    color: inherit;
+  }
+}
+
+.c-prktt-info__img-wrapper {
+  display: block;
+  margin-top: rem(40px);
+
+  background-color: $color-primary;
+  width: calc(100% - #{rem($container-gutter)});
+  height: rem($gallery-height-xs);
+
+  @include mappy-bp($bp-grid-collapse) {
+    margin-top: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: calc(50% - #{rem(math.div($grid-gutter, 2))});
+    height: 100%;
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    width: calc(50% - #{rem(math.div($grid-gutter-md, 2))});
+  }
+}
+
+.c-prktt-info__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+  }
+}

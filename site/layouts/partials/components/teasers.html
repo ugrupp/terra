@@ -1,7 +1,15 @@
 {{ with .Resources.GetMatch "teasers*.md" }}
   <div class="c-teasers">
     {{ range .Params.teasers }}
-      <a class="c-teaser" href="{{ .url }}">
+      {{ $target := .target }}
+      {{ if and (not $target) .target_blank }}
+        {{ $target = "_blank" }}
+      {{ end }}
+      {{ $rel := .rel }}
+      {{ if and (eq $target "_blank") (not $rel) }}
+        {{ $rel = "noopener noreferrer" }}
+      {{ end }}
+      <a class="c-teaser" href="{{ .url }}"{{ with $target }} target="{{ . }}"{{ end }}{{ with $rel }} rel="{{ . }}"{{ end }}>
         <div class="c-teaser__inner">
           {{/* Image */}}
           <div class="c-teaser__img-wrapper">

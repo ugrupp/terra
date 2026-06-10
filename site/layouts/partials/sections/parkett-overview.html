@@ -1,0 +1,9 @@
+<div class="c-prktt-overview">
+  {{ with .Resources.GetMatch "overview*.md" }}
+    <div class="o-container c-prktt-overview__content">
+      <div class="c-prktt-overview__col-headline" data-reveal>
+        <h2 class="c-headline-secondary">{{ .Params.headline1 | markdownify }}</h2>
+      </div>
+    </div>
+  {{ end }}
+</div>

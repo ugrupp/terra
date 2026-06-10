@@ -1,0 +1,82 @@
+{{ $baseContext := .baseContext }}
+{{ $hasDetailPage := and .context.Params.url (ne .context.Params.url "#") }}
+
+<div class="c-teaser-section{{ if .reverse }} c-teaser-section--reverse{{ end }}">
+  {{/* Content */}}
+  <div class="c-teaser-section__content">
+    <div class="o-container">
+      <div class="o-grid">
+        {{ if not .reverse }}
+          <div class="o-grid__col"></div>
+        {{ end }}
+
+        <div class="o-grid__col" data-reveal>
+          <div class="o-grid__col-inner o-grid__col-inner--narrow">
+            <div class="c-headline-wrapper c-headline-wrapper--with-spacing-lg">
+              <h2 class="c-headline c-headline--padded c-headline--primary c-headline--lg">
+                {{ if $hasDetailPage }}
+                  <a href="{{ .context.Params.url }}">
+                    {{ .context.Title }}
+                  </a>
+                {{ else }}
+                  {{ .context.Title }}
+                {{ end }}
+              </h2>
+            </div>
+
+            <div class="c-richtext c-richtext--lg">
+              {{ .context.Content }}
+            </div>
+
+            {{ if and $hasDetailPage .context.Params.label }}
+              <a href="{{ .context.Params.url }}" class="c-teaser-section__label">
+                {{ .context.Params.label }}
+                {{ partial "components/svg" (dict "svg" "arrow-long-right") }}
+              </a>
+            {{ end }}
+          </div>
+        </div>
+
+        {{ if .reverse }}
+          <div class="o-grid__col"></div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  {{/* Single image */}}
+  {{ $sectionTitle := .context.Title }}
+  {{ if $hasDetailPage }}
+    <a href="{{ .context.Params.url }}" class="c-teaser-section__img-wrapper">
+      {{ with $baseContext.Resources.GetMatch .context.Params.image }}
+        {{ $imageSmall := .Resize "500x" }}
+        {{ $imageMedium := .Resize "1000x" }}
+        {{ $imageBig := .Resize "2000x" }}
+
+        <img
+          alt="{{ $sectionTitle }}"
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          data-src="{{ $imageSmall.RelPermalink }}"
+          data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w, {{ $imageBig.RelPermalink }} 2000w"
+          data-sizes="auto"
+          class="c-teaser-section__img lazyload" />
+      {{ end }}
+    </a>
+  {{ else }}
+    <div class="c-teaser-section__img-wrapper">
+      {{ with $baseContext.Resources.GetMatch .context.Params.image }}
+        {{ $imageSmall := .Resize "500x" }}
+        {{ $imageMedium := .Resize "1000x" }}
+        {{ $imageBig := .Resize "2000x" }}
+
+        <img
+          alt="{{ $sectionTitle }}"
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          data-src="{{ $imageSmall.RelPermalink }}"
+          data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w, {{ $imageBig.RelPermalink }} 2000w"
+          data-sizes="auto"
+          class="c-teaser-section__img lazyload" />
+      {{ end }}
+    </div>
+  {{ end }}
+</div>
