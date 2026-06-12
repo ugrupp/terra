@@ -1,5 +1,5 @@
 ---
-title: Fischgrät
+title: Fischgrätparkett
 url: "#"
 label: Jetzt entdecken
 image: parkett-fischgraet.jpg

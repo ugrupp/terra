@@ -7,7 +7,7 @@ content_row1: |
   Als solche wissen wir, was bei der Verlegung Ihres neuen Bodenschmuckstücks zu beachten ist. Ein wertiger Boden verdient unserer Ansicht nach die Arbeit eines Fachmanns. Wir verschaffen Ihren Räumen mit fachlicher Hand und langjähriger Erfahrung die passende Bodenoptik. Denn ein schöner Bodenbelag bekommt erst Wirkung, wenn er richtig verlegt wurde.
 image_row2: foto-2.jpg
 content_row2: |
-  <h3 class="c-headline c-headline--primary">Unsere Serviceleistungen</h3>
+  <h2 class="c-headline c-headline--primary">Unsere Serviceleistungen</h2>
   
   * große Ausstellung mit über 400 Bodenbelägen
   * Beratung, Bemusterung und Aufmaß vor Ort

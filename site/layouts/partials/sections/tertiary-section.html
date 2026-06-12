@@ -13,6 +13,11 @@
           <ul class="c-tertiary-section__galleries c-tertiary-section__galleries--1">
             {{ range .context.Params.galleries1 }}
               <li class="c-tertiary-section__gallery">
+                {{/* Headline */}}
+                {{ with .headline }}
+                  <h3 class="u-invisible">{{ . }}</h3>
+                {{ end }}
+
                 {{/* Gallery */}}
                 {{ partial "components/gallery.html" (dict "context" $baseContext "gallery" .gallery "height" "sm") }}
 
@@ -34,6 +39,11 @@
           <ul class="c-tertiary-section__galleries c-tertiary-section__galleries--2">
             {{ range .context.Params.galleries2 }}
               <li class="c-tertiary-section__gallery">
+                {{/* Headline */}}
+                {{ with .headline }}
+                  <h3 class="u-invisible">{{ . }}</h3>
+                {{ end }}
+
                 {{/* Gallery */}}
                 {{ partial "components/gallery.html" (dict "context" $baseContext "gallery" .gallery "height" "sm") }}
 

@@ -1,9 +1,10 @@
 ---
 headline: Referenzen Fußbodenheizung
 content_col1: |
-  <h3 class="c-headline c-headline--primary">Referenzen Fußbodenheizung</h3>
+  <h2 class="c-headline c-headline--primary">Referenzen Fußbodenheizung</h2>
 galleries1:
 - gallery: galerie-floor-1/*
+  headline: Permatop 1000 | Wohnung in Freiburg
   text: |
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt</strong> <br />Wohnung in Freiburg mit 100m² <br /><strong class="c-headline c-headline--inline c-headline--text-sizing">Permatop 1000</strong>
 
@@ -17,6 +18,7 @@ galleries1:
     * Dünnestrich einbauen
     * Parkett Landhausdiele Premium Zugspitze verlegen
 - gallery: galerie-floor-2/*
+  headline: Flatklett | Wohnung in Emmendingen
   text: |
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt</strong> <br />Wohnung in Emmendingen mit 150m² <br /><strong class="c-headline c-headline--inline c-headline--text-sizing">Flatklett</strong>
 
@@ -30,6 +32,7 @@ galleries1:
     * Dünnestrich einbauen
 galleries2:
 - gallery: galerie-floor-3/*
+  headline: Heizung einfräsen | Haus in Kirchzarten
   text: |
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt</strong> <br />Haus in Kirchzarten mit 150m² <br /><strong class="c-headline c-headline--inline c-headline--text-sizing">Heizung einfräsen</strong>
 
@@ -44,6 +47,7 @@ galleries2:
     * Dünnestrich auftragen
     * Parkett Landhausdiele Noble Zugspitze verlegen
 - gallery: galerie-floor-4/*
+  headline: Noppenbahn mit Turbolightsystem | Referenzprojekt in Freiburg
   text: |
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt</strong> <br />Freiburg mit 180m² <br /><strong class="c-headline c-headline--inline c-headline--text-sizing">Noppenbahn mit Turbolightsystem</strong>
 
@@ -56,6 +60,7 @@ galleries2:
     * Turbolightsystem einbauen
     * Parkett Landhausdiele Premium Altmühltal verlegen
 - gallery: galerie-floor-5/*
+  headline: Tempusdry Green Holzfaserplatte | Referenzprojekt
   text: |
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt</strong> <br /><strong class="c-headline c-headline--inline c-headline--text-sizing">Tempusdry Green Holzfaserplatte</strong>
 

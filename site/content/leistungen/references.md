@@ -1,11 +1,12 @@
 ---
 headline: Referenzen Parkett
 content_col1: |
-  <h3 class="c-headline c-headline--primary">Referenzen Parkett</h3>
+  <h2 class="c-headline c-headline--primary">Referenzen Parkett</h2>
 
   Schöne Dinge sprechen für sich. Wir sind stolz auf jedes unserer Projekte. Noch eindrucksvoller sind unsere Referenzböden natürlich in Natura. Unsere Galerien geben einen kleinen Eindruck.
 galleries1:
 - gallery: galerie-2/*
+  headline: Landhausdiele Smoky Mountains – Loftwohnung
   text: |
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt:</strong> Loftwohnung in Breisach
 
@@ -13,6 +14,7 @@ galleries1:
 
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Verlegt von:</strong> Terra Bodenbeläge
 - gallery: galerie-4/*
+  headline: Shrunk Landhausdiele – Wohnhaus
   text: |
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt:</strong> Wohnhaus in Wasser
 
@@ -20,6 +22,7 @@ galleries1:
 
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Verlegt von:</strong> Terra Bodenbeläge
 - gallery: galerie-6/*
+  headline: Landhausdiele handgehobelt – Wohnhaus
   text: |
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt:</strong> Wohnhaus in Waltershofen
 
@@ -28,6 +31,7 @@ galleries1:
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Verlegt von:</strong> Terra Bodenbeläge
 galleries2:
 - gallery: galerie-7/*
+  headline: Wildwood 3D Hirschsprung – Wohnhaus
   text: |
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt:</strong> Wohnaus in Wasenweiler
 
@@ -35,6 +39,7 @@ galleries2:
 
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Verlegt von:</strong> Terra Bodenbeläge
 - gallery: galerie-3/*
+  headline: Industrieparkett in Rohholzoptik – Bürogebäude
   text: |
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt:</strong> Bürogebäude in Schallstadt
 
@@ -42,6 +47,7 @@ galleries2:
 
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Verlegt von:</strong> Terra Bodenbeläge
 - gallery: galerie-5/*
+  headline: Landhausdiele Smoky Mountains – Wohnhaus
   text: |
     <strong class="c-headline c-headline--inline c-headline--text-sizing">Referenzprojekt:</strong> Wohnhaus in Gottenheim
 

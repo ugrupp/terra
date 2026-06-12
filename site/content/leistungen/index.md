@@ -22,9 +22,9 @@ resources:
 - src: galerie-7/*
   title: Wildwood 3D Hirschsprung (A115011), natur geölt, Zweischichtparkett Multiplex Träger
 - src: foto-1.jpg
-  title: Ihre Bodenleger mit handwerklicher Passion in der Region Freiburg
+  title: Bodenleger verlegt Landhausdiele – Terra Bodenbeläge Freiburg
 - src: foto-2.jpg
-  title: Ihre Bodenleger mit handwerklicher Passion in der Region Freiburg
+  title: Professionelle Parkettverlegung – Terra Bodenbeläge Freiburg
 - src: estrichfraese-1.jpg
   title: Fussbodenheizung fräsen
 - src: estrichfraese-2.jpg

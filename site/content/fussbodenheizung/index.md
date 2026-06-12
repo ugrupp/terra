@@ -14,13 +14,13 @@ menu:
 
 resources:
 - src: bodenheizung-einfraesen-1.jpg
-  title: Kanäle für die Heizungsrohre einfräsen
+  title: Fußbodenheizung Estrich fräsen – HEATFlow-System Terra Bodenbeläge Freiburg
 - src: bodenheizung-einfraesen-2.jpg
-  title: Kanäle für die Heizungsrohre einfräsen
+  title: Heizungsrohre in Estrich verlegen – Fußbodenheizung nachrüsten Freiburg
 - src: bodenheizung-einfraesen-3.jpg
-  title: Verlegen der Noppenplatte BLANKE PERMATOP BF
+  title: BLANKE PERMATOP BF Noppenplatte verlegen – Fußbodenheizung Freiburg
 - src: blanke_permatop_bf_base.jpeg
-  title: Details zu BLANKE PERMATOP BF
+  title: BLANKE PERMATOP BF Aufbau – Flächenheizung Einbausystem
 - src: blanke_permatop_bfc_base.jpeg
-  title: Details zu BLANKE PERMATOP BFC
+  title: BLANKE PERMATOP BFC mit Trittschalldämmung – Fußbodenheizung Einbausystem
 ---

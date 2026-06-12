@@ -1,6 +1,7 @@
 {{ with .Resources.GetMatch "teasers*.md" }}
   <div class="c-teasers">
     {{ range .Params.teasers }}
+      {{ $teaser := . }}
       {{ $target := .target }}
       {{ if and (not $target) .target_blank }}
         {{ $target = "_blank" }}
@@ -18,7 +19,7 @@
               {{ $imageMedium := .Resize "800x" }}
 
               <img
-                alt="{{ .Title }}"
+                alt="{{ $teaser.title }}"
                 src="{{ $imageMedium.RelPermalink }}"
                 srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                 data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"

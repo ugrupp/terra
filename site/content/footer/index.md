@@ -10,6 +10,7 @@ locations:
         **t** 07664 9273500  
         [info@terra-boden.de](mailto:info@terra-boden.de)
       image: claus_mueller.jpg
+      image_alt: "Claus Müller – Ansprechpartner Fußbodenheizung, Terra Bodenbeläge Freiburg"
     exhibition:
       headline: "Unsere Ausstellung in Freiburg:"
       address: |
@@ -29,6 +30,7 @@ locations:
         **m** 0176 81179185  
         [info@terra-boden.de](mailto:info@terra-boden.de)
       image: axel_mueller.jpg
+      image_alt: "Axel Müller – Ansprechpartner Terra Bodenbeläge Kehl"
     exhibition:
       headline: "Unsere Ausstellung in Kehl:"
       address: |

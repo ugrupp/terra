@@ -4,9 +4,11 @@ departments:
   - members: 
       - image: team/claus.jpg
         image_position: "center 30%"
+        image_alt: "Claus Müller – Geschäftsführer Terra Bodenbeläge Freiburg"
         name: Claus Müller
         position: Geschäftsführung
       - image: team/axel.jpg
+        image_alt: "Axel Müller – Gebietsleiter Terra Bodenbeläge Kehl"
         name: Axel Müller
         position: Gebietsleiter Kehl
   - title: "Unser **Büro-Team**"

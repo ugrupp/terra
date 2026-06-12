@@ -19,7 +19,7 @@ disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
   [[menu.main]]
     name = "Parkett"
     parent = "products"
-    url = "/#parkett"
+    url = "/produkte/parkett/"
     weight = 10
   [[menu.main]]
     name = "Gussboden"
