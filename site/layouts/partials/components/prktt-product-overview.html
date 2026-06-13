@@ -1,0 +1,102 @@
+{{ $baseContext := .baseContext }}
+{{ $product := .context }}
+
+<div class="c-prktt-product-overview">
+  <div class="o-container">
+    <div class="c-prktt-product-overview__grid c-prktt-product-overview__headline">
+      <div class="c-prktt-product-overview__col c-prktt-product-overview__col--content1" data-reveal>
+        <h2>
+          {{ with $product.Params.metaheadline }}
+            <span class="c-headline-secondary">{{ . | markdownify }}</span>
+          {{ end }}
+          <span class="c-headline-tertiary">{{ $product.Params.headline | markdownify }}</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="c-prktt-product-overview__grid">
+      {{/* Intro */}}
+      {{ with $product.Params.intro }}
+        <div class="c-prktt-product-overview__col c-prktt-product-overview__col--content1" data-reveal>
+          <div class="c-richtext">
+            {{ . | markdownify }}
+          </div>
+        </div>
+      {{ end }}
+
+      {{/* Info 1 */}}
+      {{ with $product.Params.info1 }}
+        <div class="c-prktt-product-overview__col c-prktt-product-overview__col--content2" data-reveal>
+          {{ with .headline }}
+            <h3 class="c-headline-secondary c-headline--with-spacing-sm"><strong>{{ . | markdownify }}</strong></h3>
+          {{ end }}
+
+          {{ with .content }}
+            <div class="c-richtext c-prktt-product-overview__info-text">
+              {{ . | markdownify }}
+            </div>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      {{/* Image 1 */}}
+      <div class="c-prktt-product-overview__col c-prktt-product-overview__col--image1" data-reveal>
+        <div class="c-prktt-product-overview__img-box">
+          <div class="c-prktt-product-overview__img-wrapper">
+            {{ with $baseContext.Resources.GetMatch .context.Params.image1 }}
+              {{ $imageSmall := .Resize "500x" }}
+              {{ $imageMedium := .Resize "800x" }}
+
+              <img
+                alt="{{ .Title }}"
+                src="{{ $imageMedium.RelPermalink }}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"
+                data-sizes="auto"
+                class="c-prktt-product-overview__img lazyload" />
+            {{ end }}
+          </div>
+        </div>
+      </div>
+
+      {{/* Info 2 */}}
+      {{ if or $product.Params.info2 $product.Params.specifications }}
+        {{ $info2 := $product.Params.info2 }}
+        {{ $specifications := $product.Params.specifications }}
+        <div class="c-prktt-product-overview__col c-prktt-product-overview__col--content3" data-reveal>
+          {{ with $info2.content }}
+            <div class="c-richtext c-prktt-product-overview__info-text">
+              {{ . | markdownify }}
+            </div>
+          {{ end }}
+
+          {{ with $specifications.component }}
+            <div class="c-prktt-product-overview__specifications-content">
+              {{ partial (printf "components/prktt-product-specifications/%s.html" .) (dict "context" $product "baseContext" $baseContext "specifications" $specifications) }}
+            </div>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      {{/* Image 2 */}}
+      <div class="c-prktt-product-overview__col c-prktt-product-overview__col--image2" data-reveal>
+        <div class="c-prktt-product-overview__img-box">
+          <div class="c-prktt-product-overview__img-wrapper">
+            {{ with $baseContext.Resources.GetMatch .context.Params.image2 }}
+              {{ $imageSmall := .Resize "500x" }}
+              {{ $imageMedium := .Resize "800x" }}
+
+              <img
+                alt="{{ .Title }}"
+                src="{{ $imageMedium.RelPermalink }}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"
+                data-sizes="auto"
+                class="c-prktt-product-overview__img lazyload" />
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

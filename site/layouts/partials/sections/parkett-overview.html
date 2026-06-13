@@ -1,8 +1,22 @@
 <div class="c-prktt-overview">
   {{ with .Resources.GetMatch "overview*.md" }}
     <div class="o-container c-prktt-overview__content">
-      <div class="c-prktt-overview__col-headline" data-reveal>
-        <p class="c-headline-secondary">{{ .Params.headline1 | markdownify }}</p>
+      <div class="o-grid">
+        <div class="o-grid__col c-prktt-overview__col-narrow c-prktt-overview__col-headline">
+          <div class="c-prktt-overview__col-inner" data-reveal>
+            <p class="c-headline-secondary">{{ .Params.headline1 | markdownify }}</p>
+          </div>
+        </div>
+
+        {{ with .Params.content1 }}
+          <div class="o-grid__col c-prktt-overview__col-narrow c-prktt-overview__col-content">
+            <div class="c-prktt-overview__col-inner" data-reveal>
+              <div class="c-richtext c-richtext--lg">
+                {{ . | markdownify }}
+              </div>
+            </div>
+          </div>
+        {{ end }}
       </div>
     </div>
   {{ end }}

@@ -1,0 +1,93 @@
+{{ $baseContext := .baseContext }}
+{{ $product := .context }}
+{{ $variations := $product.Params.variations }}
+
+<div class="c-prktt-product-variations">
+  <div class="o-container">
+    <div class="c-prktt-product-variations__head" data-reveal>
+      {{ with $variations.headline }}
+        <h2 class="c-headline-secondary c-prktt-product-variations__headline"><strong>{{ . | markdownify }}</strong></h2>
+      {{ end }}
+
+      {{ with $variations.intro }}
+        <div class="c-richtext c-prktt-product-variations__intro">
+          {{ . | markdownify }}
+        </div>
+      {{ end }}
+    </div>
+
+    {{ with $variations.items }}
+      <div class="c-prktt-product-variations__grid">
+        <ul data-reveal>
+          {{ range . }}
+            {{ $item := . }}
+            <li class="c-prktt-product-variations__item">
+              <div class="c-prktt-product-variations__item-media">
+                {{ with $baseContext.Resources.GetMatch $item.image }}
+                  {{ $imageSmall := .Resize "300x" }}
+                  {{ $imageMedium := .Resize "600x" }}
+
+                  <img
+                    alt="{{ or $item.title .Title }}"
+                    src="{{ $imageMedium.RelPermalink }}"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="{{ $imageSmall.RelPermalink }} 300w, {{ $imageMedium.RelPermalink }} 600w"
+                    data-sizes="auto"
+                    class="c-prktt-product-variations__item-image lazyload" />
+                {{ end }}
+              </div>
+
+              <div class="c-prktt-product-variations__item-content">
+                {{ with $item.title }}
+                  <div class="c-prktt-product-variations__item-title">
+                    <span>{{ . }}</span>
+                  </div>
+                {{ end }}
+
+                {{ with $item.shop_link }}
+                  <a class="c-prktt-product-variations__item-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">
+                    {{ partial "components/svg" (dict "svg" "cart") }}
+                    Jetzt kaufen und liefern lassen
+                  </a>
+                {{ end }}
+              </div>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
+
+    {{ with $variations.cta }}
+      {{ $cta := . }}
+      {{ $target := .target }}
+      {{ if and (not $target) .target_blank }}
+        {{ $target = "_blank" }}
+      {{ end }}
+      {{ $rel := .rel }}
+      {{ if and (eq $target "_blank") (not $rel) }}
+        {{ $rel = "noopener noreferrer" }}
+      {{ end }}
+
+      <div class="c-prktt-product-variations__cta c-teaser-stoerer-grid c-teaser-stoerer-grid--offset">
+        <div class="c-teaser-stoerer-grid__col">
+          <div class="c-prktt-product-variations__cta-inner" data-reveal>
+            {{ with .content }}
+              <div class="c-richtext c-richtext--lg c-prktt-product-variations__cta-text">
+                {{ . | markdownify }}
+              </div>
+            {{ end }}
+
+            {{ with .link }}
+              <a class="c-button c-button--primary c-prktt-product-variations__cta-button" href="{{ . }}"{{ with $target }} target="{{ . }}"{{ end }}{{ with $rel }} rel="{{ . }}"{{ end }}>
+                <span class="c-button__text">{{ $cta.label | default "Jetzt entdecken" }}</span>
+                <span class="c-button__icon">
+                  {{ partial "components/svg" (dict "svg" "arrow-right") }}
+                </span>
+              </a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</div>

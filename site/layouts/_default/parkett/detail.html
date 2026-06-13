@@ -1,0 +1,23 @@
+{{ define "main" }}
+  <div class="o-main__content" id="content">
+    <div class="c-topbox-secondary"></div>
+    <section class="o-main__section">
+      {{ partial "sections/parkett-overview.html" . }}
+    </section>
+
+    {{ partial "sections/parkett-products.html" . }}
+
+    {{ with .Params.showroom_cta }}
+      <section class="o-main__section o-main__section--bg-white o-main__section--no-pad-top">
+        {{ partial "components/prktt-detail-showroom-cta.html" (dict "context" . "baseContext" $) }}
+      </section>
+    {{ end }}
+
+    {{ with site.GetPage "/produkte/parkett" }}
+      {{/* Teasers */}}
+      <section class="o-main__section o-main__section--no-pad">
+        {{ partial "components/teasers.html" . }}
+      </section>
+    {{ end }}
+  </div>
+{{ end }}

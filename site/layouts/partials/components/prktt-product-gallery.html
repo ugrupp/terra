@@ -1,0 +1,6 @@
+{{ $product := .context }}
+{{ $gallery := $product.Params.gallery_slider }}
+
+<div class="c-ssb-product-gallery c-prktt-product-gallery" data-reveal>
+  {{ partial "components/slider-beta.html" (dict "context" .baseContext "items" $gallery.items "class" "c-slider-beta--with-overlay") }}
+</div>

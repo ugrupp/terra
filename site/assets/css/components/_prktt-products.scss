@@ -1,0 +1,74 @@
+.c-prktt-products {
+}
+
+.c-prktt-product {
+  position: relative;
+}
+
+.c-prktt-sticky-header {
+  pointer-events: none;
+  height: rem($prktt-sticky-header-height);
+  position: sticky;
+  top: rem($topbar-height-top + 20px);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  display: none;
+
+  @supports(writing-mode: vertical-rl) {
+    display: block;
+  }
+
+  .o-container {
+    height: 100%;
+  }
+}
+
+.c-prktt-sticky-header__content {
+  height: 100%;
+  writing-mode: vertical-rl;
+  text-align: end;
+  transform: rotate(180deg);
+  font-weight: 700;
+  @include font-ci;
+  @include font-smoothing;
+  font-size: rem(20px);
+  text-transform: uppercase;
+  color: $color-primary;
+  white-space: nowrap;
+
+  margin-left: rem(-$container-gutter);
+  margin-right: rem(-$container-gutter);
+
+  @include mappy-bp(1700px) {
+    margin-left: rem(-70px);
+    margin-right: 0;
+    transform: translateX(-100%) rotate(180deg);
+  }
+}
+
+.c-prktt-product__section {
+}
+
+.c-prktt-product__section--overview {
+  // Sticky header compensation
+  @supports(writing-mode: vertical-rl) {
+    margin-top: rem(-$prktt-sticky-header-height)
+  }
+}
+
+.c-prktt-product__section--stoerer {
+}
+
+.c-prktt-product__section--variations {
+}
+
+.c-prktt-product__section--gallery {
+  padding-top: rem($section-padding);
+
+  @include mappy-bp(md) {
+    padding-top: rem($section-padding-md);
+  }
+}

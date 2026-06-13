@@ -1,0 +1,45 @@
+{{ $baseContext := .baseContext }}
+{{ $link := .context.Params.link }}
+{{ $target := .context.Params.target }}
+{{ if and (not $target) .context.Params.target_blank }}
+  {{ $target = "_blank" }}
+{{ end }}
+{{ $rel := .context.Params.rel }}
+{{ if and (eq $target "_blank") (not $rel) }}
+  {{ $rel = "noopener noreferrer" }}
+{{ end }}
+
+<div class="c-teaser-stoerer">
+  <div class="c-teaser-stoerer__panel">
+    <div class="c-teaser-stoerer__panel-inner" data-reveal>
+      <div class="c-richtext c-richtext--lg c-richtext--inverted c-teaser-stoerer__text">
+        {{ .context.Content }}
+      </div>
+
+      <a class="c-teaser-stoerer__link" href="{{ $link }}"{{ with $target }} target="{{ . }}"{{ end }}{{ with $rel }} rel="{{ . }}"{{ end }}>
+        <span>{{ .context.Params.label | safeHTML }}</span>
+        {{ partial "components/svg" (dict "svg" "arrow-long-right") }}
+      </a>
+    </div>
+  </div>
+
+  {{ with $baseContext.Resources.GetMatch .context.Params.image }}
+    {{ $imageSmall := .Resize "700x" }}
+    {{ $imageMedium := .Resize "1200x" }}
+    {{ $imageBig := .Resize "2000x" }}
+    {{ $imageAlt := $.context.Params.image_alt }}
+    {{ if not $imageAlt }}
+      {{ $imageAlt = $.context.Title }}
+    {{ end }}
+
+    <a class="c-teaser-stoerer__img-wrapper" href="{{ $link }}"{{ with $target }} target="{{ . }}"{{ end }}{{ with $rel }} rel="{{ . }}"{{ end }} aria-hidden="true" tabindex="-1">
+      <img
+        alt="{{ $imageAlt }}"
+        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+        data-src="{{ $imageSmall.RelPermalink }}"
+        data-srcset="{{ $imageSmall.RelPermalink }} 700w, {{ $imageMedium.RelPermalink }} 1200w, {{ $imageBig.RelPermalink }} 2000w"
+        data-sizes="auto"
+        class="c-teaser-stoerer__img lazyload" />
+    </a>
+  {{ end }}
+</div>

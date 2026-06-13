@@ -1,0 +1,116 @@
+@use "sass:math";
+
+.c-prktt-detail-showroom-cta {
+  .c-richtext {
+    strong {
+      color: inherit;
+    }
+  }
+
+  .c-headline-secondary {
+    color: $color-primary;
+  }
+}
+
+.c-prktt-detail-showroom-cta__img-wrapper {
+  background-color: $color-primary;
+}
+
+.c-prktt-detail-showroom-cta__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all $transition-time-long;
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+  }
+}
+
+.c-prktt-detail-showroom-cta__grid {
+  @include mappy-bp(sm) {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, #{rem(math.div($grid-gutter, 2))}) 1fr;
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    grid-template-columns: 1fr repeat(2, #{rem(math.div($grid-gutter-md, 2))}) 1fr;
+  }
+}
+
+.c-prktt-detail-showroom-cta__col {
+  @include mappy-bp($bp-grid-collapse-lg) {
+    max-width: rem($content-narrow-width);
+    width: 100%;
+  }
+}
+
+.c-prktt-detail-showroom-cta__col--content {
+  @include mappy-bp(sm) {
+    grid-column-start: 2;
+    grid-column-end: 5;
+  }
+
+  @include mappy-bp(md) {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+}
+
+.c-prktt-detail-showroom-cta__button {
+  margin-top: rem(30px);
+}
+
+.c-prktt-detail-showroom-cta__col--image1 {
+  margin-top: rem(60px);
+  margin-right: rem(-$container-gutter);
+
+  @include mappy-bp(sm) {
+    grid-row-start: 3;
+    grid-column-start: 4;
+    grid-column-end: 5;
+  }
+
+  @include mappy-bp(md) {
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: auto;
+    grid-row-start: 1;
+    width: rem(400px);
+    max-width: 100%;
+    align-self: flex-end;
+  }
+
+  .c-prktt-detail-showroom-cta__img-wrapper {
+    height: rem(280px)
+  }
+}
+
+.c-prktt-detail-showroom-cta__col--image2 {
+  display: none;
+  margin-top: rem(60px);
+  margin-left: rem(-$container-gutter);
+  margin-right: rem(-$container-gutter);
+
+  @include mappy-bp(sm) {
+    margin-right: 0;
+    grid-row-start: 5;
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+
+  @include mappy-bp($bp-grid-collapse-lg) {
+    display: block;
+    grid-row-start: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin-left: auto;
+    align-self: flex-end;
+  }
+
+  .c-prktt-detail-showroom-cta__img-wrapper {
+    height: rem(350px)
+  }
+}

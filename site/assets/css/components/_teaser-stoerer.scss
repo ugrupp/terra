@@ -1,0 +1,148 @@
+//
+// Teaser stoerer
+// --------------------------------------------------
+
+@use "sass:math";
+
+.c-teaser-stoerer {
+  display: flex;
+  flex-direction: column;
+
+  @include mappy-bp(sm) {
+    flex-direction: row;
+  }
+}
+
+.c-teaser-stoerer__panel {
+  flex-grow: 1;
+  background-color: $color-primary;
+  color: $color-white;
+  @include font-smoothing;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: rem(73px);
+  padding-bottom: rem(73px);
+
+  @include mappy-bp(md) {
+    padding-top: rem(73px);
+    padding-bottom: rem(134px);
+  }
+}
+
+.c-teaser-stoerer__panel-inner {
+  padding-left: max(#{rem($container-gutter)}, calc((100vw - #{rem($container-width-default + 2 * $container-gutter)}) / 2 + #{rem($container-gutter)}));
+  padding-right: rem($container-gutter);
+}
+
+.c-teaser-stoerer-grid--offset .c-teaser-stoerer__panel-inner {
+  @include mappy-bp(xxl) {
+    padding-left: rem(80px);
+  }
+}
+
+.c-teaser-stoerer__link {
+  margin-top: rem(30px);
+  @include typi("richtext-lg");
+  color: $color-gray-4;
+  background-color: $color-white;
+
+  display: inline-flex;
+  align-items: center;
+  gap: rem(16px);
+  padding: rem(4px) rem(12px);
+  transition: color $transition-time-default;
+
+  svg {
+    width: rem(55px);
+    height: rem(12px);
+    flex-shrink: 0;
+    transition: transform $transition-time-default;
+  }
+
+  &:hover,
+  &:focus {
+    color: $color-primary;
+
+    svg {
+      transform: translateX(rem(4px));
+    }
+  }
+}
+
+.c-teaser-stoerer__img-wrapper {
+  display: block;
+  flex-shrink: 0;
+  position: relative;
+  height: rem(285px);
+
+  @include mappy-bp(sm) {
+    height: auto;
+    width: rem(285px);
+  }
+
+  @include mappy-bp(md) {
+    width: rem(200px);
+  }
+
+  @include mappy-bp(xl) {
+    width: rem(285px);
+  }
+}
+
+.c-teaser-stoerer__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity $transition-time-long;
+
+  @include mappy-bp(sm) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+  }
+}
+
+
+// Grid
+.c-teaser-stoerer-grid {
+  display: block;
+}
+
+@include mappy-bp(md) {
+  .c-teaser-stoerer-grid {
+    display: flex;
+  }
+
+  .c-teaser-stoerer-grid__col {
+    width: calc(50% + #{rem(math.div($grid-gutter, 2))});
+  }
+
+  .c-teaser-stoerer-grid--offset {
+    justify-content: flex-end;
+
+    .c-teaser-stoerer-grid__col {
+      width: calc(50% - #{rem(math.div($grid-gutter, 2))});
+    }
+  }
+}
+
+@include mappy-bp($bp-grid-collapse-lg) {
+  .c-teaser-stoerer-grid__col {
+    width: calc(50% + #{rem(math.div($grid-gutter-md, 2))});
+  }
+
+  .c-teaser-stoerer-grid--offset {
+    .c-teaser-stoerer-grid__col {
+      width: calc(50% - #{rem(math.div($grid-gutter-md, 2))});
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{{ $page := .baseContext }}
+{{ $cta := .context }}
+
+<div class="c-prktt-detail-showroom-cta">
+  <div class="o-container">
+    <div class="c-prktt-detail-showroom-cta__grid">
+      <div class="c-prktt-detail-showroom-cta__col c-prktt-detail-showroom-cta__col--content" data-reveal>
+        {{ with $cta.headline }}
+          <h2 class="c-headline-secondary">{{ . | markdownify }}</h2>
+        {{ end }}
+
+        {{ with $cta.link }}
+          {{ $targetBlank := eq $cta.target_blank true }}
+          {{ $target := cond $targetBlank "_blank" nil }}
+          {{ $rel := cond $targetBlank "noopener noreferrer" nil }}
+          <a class="c-button c-button--primary c-prktt-detail-showroom-cta__button" href="{{ . }}"{{ with $target }} target="{{ . }}"{{ end }}{{ with $rel }} rel="{{ . }}"{{ end }}>
+            <span class="c-button__text">{{ $cta.label | default "Termin buchen" }}</span>
+            <span class="c-button__icon">
+              {{ partial "components/svg" (dict "svg" "arrow-right") }}
+            </span>
+          </a>
+        {{ end }}
+      </div>
+
+      <div class="c-prktt-detail-showroom-cta__col c-prktt-detail-showroom-cta__col--image1" data-reveal>
+        <div class="c-prktt-detail-showroom-cta__img-box">
+          <div class="c-prktt-detail-showroom-cta__img-wrapper">
+            {{ with $page.Resources.GetMatch $cta.image1 }}
+              {{ $imageSmall := .Resize "500x" }}
+              {{ $imageMedium := .Resize "800x" }}
+
+              <img
+                alt="{{ $cta.image1_alt | default .Title }}"
+                src="{{ $imageMedium.RelPermalink }}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"
+                data-sizes="auto"
+                class="c-prktt-detail-showroom-cta__img lazyload" />
+            {{ end }}
+          </div>
+        </div>
+      </div>
+
+      <div class="c-prktt-detail-showroom-cta__col c-prktt-detail-showroom-cta__col--image2" data-reveal>
+        <div class="c-prktt-detail-showroom-cta__img-box">
+          <div class="c-prktt-detail-showroom-cta__img-wrapper">
+            {{ with $page.Resources.GetMatch $cta.image2 }}
+              {{ $imageSmall := .Resize "500x" }}
+              {{ $imageMedium := .Resize "800x" }}
+
+              <img
+                alt="{{ $cta.image2_alt | default .Title }}"
+                src="{{ $imageMedium.RelPermalink }}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 800w"
+                data-sizes="auto"
+                class="c-prktt-detail-showroom-cta__img lazyload" />
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

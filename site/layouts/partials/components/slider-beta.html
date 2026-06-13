@@ -1,4 +1,4 @@
-<div class="c-slider-beta" data-slider-beta>
+<div class="c-slider-beta{{ with .class }} {{ . }}{{ end }}" data-slider-beta>
   <div class="o-container">
     <div class="c-slider-beta__container-inner">
       <div class="c-slider-beta__container-sentinel relative" data-slider-beta-container-sentinel></div>
@@ -15,27 +15,63 @@
   <div class="swiper-container c-slider-beta__slider">
     <div class="swiper-wrapper">
       {{ $context := .context }}
+      {{ $slides := slice }}
 
       {{ with .gallery }}
         {{ range $context.Resources.Match . }}
           {{ if eq .ResourceType "image" }}
-            <div class="swiper-slide">
-              <div class="c-slider-beta__img-wrapper">
-                {{ $imageSmall := .Resize "500x" }}
-                {{ $imageMedium := .Resize "1000x" }}
-                {{ $imageBig := .Resize "2000x" }}
-
-                <img
-                  alt="{{ .Title }}"
-                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                  data-src="{{ $imageSmall.RelPermalink }}"
-                  data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w, {{ $imageBig.RelPermalink }} 2000w"
-                  class="c-slider-beta__img swiper-lazy" />
-                  <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                </div>
-            </div>
+            {{ $slides = $slides | append (dict "resource" .) }}
           {{ end }}
         {{ end }}
+      {{ end }}
+
+      {{ with .items }}
+        {{ $slides = slice }}
+        {{ range . }}
+          {{ $item := . }}
+          {{ with $context.Resources.GetMatch $item.image }}
+            {{ $slides = $slides | append (dict "resource" . "item" $item) }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+
+      {{ range $slides }}
+        {{ $resource := .resource }}
+        {{ $item := .item }}
+        <div class="swiper-slide">
+          <div class="c-slider-beta__img-wrapper">
+            {{ $imageSmall := $resource.Resize "500x" }}
+            {{ $imageMedium := $resource.Resize "1000x" }}
+            {{ $imageBig := $resource.Resize "2000x" }}
+
+            <img
+              alt="{{ or $item.title $resource.Title }}"
+              src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              data-src="{{ $imageSmall.RelPermalink }}"
+              data-srcset="{{ $imageSmall.RelPermalink }} 500w, {{ $imageMedium.RelPermalink }} 1000w, {{ $imageBig.RelPermalink }} 2000w"
+              class="c-slider-beta__img swiper-lazy" />
+            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+
+            {{ with $item }}
+              {{ if or .title .shop_link }}
+                <div class="c-slider-beta__slide-overlay">
+                  {{ with .title }}
+                    <div class="c-slider-beta__slide-title">
+                      {{ . }}
+                    </div>
+                  {{ end }}
+
+                  {{ with .shop_link }}
+                    <a class="c-slider-beta__slide-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">
+                      {{ partial "components/svg" (dict "svg" "cart") }}
+                      {{ $item.shop_label | default "Jetzt kaufen und liefern lassen" }}
+                    </a>
+                  {{ end }}
+                </div>
+              {{ end }}
+            {{ end }}
+          </div>
+        </div>
       {{ end }}
     </div>
   </div>

@@ -1,0 +1,41 @@
+{{ $baseContext := .baseContext }}
+{{ $product := .context }}
+
+<article class="c-prktt-product" data-product="{{ $product.File.TranslationBaseName }}">
+  <div class="o-main__section o-main__section--bg-white">
+    {{/* Sticky header */}}
+    {{ partial "components/prktt-product-sticky-header.html" (dict "context" $product) }}
+
+    {{/* Overview */}}
+    <section class="c-prktt-product__section c-prktt-product__section--overview">
+      {{ partial "components/prktt-product-overview.html" (dict "context" $product "baseContext" $baseContext) }}
+    </section>
+
+    {{/* Stoerer */}}
+    {{ with $product.Params.stoerer }}
+      {{ with $baseContext.Resources.GetMatch .resource }}
+        <section class="c-prktt-product__section c-prktt-product__section--stoerer{{ with $.context.Params.stoerer.section_classes }} {{ . }}{{ end }}">
+          <div class="c-teaser-stoerer-grid{{ with $.context.Params.stoerer.grid_classes }} {{ . }}{{ end }}">
+            <div class="c-teaser-stoerer-grid__col">
+              {{ partial "components/teaser-stoerer.html" (dict "context" . "baseContext" $baseContext) }}
+            </div>
+          </div>
+        </section>
+      {{ end }}
+    {{ end }}
+
+    {{/* Variations */}}
+    {{ if or $product.Params.variations.headline $product.Params.variations.intro $product.Params.variations.items }}
+      <section class="c-prktt-product__section c-prktt-product__section--variations">
+        {{ partial "components/prktt-product-variations.html" (dict "context" $product "baseContext" $baseContext) }}
+      </section>
+    {{ end }}
+
+    {{/* Gallery */}}
+    {{ if $product.Params.gallery_slider.items }}
+      <section class="c-prktt-product__section c-prktt-product__section--gallery">
+        {{ partial "components/prktt-product-gallery.html" (dict "context" $product "baseContext" $baseContext) }}
+      </section>
+    {{ end }}
+  </div>
+</article>

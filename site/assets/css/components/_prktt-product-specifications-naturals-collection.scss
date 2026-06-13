@@ -1,0 +1,54 @@
+.c-prktt-naturals-spec {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(80px);
+}
+
+.c-prktt-naturals-spec__section {
+  position: relative;
+  padding-left: rem(30px);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: rgba($color-content, 0.5);
+  }
+}
+
+.c-prktt-naturals-spec__icon {
+  margin-bottom: rem(25px);
+}
+
+.c-prktt-naturals-spec__icon-svg {
+  width: rem(45px);
+  height: rem(45px);
+  color: $color-content;
+}
+
+.c-prktt-naturals-spec__headline {
+  color: $color-primary;
+  margin-bottom: rem(25px);
+}
+
+.c-prktt-naturals-spec__spec-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(20px);
+}
+
+.c-prktt-naturals-spec__spec-item {
+  margin: 0;
+}
+
+.c-prktt-naturals-spec__construction-graphic {
+  width: 100%;
+
+  svg {
+    max-height: rem(94px);
+    aspect-ratio: 320 / 75.65;
+  }
+}

@@ -1,0 +1,10 @@
+{{ $baseContext := . }}
+{{ $products := sort (.Resources.Match "product-*.md") "Weight" }}
+
+{{ if gt (len $products) 0 }}
+  <div class="c-prktt-products">
+    {{ range $products }}
+      {{ partial "components/prktt-product.html" (dict "context" . "baseContext" $baseContext) }}
+    {{ end }}
+  </div>
+{{ end }}

@@ -84,7 +84,7 @@ $typi: (
   form: (
     null: (14px, 1),
   ),
-  
+
   form-large: (
     null: (16px, 1.5),
     md: (21px, 27px),
@@ -109,6 +109,10 @@ $typi: (
     null: (21px, 1.2),
     sm: (27px),
     lg: (31px),
+  ),
+
+  product-variations-link: (
+    null: (15px, 1.2),
   )
 );
 /* stylelint-enable */
