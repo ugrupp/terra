@@ -28,11 +28,11 @@ variations:
   items:
     - title: Zugspitze
       image: zugspitze.jpg
-      shop_link: https://shop.terra-boden.de/
+      shop_link: https://shop.terra-boden.de/products/naturals-collection-landhausdiele-zugspitze-natur-geolt
     - title: Hirschsprung
       image: hirschsprung.jpg
-      shop_link: https://shop.terra-boden.de/
+      shop_link: https://shop.terra-boden.de/products/naturals-collection-landhausdiele-hirschsprung-gerauchert-natur-geolt
     - title: Altmühltal
       image: altmuehltal.jpg
-      shop_link: https://shop.terra-boden.de/
+      shop_link: https://shop.terra-boden.de/products/naturals-collection-landhausdiele-altmuhltal-rohholzoptik-geolt
 ---

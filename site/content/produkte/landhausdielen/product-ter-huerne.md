@@ -62,28 +62,28 @@ variations:
   items:
     - title: Eriksberg
       image: ter-huerne-eiche-eriksberg.jpg
-      shop_link: https://shop.terra-boden.de/
+      shop_link: https://shop.terra-boden.de/products/ter-hurne-parkett-eiche-eriksberg-landhausdiele-evo?_pos=1&_psq=Eriksber&_ss=e&_v=1.0
     - title: Fabron
       image: ter-huerne-eiche-fabron.jpg
-      shop_link: https://shop.terra-boden.de/
+      shop_link: https://shop.terra-boden.de/products/ter-hurne-parkett-eiche-fabron-landhausdiele-olio?_pos=1&_psq=Fabron&_ss=e&_v=1.0
     - title: Montmartre
       image: ter-huerne-eiche-montmartre.jpg
-      shop_link: https://shop.terra-boden.de/
+      shop_link: https://shop.terra-boden.de/products/ter-hurne-parkett-eiche-montmartre-landhausdiele-olio?_pos=1&_psq=Montma&_ss=e&_v=1.0
     - title: Portofino
       image: ter-huerne-eiche-portofino.jpg
-      shop_link: https://shop.terra-boden.de/
+      shop_link: https://shop.terra-boden.de/products/ter-hurne-parkett-eiche-portofino-landhausdiele-olio?_pos=1&_psq=portofino&_ss=e&_v=1.0
     - title: Testaccio
       image: ter-huerne-eiche-testaccio.jpg
-      shop_link: https://shop.terra-boden.de/
+      shop_link: https://shop.terra-boden.de/products/ter-hurne-parkett-eiche-testaccio-schlossdiele-olio?_pos=1&_psq=testa&_ss=e&_v=1.0
     - title: Tribeca
       image: ter-huerne-eiche-tribeca.jpg
-      shop_link: https://shop.terra-boden.de/
+      shop_link: https://shop.terra-boden.de/products/ter-hurne-parkett-eiche-tribeca-landhausdiele-olio?_pos=1&_psq=Tribeca&_ss=e&_v=1.0
     - title: La Torse
       image: ter-huerne-eiche-la-torse.jpg
-      shop_link: https://shop.terra-boden.de/
+      shop_link: https://shop.terra-boden.de/products/ter-hurne-parkett-eiche-la-torse-landhausdiele-olio?_pos=1&_psq=La+Torse&_ss=e&_v=1.0
     - title: Mont Baron
       image: ter-huerne-eiche-mont-baron.jpg
-      shop_link: https://shop.terra-boden.de/
+      shop_link: https://shop.terra-boden.de/products/ter-hurne-parkett-eiche-mont-boron-landhausdiele-evo?_pos=1&_psq=Mont&_ss=e&_v=1.0
 stoerer:
   resource: teaser-stoerer-3.md
   section_classes: o-main__section--bg-white
