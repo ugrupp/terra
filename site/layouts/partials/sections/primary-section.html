@@ -24,7 +24,9 @@
         <div class="o-grid">
           <div class="o-grid__col">
             <div class="c-headline-wrapper c-primary-section__alpha-headline">
-              <h2 class="c-headline c-headline--padded c-headline--primary">{{ .Params.headline | markdownify }}</h2>
+              <h2 class="c-headline c-headline--padded c-headline--primary">
+                <span>{{ .Params.headline | markdownify }}</span>
+              </h2>
             </div>
           </div>
 

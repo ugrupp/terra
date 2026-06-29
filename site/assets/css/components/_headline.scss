@@ -120,6 +120,11 @@
   padding: .3em .3em .15em;
   box-decoration-break: clone;
   line-height: 1.25;
+
+  // to workaround multiline clipping
+  span {
+    position: relative;
+  }
 }
 
 // headline-wrapper to workaround numerous limitations with `display: inline;` headlines (needed for box-decoration-break)

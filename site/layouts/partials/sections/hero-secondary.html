@@ -54,12 +54,15 @@
       <div class="o-container">
         {{ if .Params.heroTextSm }}
           <div class="c-hero-secondary__content-inner c-hero-secondary__content-inner--sm">
-            <h2 class="c-headline c-headline--padded c-headline--primary c-headline--lg">{{ .Params.heroTextSm | markdownify }}</h2>
+            <h2 class="c-headline c-headline--padded c-headline--primary c-headline--lg">
+              <span>{{ .Params.heroTextSm | markdownify }}</span>
+            </h2>
           </div>
         {{ end }}
 
         <div class="c-hero-secondary__content-inner">
-          <h2 class="c-headline c-headline--padded c-headline--primary c-headline--lg">{{ .Params.heroText | markdownify }}</h2>
+          <h2 class="c-headline c-headline--padded c-headline--primary c-headline--lg">
+            <span>{{ .Params.heroText | markdownify }}</span></h2>
         </div>
       </div>
     </div>

@@ -16,10 +16,10 @@
               <h2 class="c-headline c-headline--padded c-headline--primary c-headline--lg">
                 {{ if $hasDetailPage }}
                   <a href="{{ .context.Params.url }}">
-                    {{ .context.Title }}
+                    <span>{{ .context.Title }}</span>
                   </a>
                 {{ else }}
-                  {{ .context.Title }}
+                  <span>{{ .context.Title }}</span>
                 {{ end }}
               </h2>
             </div>
